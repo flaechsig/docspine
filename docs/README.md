@@ -1,53 +1,86 @@
-# docspine
+# docspine — Dokumentation
 
 > Ein Dokumentationsstandard mit Prüfwerkzeug, der Anforderungen, Architektur und
 > Entscheidungen als ein nachprüfbares Dokument im Repo hält, lesbar für jede KI und
 > jeden Menschen.
 
-Dies ist das Deckblatt. Das Inhaltsverzeichnis unten ist die Lesereihenfolge.
+**Einstieg in den Inhalt: [Vision](01-goals/vision.md).** Von dort führen die Epics
+weiter zu Stories und Requirements.
 
-**Stand:** Alle Entscheidungen stehen auf `proposed`, bis die Migration von 3dPacMan
-sie bestätigt (US-0012). Solange dürfen sie direkt geändert werden.
+Diese Seite erklärt, wie die Doku aufgebaut ist und auf welchen Standards sie beruht.
 
-## Inhalt
+## Aufbau
 
-<!-- generated:toc -->
-### 1 Ziele
+Die Doku ist **ein Dokument**, verteilt auf viele Dateien. Die Gliederung folgt
+[arc42](https://arc42.org), der Vorlage für Architekturdokumentation mit zwölf
+Kapiteln. Kapitel 1 trägt zusätzlich die ganze Spezifikation, damit Anforderungen und
+Architektur nicht in zwei Dokumenten auseinanderlaufen
+([ADR-0007](09-decisions/ADR-0007.md)).
 
-- [Vision](01-goals/vision.md)
+Ein Kapitel existiert nur, wenn es Inhalt hat. Fehlt eine Datei, ist das Kapitel noch
+offen ([ADR-0008](09-decisions/ADR-0008.md)).
 
-| Epic | Stories |
-|---|---|
-| [E-STANDARD](01-goals/epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk | ⚪ [US-0001](01-goals/stories/US-0001.md) STANDARD.md schreiben · ⚪ [US-0002](01-goals/stories/US-0002.md) Regeln aus den Skills verlagern · ⚪ [US-0003](01-goals/stories/US-0003.md) JSON Schema |
-| [E-GENERATOR](01-goals/epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI | ⚪ [US-0004](01-goals/stories/US-0004.md) CLI-Kern · ⚪ [US-0005](01-goals/stories/US-0005.md) Neue Prüfungen · ⚪ [US-0006](01-goals/stories/US-0006.md) Maven-Anbindung |
-| [E-SKILLS](01-goals/epics/E-SKILLS.md) — Geführte Abläufe als Skills | ⚪ [US-0007](01-goals/stories/US-0007.md) spine-init · ⚪ [US-0008](01-goals/stories/US-0008.md) Methodik-Skills · ⚪ [US-0009](01-goals/stories/US-0009.md) spine-adopt · ⚪ [US-0010](01-goals/stories/US-0010.md) spine-gate · ⚪ [US-0011](01-goals/stories/US-0011.md) Kaltstart-Test |
-| [E-MIGRATION](01-goals/epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen | ⚪ [US-0012](01-goals/stories/US-0012.md) 3dPacMan · ⚪ [US-0013](01-goals/stories/US-0013.md) tarifnova · ⚪ [US-0014](01-goals/stories/US-0014.md) blocpress |
+```
+docs/
+  README.md                 diese Seite
+  PROFILE.md                Projektwerte (Sprache, Module) und Abweichungen vom Standard
+  STANDARD.md               die Regeln (Kopie aus docspine, nicht editieren) *
 
-### 3 Kontext
+  01-goals/                 arc42 Kap. 1 — Einführung und Ziele
+    vision.md               warum es das gibt, für wen, woran sich Erfolg misst
+    epics/E-<NAME>.md       Themen
+    stories/US-NNNN.md      Nutzen aus Sicht der Nutzer, verweist auf Requirements
+    requirements/REQ-NNNN.md  einzelne prüfbare Anforderungen *
+  02-constraints.md         Kap. 2 — Randbedingungen *
+  03-context.md             Kap. 3 — Kontextabgrenzung: Nachbarsysteme und Nutzer
+  04-strategy.md            Kap. 4 — Lösungsstrategie *
+  05-building-blocks/       Kap. 5 — Bausteinsicht, ein Baustein je Datei *
+  06-runtime/               Kap. 6 — Laufzeitsicht, ein Szenario je Datei *
+  07-deployment.md          Kap. 7 — Verteilungssicht *
+  08-concepts/              Kap. 8 — fachliche und technische Konzepte *
+  09-decisions/ADR-NNNN.md  Kap. 9 — Architekturentscheidungen
+  10-quality.md             Kap. 10 — Qualitätsanforderungen, generiert *
+  11-risks.md               Kap. 11 — Risiken und technische Schulden *
+  12-glossary.md            Kap. 12 — Glossar *
+  diagrams/                 Quellen und SVGs großer Diagramme *
 
-- [Kontext](03-context.md)
+  * noch nicht vorhanden
+```
 
-### 9 Entscheidungen
+Ordner, Dateinamen und Frontmatter sind englisch, die Inhalte deutsch
+([ADR-0011](09-decisions/ADR-0011.md)).
 
-| ADR | Thema |
-|---|---|
-| [ADR-0001](09-decisions/ADR-0001.md) | Markdown mit Frontmatter als einziges Quellformat |
-| [ADR-0002](09-decisions/ADR-0002.md) | Diagramme als Textquelle |
-| [ADR-0003](09-decisions/ADR-0003.md) | Beziehungen nur nach unten, alles andere generiert |
-| [ADR-0004](09-decisions/ADR-0004.md) | Standard als versioniertes Paket, als Kopie im Projekt |
-| [ADR-0005](09-decisions/ADR-0005.md) | Ein Status-Vokabular je Artefakt, Prüfstand als eigene Achse |
-| [ADR-0006](09-decisions/ADR-0006.md) | Schnitt zwischen Kernstandard, Modulen und Projektprofil |
-| [ADR-0007](09-decisions/ADR-0007.md) | Ein Dokument nach arc42-Gerüst |
-| [ADR-0008](09-decisions/ADR-0008.md) | Artefakte verschlanken |
-| [ADR-0009](09-decisions/ADR-0009.md) | Steuernde Artefakte und die Grenze zu KI-Werkzeugen |
-| [ADR-0010](09-decisions/ADR-0010.md) | Skill-Familie spine-* |
-| [ADR-0011](09-decisions/ADR-0011.md) | Projektsprache und englisches Maschinenvokabular |
-| [ADR-0012](09-decisions/ADR-0012.md) | Generator-Kern als eigenständige CLI |
-<!-- /generated -->
+## Wie die Teile zusammenhängen
 
-Die übrigen Kapitel (2, 4–8, 10–12) haben noch keinen Inhalt und existieren daher
-nicht (ADR-0008).
+```
+Vision → Epic → Story → Requirement ← Test
+                  ↑          ↑
+       Laufzeitszenario   Baustein (über den Code-Pfad)
+                             ↑
+                            ADR (Entscheidung → prüfbare Folge)
+```
 
----
+- Jede Aussage hat **genau eine Quelldatei**. Andere Stellen verweisen über die ID
+  (`REQ-0042`, `ADR-0007`) oder blenden sie in einem generierten Bereich ein
+  (`<!-- generated:… -->`). Solche Bereiche nicht von Hand ändern
+  ([ADR-0003](09-decisions/ADR-0003.md)).
+- IDs sind unveränderlich. Ändert sich eine Anforderung inhaltlich, entsteht eine neue,
+  die alte wird abgelöst.
 
-Projektwerte und Abweichungen vom Standard: [PROFILE.md](PROFILE.md).
+## Standards, auf denen die Doku beruht
+
+| Standard | wofür | hier |
+|---|---|---|
+| [arc42](https://arc42.org) | Gliederung des Dokuments | die Kapitelordner `01-…` bis `12-…` |
+| [EARS](https://alistairmavin.com/ears/) | Satzbau für Anforderungen (`WHEN … the system shall …`) | `statement` in jedem Requirement |
+| [ADR](https://adr.github.io) | Architekturentscheidungen festhalten | `09-decisions/` |
+| Markdown mit YAML-Frontmatter | Format aller Dateien, Metadaten maschinenlesbar | überall ([ADR-0001](09-decisions/ADR-0001.md)) |
+| [Mermaid](https://mermaid.js.org) | Diagramme als Text, von GitHub direkt dargestellt | in den Kapiteln ([ADR-0002](09-decisions/ADR-0002.md)) |
+| [Agent Skills](https://agentskills.io) | geführte Abläufe für KI-Agenten | `.agents/skills/` ([ADR-0009](09-decisions/ADR-0009.md)) |
+| [AGENTS.md](https://agents.md) | Einstieg für KI-Agenten | `AGENTS.md` im Repo-Root |
+
+## Status
+
+Alle Entscheidungen stehen auf `proposed`, bis die Migration von 3dPacMan sie
+bestätigt. Solange dürfen sie direkt geändert werden. Eine Übersicht aller
+Entscheidungen steht in [09-decisions/](09-decisions/).
