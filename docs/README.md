@@ -1,4 +1,4 @@
-<!-- docspine 0.1 · Übersetzung von standard/en/README.md · in Projekten nicht editieren -->
+<!-- docspine 0.1 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
 
 # Dokumentation nach docspine
 
@@ -24,8 +24,8 @@ vier Abweichungen:
 
 ```
 docs/
-  README.md                   diese Seite
-  STANDARD.md                 die Regeln des Standards (nicht editieren)
+  README.md                   diese Seite (aus docspine übersetzt)
+  STANDARD.md                 die Regeln des Standards, auf Englisch (nicht editieren)
   PROFILE.md                  Werte dieses Projekts: Sprache, Normquellen, Abweichungen
   STATUS.md                   Zahlen, Lücken, Widersprüche, offene Fragen (generiert)
 
@@ -60,7 +60,7 @@ Skills richten sich ausschließlich an KI-Agenten.
 
 | Datei | Wofür | von Hand ändern? |
 |---|---|---|
-| `docs/README.md` | diese Seite: Aufbau und Arbeitsweise | nein, kommt aus docspine |
+| `docs/README.md` | diese Seite: Aufbau und Arbeitsweise | nein, aus docspine übersetzt |
 | `docs/STANDARD.md` | die Regeln, die für alle Inhalte gelten | nein, kommt aus docspine |
 | `docs/PROFILE.md` | Werte dieses Projekts (Sprache, Normquellen) und begründete Abweichungen vom Standard | ja |
 | `AGENTS.md` (Repo-Root) | Einstieg für KI-Agenten: wo was steht, wie geprüft wird | ja |

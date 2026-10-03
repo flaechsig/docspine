@@ -13,11 +13,11 @@ die Quelle des Standards und dokumentiert sich selbst danach.
 - `docs/PROFILE.md`: Projektwerte und Abweichungen vom Standard
 - `docs/01-goals/README.md`: Übersicht aller Epics und Stories mit Status
 - `docs/01-goals/`: Vision, Epics, Stories, Requirements
-- `docs/STANDARD.md`: die Regeln, die für diese Doku gelten
+- `docs/STANDARD.md`: die Regeln, die für diese Doku gelten (englisch)
 - `docs/09-decisions/`: Entscheidungen (ADRs), warum die Regeln so sind
-- `standard/`: die Quellen des Standards, den docspine ausliefert. `en/` ist führend,
-  `de/` die Übersetzung. Änderungen immer zuerst in `en/`, dann `de/` nachziehen und
-  die Begriffstabelle in Abschnitt 12 einhalten.
+- `standard/en/`: die Quellen dessen, was docspine ausliefert (`STANDARD.md`,
+  `README.md`), nur auf Englisch. `docs/STANDARD.md` ist eine unveränderte Kopie,
+  `docs/README.md` eine deutsche Übersetzung nach der Begriffstabelle in Abschnitt 12.
 
 ## Regeln für Änderungen
 

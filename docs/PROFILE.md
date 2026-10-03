@@ -15,9 +15,9 @@ docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Dok
 
 ## Abweichungen vom Standard
 
-- **Quelle und Kopie im selben Repo.** Die Quellen des Standards liegen unter
-  `standard/` (Englisch führend, Deutsch als Übersetzung). `docs/STANDARD.md` und
-  `docs/README.md` sind Kopien der deutschen Fassung, bis die CLI sie schreibt.
+- **Quelle und Kopie im selben Repo.** Die Quellen liegen unter `standard/en/`.
+  `docs/STANDARD.md` ist eine Kopie, `docs/README.md` eine von Hand erstellte
+  Übersetzung, bis `spine-init` und die CLI das übernehmen.
 - **Kein Gate.** Die CLI gibt es noch nicht (US-0004). Bis dahin werden die Regeln von
   Hand eingehalten.
 - **Keine `STATUS.md`.** Sie entsteht erst mit der CLI (US-0004, US-0005).

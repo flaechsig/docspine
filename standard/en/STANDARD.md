@@ -44,7 +44,7 @@ generated, and a chapter exists only once it has content.
 ```
 AGENTS.md                     entry point for AI agents (project-specific)
 docs/
-  README.md                   how to work with this documentation (from docspine)
+  README.md                   how to work with this documentation (translated from docspine)
   STANDARD.md                 this file (from docspine)
   PROFILE.md                  project values and deviations
   STATUS.md                   figures, gaps, contradictions, open questions (generated)
@@ -79,7 +79,7 @@ resolve.
 
 | File | Purpose | Edited by hand |
 |---|---|---|
-| `docs/README.md` | how to work with the documentation | no, from docspine |
+| `docs/README.md` | how to work with the documentation | no, translated from docspine |
 | `docs/STANDARD.md` | the rules | no, from docspine |
 | `docs/PROFILE.md` | project values and justified deviations | yes |
 | `AGENTS.md` | entry point for AI agents: where things are, how to check | yes |
@@ -115,13 +115,21 @@ reason. An empty list is the normal case.
 
 ### 2.4 Language
 
+Configuration is in English; documentation is in the project language.
+
 | What | Language |
 |---|---|
+| `STANDARD.md`, skills | English, copied unchanged |
+| `README.md` | `language`, translated from docspine's English source |
 | text, headings, `title`, `rationale` | `language` |
 | generated regions and views | `language` |
 | requirement `statement` | `statement_language` (default `en`, because WHEN and IF blur in many languages) |
 | folder and file names | English |
 | front-matter keys and values | English |
+
+The translated `README.md` starts with the version of its source:
+`<!-- docspine 0.1 · from standard/en/README.md -->`. When docspine has a newer
+version, the README is translated again. Translations use the terms in section 12.
 
 ### 2.5 IDs
 
@@ -511,6 +519,7 @@ The checker is a command-line tool that runs without a build system:
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image older than its source |
 | 13 | broken relative link |
+| 14 | `README.md` was translated from a different docspine version than the profile states |
 
 **Generated views:**
 
@@ -522,7 +531,8 @@ The checker is a command-line tool that runs without a build system:
 
 ## 12 Terminology
 
-Translations of this standard use these terms.
+Documentation in other languages (`README.md`, generated regions and views) uses these
+terms. The German column is binding for projects with `language: de`.
 
 | English | Deutsch |
 |---|---|
