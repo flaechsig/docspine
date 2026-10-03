@@ -4,15 +4,15 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**14 Stories:** ⚪ offen 13 · ✅ verifiziert 1
+**14 Stories:** ⚪ offen 12 · ✅ verifiziert 2
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: ⚪ offen
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0004](stories/US-0004.md) | CLI-Kern herauslösen | ⚪ offen |
+| [US-0004](stories/US-0004.md) | CLI-Kern mit check und render | ✅ verifiziert |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ⚪ offen |
 | [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel JUnit 5 | ⚪ offen |
 

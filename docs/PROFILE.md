@@ -18,8 +18,6 @@ docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Dok
 - **Quelle und Kopie im selben Repo.** Die Quellen liegen unter `standard/en/`.
   `docs/STANDARD.md` ist eine Kopie, `docs/README.md` eine von Hand erstellte
   Übersetzung, bis `spine-init` und die CLI das übernehmen.
-- **Kein Gate.** Die CLI gibt es noch nicht (US-0004). Bis dahin werden die Regeln von
-  Hand eingehalten.
-- **Keine `STATUS.md`.** Sie entsteht erst mit der CLI (US-0004, US-0005).
-- **Generierte Bereiche ohne Generator.** Die Übersicht in `01-goals/README.md` und die
-  Story-Listen in den Epics sind per Hand-Skript erzeugt, bis die CLI sie schreibt.
+- **Prüfwerkzeug unvollständig.** Die CLI prüft die Fehlerklassen 1–10 und 13 und
+  erzeugt Status-Übersicht und Story-Listen. Fehlerklassen 11, 12, 14, die übrigen
+  generierten Bereiche und `STATUS.md` folgen mit US-0005.

@@ -26,4 +26,11 @@ die Quelle des Standards und dokumentiert sich selbst danach.
 - Ein ADR auf `proposed` darf geändert werden, ab `accepted` nur noch abgelöst.
 - Jede Änderung auf einem eigenen Branch (`docs/…`, `feat/…`, `fix/…`), Merge nach
   `main` mit `--no-ff`.
-- Ein Gate gibt es noch nicht. Verweise und Frontmatter von Hand prüfen.
+- Vor jedem Commit prüfen:
+  ```
+  python3 cli/run_tests.py                          # Tests, schreibt cli/req-results.json
+  PYTHONPATH=cli python3 -m docspine render         # generierte Bereiche erneuern
+  PYTHONPATH=cli python3 -m docspine check          # muss "OK" melden
+  ```
+- `cli/`: die CLI in Python (nur Standardbibliothek, PyYAML eingepackt unter
+  `cli/docspine/_vendor/`). `python3 cli/build.py` baut `cli/dist/docspine.pyz`.
