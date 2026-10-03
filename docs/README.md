@@ -13,63 +13,37 @@ Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, ste
 
 ## Aufbau
 
-Die Gliederung ist an die zwölf Kapitel von [arc42](https://arc42.org) angelehnt, mit
-vier Abweichungen:
+Die Dokumentation ist **ein Dokument**, angelehnt an die zwölf Kapitel von
+[arc42](https://arc42.org). Kapitel 1 enthält zusätzlich die ganze Spezifikation,
+damit Anforderungen und Architektur nicht in zwei Dokumenten auseinanderlaufen.
+Kapitel 9 besteht aus den einzelnen Entscheidungen, Kapitel 10 wird erzeugt, und ein
+Kapitel existiert erst, wenn es Inhalt hat.
 
-- Kapitel 1 enthält zusätzlich die ganze Spezifikation, damit Anforderungen und
-  Architektur nicht in zwei Dokumenten auseinanderlaufen.
-- Kapitel 9 besteht nur aus den einzelnen Entscheidungen (ADRs).
-- Kapitel 10 wird aus den Qualitätsanforderungen erzeugt.
-- Ein Kapitel existiert erst, wenn es Inhalt hat.
-
-```
-docs/
-  README.md                   diese Seite (aus docspine übersetzt)
-  STANDARD.md                 die Regeln des Standards, auf Englisch (nicht editieren)
-  PROFILE.md                  Werte dieses Projekts: Sprache, Normquellen, Abweichungen
-  STATUS.md                   Zahlen, Lücken, Widersprüche, offene Fragen (generiert)
-
-  01-goals/                   Kap. 1 — Einführung und Ziele
-    README.md                 Übersicht: Epics, Stories, Status (generiert)
-    vision.md                 warum es das gibt, für wen, woran sich Erfolg misst
-    epics/E-<NAME>.md         Themen
-    stories/US-NNNN.md        Nutzen aus Sicht der Nutzer
-    requirements/REQ-NNNN.md  einzelne prüfbare Anforderungen
-  02-constraints.md           Kap. 2 — Randbedingungen
-  03-context.md               Kap. 3 — Kontextabgrenzung: Nachbarsysteme und Nutzer
-  04-strategy.md              Kap. 4 — Lösungsstrategie
-  05-building-blocks/         Kap. 5 — Bausteinsicht, ein Baustein je Datei
-  06-runtime/                 Kap. 6 — Laufzeitsicht, ein Szenario je Datei
-  07-deployment.md            Kap. 7 — Verteilungssicht
-  08-concepts/                Kap. 8 — fachliche und technische Konzepte
-  09-decisions/ADR-NNNN.md    Kap. 9 — Architekturentscheidungen
-  10-quality.md               Kap. 10 — Qualitätsanforderungen (generiert)
-  11-risks.md                 Kap. 11 — Risiken und technische Schulden
-  12-glossary.md              Kap. 12 — Glossar
-  diagrams/                   Quellen und Bilder großer Diagramme
-```
+| Kapitel | Inhalt |
+|---|---|
+| 1 Ziele | Vision, Epics, Stories und Requirements; Übersicht mit Status |
+| 2 Randbedingungen | was von außen feststeht: Technik, Normen, Organisation |
+| 3 Kontext | Nachbarsysteme und Nutzer |
+| 4 Strategie | der grundlegende Lösungsansatz |
+| 5 Bausteine | die Teile des Systems, ein Baustein je Datei |
+| 6 Laufzeit | wie die Teile zusammenwirken, ein Szenario je Datei |
+| 7 Verteilung | wo was läuft |
+| 8 Konzepte | fachliche und technische Konzepte, die übergreifend gelten |
+| 9 Entscheidungen | Architekturentscheidungen (ADRs) |
+| 10 Qualität | Qualitätsanforderungen, generiert |
+| 11 Risiken | Risiken und technische Schulden |
+| 12 Glossar | Begriffe |
 
 Ordner, Dateinamen und Metadaten sind englisch, die Inhalte stehen in der
-Projektsprache.
+Projektsprache. Die genaue Gliederung steht in [STANDARD.md](STANDARD.md#21-layout).
 
 ## Steuernde Dateien
 
-Einige Dateien beschreiben nicht das Projekt, sondern wie mit seiner Doku gearbeitet
-wird. Sie steuern Menschen und KI-Agenten gleichermaßen, nur `AGENTS.md` und die
-Skills richten sich ausschließlich an KI-Agenten.
-
-| Datei | Wofür | von Hand ändern? |
-|---|---|---|
-| `docs/README.md` | diese Seite: Aufbau und Arbeitsweise | nein, aus docspine übersetzt |
-| `docs/STANDARD.md` | die Regeln, die für alle Inhalte gelten | nein, kommt aus docspine |
-| `docs/PROFILE.md` | Werte dieses Projekts (Sprache, Normquellen) und begründete Abweichungen vom Standard | ja |
-| `AGENTS.md` (Repo-Root) | Einstieg für KI-Agenten: wo was steht, wie geprüft wird | ja |
-| `.agents/skills/spine-*` | geführte Abläufe für KI-Agenten | nein, kommt aus docspine |
-| `.agents/skills/<andere>` | projekteigene Abläufe | ja |
-| `.claude/` und ähnliche | werkzeugspezifische Einstellungen, verweisen nur auf `AGENTS.md` | ja |
-
-Was aus docspine kommt, wird beim Aktualisieren des Standards überschrieben. Änderungen
-daran gehören nach docspine, nicht ins Projekt.
+Neben den Inhalten steuern einige Dateien, wie mit der Dokumentation gearbeitet wird:
+die Regeln (`STANDARD.md`), die Werte dieses Projekts (`PROFILE.md`), der Einstieg für
+KI-Agenten (`AGENTS.md`) und die Skills. Einige davon kommen aus docspine und werden im
+Projekt nicht geändert. Welche, und warum, steht in
+[STANDARD.md](STANDARD.md#22-controlling-files).
 
 ## Wie die Teile zusammenhängen
 

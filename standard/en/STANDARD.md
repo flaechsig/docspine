@@ -106,7 +106,8 @@ docspine: 0.1               # version of the standard
 language: de                # language of all documents
 statement_language: en      # language of requirement statements, default en
 sources:                    # permitted values for a requirement's source
-  - BiPRO 421 TAA v2.x
+  - GDPR Art. 32
+  - RFC 6749 (OAuth 2.0)
 ---
 ```
 
@@ -405,7 +406,7 @@ large feature can be entirely local.
 Descriptive statements in chapters 2–8 and 11 carry their confidence inline:
 
 ```markdown
-_(confidence: verified — OrchestratorService, REQ-0006)_
+_(confidence: verified — src/orders/OrderService.java, REQ-0012)_
 ```
 
 | Value | Meaning |
@@ -435,7 +436,7 @@ named `req-results.json`:
 ```json
 {
   "results": [
-    { "req": "REQ-0014", "result": "passed", "test": "ProtocolInvocationServiceTest" }
+    { "req": "REQ-0012", "result": "passed", "test": "OrderServiceTest.rejectsEmptyCart" }
   ]
 }
 ```
