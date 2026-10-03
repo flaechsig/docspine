@@ -13,63 +13,37 @@ the structure and the way of working. What applies in detail is in
 
 ## Structure
 
-The outline is based on the twelve chapters of [arc42](https://arc42.org), with four
-deviations:
+The documentation is **one document**, based on the twelve chapters of
+[arc42](https://arc42.org). Chapter 1 also holds the complete specification, so that
+requirements and architecture do not drift apart in two documents. Chapter 9 consists
+of the individual decisions, chapter 10 is generated, and a chapter exists only once
+it has content.
 
-- Chapter 1 also holds the complete specification, so that requirements and
-  architecture do not drift apart in two documents.
-- Chapter 9 consists only of the individual decisions (ADRs).
-- Chapter 10 is generated from the quality requirements.
-- A chapter exists only once it has content.
-
-```
-docs/
-  README.md                   this page (translated from docspine)
-  STANDARD.md                 the rules of the standard, in English (do not edit)
-  PROFILE.md                  this project's values: language, sources, deviations
-  STATUS.md                   figures, gaps, contradictions, open questions (generated)
-
-  01-goals/                   ch. 1 — introduction and goals
-    README.md                 overview: epics, stories, status (generated)
-    vision.md                 why it exists, for whom, how success is measured
-    epics/E-<NAME>.md         themes
-    stories/US-NNNN.md        benefit from the users' point of view
-    requirements/REQ-NNNN.md  individual testable requirements
-  02-constraints.md           ch. 2 — constraints
-  03-context.md               ch. 3 — context and scope: neighbouring systems and users
-  04-strategy.md              ch. 4 — solution strategy
-  05-building-blocks/         ch. 5 — building block view, one block per file
-  06-runtime/                 ch. 6 — runtime view, one scenario per file
-  07-deployment.md            ch. 7 — deployment view
-  08-concepts/                ch. 8 — domain and technical concepts
-  09-decisions/ADR-NNNN.md    ch. 9 — architecture decisions
-  10-quality.md               ch. 10 — quality requirements (generated)
-  11-risks.md                 ch. 11 — risks and technical debt
-  12-glossary.md              ch. 12 — glossary
-  diagrams/                   sources and images of large diagrams
-```
+| Chapter | Content |
+|---|---|
+| 1 Goals | vision, epics, stories and requirements; overview with status |
+| 2 Constraints | what is fixed from outside: technology, norms, organisation |
+| 3 Context | neighbouring systems and users |
+| 4 Strategy | the fundamental solution approach |
+| 5 Building blocks | the parts of the system, one block per file |
+| 6 Runtime | how the parts interact, one scenario per file |
+| 7 Deployment | where things run |
+| 8 Concepts | domain and technical concepts that apply across the system |
+| 9 Decisions | architecture decisions (ADRs) |
+| 10 Quality | quality requirements, generated |
+| 11 Risks | risks and technical debt |
+| 12 Glossary | terms |
 
 Folders, file names and metadata are in English; the content is in the project
-language.
+language. The exact layout is in [STANDARD.md](STANDARD.md#21-layout).
 
 ## Controlling files
 
-Some files do not describe the project but how its documentation is worked on. They
-guide people and AI agents alike; only `AGENTS.md` and the skills are aimed at AI
-agents alone.
-
-| File | Purpose | Edit by hand? |
-|---|---|---|
-| `docs/README.md` | this page: structure and way of working | no, translated from docspine |
-| `docs/STANDARD.md` | the rules that apply to all content | no, comes from docspine |
-| `docs/PROFILE.md` | this project's values (language, sources) and justified deviations from the standard | yes |
-| `AGENTS.md` (repository root) | entry point for AI agents: where things are, how to check | yes |
-| `.agents/skills/spine-*` | guided workflows for AI agents | no, comes from docspine |
-| `.agents/skills/<other>` | project-specific workflows | yes |
-| `.claude/` and similar | tool-specific settings, refer to `AGENTS.md` only | yes |
-
-Whatever comes from docspine is overwritten when the standard is updated. Changes to it
-belong in docspine, not in the project.
+Besides the content, a few files control how the documentation is worked on: the rules
+(`STANDARD.md`), this project's values (`PROFILE.md`), the entry point for AI agents
+(`AGENTS.md`) and the skills. Some of them come from docspine and must not be edited
+in the project. Which ones, and why, is in
+[STANDARD.md](STANDARD.md#22-controlling-files).
 
 ## How the parts fit together
 
