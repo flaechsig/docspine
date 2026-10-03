@@ -1,434 +1,436 @@
-<!-- docspine 0.1 · Übersetzung von standard/en/STANDARD.md · in Projekten nicht editieren -->
+<!-- docspine 0.1 · source: standard/en/STANDARD.md · do not edit in projects -->
 
-# docspine-Standard
+# docspine Standard
 
-Version 0.1 (Entwurf)
+Version 0.1 (draft)
 
-Dieses Dokument legt die Regeln für eine Dokumentation nach docspine fest. Es gilt für
-Menschen und KI-Agenten gleichermaßen. `README.md` erklärt, wie man mit der
-Dokumentation arbeitet; diese Datei legt fest, was gilt. Die Werte des Projekts und
-etwaige Abweichungen stehen in `PROFILE.md`.
+This document defines the rules for documentation that follows docspine. It applies
+equally to people and AI agents. `README.md` explains how to work with the
+documentation; this file defines what applies. The project's own values and any
+deviations are in `PROFILE.md`.
 
-Die Wörter **muss**, **darf nicht**, **soll** und **darf** werden im üblichen
-normativen Sinn verwendet.
+The words **must**, **must not**, **should** and **may** are used in their usual
+normative sense.
 
-## 1 Prinzipien
+## 1 Principles
 
-1. **Eine Quelle pro Aussage.** Jede Aussage steht in genau einer Quelldatei. Andere
-   Stellen verweisen über die ID darauf oder zeigen sie in einem generierten Bereich
-   (Abschnitt 4). Kopierter Text ist ein Fehler.
-2. **IDs sind unveränderlich.** Eine ID wird nie umnummeriert, wiederverwendet oder
-   gelöscht. Der Status ändert sich, die Nummer nicht.
-3. **Die Begründung zuerst.** Was das System tut, wird im Code sichtbar sein. Warum es
-   so entschieden wurde, steht nur hier.
-4. **Beobachtung ist nicht Absicht.** Aus dem Code abgeleitetes Verhalten ist eine
-   Beschreibung, keine Anforderung. Requirements sagen, was gewollt ist;
-   Beschreibungen sagen, was ist.
-5. **Der Mensch entscheidet, was gilt.** Werkzeuge und KI-Agenten schlagen vor;
-   geschrieben wird nach Freigabe durch einen Menschen.
-6. **Nichts wird erfunden.** Was niemand weiß, bleibt `UNKNOWN`, zusammen mit der
-   offenen Frage: `UNKNOWN — offene Frage: …`.
-7. **Ob etwas umgesetzt ist, entscheidet das Prüfwerkzeug**, nicht ein Mensch und nicht
-   ein KI-Agent (Abschnitt 11).
-8. **Die Dokumentation wächst mit den Änderungen.** Nichts wird auf Vorrat
-   dokumentiert. Ein Kapitel existiert erst, wenn es Inhalt hat.
+1. **One source per statement.** Every statement lives in exactly one source file.
+   Other places refer to it by ID or show it in a generated region (section 4).
+   Copied text is an error.
+2. **IDs are immutable.** An ID is never renumbered, reused or deleted. Status
+   changes; the number does not.
+3. **The rationale comes first.** What the system does will be visible in the code.
+   Why it was decided that way is recorded only here.
+4. **Observation is not intention.** Behaviour derived from code is a description,
+   not a requirement. Requirements state what is wanted; descriptions state what is.
+5. **People decide what applies.** Tools and AI agents propose; files are written
+   after a person has approved.
+6. **Nothing is invented.** What nobody knows stays `UNKNOWN`, together with the open
+   question: `UNKNOWN — open question: …`.
+7. **The checker decides what is implemented**, not a person and not an AI agent
+   (section 11).
+8. **Documentation grows with the changes.** Nothing is documented in advance. A
+   chapter exists only once it has content.
 
-## 2 Aufbau
+## 2 Structure
 
-### 2.1 Gliederung
+### 2.1 Layout
 
-Die Dokumentation ist ein Dokument, verteilt auf viele Dateien. Die Gliederung ist an
-die zwölf Kapitel von arc42 angelehnt, mit vier Abweichungen: Kapitel 1 enthält
-zusätzlich die ganze Spezifikation, Kapitel 9 besteht nur aus den einzelnen
-Entscheidungen, Kapitel 10 wird erzeugt, und ein Kapitel existiert erst, wenn es
-Inhalt hat.
+The documentation is one document, spread across many files. Its outline is based on
+the twelve chapters of arc42, with four deviations: chapter 1 also holds the complete
+specification, chapter 9 consists only of the individual decisions, chapter 10 is
+generated, and a chapter exists only once it has content.
 
 ```
-AGENTS.md                     Einstieg für KI-Agenten (projektspezifisch)
+AGENTS.md                     entry point for AI agents (project-specific)
 docs/
-  README.md                   wie man mit dieser Dokumentation arbeitet (aus docspine)
-  STANDARD.md                 diese Datei (aus docspine)
-  PROFILE.md                  Projektwerte und Abweichungen
-  STATUS.md                   Zahlen, Lücken, Widersprüche, offene Fragen (generiert)
+  README.md                   how to work with this documentation (translated from docspine)
+  STANDARD.md                 this file (from docspine)
+  PROFILE.md                  project values and deviations
+  STATUS.md                   figures, gaps, contradictions, open questions (generated)
 
-  01-goals/                   Kapitel 1: Einführung und Ziele
-    README.md                 Epics und Stories mit Status (generiert)
+  01-goals/                   chapter 1: introduction and goals
+    README.md                 epics and stories with status (generated)
     vision.md
     epics/E-<NAME>.md
     stories/US-NNNN.md
     requirements/REQ-NNNN.md
-  02-constraints.md           Kapitel 2: Randbedingungen
-  03-context.md               Kapitel 3: Kontextabgrenzung
-  04-strategy.md              Kapitel 4: Lösungsstrategie
-  05-building-blocks/<name>.md  Kapitel 5: Bausteinsicht, ein Baustein je Datei
-  06-runtime/<name>.md        Kapitel 6: Laufzeitsicht, ein Szenario je Datei
-  07-deployment.md            Kapitel 7: Verteilungssicht
-  08-concepts/<name>.md       Kapitel 8: fachliche und technische Konzepte
-  09-decisions/ADR-NNNN.md    Kapitel 9: Architekturentscheidungen
-  10-quality.md               Kapitel 10: Qualitätsanforderungen (generiert)
-  11-risks.md                 Kapitel 11: Risiken und technische Schulden
-  12-glossary.md              Kapitel 12: Glossar
-  diagrams/                   Quellen und Bilder großer Diagramme
-  legacy/                     importierte alte Dokumentation, vorübergehend (Abschnitt 10)
+  02-constraints.md           chapter 2: constraints
+  03-context.md               chapter 3: context and scope
+  04-strategy.md              chapter 4: solution strategy
+  05-building-blocks/<name>.md  chapter 5: building block view, one block per file
+  06-runtime/<name>.md        chapter 6: runtime view, one scenario per file
+  07-deployment.md            chapter 7: deployment view
+  08-concepts/<name>.md       chapter 8: domain and technical concepts
+  09-decisions/ADR-NNNN.md    chapter 9: architecture decisions
+  10-quality.md               chapter 10: quality requirements (generated)
+  11-risks.md                 chapter 11: risks and technical debt
+  12-glossary.md              chapter 12: glossary
+  diagrams/                   sources and images of large diagrams
+  legacy/                     imported old documentation, temporary (section 10)
 ```
 
-Ein Kapitel darf eine einzelne Datei oder ein Ordner sein; für die Kapitel, die oben
-als Ordner stehen, ist die Gliederung verbindlich. Projekte dürfen eigene Ordner unter
-`docs/` anlegen (zum Beispiel `docs/guides/`). Sie werden nicht geprüft, außer dass
-Links dorthin auflösen müssen.
+A chapter may be a single file or a folder; the layout above is binding for the
+chapters it lists as folders. Projects may add their own folders under `docs/`
+(for example `docs/guides/`). They are not checked, except that links into them must
+resolve.
 
-### 2.2 Steuernde Dateien
+### 2.2 Controlling files
 
-| Datei | Wofür | von Hand ändern |
+| File | Purpose | Edited by hand |
 |---|---|---|
-| `docs/README.md` | wie man mit der Dokumentation arbeitet | nein, aus docspine |
-| `docs/STANDARD.md` | die Regeln | nein, aus docspine |
-| `docs/PROFILE.md` | Projektwerte und begründete Abweichungen | ja |
-| `AGENTS.md` | Einstieg für KI-Agenten: wo was steht, wie geprüft wird | ja |
-| `.agents/skills/spine-*` | geführte Abläufe für KI-Agenten | nein, aus docspine |
-| `.agents/skills/<andere>` | projekteigene Abläufe | ja |
-| `.claude/` und ähnliche | werkzeugspezifische Einstellungen; verweisen nur auf `AGENTS.md` | ja |
+| `docs/README.md` | how to work with the documentation | no, translated from docspine |
+| `docs/STANDARD.md` | the rules | no, from docspine |
+| `docs/PROFILE.md` | project values and justified deviations | yes |
+| `AGENTS.md` | entry point for AI agents: where things are, how to check | yes |
+| `.agents/skills/spine-*` | guided workflows for AI agents | no, from docspine |
+| `.agents/skills/<other>` | project-specific workflows | yes |
+| `.claude/` and similar | tool-specific settings; refer to `AGENTS.md` only | yes |
 
-Was aus docspine kommt, wird beim Aktualisieren des Standards überschrieben.
-Änderungen daran gehören nach docspine, nicht ins Projekt.
+Everything that comes from docspine is overwritten when the standard is updated.
+Changes to it belong in docspine, not in the project.
 
-Alle Regeln stehen in Dateien im Repository. Werkzeugspezifische Dateien dürfen ihre
-Nutzung erleichtern, aber keine eigenen Regeln enthalten. Probe: Wird ein
-werkzeugspezifischer Ordner gelöscht, darf keine Regel verloren gehen.
+All rules are in files in the repository. Tool-specific files may make them easier to
+use but must not contain rules of their own. Test: deleting a tool-specific folder
+must not lose any rule.
 
-`AGENTS.md` darf keine Architekturinhalte enthalten. Es verweist in das Dokument.
+`AGENTS.md` must not contain architecture content. It points into the document.
 
-### 2.3 Profil
+### 2.3 Profile
 
-`PROFILE.md` hat dieses Frontmatter:
+`PROFILE.md` has this front matter:
 
 ```yaml
 ---
-docspine: 0.1               # Version des Standards
-language: de                # Sprache aller Dokumente
-statement_language: en      # Sprache der Requirement-Statements, Standard en
-sources:                    # zulässige Werte für die Quelle eines Requirements
+docspine: 0.1               # version of the standard
+language: de                # language of all documents
+statement_language: en      # language of requirement statements, default en
+sources:                    # permitted values for a requirement's source
   - BiPRO 421 TAA v2.x
 ---
 ```
 
-Unter dem Frontmatter stehen die Abweichungen von diesem Standard, jede mit Begründung.
-Eine leere Liste ist der Normalfall.
+Below the front matter, the file lists deviations from this standard, each with a
+reason. An empty list is the normal case.
 
-### 2.4 Sprache
+### 2.4 Language
 
-| Was | Sprache |
+Configuration is in English; documentation is in the project language.
+
+| What | Language |
 |---|---|
-| Texte, Überschriften, `title`, `rationale` | `language` |
-| generierte Bereiche und Ansichten | `language` |
-| `statement` eines Requirements | `statement_language` (Standard `en`, weil WHEN und IF in vielen Sprachen verschwimmen) |
-| Ordner- und Dateinamen | Englisch |
-| Frontmatter-Schlüssel und -Werte | Englisch |
+| `STANDARD.md`, skills | English, copied unchanged |
+| `README.md` | `language`, translated from docspine's English source |
+| text, headings, `title`, `rationale` | `language` |
+| generated regions and views | `language` |
+| requirement `statement` | `statement_language` (default `en`, because WHEN and IF blur in many languages) |
+| folder and file names | English |
+| front-matter keys and values | English |
+
+The translated `README.md` starts with the version of its source:
+`<!-- docspine 0.1 · from standard/en/README.md -->`. When docspine has a newer
+version, the README is translated again. Translations use the terms in section 12.
 
 ### 2.5 IDs
 
-| Artefakt | ID | Datei |
+| Artifact | ID | File |
 |---|---|---|
-| Epic | `E-<NAME>`, Großbuchstaben, sprechend, nicht nummeriert | `01-goals/epics/E-<NAME>.md` |
+| Epic | `E-<NAME>`, upper case, descriptive, not numbered | `01-goals/epics/E-<NAME>.md` |
 | Story | `US-NNNN` | `01-goals/stories/US-NNNN.md` |
 | Requirement | `REQ-NNNN` | `01-goals/requirements/REQ-NNNN.md` |
-| Entscheidung | `ADR-NNNN` | `09-decisions/ADR-NNNN.md` |
+| Decision | `ADR-NNNN` | `09-decisions/ADR-NNNN.md` |
 
-`NNNN` sind vier Ziffern mit führenden Nullen. Ein neues Artefakt bekommt die nächste
-freie Nummer. Die `id` im Frontmatter muss zum Dateinamen passen.
+`NNNN` is four digits with leading zeros. A new artifact takes the next free number.
+The `id` in the front matter must match the file name.
 
-## 3 Artefakte
+## 3 Artifacts
 
-Alle Quelldateien sind Markdown. Artefakte mit ID haben YAML-Frontmatter.
+All source files are Markdown. Artifacts with an ID have YAML front matter.
 
 ### 3.1 Vision
 
-`01-goals/vision.md`, ohne Frontmatter. Abschnitte:
+`01-goals/vision.md`, no front matter. Sections:
 
-| Abschnitt | Pflicht |
+| Section | Required |
 |---|---|
-| Kernsatz: die Vision in einem Satz | ja |
-| Problem | nein |
-| Zielgruppe und Stakeholder | nein |
-| Erfolg: woran wir erkennen, dass es funktioniert | nein |
-| Nicht-Ziele: was bewusst nicht dazugehört | nein |
-| Qualitätsziele | nein |
-| Themen: Link auf `01-goals/README.md` | nein |
+| Core statement: the vision in one sentence | yes |
+| Problem | no |
+| Target group and stakeholders | no |
+| Success: how we know it works | no |
+| Non-goals: what deliberately does not belong | no |
+| Quality goals | no |
+| Themes: link to `01-goals/README.md` | no |
 
-Fehlende Antworten werden als `UNKNOWN — offene Frage: …` geschrieben. Die Vision ist
-stabiler Text und enthält keine Statusangaben.
+Missing answers are written as `UNKNOWN — open question: …`. The vision is stable
+text and contains no status information.
 
 ### 3.2 Epic
 
 ```yaml
 ---
 id: E-NAME
-title: <Kurztitel>
+title: <short title>
 ---
 ```
 
-Inhalt: was das Thema umfasst und warum. Ein Epic hat kein Feld `status`; sein Status
-wird aus seinen Stories abgeleitet (Abschnitt 3.3). Die Liste seiner Stories ist ein
-generierter Bereich.
+Body: what the theme covers and why. An epic has no `status` field; its status is
+derived from its stories (section 3.3). The list of its stories is a generated region.
 
 ### 3.3 Story
 
 ```yaml
 ---
 id: US-NNNN
-title: <Kurztitel>
-epic: E-NAME                  # muss existieren
-requirements: [REQ-NNNN]      # jedes muss existieren; [] ist erlaubt
+title: <short title>
+epic: E-NAME                  # must exist
+requirements: [REQ-NNNN]      # each must exist; [] is allowed
 status: open
-evidence: []                  # optional: Pfade, die die Story belegen
-superseded_by: ADR-NNNN       # nur bei superseded oder retired
+evidence: []                  # optional: paths that prove the story
+superseded_by: ADR-NNNN       # only with superseded or retired
 ---
 ```
 
-Inhalt: `Als <Rolle> möchte ich <Ziel>, damit <Nutzen>.`, dann das Warum, dann die
-Akzeptanz in der Sprache der Nutzer. Eine Story enthält keine Entscheidungen (das sind
-ADRs) und keine normativen Kriterien ohne Requirement.
+Body: `As <role> I want <goal> so that <benefit>.`, then why, then acceptance in the
+users' terms. A story contains no decisions (those are ADRs) and no normative criteria
+without a requirement.
 
-| `status` | Bedeutung | Belegpflicht |
+| `status` | Meaning | Proof required |
 |---|---|---|
-| `open` | Kandidat, nicht zugesagt | keine |
-| `in-progress` | Kern gebaut, Teile offen | keine |
-| `verified` | vollständig umgesetzt und bestätigt | `requirements` oder `evidence`; jedes aufgeführte Requirement ist `implemented` |
-| `superseded` | durch eine Entscheidung abgelöst, wird so nicht gebaut | `superseded_by` |
-| `retired` | war umgesetzt, entfernt | `superseded_by` |
+| `open` | candidate, not committed | none |
+| `in-progress` | core built, parts open | none |
+| `verified` | fully implemented and confirmed | `requirements` or `evidence`; every listed requirement is `implemented` |
+| `superseded` | replaced by a decision, will not be built this way | `superseded_by` |
+| `retired` | was implemented, removed | `superseded_by` |
 
-Eine Story ohne Requirements ist erlaubt. Sie wird über `evidence` belegt, zum Beispiel
-durch einen UI-Test, den der Requirement-Mechanismus nicht abdeckt.
+A story without requirements is allowed. It is proven through `evidence`, for example
+a UI test that the requirement mechanism does not cover.
 
-Der abgeleitete Status eines Epics: `verified`, wenn alle seine Stories `verified`
-sind, `open`, wenn keine begonnen ist, sonst `in-progress`. Stories mit `superseded`
-oder `retired` zählen dabei nicht.
+The derived status of an epic: `verified` if all its stories are `verified`, `open`
+if none has started, otherwise `in-progress`. Stories with `superseded` or `retired`
+are ignored for this.
 
 ### 3.4 Requirement
 
 ```yaml
 ---
 id: REQ-NNNN
-statement: <genau ein EARS-Muster, in statement_language>
+statement: <exactly one EARS pattern, in statement_language>
 obligation: MUST | SHOULD | WILL
 status: proposed
-category: quality             # optional: kennzeichnet eine Qualitätsanforderung
-source: <externe Norm, leer bei Eigenanforderung>   # muss im Profil stehen
-confidence: unverified        # nur ohne Testergebnisse, siehe unten
-evidence: []                  # Pfade zu Umsetzung und Nachweis
-verification: <wie die Erfüllung geprüft wird>      # optional
+category: quality             # optional: marks a quality requirement
+source: <external norm, or empty for own requirement>   # must be listed in the profile
+confidence: unverified        # only without test results, see below
+evidence: []                  # paths to implementation and proof
+verification: <how fulfilment is checked>               # optional
 supersedes: REQ-NNNN          # optional
-superseded_by: REQ-NNNN | ADR-NNNN   # nur bei superseded
+superseded_by: REQ-NNNN | ADR-NNNN   # only with superseded
 rationale: >-
-  <warum, in language>
+  <why, in language>
 ---
 ```
 
-Inhalt: eine Überschrift mit ID und Kurztitel, dann ein bis drei Sätze Kontext.
+Body: a heading with ID and short title, then one to three sentences of context.
 
-**EARS-Muster.** Das Statement folgt genau einem Muster:
+**EARS patterns.** The statement follows exactly one pattern:
 
-| Muster | Form |
+| Pattern | Form |
 |---|---|
-| immer gültig | `The <system> shall <response>.` |
-| ereignisgesteuert | `WHEN <trigger>, the <system> shall <response>.` |
-| zustandsgesteuert | `WHILE <state>, the <system> shall <response>.` |
-| unerwünschtes Verhalten | `IF <condition>, THEN the <system> shall <response>.` |
-| optionales Merkmal | `WHERE <feature>, the <system> shall <response>.` |
+| ubiquitous | `The <system> shall <response>.` |
+| event-driven | `WHEN <trigger>, the <system> shall <response>.` |
+| state-driven | `WHILE <state>, the <system> shall <response>.` |
+| unwanted behaviour | `IF <condition>, THEN the <system> shall <response>.` |
+| optional feature | `WHERE <feature>, the <system> shall <response>.` |
 
-**Verbindlichkeit.** `MUST` ist zwingend, `SHOULD` empfohlen, `WILL` eine erklärte
-Absicht. EARS kennt keine Verbindlichkeitsstufe, deshalb das eigene Feld. In
-deutschsprachigen Ansichten erscheinen die Werte als MUSS, SOLLTE und WIRD.
+**Obligation.** `MUST` is binding, `SHOULD` recommended, `WILL` a stated intention.
+EARS has no level of obligation, hence the separate field. Views in other languages
+show translated values (in German: MUSS, SOLLTE, WIRD).
 
-**Quelle.** Externe Normen ändern sich unabhängig. Ändert sich eine, müssen alle
-betroffenen Requirements in einer Minute zu finden sein.
+**Source.** External norms change independently. When one changes, it must be possible
+to find all affected requirements in a minute.
 
-| `status` | Bedeutung | Regel |
+| `status` | Meaning | Rule |
 |---|---|---|
-| `proposed` | Kandidat, nicht zugesagt | keine |
-| `planned` | zugesagt, nicht (vollständig) gebaut | kein bestandenes Testergebnis |
-| `implemented` | gebaut | bestandenes Testergebnis **oder** `evidence` |
-| `rejected` | verworfen, nie gebaut | keine |
-| `superseded` | durch ein Requirement oder eine Entscheidung abgelöst | `superseded_by` |
+| `proposed` | candidate, not committed | none |
+| `planned` | committed, not (fully) built | no passing test result |
+| `implemented` | built | passing test result **or** `evidence` |
+| `rejected` | discarded, never built | none |
+| `superseded` | replaced by a requirement or a decision | `superseded_by` |
 
-Ein Requirement ist atomar; es gibt kein `in-progress`. Teilweise gebaut heißt
-`planned`. Kommt das oft vor, ist das Requirement zu grob geschnitten.
+A requirement is atomic; there is no `in-progress`. Partly built means `planned`. If
+that happens often, the requirement is cut too coarsely.
 
-Ein neues Requirement ist nie `implemented`.
+A new requirement is never `implemented`.
 
-**Konfidenz.** Ist die Aussage gegen das laufende System geprüft?
+**Confidence.** Has the statement been checked against the running system?
 `verified | unverified | contradicted`.
-- Gibt es Testergebnisse zum Requirement (Abschnitt 8.1), wird `confidence` nicht
-  gepflegt; das Prüfwerkzeug leitet sie ab.
-- Sonst wird sie von Hand gepflegt. `verified` verlangt dann `evidence` und
+- If test results exist for the requirement (section 8.1), `confidence` is not
+  maintained; the checker derives it.
+- Otherwise it is maintained by hand. `verified` then requires `evidence` and
   `verification`.
 
-**Qualitätsanforderungen** tragen `category: quality`. Kapitel 10 wird aus ihnen
-erzeugt.
+**Quality requirements** carry `category: quality`. Chapter 10 is generated from them.
 
-### 3.5 Entscheidung (ADR)
+### 3.5 Decision (ADR)
 
 ```yaml
 ---
 id: ADR-NNNN
-title: <Kurztitel>
+title: <short title>
 status: proposed | accepted | rejected | superseded
-date: JJJJ-MM-TT              # Datum der Entscheidung
+date: YYYY-MM-DD              # date of the decision
 supersedes: ADR-NNNN          # optional
-superseded_by: ADR-NNNN       # nur bei superseded
-requires: [REQ-NNNN]          # optional: prüfbare Folgen
+superseded_by: ADR-NNNN       # only with superseded
+requires: [REQ-NNNN]          # optional: testable consequences
 ---
 ```
 
-Abschnitte:
+Sections:
 
-| Abschnitt | Pflicht |
+| Section | Required |
 |---|---|
-| Kontext: das Problem, die Zwänge, der Ist-Zustand | ja |
-| Entscheidung: was gilt; verworfene Alternativen mit kurzem Grund, falls es welche gab | ja |
-| Begründung: warum diese Option | nein, darf in Kontext oder Entscheidung stehen |
-| Konsequenzen: auch die unbequemen | ja |
+| Context: the problem, the forces, the current state | yes |
+| Decision: what applies; rejected alternatives with a short reason, if there were any | yes |
+| Rationale: why this option | no, may be part of context or decision |
+| Consequences: including the inconvenient ones | yes |
 
-Ein ADR auf `proposed` ist in Diskussion und darf direkt geändert werden. Ab
-`accepted` ist er unveränderlich und wird nur noch abgelöst.
+An ADR with `proposed` is under discussion and may be edited directly. From `accepted`
+on it is immutable and can only be superseded.
 
-### 3.6 Baustein
+### 3.6 Building block
 
 `05-building-blocks/<name>.md`:
 
 ```yaml
 ---
-title: <Name des Bausteins>
-path: [<Code-Pfad>, …]        # wo der Baustein im Code liegt
+title: <name of the block>
+path: [<code path>, …]        # where the block lives in the code
 ---
 ```
 
-Inhalt: Verantwortung, Schnittstellen, wichtige Interna. Die Requirements, die der
-Baustein umsetzt, sind ein generierter Bereich (Abschnitt 4).
+Body: responsibility, interfaces, important internals. The requirements the block
+realises are a generated region (section 4).
 
-### 3.7 Laufzeitszenario
+### 3.7 Runtime scenario
 
 `06-runtime/<name>.md`:
 
 ```yaml
 ---
-title: <Name des Szenarios>
-stories: [US-NNNN]            # optional: Stories, die das Szenario umsetzt
+title: <name of the scenario>
+stories: [US-NNNN]            # optional: stories the scenario realises
 ---
 ```
 
-### 3.8 Übrige Kapitel
+### 3.8 Other chapters
 
-Kein Pflicht-Frontmatter. Ein Kapitel, das nur teilweise gefüllt ist, trägt
-`arc42_status: PARTIAL` im Frontmatter. Eine fehlende Datei bedeutet, das Kapitel ist
+No required front matter. A chapter that is only partly filled carries
+`arc42_status: PARTIAL` in its front matter. A missing file means the chapter is
 `UNKNOWN`.
 
-## 4 Beziehungen und generierte Bereiche
+## 4 Relations and generated regions
 
-Beziehungen stehen **nur im Frontmatter, in einer Richtung**:
+Relations are stated **only in the front matter, in one direction**:
 
-| Von | Feld | Nach |
+| From | Field | To |
 |---|---|---|
 | Story | `epic` | Epic |
 | Story | `requirements` | Requirements |
-| Laufzeitszenario | `stories` | Stories |
+| Runtime scenario | `stories` | Stories |
 | ADR | `requires` | Requirements |
-| Baustein | `path` | Code; Requirements werden über ihre `evidence`-Pfade zugeordnet |
-| Requirement, Story, ADR | `superseded_by` | Nachfolger |
+| Building block | `path` | Code; requirements are matched through their `evidence` paths |
+| Requirement, story, ADR | `superseded_by` | successor |
 
-Jede andere Richtung und jeder Inhalt, der an mehr als einer Stelle erscheint, wird in
-einen **generierten Bereich** innerhalb einer handgeschriebenen Datei erzeugt:
+Every other direction, and every piece of content shown in more than one place, is
+generated into a **generated region** inside a hand-written file:
 
 ```markdown
-<!-- generated:<typ> -->
+<!-- generated:<type> -->
 …
 <!-- /generated -->
 ```
 
-| Typ | In | Zeigt |
+| Type | In | Shows |
 |---|---|---|
-| `status` | `01-goals/README.md` | Epics und Stories mit Status |
-| `stories` | Epic | seine Stories mit Status |
-| `requirements` | Story | Statements und Status ihrer Requirements |
-| `context` | Requirement | Epic und Story, zu denen es gehört, ADRs, die es verlangen |
-| `realized` | Baustein | Requirements, deren Belege unter seinem Pfad liegen |
-| `scenarios` | Story | Laufzeitszenarien, die sie umsetzen |
+| `status` | `01-goals/README.md` | epics and stories with status |
+| `stories` | epic | its stories with status |
+| `requirements` | story | statements and status of its requirements |
+| `context` | requirement | epic and story it belongs to, ADRs that require it |
+| `realized` | building block | requirements whose evidence lies under its path |
+| `scenarios` | story | runtime scenarios that realise it |
 
-Generierte Bereiche dürfen nicht von Hand geändert werden. Ein Bereich, der von dem
-abweicht, was das Prüfwerkzeug erzeugen würde, ist ein Fehler. Bei Merge-Konflikten in
-einem Bereich: den Bereich verwerfen und neu erzeugen.
+Generated regions must not be edited by hand. A region that differs from what the
+checker would generate is an error. On merge conflicts inside a region, discard the
+region and regenerate.
 
-Handgeschriebene Rückverweise (zum Beispiel „Teil von US-0042“) dürfen nicht
-geschrieben werden.
+Hand-written back references (for example "part of US-0042") must not be written.
 
-## 5 Ändern statt umschreiben
+## 5 Changing instead of rewriting
 
-**Requirement.** Eine inhaltliche Änderung erzeugt ein neues Requirement:
-1. `REQ-MMMM` mit `supersedes: REQ-NNNN` anlegen.
-2. In `REQ-NNNN` nur `status: superseded` und `superseded_by: REQ-MMMM` setzen.
-   Statement und Begründung bleiben als Historie stehen.
+**Requirement.** A change in content creates a new requirement:
+1. Create `REQ-MMMM` with `supersedes: REQ-NNNN`.
+2. In `REQ-NNNN`, set only `status: superseded` and `superseded_by: REQ-MMMM`.
+   Statement and rationale stay as history.
 
-**Story.** Eine Story, die so nicht gebaut wird, geht auf `superseded`; eine, die
-gebaut war und entfernt wird, auf `retired`. Beide nennen die Entscheidung in
-`superseded_by`.
+**Story.** A story that will not be built as described goes to `superseded`; one that
+was built and is removed goes to `retired`. Both name the decision in `superseded_by`.
 
-**ADR.** Eine angenommene Entscheidung wird nicht geändert. Ein neuer ADR nennt den
-alten in `supersedes`; der alte bekommt `status: superseded` und `superseded_by`.
+**ADR.** An accepted decision is not edited. A new ADR names the old one in
+`supersedes`; the old one gets `status: superseded` and `superseded_by`.
 
-## 6 Architekturwirkung
+## 6 Architecture impact
 
-Bei jedem neuen Requirement und jeder Änderung lautet die Frage: Muss die Architektur
-etwas berücksichtigen, ändern oder entscheiden? Es gilt genau ein Verdikt:
+For every new requirement or change, the question is: must the architecture take
+something into account, change, or decide something? Exactly one verdict applies:
 
-| Verdikt | Bedeutung | Folge |
+| Verdict | Meaning | Consequence |
 |---|---|---|
-| trägt schon | die bestehende Architektur deckt es ab | nichts ändern; eine Randbedingung nennen, die die Umsetzung einhalten muss |
-| berührt Kapitel | die Architektur ändert sich | das Kapitel ändern, mit Beleg und Konfidenz |
-| Entscheidung fällig | es steckt eine Architekturentscheidung darin | einen ADR schreiben |
-| keine Wirkung | lokal in einem Element, unterhalb der Architektur | nichts zu dokumentieren |
+| already covered | the existing architecture covers it | nothing changes; name any constraint the implementation must respect |
+| affects chapter | the architecture changes | edit the chapter, with evidence and confidence |
+| decision due | an architecture decision is contained | write an ADR |
+| no impact | local to an element, below architecture level | nothing to document |
 
-**Was Architektur ist:** Bausteine und ihre Abhängigkeiten, Laufzeit-Interaktionen,
-Verteilung und Betrieb, Querschnittskonzepte (Sicherheit, Caching, Persistenz, …),
-Qualitätsanforderungen, Risiken und alles, was eine Entscheidung ist.
+**What is architecture level:** building blocks and their dependencies, runtime
+interactions, deployment and operation, cross-cutting concepts (security, caching,
+persistence, …), quality requirements, risks, and anything that is a decision.
 
-**Was es meist nicht ist:** ein einzelner Endpunkt, eine UI-Komponente, ein Feld an
-einer bestehenden Entität, eine Regel, eine Vorlage — solange kein Baustein, keine
-Abhängigkeit, kein Konzept und keine Entscheidung berührt ist.
+**What usually is not:** a single endpoint, a UI component, a field on an existing
+entity, a rule, a template — as long as no block, dependency, concept or decision is
+affected.
 
-Die Wirkung prüfen, nicht die Größe. Ein kleines Feld kann ein Querschnittskonzept
-berühren; ein großes Feature kann ganz lokal sein.
+Check the effect, not the size. A small field can affect a cross-cutting concept; a
+large feature can be entirely local.
 
-## 7 Aussagen über den Ist-Zustand
+## 7 Statements about the current state
 
-Beschreibende Aussagen in den Kapiteln 2–8 und 11 tragen ihre Konfidenz im Text:
+Descriptive statements in chapters 2–8 and 11 carry their confidence inline:
 
 ```markdown
 _(confidence: verified — OrchestratorService, REQ-0006)_
 ```
 
-| Wert | Bedeutung |
+| Value | Meaning |
 |---|---|
-| `verified` | gegen Code, Konfiguration oder ein belegtes Requirement geprüft |
-| `unverified` | übernommen, nicht geprüft |
-| `aspirational` | Zielbild, nicht gebaut |
-| `contradicted` | Doku und Code widersprechen sich |
+| `verified` | checked against code, configuration or a proven requirement |
+| `unverified` | taken over, not checked |
+| `aspirational` | target state, not built |
+| `contradicted` | documentation and code disagree |
 
-Ein Widerspruch bleibt sichtbar und wird nie still aufgelöst:
+A contradiction stays visible and is never resolved silently:
 
 ```markdown
 > [!CAUTION]
-> Die Doku sagt X, der Code macht Y. (contradiction)
+> The documentation says X, the code does Y. (contradiction)
 ```
 
-Das Prüfwerkzeug listet jeden mit `(contradiction)` markierten Block in `STATUS.md`.
-Wie er aufgelöst wird, entscheidet ein Mensch.
+The checker lists every block marked `(contradiction)` in `STATUS.md`. A person
+decides how it is resolved.
 
-## 8 Nachweis
+## 8 Proof
 
-### 8.1 Testergebnisse
+### 8.1 Test results
 
-Projekte mit automatisierten Tests liefern Ergebnisse in diesem Format, in beliebig
-vielen Dateien namens `req-results.json`:
+Projects with automated tests deliver results in this format, in any number of files
+named `req-results.json`:
 
 ```json
 {
@@ -438,101 +440,99 @@ vielen Dateien namens `req-results.json`:
 }
 ```
 
-`result` ist `passed`, `failed` oder `skipped`. Ein Requirement gilt als bestanden,
-wenn mindestens ein Ergebnis `passed` ist und keines `failed`. Wie die Datei entsteht,
-ist Sache des Projekts.
+`result` is `passed`, `failed` or `skipped`. A requirement counts as passed if at
+least one result is `passed` and none is `failed`. How the file is produced is up to
+the project.
 
-### 8.2 Statuswechsel
+### 8.2 Status change
 
-Wenn ein Requirement besteht: `status: implemented` setzen und die Pfade zu Umsetzung
-und Test in `evidence` ergänzen. Die Story auf `verified` setzen, sobald alle ihre
-Requirements `implemented` sind. Statement, Begründung und Titel bleiben unverändert.
+When a requirement passes: set `status: implemented` and add implementation and test
+paths to `evidence`. Set the story to `verified` once all its requirements are
+`implemented`. Statement, rationale and title stay unchanged.
 
-Ohne Testergebnisse belegen `evidence` und `verification` das Requirement, und
-`confidence` wird von Hand gesetzt.
+Without test results, `evidence` and `verification` prove the requirement, and
+`confidence` is set by hand.
 
-### 8.3 Ist der Nachweis ehrlich?
+### 8.3 Is the proof honest?
 
-Ein bestandener Test ist die Eintrittskarte, nicht der Nachweis. Für jedes umgesetzte
-Requirement: das Statement in seine Klauseln zerlegen (Auslöser oder Bedingung, und
-Reaktion) und prüfen, welche Klauseln die Assertions des Tests tatsächlich ausüben.
+A passing test is the entry ticket, not the proof. For each implemented requirement:
+split the statement into its clauses (trigger or condition, and response) and check
+which clauses the test's assertions actually exercise.
 
-| Verdikt | Bedeutung |
+| Verdict | Meaning |
 |---|---|
-| voll | jede Klausel wird gegen echtes Verhalten ausgeübt |
-| teil | der Kern läuft, eine Klausel oder die eigentliche Akzeptanz wird nicht ausgeübt |
-| hohl | der Test trägt die ID, übt das Verhalten aber nicht aus |
+| full | every clause is exercised against real behaviour |
+| partial | the core runs, a clause or the actual acceptance is not exercised |
+| hollow | the test carries the ID but does not exercise the behaviour |
 
-Ein Fund ist entweder eine **Test-Lücke** (Test nachschärfen) oder ein
-**Requirement-Defekt** (falscher Akteur, nicht prüfbar, überladene Klausel). Ein
-Requirement-Defekt wird durch Ablösen des Requirements behoben, nicht durch einen
-Test, der eine falsche Aussage festschreibt.
+A finding is either a **test gap** (sharpen the test) or a **requirement defect**
+(wrong actor, untestable, overloaded clause). A requirement defect is fixed by
+superseding the requirement, not by a test that cements a wrong statement.
 
-## 9 Diagramme
+## 9 Diagrams
 
-Diagramme liegen immer als Textquelle im Repository, nie nur als Bild.
+Diagrams are always kept as text source in the repository, never only as images.
 
-- **ASCII** in einem Codeblock auf Einstiegsseiten (`README.md`, Übersichten), die als
-  Erstes und in jeder Umgebung geöffnet werden.
-- **Mermaid** in den Kapiteln, für Abläufe, Klassen- und Domänenmodelle,
-  Zustandsautomaten.
-- **DOT oder PlantUML mit eingechecktem SVG** unter `docs/diagrams/` für große
-  Übersichten, bei denen das Layout von Mermaid nicht reicht. Das SVG darf nicht älter
-  sein als seine Quelle.
-- **Bilder ohne Quelle** nur, wo es keine geben kann, etwa bei Screenshots.
+- **ASCII** in a code block on entry pages (`README.md`, overviews), which are opened
+  first and in any environment.
+- **Mermaid** in chapters, for sequences, class and domain models, state machines.
+- **DOT or PlantUML with a committed SVG** under `docs/diagrams/` for large overviews
+  where Mermaid's layout is not enough. The SVG must not be older than its source.
+- **Images without a source** only where none can exist, such as screenshots.
 
-## 10 Altbestand
+## 10 Legacy
 
-Gilt nur, solange `docs/legacy/` existiert.
+Applies only while `docs/legacy/` exists.
 
-- Aussagen aus dem Altbestand kommen mit `confidence: unverified` und
-  `derived_from: <Pfad und Zeilenbereich>` in die Doku.
-- Drei Quellen, drei Geltungsgrade: Der **Code** sagt, was passiert, der
-  **Altbestand**, was einmal gedacht war, ein **Mensch**, was gilt.
-- Ein Dokument oder Abschnitt des Altbestands darf erst entfernt werden, wenn alle vier
-  Bedingungen erfüllt sind:
-  1. Sein Inhalt ist übernommen: jede tragende Aussage steht in der neuen Struktur.
-  2. Seine Verweise sind umgehängt: kein `derived_from` zeigt mehr darauf.
-  3. Er ist nicht die einzige Quelle: der Inhalt existiert nachweislich anderswo.
-  4. Ein Mensch hat das Entfernen freigegeben.
-- Beim Entfernen wird `derived_from` durch `<name>-Altbestand (Git-History)` ersetzt.
+- Statements taken from legacy documentation enter with `confidence: unverified` and
+  `derived_from: <path and line range>`.
+- Three sources, three degrees of validity: the **code** says what happens, the
+  **legacy documentation** what was once intended, a **person** what applies.
+- A legacy document or section may be removed only when all four conditions hold:
+  1. Its content is taken over: every relevant statement is in the new structure.
+  2. Its references are moved: no `derived_from` points to it any more.
+  3. It is not the only source: the content demonstrably exists elsewhere.
+  4. A person has approved the removal.
+- On removal, `derived_from` is replaced by `<name> legacy (git history)`.
 
-## 11 Prüfwerkzeug
+## 11 Checker
 
-Das Prüfwerkzeug ist ein Kommandozeilenwerkzeug, das ohne Build-System läuft:
+The checker is a command-line tool that runs without a build system:
 
-- `check` — prüft alles Folgende und bricht bei jedem Fehler ab.
-- `render` — schreibt generierte Bereiche und Ansichten.
+- `check` — validates everything below and fails on any error.
+- `render` — writes generated regions and views.
 
-**Fehler:**
+**Errors:**
 
-| # | Fehler |
+| # | Error |
 |---|---|
-| 1 | Pflichtfeld im Frontmatter fehlt, oder Wert nicht zulässig |
-| 2 | ID passt nicht zum Dateinamen oder ist doppelt vergeben |
-| 3 | Verweis auf eine ID, die es nicht gibt |
-| 4 | `source` steht nicht im Profil |
-| 5 | Story `verified` ohne `requirements` und ohne `evidence` |
-| 6 | Story `verified` verweist auf ein Requirement, das nicht `implemented` ist |
-| 7 | `superseded` oder `retired` ohne `superseded_by` |
-| 8 | Requirement `implemented` ohne bestandenes Testergebnis und ohne `evidence` |
-| 9 | Requirement `planned` oder `proposed`, aber ein bestandenes Testergebnis existiert |
-| 10 | Testergebnis zu einem Requirement, das es nicht gibt |
-| 11 | generierter Bereich weicht vom erzeugten Stand ab |
-| 12 | Diagrammbild älter als seine Quelle |
-| 13 | relativer Link führt ins Leere |
+| 1 | required front-matter field missing, or value not permitted |
+| 2 | ID does not match the file name, or is used twice |
+| 3 | reference to an ID that does not exist |
+| 4 | `source` not listed in the profile |
+| 5 | story `verified` without `requirements` and without `evidence` |
+| 6 | story `verified` refers to a requirement that is not `implemented` |
+| 7 | `superseded` or `retired` without `superseded_by` |
+| 8 | requirement `implemented` without a passing test result and without `evidence` |
+| 9 | requirement `planned` or `proposed`, but a passing test result exists |
+| 10 | test result for a requirement that does not exist |
+| 11 | generated region differs from what would be generated |
+| 12 | diagram image older than its source |
+| 13 | broken relative link |
+| 14 | `README.md` was translated from a different docspine version than the profile states |
 
-**Generierte Ansichten:**
+**Generated views:**
 
-| Datei | Inhalt |
+| File | Content |
 |---|---|
-| `01-goals/README.md` | Epics und Stories mit Status |
-| `STATUS.md` | Zahlen, offene Kapitel, Widersprüche, offene Fragen (`UNKNOWN`) |
-| `10-quality.md` | alle Requirements mit `category: quality` |
+| `01-goals/README.md` | epics and stories with status |
+| `STATUS.md` | figures, open chapters, contradictions, open questions (`UNKNOWN`) |
+| `10-quality.md` | all requirements with `category: quality` |
 
-## 12 Begriffe
+## 12 Terminology
 
-Übersetzungen dieses Standards verwenden diese Begriffe.
+Documentation in other languages (`README.md`, generated regions and views) uses these
+terms. The German column is binding for projects with `language: de`.
 
 | English | Deutsch |
 |---|---|

@@ -24,8 +24,8 @@ deviations:
 
 ```
 docs/
-  README.md                   this page
-  STANDARD.md                 the rules of the standard (do not edit)
+  README.md                   this page (translated from docspine)
+  STANDARD.md                 the rules of the standard, in English (do not edit)
   PROFILE.md                  this project's values: language, sources, deviations
   STATUS.md                   figures, gaps, contradictions, open questions (generated)
 
@@ -60,7 +60,7 @@ agents alone.
 
 | File | Purpose | Edit by hand? |
 |---|---|---|
-| `docs/README.md` | this page: structure and way of working | no, comes from docspine |
+| `docs/README.md` | this page: structure and way of working | no, translated from docspine |
 | `docs/STANDARD.md` | the rules that apply to all content | no, comes from docspine |
 | `docs/PROFILE.md` | this project's values (language, sources) and justified deviations from the standard | yes |
 | `AGENTS.md` (repository root) | entry point for AI agents: where things are, how to check | yes |
