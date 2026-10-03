@@ -7,12 +7,9 @@ Handgepflegter Anker für offene Fäden, noch ohne Priorisierung.
 - **ADR-Nummern vereinheitlichen.** 3dPacMan nutzt `ADR-0001`, tarifnova und blocpress
   `ADR-001` (obwohl tarifnovas CONVENTIONS `ADR-NNNN` verlangt). docspine nutzt
   `ADR-NNNN`, passend zu `REQ-NNNN` und `US-NNNN`.
-- **Status-Vokabular für Requirements.** 3dPacMan: `proposed → accepted → implemented
-  → verified | dropped`. tarifnova/blocpress: `implemented | planned | proposed |
-  rejected | superseded` plus eigene Achse `confidence`. Kernvokabular festlegen.
-- **Kern vs. Projektprofil schneiden.** Was aus `CONVENTIONS.md` ist allgemein, was
-  gehört ins Profil?
-- **Optionale Module definieren:** DEVLOG, guides/measurements, Betriebs-Runbooks, …
+- ~~Status-Vokabular für Requirements~~ → [ADR-0005](../architecture/decisions/ADR-0005.md)
+- ~~Kern vs. Projektprofil schneiden, optionale Module definieren~~ →
+  [ADR-0006](../architecture/decisions/ADR-0006.md)
 - **Kernstandard schreiben** (`standard/` in diesem Repo) und versionieren.
 
 ## Generator
@@ -37,7 +34,10 @@ Handgepflegter Anker für offene Fäden, noch ohne Priorisierung.
 - **tarifnova:** `.adoc` → `.md` (ADRs, arc42), Rückverweise „Teil von US-…“ entfernen,
   Profil anlegen.
 - **blocpress:** wie tarifnova. AsciiDoc-Altbestand bleibt bis zum Retirement.
-- **3dPacMan:** kein Trace-Adapter, Generator nur für Konsistenz und Ansichten.
+- **3dPacMan:** Metadaten von Aufzählungspunkten auf Frontmatter umstellen, Status
+  nach ADR-0005 abbilden (13× `accepted` → `planned`, 9× `in-progress` prüfen),
+  Stories und Epics bekommen einen Status. Kein Trace-Adapter, `evidence` und
+  `verification` von Hand.
 - Reihenfolge festlegen (Vorschlag: 3dPacMan als kleinster Testfall zuerst).
 
 ## Offene Fragen
