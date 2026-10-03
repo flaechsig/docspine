@@ -11,9 +11,14 @@ Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, ste
 
 ## Aufbau
 
-Die Gliederung folgt [arc42](https://arc42.org) mit seinen zwölf Kapiteln. Kapitel 1
-enthält zusätzlich die ganze Spezifikation, damit Anforderungen und Architektur nicht in
-zwei Dokumenten auseinanderlaufen. Ein Kapitel existiert erst, wenn es Inhalt hat.
+Die Gliederung ist an die zwölf Kapitel von [arc42](https://arc42.org) angelehnt, mit
+vier Abweichungen:
+
+- Kapitel 1 enthält zusätzlich die ganze Spezifikation, damit Anforderungen und
+  Architektur nicht in zwei Dokumenten auseinanderlaufen.
+- Kapitel 9 besteht nur aus den einzelnen Entscheidungen (ADRs).
+- Kapitel 10 wird aus den Qualitätsanforderungen erzeugt.
+- Ein Kapitel existiert erst, wenn es Inhalt hat.
 
 ```
 docs/
@@ -44,6 +49,25 @@ docs/
 Ordner, Dateinamen und Metadaten sind englisch, die Inhalte stehen in der
 Projektsprache.
 
+## Steuernde Dateien
+
+Einige Dateien beschreiben nicht das Projekt, sondern wie mit seiner Doku gearbeitet
+wird. Sie steuern Menschen und KI-Agenten gleichermaßen, nur `AGENTS.md` und die
+Skills richten sich ausschließlich an KI-Agenten.
+
+| Datei | Wofür | von Hand ändern? |
+|---|---|---|
+| `docs/README.md` | diese Seite: Aufbau und Arbeitsweise | nein, kommt aus docspine |
+| `docs/STANDARD.md` | die Regeln, die für alle Inhalte gelten | nein, kommt aus docspine |
+| `docs/PROFILE.md` | Werte dieses Projekts (Sprache, Module, Normquellen) und begründete Abweichungen vom Standard | ja |
+| `AGENTS.md` (Repo-Root) | Einstieg für KI-Agenten: wo was steht, wie geprüft wird | ja |
+| `.agents/skills/spine-*` | geführte Abläufe für KI-Agenten | nein, kommt aus docspine |
+| `.agents/skills/<andere>` | projekteigene Abläufe | ja |
+| `.claude/` und ähnliche | werkzeugspezifische Einstellungen, verweisen nur auf `AGENTS.md` | ja |
+
+Was aus docspine kommt, wird beim Aktualisieren des Standards überschrieben. Änderungen
+daran gehören nach docspine, nicht ins Projekt.
+
 ## Wie die Teile zusammenhängen
 
 ```
@@ -69,20 +93,22 @@ führt. Die Skills folgen dem offenen Agent-Skills-Standard und funktionieren mi
 verschiedenen KI-Werkzeugen. Ohne Skills geht es genauso, die Regeln stehen in
 `STANDARD.md`.
 
-```mermaid
-flowchart LR
-    init([Start:<br/>Vision]) --> req
-    req[Anfordern<br/>Epic · Story · Requirement] --> imp
-    imp{Wirkung auf die<br/>Architektur?} -- Entscheidung fällig --> dec[Entscheiden<br/>ADR]
-    imp -- Kapitel betroffen --> arch[Architektur<br/>nachziehen]
-    imp -- kein Impact --> build
-    dec --> build
-    arch --> build
-    build[Umsetzen<br/>Code · Test · Status] --> prove[Nachweisen<br/>Test prüft wirklich<br/>die Anforderung?]
-    prove --> check{{Prüfwerkzeug<br/>grün?}}
-    check -- ja --> req
-    check -- nein --> build
-    build -. Lücke entdeckt .-> req
+```
+  Start: Vision
+       │
+       ▼
+  ┌─► Anfordern ──────► Wirkung prüfen ──┬─► Entscheiden (ADR) ────────┐
+  │   Epic · Story · REQ                 ├─► Architektur nachziehen ───┤
+  │        ▲                             └─► kein Impact ──────────────┤
+  │        │                                                           ▼
+  │        └───────────── Lücke entdeckt ──────────────────────── Umsetzen ◄───┐
+  │                                                       Code · Test · Status │
+  │                                                                 │          │
+  │                                                                 ▼          │
+  │                                                            Nachweisen      │ nein
+  │                                                                 │          │
+  │                            ja                                   ▼          │
+  └────────────────────────────────────────────────────── Prüfwerkzeug grün? ──┘
 ```
 
 | Schritt | Was passiert | Skill |
@@ -113,6 +139,9 @@ docspine erfindet wenig neu, sondern verbindet bewährte Arbeiten:
 - **[arc42](https://arc42.org)** von Gernot Starke und Peter Hruschka: die Gliederung
   dieses Dokuments und der Gedanke, Architektur pragmatisch und schrittweise zu
   dokumentieren.
+- **[IREB](https://www.ireb.org)** (International Requirements Engineering Board) mit
+  dem CPRE-Lehrplan: die Begriffe und Grundsätze des Requirements Engineering, auf
+  denen Vision, Story und Requirement aufbauen.
 - **[EARS](https://alistairmavin.com/ears/)** (Easy Approach to Requirements Syntax) von
   Alistair Mavin und Kollegen: der Satzbau, der Anforderungen eindeutig und prüfbar macht.
 - **[Architecture Decision Records](https://adr.github.io)**, beschrieben von Michael

@@ -8,6 +8,10 @@ sources: []
 
 # Profil
 
+Die Werte dieses Projekts für den Standard (Frontmatter oben) und die begründeten
+Abweichungen davon (unten). Diese Datei wird von Hand gepflegt. Menschen und KI-Agenten
+lesen sie zusammen mit `STANDARD.md`, um zu wissen, was in diesem Projekt gilt.
+
 docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Doku.
 
 ## Abweichungen vom Kern
