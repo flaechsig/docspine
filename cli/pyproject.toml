@@ -1,0 +1,19 @@
+[project]
+name = "docspine"
+version = "0.1.0"
+description = "Checker and generator for documentation that follows the docspine standard"
+requires-python = ">=3.9"
+dependencies = []  # PyYAML is embedded in docspine/_vendor
+
+[project.scripts]
+docspine = "docspine.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["docspine*"]
+
+[tool.setuptools.package-data]
+"docspine._vendor" = ["README.md", "PyYAML-LICENSE"]
