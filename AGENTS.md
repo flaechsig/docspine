@@ -9,9 +9,10 @@ die Quelle des Standards und dokumentiert sich selbst danach.
 
 ## Wo was steht
 
-- `docs/README.md`: Deckblatt und Inhaltsverzeichnis, Lesereihenfolge
+- `docs/README.md`: Aufbau des Verzeichnisses und zugrunde liegende Standards
 - `docs/PROFILE.md`: Projektwerte und Abweichungen vom Standard
-- `docs/01-goals/`: Vision, Epics, Stories, Requirements
+- `docs/01-goals/vision.md`: Einstieg in den Inhalt, verlinkt die Epics
+- `docs/01-goals/`: Epics, Stories, Requirements
 - `docs/09-decisions/`: Entscheidungen (ADRs). Solange es keine `STANDARD.md` gibt,
   sind sie die Regeln.
 

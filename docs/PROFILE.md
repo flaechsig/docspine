@@ -16,4 +16,5 @@ docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Dok
   Bis dahin gelten die ADRs in `09-decisions/`.
 - **Kein Gate.** Die CLI gibt es noch nicht (US-0004). Bis dahin werden die Regeln von
   Hand eingehalten.
-- **Inhaltsverzeichnis im README von Hand gepflegt**, bis der Generator es erzeugt.
+- **Generierte Bereiche von Hand gepflegt** (Epic-Liste in der Vision, Story-Listen in
+  den Epics), bis der Generator sie erzeugt.
