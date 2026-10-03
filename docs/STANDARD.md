@@ -221,7 +221,7 @@ status: proposed
 category: quality             # optional: marks a quality requirement
 source: <external norm, or empty for own requirement>   # must be listed in the profile
 confidence: unverified        # only without test results, see below
-evidence: []                  # paths to implementation and proof
+evidence: []                  # paths to the implementation; see below
 verification: <how fulfilment is checked>               # optional
 supersedes: REQ-NNNN          # optional
 superseded_by: REQ-NNNN | ADR-NNNN   # only with superseded
@@ -268,6 +268,14 @@ A new requirement is never `implemented`.
   maintained; the checker derives it.
 - Otherwise it is maintained by hand. `verified` then requires `evidence` and
   `verification`.
+
+**Evidence.** `evidence` lists paths, and what belongs there depends on whether test
+results exist:
+- **With test results**, `evidence` lists only the **implementation**. The tests are
+  named in the results and are not repeated here. The implementation paths are needed
+  to match the requirement to its building block (section 4).
+- **Without test results**, `evidence` is the proof itself and lists the implementation
+  and whatever proves it (a test, a screenshot, a measurement).
 
 **Quality requirements** carry `category: quality`. Chapter 10 is generated from them.
 
@@ -447,8 +455,8 @@ the project.
 
 ### 8.2 Status change
 
-When a requirement passes: set `status: implemented` and add implementation and test
-paths to `evidence`. Set the story to `verified` once all its requirements are
+When a requirement passes: set `status: implemented` and add the implementation paths
+to `evidence` (section 3.4). Set the story to `verified` once all its requirements are
 `implemented`. Statement, rationale and title stay unchanged.
 
 Without test results, `evidence` and `verification` prove the requirement, and
