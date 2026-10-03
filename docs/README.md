@@ -1,29 +1,33 @@
-# docspine — Dokumentation
+# docspine
 
-Das Eingangstor. Es erklärt, *warum* es docspine gibt und *wo* du weiterliest.
+> Ein Dokumentationsstandard mit Prüfwerkzeug, der Anforderungen, Architektur und
+> Entscheidungen als ein nachprüfbares Dokument im Repo hält, lesbar für jede KI und
+> jeden Menschen.
 
-## Warum es das gibt
+Dies ist das Deckblatt. Das Inhaltsverzeichnis unten ist die Lesereihenfolge.
 
-tarifnova, blocpress und 3dPacMan folgen derselben Doku-Methodik. Bisher wird
-sie kopiert, und die Kopien laufen auseinander:
+**Stand:** Alle Entscheidungen stehen auf `proposed`, bis die Migration von 3dPacMan
+sie bestätigt (US-0012). Solange dürfen sie direkt geändert werden.
 
-- `CONVENTIONS.md` existiert dreimal mit abweichenden Status-Werten und ADR-Nummern.
-- Der Generator (`*-req-check`, 1166 Zeilen) liegt in tarifnova und blocpress
-  identisch vor, nur mit anderem Package. 3dPacMan hat gar keinen.
-- Die Skills (`adr`, `anforderung`, `arc42`, …) sind kopiert und leicht verschieden.
+## Inhalt
 
-Dazu kommt das Ziel, die Doku in einer standardisierten Form im Repo abzulegen, die
-jede KI und jeder Mensch aufgreifen kann, statt sie in einem Werkzeug zu verstecken.
+<!-- generated:toc -->
+### 1 Ziele
 
-docspine macht daraus **einen** versionierten Standard: Regeln, Generator und Skills
-an einer Stelle, als Kopie in jedem Projekt, plus ein kurzes Profil pro Projekt.
+- [Vision](01-goals/vision.md)
 
-## Stand
+| Epic | Stories |
+|---|---|
+| [E-STANDARD](01-goals/epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk | ⚪ [US-0001](01-goals/stories/US-0001.md) STANDARD.md schreiben · ⚪ [US-0002](01-goals/stories/US-0002.md) Regeln aus den Skills verlagern · ⚪ [US-0003](01-goals/stories/US-0003.md) JSON Schema |
+| [E-GENERATOR](01-goals/epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI | ⚪ [US-0004](01-goals/stories/US-0004.md) CLI-Kern · ⚪ [US-0005](01-goals/stories/US-0005.md) Neue Prüfungen · ⚪ [US-0006](01-goals/stories/US-0006.md) Maven-Anbindung |
+| [E-SKILLS](01-goals/epics/E-SKILLS.md) — Geführte Abläufe als Skills | ⚪ [US-0007](01-goals/stories/US-0007.md) spine-init · ⚪ [US-0008](01-goals/stories/US-0008.md) Methodik-Skills · ⚪ [US-0009](01-goals/stories/US-0009.md) spine-adopt · ⚪ [US-0010](01-goals/stories/US-0010.md) spine-gate · ⚪ [US-0011](01-goals/stories/US-0011.md) Kaltstart-Test |
+| [E-MIGRATION](01-goals/epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen | ⚪ [US-0012](01-goals/stories/US-0012.md) 3dPacMan · ⚪ [US-0013](01-goals/stories/US-0013.md) tarifnova · ⚪ [US-0014](01-goals/stories/US-0014.md) blocpress |
 
-Alle Entscheidungen stehen auf `proposed`, bis die Migration von 3dPacMan sie
-bestätigt. Solange dürfen sie direkt geändert werden.
+### 3 Kontext
 
-## Entscheidungen
+- [Kontext](03-context.md)
+
+### 9 Entscheidungen
 
 | ADR | Thema |
 |---|---|
@@ -39,9 +43,11 @@ bestätigt. Solange dürfen sie direkt geändert werden.
 | [ADR-0010](09-decisions/ADR-0010.md) | Skill-Familie spine-* |
 | [ADR-0011](09-decisions/ADR-0011.md) | Projektsprache und englisches Maschinenvokabular |
 | [ADR-0012](09-decisions/ADR-0012.md) | Generator-Kern als eigenständige CLI |
+<!-- /generated -->
 
-## Offene Punkte
+Die übrigen Kapitel (2, 4–8, 10–12) haben noch keinen Inhalt und existieren daher
+nicht (ADR-0008).
 
-Übergangsweise in [planning/ROADMAP.md](planning/ROADMAP.md). Nach ADR-0008 gibt es
-keine ROADMAP mehr. Sie entfällt, sobald docspine sich selbst mit `spine-init` eine
-Vision und Stories gegeben hat.
+---
+
+Projektwerte und Abweichungen vom Standard: [PROFILE.md](PROFILE.md).
