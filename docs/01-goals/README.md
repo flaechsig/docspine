@@ -4,31 +4,47 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**14 Stories:** ⚪ open 14
+**14 Stories:** ⚪ offen 14
 
-## ⚪ [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
+## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-- ⚪ [US-0004](stories/US-0004.md) CLI-Kern herauslösen
-- ⚪ [US-0005](stories/US-0005.md) Neue Prüfungen und generierte Bereiche
-- ⚪ [US-0006](stories/US-0006.md) Build-Anbindung für Maven
+Status: ⚪ offen
 
-## ⚪ [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
+| Story | Titel | Status |
+|---|---|---|
+| [US-0004](stories/US-0004.md) | CLI-Kern herauslösen | ⚪ offen |
+| [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ⚪ offen |
+| [US-0006](stories/US-0006.md) | Build-Anbindung für Maven | ⚪ offen |
 
-- ⚪ [US-0012](stories/US-0012.md) 3dPacMan migrieren
-- ⚪ [US-0013](stories/US-0013.md) tarifnova migrieren
-- ⚪ [US-0014](stories/US-0014.md) blocpress migrieren
+## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
-## ⚪ [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
+Status: ⚪ offen
 
-- ⚪ [US-0007](stories/US-0007.md) spine-init
-- ⚪ [US-0008](stories/US-0008.md) Methodik-Skills zusammenführen
-- ⚪ [US-0009](stories/US-0009.md) spine-adopt
-- ⚪ [US-0010](stories/US-0010.md) spine-gate
-- ⚪ [US-0011](stories/US-0011.md) Kaltstart-Test
+| Story | Titel | Status |
+|---|---|---|
+| [US-0012](stories/US-0012.md) | 3dPacMan migrieren | ⚪ offen |
+| [US-0013](stories/US-0013.md) | tarifnova migrieren | ⚪ offen |
+| [US-0014](stories/US-0014.md) | blocpress migrieren | ⚪ offen |
 
-## ⚪ [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
+## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
 
-- ⚪ [US-0001](stories/US-0001.md) STANDARD.md schreiben
-- ⚪ [US-0002](stories/US-0002.md) Regeln aus den Skills in den Standard verlagern
-- ⚪ [US-0003](stories/US-0003.md) Frontmatter als JSON Schema
+Status: ⚪ offen
+
+| Story | Titel | Status |
+|---|---|---|
+| [US-0007](stories/US-0007.md) | spine-init | ⚪ offen |
+| [US-0008](stories/US-0008.md) | Methodik-Skills zusammenführen | ⚪ offen |
+| [US-0009](stories/US-0009.md) | spine-adopt | ⚪ offen |
+| [US-0010](stories/US-0010.md) | spine-gate | ⚪ offen |
+| [US-0011](stories/US-0011.md) | Kaltstart-Test | ⚪ offen |
+
+## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
+
+Status: ⚪ offen
+
+| Story | Titel | Status |
+|---|---|---|
+| [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ⚪ offen |
+| [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
+| [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
 <!-- /generated -->
