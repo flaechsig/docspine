@@ -1,45 +1,40 @@
-# Roadmap
+# Offene Punkte (Übergang)
 
-Handgepflegter Anker für offene Fäden, noch ohne Priorisierung.
+Diese Datei gibt es nur, bis docspine sich selbst nach dem eigenen Standard eine
+Vision und Stories gegeben hat (ADR-0008). Ohne Priorisierung.
 
-## Kernstandard festlegen
+## Standard
 
-- **ADR-Nummern vereinheitlichen.** 3dPacMan nutzt `ADR-0001`, tarifnova und blocpress
-  `ADR-001` (obwohl tarifnovas CONVENTIONS `ADR-NNNN` verlangt). docspine nutzt
-  `ADR-NNNN`, passend zu `REQ-NNNN` und `US-NNNN`.
-- ~~Status-Vokabular für Requirements~~ → [ADR-0005](../architecture/decisions/ADR-0005.md)
-- ~~Kern vs. Projektprofil schneiden, optionale Module definieren~~ →
-  [ADR-0006](../architecture/decisions/ADR-0006.md)
-- **Kernstandard schreiben** (`standard/` in diesem Repo) und versionieren.
+- **`STANDARD.md` schreiben:** Kern und Module als eine Datei, aus den ADRs und den
+  bestehenden `CONVENTIONS.md` (ADR-0004, ADR-0006).
+- **Regeln aus den Skills herauslösen:** EARS-Muster, Status-Wahl, Ablöseverfahren
+  aus `anforderung`, `adr`, `arc42` usw. nach `STANDARD.md` (ADR-0009).
+- **JSON Schema** für das Frontmatter aller Artefakte (ADR-0009).
+- **ADR-Nummern:** einheitlich `ADR-NNNN`. tarifnova und blocpress nutzen `ADR-001`.
 
 ## Generator
 
-- Auslieferungsform entscheiden: CLI, Maven-Plugin oder beides.
+- Implementierungssprache der CLI festlegen (ADR-0012).
 - Kern aus `tarifnova-req-check` herauslösen und vom Package entkoppeln.
-- Verwaltete Bereiche nach [ADR-0003](../architecture/decisions/ADR-0003.md)
-  umsetzen: Marker-Syntax, Neuschreiben, Fehlerklasse „Bereich veraltet“.
-- Frontmatter für ADRs und arc42-Kapitel lesen
-  ([ADR-0001](../architecture/decisions/ADR-0001.md)).
-- Prüfung „SVG älter als DOT/PlantUML-Quelle“
-  ([ADR-0002](../architecture/decisions/ADR-0002.md)).
-- JUnit-5-Trace-Adapter als eigenes Artefakt.
+- Neu: Frontmatter für ADRs und Kapitel, generierte Bereiche (ADR-0003), Nähte
+  `path:`/`stories:`/`requires:` (ADR-0007), Kap. 10 aus Qualitäts-Requirements,
+  abgeleiteter Epic-Status und `confidence` (ADR-0005), Übersetzungen `de`/`en`
+  (ADR-0011), Prüfung „SVG älter als Quelle“ (ADR-0002), PDF bei Bedarf.
+- Maven-Plugin und JUnit-5-Adapter für die Build-Anbindung.
 
-## Plugin
+## Skills
 
-- Allgemeine Skills aus tarifnova und blocpress zusammenführen (Unterschiede sichten).
-- Als Claude-Code-Plugin paketieren.
+- `spine-init` schreiben (ADR-0010).
+- `spine-require`, `-impact`, `-decide`, `-build`, `-prove` aus den tarifnova- und
+  blocpress-Fassungen zusammenführen, Regeln nach `STANDARD.md` auslagern.
+- `spine-adopt` und `spine-gate` neu schreiben.
+- Kaltstart-Test: ein Agent ohne Skills, nur mit Repo und Gate (ADR-0009).
 
-## Migration der Projekte
+## Migration
 
-- **tarifnova:** `.adoc` → `.md` (ADRs, arc42), Rückverweise „Teil von US-…“ entfernen,
-  Profil anlegen.
-- **blocpress:** wie tarifnova. AsciiDoc-Altbestand bleibt bis zum Retirement.
-- **3dPacMan:** Metadaten von Aufzählungspunkten auf Frontmatter umstellen, Status
-  nach ADR-0005 abbilden (13× `accepted` → `planned`, 9× `in-progress` prüfen),
-  Stories und Epics bekommen einen Status. Kein Trace-Adapter, `evidence` und
-  `verification` von Hand.
-- Reihenfolge festlegen (Vorschlag: 3dPacMan als kleinster Testfall zuerst).
-
-## Offene Fragen
-
-- Soll die Doku jemals als Site oder PDF veröffentlicht werden?
+- **3dPacMan zuerst** als kleinster Fall: Frontmatter statt Aufzählungspunkten, Status
+  nach ADR-0005, neue Gliederung, `make check`. Danach die ADRs auf `accepted`.
+- **tarifnova:** `.adoc` → `.md`, neue Gliederung, Rückverweise „Teil von US-…“
+  entfernen, Inhalte aus `CLAUDE.md` in das Dokument überführen, `AGENTS.md` von
+  GSD-Inhalten trennen.
+- **blocpress:** wie tarifnova, AsciiDoc-Altbestand bleibt bis zum Retirement.
