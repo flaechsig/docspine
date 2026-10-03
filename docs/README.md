@@ -35,3 +35,5 @@ offenen Punkte der Roadmap entschieden sind.
 - [ADR-0002](architecture/decisions/ADR-0002.md): Diagramme als Textquelle
 - [ADR-0003](architecture/decisions/ADR-0003.md): Beziehungen nur nach unten, alles andere generiert
 - [ADR-0004](architecture/decisions/ADR-0004.md): Standard als versioniertes Paket mit Projektprofil
+- [ADR-0005](architecture/decisions/ADR-0005.md): Ein Status-Vokabular je Artefakt, Prüfstand als eigene Achse
+- [ADR-0006](architecture/decisions/ADR-0006.md): Schnitt zwischen Kernstandard, Modulen und Projektprofil
