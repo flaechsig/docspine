@@ -4,7 +4,7 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**14 Stories:** ⚪ offen 14
+**14 Stories:** ⚪ offen 13 · 🟡 in Arbeit 1
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -14,7 +14,7 @@ Status: ⚪ offen
 |---|---|---|
 | [US-0004](stories/US-0004.md) | CLI-Kern herauslösen | ⚪ offen |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ⚪ offen |
-| [US-0006](stories/US-0006.md) | Build-Anbindung für Maven | ⚪ offen |
+| [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel JUnit 5 | ⚪ offen |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -40,11 +40,11 @@ Status: ⚪ offen
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 
-Status: ⚪ offen
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ⚪ offen |
+| [US-0001](stories/US-0001.md) | STANDARD.md schreiben | 🟡 in Arbeit |
 | [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
 | [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
 <!-- /generated -->
