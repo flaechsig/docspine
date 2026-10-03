@@ -45,13 +45,7 @@ an mehreren Stellen doppeln.
   jeder KI nutzbar.
 - **Nachprüfbarkeit:** Was als umgesetzt gilt, entscheidet das Gate, kein Modell.
 
-## Epics
+## Themen
 
-<!-- generated:epics -->
-| Epic | Status | Stories |
-|---|---|---|
-| [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk | ⚪ open | 3 |
-| [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI | ⚪ open | 3 |
-| [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills | ⚪ open | 5 |
-| [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen | ⚪ open | 3 |
-<!-- /generated -->
+Die Vision bricht sich in Epics herunter. Übersicht mit Stories und Status:
+[01-goals](README.md).

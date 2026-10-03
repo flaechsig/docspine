@@ -1,54 +1,48 @@
-# docspine — Dokumentation
+# Dokumentation nach docspine
 
-> Ein Dokumentationsstandard mit Prüfwerkzeug, der Anforderungen, Architektur und
-> Entscheidungen als ein nachprüfbares Dokument im Repo hält, lesbar für jede KI und
-> jeden Menschen.
+Diese Dokumentation folgt dem Standard [docspine](https://github.com/flaechsig/docspine):
+Anforderungen, Architektur und Entscheidungen bilden **ein Dokument**, verteilt auf
+viele kleine Dateien, verbunden über feste IDs und von einem Prüfwerkzeug kontrolliert.
+Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, steht in
+[STANDARD.md](STANDARD.md), die Werte dieses Projekts in [PROFILE.md](PROFILE.md).
 
-**Einstieg in den Inhalt: [Vision](01-goals/vision.md).** Von dort führen die Epics
-weiter zu Stories und Requirements.
-
-Diese Seite erklärt, wie die Doku aufgebaut ist und auf welchen Standards sie beruht.
+- **Worum es geht:** [Vision](01-goals/vision.md)
+- **Wo es steht:** [Epics, Stories und ihr Status](01-goals/README.md)
 
 ## Aufbau
 
-Die Doku ist **ein Dokument**, verteilt auf viele Dateien. Die Gliederung folgt
-[arc42](https://arc42.org), der Vorlage für Architekturdokumentation mit zwölf
-Kapiteln. Kapitel 1 trägt zusätzlich die ganze Spezifikation, damit Anforderungen und
-Architektur nicht in zwei Dokumenten auseinanderlaufen
-([ADR-0007](09-decisions/ADR-0007.md)).
-
-Ein Kapitel existiert nur, wenn es Inhalt hat. Fehlt eine Datei, ist das Kapitel noch
-offen ([ADR-0008](09-decisions/ADR-0008.md)).
+Die Gliederung folgt [arc42](https://arc42.org) mit seinen zwölf Kapiteln. Kapitel 1
+enthält zusätzlich die ganze Spezifikation, damit Anforderungen und Architektur nicht in
+zwei Dokumenten auseinanderlaufen. Ein Kapitel existiert erst, wenn es Inhalt hat.
 
 ```
 docs/
-  README.md                 diese Seite
-  PROFILE.md                Projektwerte (Sprache, Module) und Abweichungen vom Standard
-  STANDARD.md               die Regeln (Kopie aus docspine, nicht editieren) *
+  README.md                   diese Seite
+  STANDARD.md                 die Regeln des Standards (nicht editieren)
+  PROFILE.md                  Werte dieses Projekts: Sprache, Module, Abweichungen
 
-  01-goals/                 arc42 Kap. 1 — Einführung und Ziele
-    vision.md               warum es das gibt, für wen, woran sich Erfolg misst
-    epics/E-<NAME>.md       Themen
-    stories/US-NNNN.md      Nutzen aus Sicht der Nutzer, verweist auf Requirements
-    requirements/REQ-NNNN.md  einzelne prüfbare Anforderungen *
-  02-constraints.md         Kap. 2 — Randbedingungen *
-  03-context.md             Kap. 3 — Kontextabgrenzung: Nachbarsysteme und Nutzer
-  04-strategy.md            Kap. 4 — Lösungsstrategie *
-  05-building-blocks/       Kap. 5 — Bausteinsicht, ein Baustein je Datei *
-  06-runtime/               Kap. 6 — Laufzeitsicht, ein Szenario je Datei *
-  07-deployment.md          Kap. 7 — Verteilungssicht *
-  08-concepts/              Kap. 8 — fachliche und technische Konzepte *
-  09-decisions/ADR-NNNN.md  Kap. 9 — Architekturentscheidungen
-  10-quality.md             Kap. 10 — Qualitätsanforderungen, generiert *
-  11-risks.md               Kap. 11 — Risiken und technische Schulden *
-  12-glossary.md            Kap. 12 — Glossar *
-  diagrams/                 Quellen und SVGs großer Diagramme *
-
-  * noch nicht vorhanden
+  01-goals/                   Kap. 1 — Einführung und Ziele
+    README.md                 Übersicht: Epics, Stories, Status (generiert)
+    vision.md                 warum es das gibt, für wen, woran sich Erfolg misst
+    epics/E-<NAME>.md         Themen
+    stories/US-NNNN.md        Nutzen aus Sicht der Nutzer
+    requirements/REQ-NNNN.md  einzelne prüfbare Anforderungen
+  02-constraints.md           Kap. 2 — Randbedingungen
+  03-context.md               Kap. 3 — Kontextabgrenzung: Nachbarsysteme und Nutzer
+  04-strategy.md              Kap. 4 — Lösungsstrategie
+  05-building-blocks/         Kap. 5 — Bausteinsicht, ein Baustein je Datei
+  06-runtime/                 Kap. 6 — Laufzeitsicht, ein Szenario je Datei
+  07-deployment.md            Kap. 7 — Verteilungssicht
+  08-concepts/                Kap. 8 — fachliche und technische Konzepte
+  09-decisions/ADR-NNNN.md    Kap. 9 — Architekturentscheidungen
+  10-quality.md               Kap. 10 — Qualitätsanforderungen (generiert)
+  11-risks.md                 Kap. 11 — Risiken und technische Schulden
+  12-glossary.md              Kap. 12 — Glossar
+  diagrams/                   Quellen und Bilder großer Diagramme
 ```
 
-Ordner, Dateinamen und Frontmatter sind englisch, die Inhalte deutsch
-([ADR-0011](09-decisions/ADR-0011.md)).
+Ordner, Dateinamen und Metadaten sind englisch, die Inhalte stehen in der
+Projektsprache.
 
 ## Wie die Teile zusammenhängen
 
@@ -60,27 +54,73 @@ Vision → Epic → Story → Requirement ← Test
                             ADR (Entscheidung → prüfbare Folge)
 ```
 
-- Jede Aussage hat **genau eine Quelldatei**. Andere Stellen verweisen über die ID
-  (`REQ-0042`, `ADR-0007`) oder blenden sie in einem generierten Bereich ein
-  (`<!-- generated:… -->`). Solche Bereiche nicht von Hand ändern
-  ([ADR-0003](09-decisions/ADR-0003.md)).
-- IDs sind unveränderlich. Ändert sich eine Anforderung inhaltlich, entsteht eine neue,
-  die alte wird abgelöst.
+- Jede Aussage hat **genau eine Quelldatei**. Andere Stellen verweisen über die ID oder
+  blenden den Inhalt in einem generierten Bereich ein (`<!-- generated:… -->`). Solche
+  Bereiche nie von Hand ändern.
+- **IDs sind unveränderlich.** Ändert sich eine Anforderung inhaltlich, entsteht eine
+  neue, und die alte wird abgelöst.
+- **Ob etwas umgesetzt ist, entscheidet das Prüfwerkzeug**, nicht ein Mensch und nicht
+  eine KI: Ein Requirement gilt als umgesetzt, wenn ein Test oder ein Beleg es nachweist.
 
-## Standards, auf denen die Doku beruht
+## Arbeitsweise
 
-| Standard | wofür | hier |
+Die Arbeit läuft als Kreislauf. Jeder Schritt hat einen Skill (`spine-*`), der durch ihn
+führt. Die Skills folgen dem offenen Agent-Skills-Standard und funktionieren mit
+verschiedenen KI-Werkzeugen. Ohne Skills geht es genauso, die Regeln stehen in
+`STANDARD.md`.
+
+```mermaid
+flowchart LR
+    init([Start:<br/>Vision]) --> req
+    req[Anfordern<br/>Epic · Story · Requirement] --> imp
+    imp{Wirkung auf die<br/>Architektur?} -- Entscheidung fällig --> dec[Entscheiden<br/>ADR]
+    imp -- Kapitel betroffen --> arch[Architektur<br/>nachziehen]
+    imp -- kein Impact --> build
+    dec --> build
+    arch --> build
+    build[Umsetzen<br/>Code · Test · Status] --> prove[Nachweisen<br/>Test prüft wirklich<br/>die Anforderung?]
+    prove --> check{{Prüfwerkzeug<br/>grün?}}
+    check -- ja --> req
+    check -- nein --> build
+    build -. Lücke entdeckt .-> req
+```
+
+| Schritt | Was passiert | Skill |
 |---|---|---|
-| [arc42](https://arc42.org) | Gliederung des Dokuments | die Kapitelordner `01-…` bis `12-…` |
-| [EARS](https://alistairmavin.com/ears/) | Satzbau für Anforderungen (`WHEN … the system shall …`) | `statement` in jedem Requirement |
-| [ADR](https://adr.github.io) | Architekturentscheidungen festhalten | `09-decisions/` |
-| Markdown mit YAML-Frontmatter | Format aller Dateien, Metadaten maschinenlesbar | überall ([ADR-0001](09-decisions/ADR-0001.md)) |
-| [Mermaid](https://mermaid.js.org) | Diagramme als Text, von GitHub direkt dargestellt | in den Kapiteln ([ADR-0002](09-decisions/ADR-0002.md)) |
-| [Agent Skills](https://agentskills.io) | geführte Abläufe für KI-Agenten | `.agents/skills/` ([ADR-0009](09-decisions/ADR-0009.md)) |
-| [AGENTS.md](https://agents.md) | Einstieg für KI-Agenten | `AGENTS.md` im Repo-Root |
+| **Start** | Aus einer ersten Beschreibung entstehen Vision, Themen und Randbedingungen. Offenes bleibt als Frage stehen. | `spine-init` |
+| **Anfordern** | Ein Bedürfnis wird zu Story und Requirement: wer, was, warum, woran prüfbar. | `spine-require` |
+| **Wirkung prüfen** | Muss die Architektur etwas berücksichtigen, ändern oder entscheiden? | `spine-impact` |
+| **Entscheiden** | Eine fällige Entscheidung wird mit Alternativen und Begründung festgehalten. | `spine-decide` |
+| **Umsetzen** | Code und Test entstehen, der Test trägt die Requirement-ID. Ist er grün, wechselt der Status. | `spine-build` |
+| **Nachweisen** | Prüft der Test wirklich, was das Requirement fordert, oder trägt er nur die ID? | `spine-prove` |
 
-## Status
+Drei Regeln gelten in jedem Schritt:
 
-Alle Entscheidungen stehen auf `proposed`, bis die Migration von 3dPacMan sie
-bestätigt. Solange dürfen sie direkt geändert werden. Eine Übersicht aller
-Entscheidungen steht in [09-decisions/](09-decisions/).
+- **Der Mensch sagt, was gilt.** Skills und KIs schlagen vor, geschrieben wird nach
+  Freigabe.
+- **Nichts erfinden.** Was niemand weiß, bleibt `UNKNOWN` mit der offenen Frage dazu.
+- **Lücken führen zurück.** Zeigt sich beim Umsetzen, dass eine Anforderung fehlt oder
+  die Architektur nicht trägt, geht es zurück zum passenden Schritt, statt die Lücke im
+  Code zu überbrücken.
+
+Wer das Prüfwerkzeug in den Build einbinden oder ein bestehendes Projekt übernehmen will,
+findet Anleitung und Installation auf der [docspine-Seite](https://github.com/flaechsig/docspine).
+
+## Dank
+
+docspine erfindet wenig neu, sondern verbindet bewährte Arbeiten:
+
+- **[arc42](https://arc42.org)** von Gernot Starke und Peter Hruschka: die Gliederung
+  dieses Dokuments und der Gedanke, Architektur pragmatisch und schrittweise zu
+  dokumentieren.
+- **[EARS](https://alistairmavin.com/ears/)** (Easy Approach to Requirements Syntax) von
+  Alistair Mavin und Kollegen: der Satzbau, der Anforderungen eindeutig und prüfbar macht.
+- **[Architecture Decision Records](https://adr.github.io)**, beschrieben von Michael
+  Nygard: Entscheidungen samt Begründung festhalten und nie umschreiben, nur ablösen.
+- **[Mermaid](https://mermaid.js.org)** von Knut Sveidqvist und der Community:
+  Diagramme als Text.
+- **[Agent Skills](https://agentskills.io)**, von Anthropic als offener Standard
+  veröffentlicht, und **[AGENTS.md](https://agents.md)**: werkzeugübergreifende Wege,
+  KI-Agenten Abläufe und Einstieg mitzugeben.
+- Die **Docs-as-Code**-Bewegung: Dokumentation wie Code im Repo führen, prüfen und
+  versionieren.
