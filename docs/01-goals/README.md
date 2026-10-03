@@ -4,7 +4,7 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**14 Stories:** ⚪ offen 13 · 🟡 in Arbeit 1
+**14 Stories:** ⚪ offen 13 · ✅ verifiziert 1
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -44,7 +44,7 @@ Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0001](stories/US-0001.md) | STANDARD.md schreiben | 🟡 in Arbeit |
+| [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
 | [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
 | [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
 <!-- /generated -->
