@@ -4,6 +4,13 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.5
+
+- **Test results from JUnit XML reports.** The checker reads the reports named in the
+  new profile field `test_reports`; each test case counts for every `REQ-NNNN` in its
+  name or class name. For JUnit 5, put the ID in `@DisplayName`. Example for Maven:
+  `examples/maven-junit5/` in the docspine repository. `req-results.json` still works.
+
 ## 0.4
 
 - **New skill `spine-require`:** turns a need into a story with requirements (EARS), in

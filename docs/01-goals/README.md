@@ -6,9 +6,9 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 10 · 🟡 in Arbeit 3 · ✅ verifiziert 3 |
-| Requirements | umgesetzt 24 · abgelöst 4 |
-| Entscheidungen | vorgeschlagen 17 |
+| Stories | ⚪ offen 9 · 🟡 in Arbeit 3 · ✅ verifiziert 4 |
+| Requirements | umgesetzt 27 · abgelöst 4 |
+| Entscheidungen | vorgeschlagen 18 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -18,7 +18,7 @@ Status: 🟡 in Arbeit
 |---|---|---|
 | [US-0004](stories/US-0004.md) | CLI-Kern mit check und render | ✅ verifiziert |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ✅ verifiziert |
-| [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel JUnit 5 | ⚪ offen |
+| [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel Maven und JUnit 5 | ✅ verifiziert |
 | [US-0015](stories/US-0015.md) | Diagramme prüfen und PDF erzeugen | ⚪ offen |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
