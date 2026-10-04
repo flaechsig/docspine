@@ -11,7 +11,7 @@ description: >-
 # spine-init
 
 You set up the documentation of a project according to docspine. The rules are in
-`docs/STANDARD.md`; read sections 1–3 before you write anything. You work in dialogue:
+`.docspine/STANDARD.md`; read sections 1–3 before you write anything. You work in dialogue:
 you propose, the person decides, and you write only after approval.
 
 ## Rules for the whole run
@@ -26,10 +26,11 @@ you propose, the person decides, and you write only after approval.
 
 ## Step 0 — Check the installation (silently)
 
-1. Run from the repository root. `docs/STANDARD.md` and `.docspine/docspine.pyz` must
-   exist; they come from the installation one-liner. If they are missing, tell the person
+1. Run from the repository root. `.docspine/STANDARD.md` and `.docspine/docspine.pyz` must
+   exist; they come from the installation one-liner. `.docspine/` holds the configuration,
+   `docs/` only the documentation. If they are missing, tell the person
    and show the one-liner from the docspine quickstart.
-2. Read the docspine version from the first line of `docs/STANDARD.md`
+2. Read the docspine version from the first line of `.docspine/STANDARD.md`
    (`<!-- docspine X · … -->`).
 3. Check that `python3 --version` works. If it does not, tell the person that the checker
    needs Python 3.9 or later, and continue with everything except the check in step 6.
@@ -45,9 +46,9 @@ language.
 
 ## Step 2 — Situation
 
-- **`docs/PROFILE.md` exists and names an older docspine version** → this is an update.
+- **`.docspine/PROFILE.md` exists and names an older docspine version** → this is an update.
   Go to "Update" at the end and do nothing else.
-- **`docs/PROFILE.md` exists with the current version** → the project is already set up.
+- **`.docspine/PROFILE.md` exists with the current version** → the project is already set up.
   Say so and suggest the next skill (`spine-require`).
 - **The repository already contains code or documentation** (beyond the files from the
   installation) → say that `spine-adopt` is meant for existing projects. Continue only if
@@ -85,11 +86,11 @@ show the complete result once more and ask for approval to write.
 ## Step 4 — Write (after approval)
 
 Write in the project language; folder and file names and front-matter keys stay English
-(`docs/STANDARD.md` section 2.4).
+(`.docspine/STANDARD.md` section 2.4).
 
 | File | Content |
 |---|---|
-| `docs/PROFILE.md` | front matter `docspine`, `language`, `statement_language: en`, `sources: []`; below, the heading for deviations with an empty list |
+| `.docspine/PROFILE.md` | front matter `docspine`, `language`, `statement_language: en`, `sources: []`; below, the heading for deviations with an empty list |
 | `docs/01-goals/vision.md` | core statement, problem, target group and stakeholders, success, non-goals, quality goals, and a section "Themes" that links to `README.md` (STANDARD 3.1) |
 | `docs/01-goals/epics/E-<NAME>.md` | one per theme: front matter `id`, `title`; heading; what the theme covers and why |
 | `docs/01-goals/stories/US-NNNN.md` | one per story: front matter `id`, `title`, `epic`, `requirements: []`, `status: open`; the "As … I want … so that …" sentence, then why (STANDARD 3.3) |
@@ -109,7 +110,7 @@ to `docs/README.md`.
 
 - The first line is `<!-- docspine X · from standard/en/README.md -->` with the version
   from step 0. For `language: en`, copy the file unchanged.
-- Use the terms from the terminology table in `docs/STANDARD.md` section 12.
+- Use the terms from the terminology table in `.docspine/STANDARD.md` section 12.
 - Keep every link and anchor target unchanged; translate only the visible text.
 - The workflow diagram is ASCII art. After translating its labels, the box-drawing
   characters (`│ ┐ ┤ ┘ ┬ ├ └ ┌ ▼ ▲ ◄`) must stay in the same columns as in the English
@@ -122,8 +123,8 @@ If `AGENTS.md` does not exist, create it. If it exists, add a section "Documenta
 (docspine)" and leave everything else unchanged. Content, in the project language:
 
 - one sentence on what the project is (from the core statement)
-- where things are: `docs/README.md` (how the documentation works), `docs/STANDARD.md`
-  (the rules), `docs/PROFILE.md` (project values), `docs/01-goals/README.md` (overview with
+- where things are: `docs/README.md` (how the documentation works), `.docspine/STANDARD.md`
+  (the rules), `.docspine/PROFILE.md` (project values), `docs/01-goals/README.md` (overview with
   status)
 - how to check, before every commit:
   ```
@@ -148,10 +149,10 @@ Summarise in a few lines what was written, list the open questions (they also ap
 
 ## Update
 
-Run when `docs/PROFILE.md` names an older docspine version than `docs/STANDARD.md`.
+Run when `.docspine/PROFILE.md` names an older docspine version than `.docspine/STANDARD.md`.
 
 1. Tell the person which version was installed and which is now present.
 2. Translate `.agents/skills/spine-init/README.en.md` again into `docs/README.md`, as in
    step 4, with the new version in the first line.
-3. Set `docspine:` in `docs/PROFILE.md` to the new version. Change nothing else.
+3. Set `docspine:` in `.docspine/PROFILE.md` to the new version. Change nothing else.
 4. Run step 5, then summarise and suggest committing.

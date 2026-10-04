@@ -7,7 +7,7 @@ Version 0.1 (draft)
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
 documentation; this file defines what applies. The project's own values and any
-deviations are in `PROFILE.md`.
+deviations are in `PROFILE.md`. Both files are configuration and live in `.docspine/`.
 
 The words **must**, **must not**, **should** and **may** are used in their usual
 normative sense.
@@ -44,10 +44,12 @@ generated, and a chapter exists only once it has content.
 
 ```
 AGENTS.md                     entry point for AI agents (project-specific)
-docs/
-  README.md                   how to work with this documentation (translated from docspine)
+.docspine/                    configuration and tool
   STANDARD.md                 this file (from docspine)
   PROFILE.md                  project values and deviations
+  docspine.pyz                the checker (from docspine)
+docs/                         the documentation
+  README.md                   how to work with this documentation (translated from docspine)
   STATUS.md                   figures, gaps, contradictions, open questions (generated)
 
   01-goals/                   chapter 1: introduction and goals
@@ -81,12 +83,16 @@ resolve.
 | File | Purpose | Edited by hand |
 |---|---|---|
 | `docs/README.md` | how to work with the documentation | no, translated from docspine |
-| `docs/STANDARD.md` | the rules | no, from docspine |
-| `docs/PROFILE.md` | project values and justified deviations | yes |
+| `.docspine/STANDARD.md` | the rules | no, from docspine |
+| `.docspine/PROFILE.md` | project values and justified deviations | yes |
+| `.docspine/docspine.pyz` | the checker | no, from docspine |
 | `AGENTS.md` | entry point for AI agents: where things are, how to check | yes |
 | `.agents/skills/spine-*` | guided workflows for AI agents | no, from docspine |
 | `.agents/skills/<other>` | project-specific workflows | yes |
 | `.claude/` and similar | tool-specific settings; refer to `AGENTS.md` only | yes |
+
+Configuration lives in `.docspine/`; `docs/` contains only documentation. The README
+mentions the configuration files but does not link to them.
 
 Everything that comes from docspine is overwritten when the standard is updated.
 Changes to it belong in docspine, not in the project.
@@ -99,7 +105,7 @@ must not lose any rule.
 
 ### 2.3 Profile
 
-`PROFILE.md` has this front matter:
+`.docspine/PROFILE.md` has this front matter:
 
 ```yaml
 ---
@@ -508,7 +514,8 @@ Applies only while `docs/legacy/` exists.
 
 ## 11 Checker
 
-The checker is a command-line tool that runs without a build system:
+The checker is a command-line tool that runs without a build system, as
+`python3 .docspine/docspine.pyz <command>`:
 
 - `check` — validates everything below and fails on any error.
 - `render` — writes generated regions and views.
