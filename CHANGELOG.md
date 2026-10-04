@@ -4,6 +4,15 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.6
+
+- **Stricter proof.** An implemented requirement needs a passing test result or a proof
+  by hand: `evidence` **and** `verification`. Implementation paths alone no longer count.
+  Requirements proven by hand without `verification` now report error 8.
+- **`check --without-tests`** checks the documentation without test results.
+- **Order:** run the tests, then `render`, then `check`. `spine-init` writes this order
+  into `AGENTS.md`, with the project's test command first.
+
 ## 0.5
 
 - **Test results from JUnit XML reports.** The checker reads the reports named in the

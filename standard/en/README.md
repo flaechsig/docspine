@@ -1,4 +1,4 @@
-<!-- docspine 0.5 · source: standard/en/README.md · do not edit in projects -->
+<!-- docspine 0.6 · source: standard/en/README.md · do not edit in projects -->
 
 # Documentation according to docspine
 

@@ -112,7 +112,8 @@ class ProjectError(Exception):
     pass
 
 
-def load(root: Path) -> Project:
+def load(root: Path, with_tests: bool = True) -> Project:
+    """Load profile and artifacts; with_tests=False skips test results and reports."""
     root = root.resolve()
     profile_path = root / CONFIG / "PROFILE.md"
     if not profile_path.is_file():
@@ -142,9 +143,10 @@ def load(root: Path) -> Project:
                 continue
             project.artifacts.append(Artifact(kind, path, fm, body))
 
-    for path in _find_results(root):
-        _load_results(project, path)
-    _load_test_reports(project)
+    if with_tests:
+        for path in _find_results(root):
+            _load_results(project, path)
+        _load_test_reports(project)
     return project
 
 
@@ -186,7 +188,8 @@ def _load_test_reports(project: Project) -> None:
     for location in locations:
         base = project.root / str(location)
         if not base.exists():
-            project.findings.append(Finding(10, profile_rel, f"test report location '{location}' does not exist"))
+            project.findings.append(Finding(10, profile_rel, f"test report location '{location}' does not exist; "
+                                                             "run the tests first, or check --without-tests"))
             continue
         files = [base] if base.is_file() else sorted(base.rglob("*.xml"))
         for path in files:
