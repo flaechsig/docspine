@@ -69,6 +69,8 @@ def delivery_tree(root: Path) -> None:
     for skill in sorted((REPO / "skills").iterdir()):
         if (skill / "SKILL.md").is_file():
             shutil.copytree(skill, skills / skill.name)
+    # the integrations live once in integrations/ and travel with the skill that uses them
+    shutil.copytree(REPO / "integrations", skills / "spine-gate/integrations")
     shutil.copy(REPO / "standard/en/README.md", root / ".docspine/README.en.md")
     build(root / ".docspine/docspine.pyz")
     shutil.copy(REPO / "LICENSE", root / ".docspine/LICENSE")

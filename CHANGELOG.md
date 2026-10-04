@@ -4,6 +4,12 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.8
+
+- **New skill `spine-gate`:** recognises the tool chain, applies the matching integration
+  step by step with explanations, and checks the result. The integrations travel with it
+  in `.agents/skills/spine-gate/integrations/`.
+
 ## 0.7
 
 - **Integration contract** in the standard (section 11): deliver test results, run
