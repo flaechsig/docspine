@@ -70,8 +70,11 @@ project language, numbered so the person can answer briefly:
 6. **Quality goals** — at most three
 7. **Themes** — three to seven epics, each with an ID `E-<NAME>` (upper case, descriptive)
    and a one-line description
-8. **Constraints** — technology, platform, norms, budget, time
-9. **Decisions already made** — for example language or platform
+8. **First stories** — for each theme one to three stories in the form "As <role> I want
+   <goal> so that <benefit>", with a short title. Number them `US-0001`, `US-0002`, …
+   across all themes. Requirements come later with `spine-require`.
+9. **Constraints** — technology, platform, norms, budget, time
+10. **Decisions already made** — for example language or platform
 
 Mark every draft that you derived rather than heard as a suggestion. For anything you
 cannot derive, write `UNKNOWN` with the open question.
@@ -89,6 +92,7 @@ Write in the project language; folder and file names and front-matter keys stay 
 | `docs/PROFILE.md` | front matter `docspine`, `language`, `statement_language: en`, `sources: []`; below, the heading for deviations with an empty list |
 | `docs/01-goals/vision.md` | core statement, problem, target group and stakeholders, success, non-goals, quality goals, and a section "Themes" that links to `README.md` (STANDARD 3.1) |
 | `docs/01-goals/epics/E-<NAME>.md` | one per theme: front matter `id`, `title`; heading; what the theme covers and why |
+| `docs/01-goals/stories/US-NNNN.md` | one per story: front matter `id`, `title`, `epic`, `requirements: []`, `status: open`; the "As … I want … so that …" sentence, then why (STANDARD 3.3) |
 | `docs/02-constraints.md` | only if constraints are known |
 | `docs/09-decisions/ADR-NNNN.md` | one per decision already made, `status: proposed`, sections context, decision, consequences (STANDARD 3.5) |
 | `docs/01-goals/requirements/REQ-NNNN.md` | only for measurable quality goals: `category: quality`, `status: proposed`, EARS statement in English (STANDARD 3.4) |
