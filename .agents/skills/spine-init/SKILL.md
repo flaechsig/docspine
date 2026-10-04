@@ -147,4 +147,5 @@ Summarise in a few lines what was written, list the open questions (they also ap
 
 - reviewing the changes with `git status` and committing them
 - `spine-require` for the most important theme as the next step
+- `spine-gate` once the project has a build and tests, to connect the check to them
 
