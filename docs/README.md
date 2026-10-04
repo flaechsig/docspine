@@ -7,7 +7,7 @@ mit [docspine](https://github.com/flaechsig/docspine) geführt: Anforderungen, A
 und Entscheidungen bilden **ein Dokument**, verteilt auf viele kleine Dateien, verbunden
 über feste IDs und von einem Prüfwerkzeug kontrolliert.
 Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, steht in
-[STANDARD.md](STANDARD.md), die Werte dieses Projekts in [PROFILE.md](PROFILE.md).
+`.docspine/STANDARD.md`, die Werte dieses Projekts in `.docspine/PROFILE.md`.
 
 - **Worum es geht:** [Vision](01-goals/vision.md)
 - **Wo es steht:** [Epics, Stories und ihr Status](01-goals/README.md)
@@ -36,15 +36,15 @@ Kapitel existiert erst, wenn es Inhalt hat.
 | 12 Glossar | Begriffe |
 
 Ordner, Dateinamen und Metadaten sind englisch, die Inhalte stehen in der
-Projektsprache. Die genaue Gliederung steht in [STANDARD.md](STANDARD.md#21-layout).
+Projektsprache. Die genaue Gliederung steht in `.docspine/STANDARD.md`, Abschnitt 2.1.
 
 ## Steuernde Dateien
 
 Neben den Inhalten steuern einige Dateien, wie mit der Dokumentation gearbeitet wird:
 die Regeln (`STANDARD.md`), die Werte dieses Projekts (`PROFILE.md`), der Einstieg für
 KI-Agenten (`AGENTS.md`) und die Skills. Einige davon kommen aus docspine und werden im
-Projekt nicht geändert. Welche, und warum, steht in
-[STANDARD.md](STANDARD.md#22-controlling-files).
+Projekt nicht geändert. Welche, und warum, steht in `.docspine/STANDARD.md`,
+Abschnitt 2.2.
 
 ## Wie die Teile zusammenhängen
 
@@ -69,7 +69,7 @@ Vision → Epic → Story → Requirement ← Test
 Die Arbeit läuft als Kreislauf. Jeder Schritt hat einen Skill (`spine-*`), der durch ihn
 führt. Die Skills folgen dem offenen Agent-Skills-Standard und funktionieren mit
 verschiedenen KI-Werkzeugen. Ohne Skills geht es genauso, die Regeln stehen in
-`STANDARD.md`.
+`.docspine/STANDARD.md`.
 
 ```
   Start: Vision

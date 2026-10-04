@@ -16,7 +16,8 @@ docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Dok
 ## Abweichungen vom Standard
 
 - **Quelle und Kopie im selben Repo.** Die Quellen liegen unter `standard/en/`.
-  `docs/STANDARD.md` ist eine Kopie, `docs/README.md` eine von Hand erstellte
-  Übersetzung, bis `spine-init` und die CLI das übernehmen.
+  `.docspine/STANDARD.md` ist eine Kopie, `docs/README.md` eine von Hand erstellte
+  Übersetzung. Die CLI wird hier direkt aus `cli/` aufgerufen, nicht als
+  `.docspine/docspine.pyz`.
 - **Fehlerklasse 12 wird noch nicht geprüft.** Diagrammprüfung folgt mit US-0015.
   docspine hat bisher keine Diagrammbilder.

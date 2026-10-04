@@ -60,7 +60,7 @@ class StatusOverview(ProjectTest):
         self.assertNotIn("old", text)
 
     def test_project_language(self):
-        self.write({"docs/PROFILE.md": "---\ndocspine: 0.1\nlanguage: de\n---\n"})
+        self.write({".docspine/PROFILE.md": "---\ndocspine: 0.1\nlanguage: de\n---\n"})
         render.run(project.load(self.root))
         self.assertIn("⚪ offen", (self.root / "docs/01-goals/README.md").read_text(encoding="utf-8"))
 

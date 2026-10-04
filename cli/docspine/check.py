@@ -55,7 +55,7 @@ def schema(project: Project) -> List[Finding]:
     """Error 1: required field missing or value not permitted."""
     out = []
     required = ["docspine", "language"]
-    profile_rel = project.rel(project.docs / "PROFILE.md")
+    profile_rel = project.rel(project.config / "PROFILE.md")
     for key in required:
         if not project.profile.get(key):
             out.append(Finding(1, profile_rel, f"required field '{key}' missing"))
@@ -233,9 +233,9 @@ def readme_version(project: Project) -> List[Finding]:
     """Error 14: README.md or STANDARD.md belong to a different docspine version than the profile states."""
     expected = str(project.profile.get("docspine", ""))
     out = []
-    for name, hint in (("README.md", "translate it again with spine-init"),
-                       ("STANDARD.md", "run spine-init to take over the new version")):
-        path = project.docs / name
+    for path, hint in ((project.docs / "README.md", "translate it again with spine-init"),
+                       (project.config / "STANDARD.md", "run spine-init to take over the new version")):
+        name = path.name
         rel = project.rel(path)
         if not path.is_file():
             out.append(Finding(14, rel, f"{name} from docspine is missing"))

@@ -52,8 +52,8 @@ def version() -> str:
 
 def delivery_tree(root: Path) -> None:
     """Write the files docspine delivers into a project, at their paths there."""
-    (root / "docs").mkdir(parents=True)
-    shutil.copy(REPO / "standard/en/STANDARD.md", root / "docs/STANDARD.md")
+    (root / ".docspine").mkdir(parents=True)
+    shutil.copy(REPO / "standard/en/STANDARD.md", root / ".docspine/STANDARD.md")
     skills = root / ".agents/skills"
     for skill in sorted((REPO / "skills").iterdir()):
         if (skill / "SKILL.md").is_file():
