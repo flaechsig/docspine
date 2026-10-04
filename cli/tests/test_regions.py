@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from support import EPIC, README, REQUIREMENT, STORY, VALID, ProjectTest, replace, req
+from support import EPIC, README, REQUIREMENT, STANDARD, STORY, VALID, ProjectTest, replace, req
 
 from docspine import project, render
 
@@ -47,6 +47,12 @@ class ReadmeVersion(ProjectTest):
 
     def test_no_version_line(self):
         self.assertEqual(self.codes({"docs/README.md": "# Documentation\n"}), [14])
+
+    @req("REQ-0025")
+    def test_standard_newer_than_profile(self):
+        findings = self.findings({"docs/STANDARD.md": STANDARD.replace("docspine 0.1", "docspine 0.2")})
+        self.assertEqual([(f.code, f.path) for f in findings], [(14, "docs/STANDARD.md")])
+        self.assertIn("spine-init", findings[0].message)
 
 
 @req("REQ-0018")

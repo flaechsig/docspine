@@ -530,7 +530,7 @@ The checker is a command-line tool that runs without a build system:
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image not produced from the current version of its source |
 | 13 | broken relative link |
-| 14 | `README.md` was translated from a different docspine version than the profile states |
+| 14 | `README.md` or `STANDARD.md` belong to a different docspine version than the profile states |
 | 15 | an `evidence` path does not exist |
 
 **Generated views:**

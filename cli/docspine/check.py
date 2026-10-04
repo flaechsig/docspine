@@ -230,19 +230,24 @@ _README_VERSION = re.compile(r"^<!--\s*docspine\s+(\S+)")
 
 
 def readme_version(project: Project) -> List[Finding]:
-    """Error 14: README.md was translated from a different docspine version than the profile states."""
-    path = project.docs / "README.md"
-    rel = project.rel(path)
-    if not path.is_file():
-        return [Finding(14, rel, "README.md from docspine is missing")]
-    first = path.read_text(encoding="utf-8").lstrip().splitlines()[:1]
-    match = _README_VERSION.match(first[0]) if first else None
-    if match is None:
-        return [Finding(14, rel, "first line does not name the docspine version (<!-- docspine X · … -->)")]
+    """Error 14: README.md or STANDARD.md belong to a different docspine version than the profile states."""
     expected = str(project.profile.get("docspine", ""))
-    if match.group(1) != expected:
-        return [Finding(14, rel, f"README is from docspine {match.group(1)}, the profile states {expected}")]
-    return []
+    out = []
+    for name, hint in (("README.md", "translate it again with spine-init"),
+                       ("STANDARD.md", "run spine-init to take over the new version")):
+        path = project.docs / name
+        rel = project.rel(path)
+        if not path.is_file():
+            out.append(Finding(14, rel, f"{name} from docspine is missing"))
+            continue
+        first = path.read_text(encoding="utf-8").lstrip().splitlines()[:1]
+        match = _README_VERSION.match(first[0]) if first else None
+        if match is None:
+            out.append(Finding(14, rel, "first line does not name the docspine version (<!-- docspine X · … -->)"))
+        elif match.group(1) != expected:
+            out.append(Finding(14, rel, f"{name} is from docspine {match.group(1)}, the profile states "
+                                        f"{expected}; {hint}"))
+    return out
 
 
 def evidence_paths(project: Project) -> List[Finding]:

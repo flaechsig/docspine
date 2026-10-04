@@ -65,8 +65,11 @@ rationale: >-
 
 README = "<!-- docspine 0.1 · from standard/en/README.md -->\n\n# Documentation\n"
 
+STANDARD = "<!-- docspine 0.1 · source: standard/en/STANDARD.md -->\n\n# docspine Standard\n"
+
 VALID = {
     "docs/README.md": README,
+    "docs/STANDARD.md": STANDARD,
     "docs/PROFILE.md": PROFILE,
     "docs/01-goals/epics/E-CORE.md": EPIC,
     "docs/01-goals/stories/US-0001.md": STORY,
