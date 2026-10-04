@@ -5,7 +5,7 @@ flowchart LR
     dev([Projektverantwortlicher])
     ai([KI-Agenten<br/>Claude Code, Codex, Cursor, …])
     ds[docspine<br/>Standard · CLI · Skills]
-    p1[tarifnova]
+    p1[Ursprungsprojekt]
     p2[blocpress]
     p3[3dPacMan]
 
@@ -18,8 +18,8 @@ flowchart LR
 
 | Nachbar | Beziehung zu docspine |
 |---|---|
-| tarifnova | Ursprung der Methodik, Java/Quarkus mit Maven, Gate heute als `tarifnova-req-check` |
-| blocpress | übernommene Methodik, Java/Quarkus mit Maven, AsciiDoc-Altbestand |
+| Ursprungsprojekt | Ursprung der Methodik, nicht öffentlich, Java mit Maven, eigenes Gate |
+| blocpress | übernommene Methodik, Java mit Maven, AsciiDoc-Altbestand |
 | 3dPacMan | 6502-Assembler, kein Maven, Doku bisher ohne Frontmatter und ohne Gate |
 | KI-Agenten | lesen `AGENTS.md`, `STANDARD.md` und Skills nach dem Agent-Skills-Standard |
 | GitHub | Hosting der Projekte, stellt Markdown und Mermaid direkt dar |
