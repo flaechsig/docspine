@@ -1,8 +1,8 @@
-<!-- docspine 0.6 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.7 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.6 (draft)
+Version 0.7 (draft)
 
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
@@ -467,8 +467,8 @@ class name. So the ID must be part of the test's name; for JUnit 5 that is
 `@DisplayName("REQ-0012: rejects an empty cart")`. A test case with `<failure>` or
 `<error>` counts as failed, with `<skipped>` as skipped, otherwise as passed. JUnit tags
 (`@Tag`) do not appear in the reports and cannot be used. Some tools must be told to
-write display names into the report; examples are in the docspine repository under
-`examples/`.
+write display names into the report; how to do that for a tool chain is described in
+the docspine repository under `integrations/`.
 
 **`req-results.json`.** For tools without such reports, a project writes results in
 this format, in any number of files with this name:
@@ -549,8 +549,21 @@ The checker is a command-line tool that runs without a build system, as
   and 10), for quick checks of the documentation alone.
 - `render` — writes generated regions and views.
 
-**Order.** In a project with test results: run the tests, then `render`, then `check`.
-Without a test run, `check` cannot know what is implemented and reports it.
+**Order.** `render` runs any time before `check`; it does not need test results.
+`check` runs after the tests. Without a test run, `check` cannot know what is
+implemented and reports it.
+
+**Integration with build and tests.** A project connects docspine to its build so that
+the check cannot be forgotten. Whatever the tool chain, an integration must:
+
+1. deliver test results as described in section 8.1 (JUnit XML reports with the
+   requirement ID in the test name, or `req-results.json`), and name report locations
+   in the profile's `test_reports`;
+2. run `check` after the tests and fail the build on any error;
+3. leave `render` outside the build, so that a build never changes files under `docs/`.
+
+How a particular tool chain meets this contract is described in the docspine
+repository under `integrations/`, one file per tool chain.
 
 **Versions.** Every change to what docspine delivers raises its version, named in the
 first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what changed.
