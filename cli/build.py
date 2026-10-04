@@ -60,6 +60,7 @@ def delivery_tree(root: Path) -> None:
             shutil.copytree(skill, skills / skill.name)
     shutil.copy(REPO / "standard/en/README.md", skills / "spine-init/README.en.md")
     build(root / ".docspine/docspine.pyz")
+    shutil.copy(REPO / "LICENSE", root / ".docspine/LICENSE")
     (root / ".claude").mkdir()
     os.symlink("../.agents/skills", root / ".claude/skills")
 

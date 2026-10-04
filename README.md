@@ -6,3 +6,9 @@ ADRs, verbunden über unveränderliche IDs und vom Build geprüft.
 
 docspine dokumentiert sich selbst in Anlehnung an arc42, so wie es das für jedes
 Projekt vorsieht. Einstieg: **[docs/README.md](docs/README.md)**.
+
+## Lizenz
+
+[0BSD](LICENSE): Jeder darf docspine ohne Bedingungen nutzen, kopieren, ändern und
+weitergeben. Das eingebettete PyYAML steht unter seiner eigenen MIT-Lizenz
+([cli/docspine/_vendor/PyYAML-LICENSE](cli/docspine/_vendor/PyYAML-LICENSE)).
