@@ -42,12 +42,23 @@ def build(target: Path) -> Path:
     return target
 
 
-def version() -> str:
-    first = (REPO / "standard/en/STANDARD.md").read_text(encoding="utf-8").splitlines()[0]
+def _header_version(path: Path) -> str:
+    first = path.read_text(encoding="utf-8").splitlines()[0]
     match = re.match(r"<!--\s*docspine\s+(\S+)", first)
     if not match:
-        raise SystemExit("standard/en/STANDARD.md does not name its version in the first line")
+        raise SystemExit(f"{path.relative_to(REPO)} does not name its version in the first line")
     return match.group(1)
+
+
+def version() -> str:
+    """The version of everything docspine delivers (ADR-0017). Source: standard/en/STANDARD.md."""
+    ver = _header_version(REPO / "standard/en/STANDARD.md")
+    readme = _header_version(REPO / "standard/en/README.md")
+    sys.path.insert(0, str(HERE))
+    from docspine import __version__
+    if readme != ver or __version__ != ver:
+        raise SystemExit(f"versions differ: STANDARD.md {ver}, README.md {readme}, checker {__version__}")
+    return ver
 
 
 def delivery_tree(root: Path) -> None:
@@ -61,6 +72,7 @@ def delivery_tree(root: Path) -> None:
     shutil.copy(REPO / "standard/en/README.md", root / ".docspine/README.en.md")
     build(root / ".docspine/docspine.pyz")
     shutil.copy(REPO / "LICENSE", root / ".docspine/LICENSE")
+    shutil.copy(REPO / "CHANGELOG.md", root / ".docspine/CHANGELOG.md")
     (root / ".claude").mkdir()
     os.symlink("../.agents/skills", root / ".claude/skills")
     files = sorted(p.relative_to(root).as_posix() for p in root.rglob("*")
@@ -87,10 +99,19 @@ def commit_dist() -> str:
                             cwd=REPO, capture_output=True, text=True).stdout.strip()
     if parent and _git("rev-parse", f"{parent}^{{tree}}") == tree:
         return parent
+    if parent:
+        previous = re.match(r"docspine (\S+)", _git("log", "-1", "--format=%s", parent))
+        if previous and previous.group(1) == ver:
+            raise SystemExit(f"delivered files changed, but the version is still {ver}: "
+                             "raise it and add a CHANGELOG.md entry (ADR-0017)")
+    if subprocess.run(["git", "rev-parse", "--verify", "-q", f"refs/tags/v{ver}"],
+                      cwd=REPO, capture_output=True).returncode == 0:
+        raise SystemExit(f"tag v{ver} already exists: raise the version (ADR-0017)")
     source = _git("rev-parse", "--short", "HEAD")
     args = ["commit-tree", tree] + (["-p", parent] if parent else [])
     commit = _git(*args, input=f"docspine {ver} (from {source})\n")
     _git("update-ref", f"refs/heads/{BRANCH}", commit)
+    _git("tag", f"v{ver}", commit)
     return commit
 
 

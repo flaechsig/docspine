@@ -28,7 +28,8 @@ Talk to the person in the project language (`language` in `.docspine/PROFILE.md`
 
 ## Step 2 — Propose
 
-Tell the person, in a short list, what the update brought and what you would do:
+Tell the person what the update brought: the entries in `.docspine/CHANGELOG.md` that
+are newer than the README's version. Then list what you would do:
 
 - **README:** translate `.docspine/README.en.md` again into `docs/README.md` if its
   version differs from the installed version; otherwise "README is current".
