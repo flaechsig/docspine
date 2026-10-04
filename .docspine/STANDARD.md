@@ -1,8 +1,8 @@
-<!-- docspine 0.3 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.4 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.3 (draft)
+Version 0.4 (draft)
 
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
