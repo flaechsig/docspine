@@ -2,9 +2,10 @@
 
 # Dokumentation nach docspine
 
-Diese Dokumentation folgt dem Standard [docspine](https://github.com/flaechsig/docspine):
-Anforderungen, Architektur und Entscheidungen bilden **ein Dokument**, verteilt auf
-viele kleine Dateien, verbunden über feste IDs und von einem Prüfwerkzeug kontrolliert.
+Diese Dokumentation ist in Anlehnung an [arc42](https://arc42.org) aufgebaut und wird
+mit [docspine](https://github.com/flaechsig/docspine) geführt: Anforderungen, Architektur
+und Entscheidungen bilden **ein Dokument**, verteilt auf viele kleine Dateien, verbunden
+über feste IDs und von einem Prüfwerkzeug kontrolliert.
 Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, steht in
 [STANDARD.md](STANDARD.md), die Werte dieses Projekts in [PROFILE.md](PROFILE.md).
 

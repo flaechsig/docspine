@@ -2,9 +2,10 @@
 
 # Documentation according to docspine
 
-This documentation follows the [docspine](https://github.com/flaechsig/docspine)
-standard: requirements, architecture and decisions form **one document**, spread across
-many small files, connected by fixed IDs and controlled by a checker. This page explains
+This documentation is based on [arc42](https://arc42.org) and maintained with
+[docspine](https://github.com/flaechsig/docspine): requirements, architecture and
+decisions form **one document**, spread across many small files, connected by fixed IDs
+and controlled by a checker. This page explains
 the structure and the way of working. What applies in detail is in
 [STANDARD.md](STANDARD.md), this project's values are in [PROFILE.md](PROFILE.md).
 
