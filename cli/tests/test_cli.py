@@ -8,7 +8,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from support import STORY, ProjectTest, replace, req
+from support import REQUIREMENT, STORY, ProjectTest, replace, req
 
 from docspine import project, render
 from docspine.__main__ import main
@@ -36,6 +36,30 @@ class ExitStatus(ProjectTest):
         run_main("--root", str(self.root), "render")
         code, out, _ = run_main("--root", str(self.root), "check")
         self.assertEqual((code, out.strip()), (0, "OK"))
+
+
+@req("REQ-0033")
+class WithoutTests(ProjectTest):
+    IMPLEMENTED = replace(REQUIREMENT, "status: planned", "status: implemented")
+
+    def test_skips_checks_that_need_test_results(self):
+        self.write({"docs/01-goals/requirements/REQ-0001.md": self.IMPLEMENTED,
+                    "a/req-results.json": '{"results": [{"req": "REQ-0099", "result": "passed"}]}'})
+        run_main("--root", str(self.root), "render")
+        code, out, _ = run_main("--root", str(self.root), "--without-tests", "check")
+        self.assertEqual(code, 0)
+        self.assertIn("without test results", out)
+        code, out, _ = run_main("--root", str(self.root), "check")
+        self.assertEqual(code, 1)
+        self.assertIn("error 8", out)
+        self.assertIn("error 10", out)
+
+    def test_other_checks_still_run(self):
+        self.write({"docs/01-goals/stories/US-0001.md": replace(STORY, "epic: E-CORE", "epic: E-X")})
+        run_main("--root", str(self.root), "render")
+        code, out, _ = run_main("--root", str(self.root), "--without-tests", "check")
+        self.assertEqual(code, 1)
+        self.assertIn("error 3", out)
 
 
 @req("REQ-0013")

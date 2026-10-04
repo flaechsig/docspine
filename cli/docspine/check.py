@@ -38,11 +38,17 @@ ID_PATTERN = {
 }
 
 
-def run(project: Project) -> List[Finding]:
+TEST_CHECKS = ("implemented_proof", "status_behind_result", "unknown_results")
+
+
+def run(project: Project, with_tests: bool = True) -> List[Finding]:
+    """All checks. Without tests, the checks that need test results (errors 8–10) are skipped."""
     findings = list(project.findings)
     for check in (schema, ids, references, sources, story_proof, story_requirements,
                   superseded, implemented_proof, status_behind_result, unknown_results,
                   stale_regions, links, readme_version, evidence_paths):
+        if not with_tests and check.__name__ in TEST_CHECKS:
+            continue
         findings.extend(check(project))
     return sorted(findings, key=lambda f: (f.path, f.code, f.message))
 
@@ -165,11 +171,16 @@ def superseded(project: Project) -> List[Finding]:
 
 
 def implemented_proof(project: Project) -> List[Finding]:
-    """Error 8: requirement implemented without passing test result and without evidence."""
+    """Error 8: requirement implemented without a passing test result and without a proof by hand.
+
+    A proof by hand is `evidence` together with `verification`. Implementation paths alone prove nothing.
+    """
     passed = project.passed()
-    return [_f(project, 8, a, "requirement is implemented without a passing test result and without evidence")
+    return [_f(project, 8, a, "requirement is implemented without a passing test result and without "
+                              "a proof by hand (evidence and verification)")
             for a in project.of_kind("requirement")
-            if a.get("status") == "implemented" and not passed.get(a.id) and not a.list("evidence")]
+            if a.get("status") == "implemented" and not passed.get(a.id)
+            and not (a.list("evidence") and a.get("verification"))]
 
 
 def status_behind_result(project: Project) -> List[Finding]:

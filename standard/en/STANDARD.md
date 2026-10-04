@@ -1,8 +1,8 @@
-<!-- docspine 0.5 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.6 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.5 (draft)
+Version 0.6 (draft)
 
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
@@ -266,7 +266,7 @@ to find all affected requirements in a minute.
 |---|---|---|
 | `proposed` | candidate, not committed | none |
 | `planned` | committed, not (fully) built | no passing test result |
-| `implemented` | built | passing test result **or** `evidence` |
+| `implemented` | built | passing test result **or** a proof by hand: `evidence` **and** `verification` |
 | `rejected` | discarded, never built | none |
 | `superseded` | replaced by a requirement or a decision | `superseded_by` |
 
@@ -287,8 +287,10 @@ results exist:
 - **With test results**, `evidence` lists only the **implementation**. The tests are
   named in the results and are not repeated here. The implementation paths are needed
   to match the requirement to its building block (section 4).
-- **Without test results**, `evidence` is the proof itself and lists the implementation
-  and whatever proves it (a test, a screenshot, a measurement).
+- **Without test results**, `evidence` and `verification` together are the proof by
+  hand: `evidence` lists the implementation and whatever proves it (a screenshot, a
+  measurement), `verification` says how fulfilment was checked. Implementation paths
+  alone prove nothing.
 
 **Quality requirements** carry `category: quality`. Chapter 10 is generated from them.
 
@@ -491,7 +493,7 @@ When a requirement passes: set `status: implemented` and add the implementation 
 to `evidence` (section 3.4). Set the story to `verified` once all its requirements are
 `implemented`. Statement, rationale and title stay unchanged.
 
-Without test results, `evidence` and `verification` prove the requirement, and
+Without test results, `evidence` and `verification` together prove the requirement, and
 `confidence` is set by hand.
 
 ### 8.3 Is the proof honest?
@@ -543,7 +545,12 @@ The checker is a command-line tool that runs without a build system, as
 `python3 .docspine/docspine.pyz <command>`:
 
 - `check` — validates everything below and fails on any error.
+- `check --without-tests` — the same, but skips what needs test results (errors 8, 9
+  and 10), for quick checks of the documentation alone.
 - `render` — writes generated regions and views.
+
+**Order.** In a project with test results: run the tests, then `render`, then `check`.
+Without a test run, `check` cannot know what is implemented and reports it.
 
 **Versions.** Every change to what docspine delivers raises its version, named in the
 first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what changed.
@@ -564,7 +571,7 @@ files that docspine no longer delivers (listed by comparison with `.docspine/MAN
 | 5 | story `verified` without `requirements` and without `evidence` |
 | 6 | story `verified` refers to a requirement that is not `implemented` |
 | 7 | `superseded` or `retired` without `superseded_by` |
-| 8 | requirement `implemented` without a passing test result and without `evidence` |
+| 8 | requirement `implemented` without a passing test result and without a proof by hand (`evidence` and `verification`) |
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
 | 10 | test result for a requirement that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |

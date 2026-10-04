@@ -113,7 +113,7 @@ class StoryRequirements(ProjectTest):
 
     def test_verified_story_with_implemented_requirement(self):
         story = replace(STORY, "status: open", "status: verified")
-        r = replace(REQUIREMENT, "status: planned", "status: implemented\nevidence: [x.py]")
+        r = replace(REQUIREMENT, "status: planned", "status: implemented\nevidence: [x.py]\nverification: By hand.")
         self.assertEqual(self.codes({"docs/01-goals/stories/US-0001.md": story,
                                      "docs/01-goals/requirements/REQ-0001.md": r, "x.py": ""}), [])
 
@@ -133,7 +133,7 @@ def results(*entries):
     return json.dumps({"results": [{"req": r, "result": res, "test": "t"} for r, res in entries]})
 
 
-@req("REQ-0008")
+@req("REQ-0032")
 class ImplementedProof(ProjectTest):
     implemented = replace(REQUIREMENT, "status: planned", "status: implemented")
 
@@ -149,8 +149,12 @@ class ImplementedProof(ProjectTest):
                                      "build/req-results.json": results(("REQ-0001", "passed"),
                                                                        ("REQ-0001", "failed"))}), [8])
 
-    def test_implemented_with_evidence(self):
+    def test_implementation_paths_alone_prove_nothing(self):
         r = self.implemented.replace("source:\n", "source:\nevidence: [src/x.py]\n")
+        self.assertEqual(self.codes({"docs/01-goals/requirements/REQ-0001.md": r, "src/x.py": ""}), [8])
+
+    def test_proof_by_hand(self):
+        r = self.implemented.replace("source:\n", "source:\nevidence: [src/x.py]\nverification: Checked by hand.\n")
         self.assertEqual(self.codes({"docs/01-goals/requirements/REQ-0001.md": r, "src/x.py": ""}), [])
 
 
