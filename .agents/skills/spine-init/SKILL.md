@@ -123,11 +123,15 @@ If `AGENTS.md` does not exist, create it. If it exists, add a section "Documenta
 - where things are: `docs/README.md` (how the documentation works), `.docspine/STANDARD.md`
   (the rules), `.docspine/PROFILE.md` (project values), `docs/01-goals/README.md` (overview with
   status)
-- how to check, before every commit:
+- how to check, before every commit, in this order:
   ```
+  <the project's test command, e.g. mvn verify>
   python3 .docspine/docspine.pyz render
   python3 .docspine/docspine.pyz check
   ```
+  As long as the project has no tests yet, write the first line as a placeholder
+  comment. `python3 .docspine/docspine.pyz check --without-tests` checks the
+  documentation alone.
 - no architecture content (STANDARD 2.2)
 
 ## Step 5 — Check
