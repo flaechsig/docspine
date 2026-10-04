@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import os
+import re
+import xml.etree.ElementTree as ElementTree
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -142,6 +144,7 @@ def load(root: Path) -> Project:
 
     for path in _find_results(root):
         _load_results(project, path)
+    _load_test_reports(project)
     return project
 
 
@@ -166,3 +169,49 @@ def _load_results(project: Project, path: Path) -> None:
             ))
     except (ValueError, KeyError, TypeError) as exc:
         project.findings.append(Finding(10, rel, f"test results cannot be read: {exc}"))
+
+
+_REQ_ID = re.compile(r"\bREQ-\d{4}\b")
+
+
+def _load_test_reports(project: Project) -> None:
+    """Read JUnit XML reports from the locations in the profile's `test_reports`.
+
+    Every test case counts for each requirement ID in its name or class name.
+    """
+    locations = project.profile.get("test_reports") or []
+    if not isinstance(locations, list):
+        return  # reported as error 1 by the schema check
+    profile_rel = project.rel(project.config / "PROFILE.md")
+    for location in locations:
+        base = project.root / str(location)
+        if not base.exists():
+            project.findings.append(Finding(10, profile_rel, f"test report location '{location}' does not exist"))
+            continue
+        files = [base] if base.is_file() else sorted(base.rglob("*.xml"))
+        for path in files:
+            _load_junit_xml(project, path)
+
+
+def _load_junit_xml(project: Project, path: Path) -> None:
+    rel = project.rel(path)
+    try:
+        root = ElementTree.parse(path).getroot()
+    except ElementTree.ParseError as exc:
+        project.findings.append(Finding(10, rel, f"test report cannot be read: {exc}"))
+        return
+    if root.tag not in ("testsuite", "testsuites"):
+        return  # another kind of XML file next to the reports
+    for case in root.iter("testcase"):
+        name, classname = case.get("name", ""), case.get("classname", "")
+        ids = dict.fromkeys(_REQ_ID.findall(f"{classname} {name}"))
+        if not ids:
+            continue
+        if case.find("failure") is not None or case.find("error") is not None:
+            outcome = "failed"
+        elif case.find("skipped") is not None:
+            outcome = "skipped"
+        else:
+            outcome = "passed"
+        for req in ids:
+            project.results.append(Result(req=req, result=outcome, test=f"{classname}.{name}", path=rel))

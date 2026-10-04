@@ -59,8 +59,9 @@ def schema(project: Project) -> List[Finding]:
     for key in required:
         if not project.profile.get(key):
             out.append(Finding(1, profile_rel, f"required field '{key}' missing"))
-    if project.profile.get("sources") is not None and not isinstance(project.profile["sources"], list):
-        out.append(Finding(1, profile_rel, "field 'sources' must be a list"))
+    for key in ("sources", "test_reports"):
+        if project.profile.get(key) is not None and not isinstance(project.profile[key], list):
+            out.append(Finding(1, profile_rel, f"field '{key}' must be a list"))
 
     for a in project.artifacts:
         fields, permitted, lists = SCHEMA[a.kind]

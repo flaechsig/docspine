@@ -1,8 +1,8 @@
-<!-- docspine 0.4 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.5 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.4 (draft)
+Version 0.5 (draft)
 
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
@@ -117,6 +117,8 @@ statement_language: en      # language of requirement statements, default en
 sources:                    # permitted values for a requirement's source
   - GDPR Art. 32
   - RFC 6749 (OAuth 2.0)
+test_reports:               # where JUnit XML test reports are written (section 8.1)
+  - target/surefire-reports
 ---
 ```
 
@@ -449,8 +451,25 @@ decides how it is resolved.
 
 ### 8.1 Test results
 
-Projects with automated tests deliver results in this format, in any number of files
-named `req-results.json`:
+The checker reads test results from two sources. A project may use either or both.
+
+**JUnit XML reports.** Most test tools can write this format (Maven Surefire, Gradle,
+pytest, Jest, Go, .NET). The profile names where the reports are:
+
+```yaml
+test_reports: [target/surefire-reports]
+```
+
+Every test case counts for each requirement ID (`REQ-NNNN`) that appears in its name or
+class name. So the ID must be part of the test's name; for JUnit 5 that is
+`@DisplayName("REQ-0012: rejects an empty cart")`. A test case with `<failure>` or
+`<error>` counts as failed, with `<skipped>` as skipped, otherwise as passed. JUnit tags
+(`@Tag`) do not appear in the reports and cannot be used. Some tools must be told to
+write display names into the report; examples are in the docspine repository under
+`examples/`.
+
+**`req-results.json`.** For tools without such reports, a project writes results in
+this format, in any number of files with this name:
 
 ```json
 {
@@ -460,9 +479,11 @@ named `req-results.json`:
 }
 ```
 
-`result` is `passed`, `failed` or `skipped`. A requirement counts as passed if at
-least one result is `passed` and none is `failed`. How the file is produced is up to
-the project.
+`result` is `passed`, `failed` or `skipped`. How the file is produced is up to the
+project.
+
+From both sources together, a requirement counts as passed if at least one result is
+`passed` and none is `failed`.
 
 ### 8.2 Status change
 
@@ -545,7 +566,7 @@ files that docspine no longer delivers (listed by comparison with `.docspine/MAN
 | 7 | `superseded` or `retired` without `superseded_by` |
 | 8 | requirement `implemented` without a passing test result and without `evidence` |
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
-| 10 | test result for a requirement that does not exist |
+| 10 | test result for a requirement that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image not produced from the current version of its source |
 | 13 | broken relative link |
