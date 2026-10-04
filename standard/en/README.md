@@ -7,7 +7,7 @@ This documentation is based on [arc42](https://arc42.org) and maintained with
 decisions form **one document**, spread across many small files, connected by fixed IDs
 and controlled by a checker. This page explains
 the structure and the way of working. What applies in detail is in
-[STANDARD.md](STANDARD.md), this project's values are in [PROFILE.md](PROFILE.md).
+`.docspine/STANDARD.md`, this project's values are in `.docspine/PROFILE.md`.
 
 - **What it is about:** [Vision](01-goals/vision.md)
 - **Where things stand:** [Epics, stories and their status](01-goals/README.md)
@@ -36,15 +36,14 @@ it has content.
 | 12 Glossary | terms |
 
 Folders, file names and metadata are in English; the content is in the project
-language. The exact layout is in [STANDARD.md](STANDARD.md#21-layout).
+language. The exact layout is in `.docspine/STANDARD.md`, section 2.1.
 
 ## Controlling files
 
 Besides the content, a few files control how the documentation is worked on: the rules
 (`STANDARD.md`), this project's values (`PROFILE.md`), the entry point for AI agents
 (`AGENTS.md`) and the skills. Some of them come from docspine and must not be edited
-in the project. Which ones, and why, is in
-[STANDARD.md](STANDARD.md#22-controlling-files).
+in the project. Which ones, and why, is in `.docspine/STANDARD.md`, section 2.2.
 
 ## How the parts fit together
 
@@ -68,7 +67,7 @@ Vision → Epic → Story → Requirement ← Test
 
 Work runs as a cycle. Each step has a skill (`spine-*`) that guides through it. The
 skills follow the open Agent Skills standard and work with various AI tools. Without
-skills it works just the same; the rules are in `STANDARD.md`.
+skills it works just the same; the rules are in `.docspine/STANDARD.md`.
 
 ```
   Start: Vision

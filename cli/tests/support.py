@@ -69,8 +69,8 @@ STANDARD = "<!-- docspine 0.1 · source: standard/en/STANDARD.md -->\n\n# docspi
 
 VALID = {
     "docs/README.md": README,
-    "docs/STANDARD.md": STANDARD,
-    "docs/PROFILE.md": PROFILE,
+    ".docspine/STANDARD.md": STANDARD,
+    ".docspine/PROFILE.md": PROFILE,
     "docs/01-goals/epics/E-CORE.md": EPIC,
     "docs/01-goals/stories/US-0001.md": STORY,
     "docs/01-goals/requirements/REQ-0001.md": REQUIREMENT,

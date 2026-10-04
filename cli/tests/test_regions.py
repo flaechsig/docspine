@@ -48,10 +48,10 @@ class ReadmeVersion(ProjectTest):
     def test_no_version_line(self):
         self.assertEqual(self.codes({"docs/README.md": "# Documentation\n"}), [14])
 
-    @req("REQ-0025")
+    @req("REQ-0026")
     def test_standard_newer_than_profile(self):
-        findings = self.findings({"docs/STANDARD.md": STANDARD.replace("docspine 0.1", "docspine 0.2")})
-        self.assertEqual([(f.code, f.path) for f in findings], [(14, "docs/STANDARD.md")])
+        findings = self.findings({".docspine/STANDARD.md": STANDARD.replace("docspine 0.1", "docspine 0.2")})
+        self.assertEqual([(f.code, f.path) for f in findings], [(14, ".docspine/STANDARD.md")])
         self.assertIn("spine-init", findings[0].message)
 
 
@@ -78,7 +78,7 @@ class StoryRequirements(RenderTest):
                       text)
 
     def test_project_language(self):
-        self.render({"docs/PROFILE.md": "---\ndocspine: 0.1\nlanguage: de\n---\n"})
+        self.render({".docspine/PROFILE.md": "---\ndocspine: 0.1\nlanguage: de\n---\n"})
         self.assertIn("| MUSS | The system shall do something. | geplant |", self.read(STORY_PATH))
 
     def test_no_region_without_requirements(self):

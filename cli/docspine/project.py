@@ -23,6 +23,7 @@ ID_KINDS = ("epic", "story", "requirement", "adr")
 
 SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__"}
 RESULTS_FILE = "req-results.json"
+CONFIG = ".docspine"  # configuration: STANDARD.md, PROFILE.md, the checker
 
 
 @dataclass
@@ -81,6 +82,10 @@ class Project:
         return self.root / "docs"
 
     @property
+    def config(self) -> Path:
+        return self.root / CONFIG
+
+    @property
     def language(self) -> str:
         return str(self.profile.get("language") or "en")
 
@@ -107,9 +112,9 @@ class ProjectError(Exception):
 
 def load(root: Path) -> Project:
     root = root.resolve()
-    profile_path = root / "docs" / "PROFILE.md"
+    profile_path = root / CONFIG / "PROFILE.md"
     if not profile_path.is_file():
-        raise ProjectError(f"no docs/PROFILE.md below {root}")
+        raise ProjectError(f"no {CONFIG}/PROFILE.md below {root}; run spine-init to set up the documentation")
     project = Project(root=root, profile={})
     try:
         profile, _ = frontmatter.parse(profile_path.read_text(encoding="utf-8"))

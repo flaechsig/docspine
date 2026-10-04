@@ -12,7 +12,7 @@ from . import __version__, check, project, render
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(prog="docspine", description="Check and render docspine documentation.")
-    parser.add_argument("--root", default=".", help="repository root containing docs/PROFILE.md (default: .)")
+    parser.add_argument("--root", default=".", help="repository root containing .docspine/PROFILE.md (default: .)")
     parser.add_argument("--version", action="version", version=f"docspine {__version__}")
     parser.add_argument("command", choices=["check", "render"])
     args = parser.parse_args(argv)
