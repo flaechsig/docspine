@@ -3,6 +3,7 @@ name = "docspine"
 version = "0.1.0"
 description = "Checker and generator for documentation that follows the docspine standard"
 requires-python = ">=3.9"
+license = {text = "0BSD"}
 dependencies = []  # PyYAML is embedded in docspine/_vendor
 
 [project.scripts]
