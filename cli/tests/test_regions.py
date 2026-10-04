@@ -36,23 +36,26 @@ class StaleRegions(RenderTest):
         self.assertEqual(self.codes(), [])
 
 
-@req("REQ-0017")
+@req("REQ-0027")
 class ReadmeVersion(ProjectTest):
     def test_missing_readme(self):
         files = {k: v for k, v in VALID.items() if k != "docs/README.md"}
         self.assertEqual(self.codes(files, base=False), [14])
 
-    def test_other_version(self):
-        self.assertEqual(self.codes({"docs/README.md": README.replace("docspine 0.1", "docspine 0.2")}), [14])
+    def test_readme_from_other_version(self):
+        findings = self.findings({"docs/README.md": README.replace("docspine 0.1", "docspine 0.2")})
+        self.assertEqual([(f.code, f.path) for f in findings], [(14, "docs/README.md")])
+
+    def test_standard_newer_than_readme(self):
+        findings = self.findings({".docspine/STANDARD.md": STANDARD.replace("docspine 0.1", "docspine 0.2")})
+        self.assertEqual([(f.code, f.path) for f in findings], [(14, "docs/README.md")])
+        self.assertIn("spine-update", findings[0].message)
 
     def test_no_version_line(self):
         self.assertEqual(self.codes({"docs/README.md": "# Documentation\n"}), [14])
 
-    @req("REQ-0026")
-    def test_standard_newer_than_profile(self):
-        findings = self.findings({".docspine/STANDARD.md": STANDARD.replace("docspine 0.1", "docspine 0.2")})
-        self.assertEqual([(f.code, f.path) for f in findings], [(14, ".docspine/STANDARD.md")])
-        self.assertIn("spine-init", findings[0].message)
+    def test_profile_needs_no_version(self):
+        self.assertEqual(self.codes(), [])
 
 
 @req("REQ-0018")

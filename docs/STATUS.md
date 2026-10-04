@@ -4,9 +4,9 @@
 
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 11 · 🟡 in Arbeit 1 · ✅ verifiziert 3 |
-| Requirements | umgesetzt 25 · abgelöst 1 |
-| Entscheidungen | vorgeschlagen 15 |
+| Stories | ⚪ offen 11 · 🟡 in Arbeit 2 · ✅ verifiziert 3 |
+| Requirements | umgesetzt 24 · abgelöst 3 |
+| Entscheidungen | vorgeschlagen 16 |
 
 ## Kapitel ohne Inhalt
 

@@ -15,4 +15,5 @@ Die Skill-Familie `spine-*` führt durch die Arbeit mit dem Standard, nach dem o
 - [US-0009](../stories/US-0009.md) — spine-adopt
 - [US-0010](../stories/US-0010.md) — spine-gate
 - [US-0011](../stories/US-0011.md) — Kaltstart-Test
+- [US-0016](../stories/US-0016.md) — spine-update
 <!-- /generated -->

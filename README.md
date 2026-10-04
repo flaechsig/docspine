@@ -15,16 +15,19 @@ Im Verzeichnis des Projekts ausführen:
 curl -fsSL https://github.com/flaechsig/docspine/archive/refs/heads/dist.tar.gz | tar -xz --strip-components=1
 ```
 
-Danach Claude Code im Projekt starten und das Projekt in ein, zwei Sätzen beschreiben:
+Danach Claude Code im Projekt starten und aufrufen:
 
 ```
-/spine-init Ich möchte ein Programm (Java) erstellen, das die Nachricht "Hello World!" ausgibt. Damit möchte ich Nutzern von docspine zeigen, wie es verwendet wird.
+/spine-init
 ```
 
-`spine-init` fragt nach der Sprache der Dokumentation, schlägt Vision, Themen und erste
-Stories vor und legt nach deiner Freigabe die Dokumentation unter `docs/` an.
+`spine-init` fragt nach der Sprache der Dokumentation und nach einer kurzen Beschreibung
+des Projekts, zum Beispiel: „Ich möchte ein Programm (Java) erstellen, das die Nachricht
+"Hello World!" ausgibt. Damit möchte ich Nutzern von docspine zeigen, wie es verwendet
+wird.“ Daraus schlägt der Skill Vision, Themen und erste Stories vor und legt nach deiner
+Freigabe die Dokumentation unter `docs/` an.
 
-**Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-init` aufrufen.
+**Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
 
 **Voraussetzungen:** `curl` und `tar` (unter Linux, macOS und Windows 10/11 vorhanden),
 Python 3.9 oder neuer für das Prüfwerkzeug. Die Skills liegen nach der Installation unter

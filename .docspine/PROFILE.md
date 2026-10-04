@@ -1,5 +1,4 @@
 ---
-docspine: 0.1
 language: de
 statement_language: en
 sources: []
