@@ -13,4 +13,5 @@ Eine eigenständige CLI prüft die Doku gegen den Standard und erzeugt generiert
 - [US-0004](../stories/US-0004.md) — CLI-Kern mit check und render
 - [US-0005](../stories/US-0005.md) — Neue Prüfungen und generierte Bereiche
 - [US-0006](../stories/US-0006.md) — Testergebnisse anbinden, Beispiel JUnit 5
+- [US-0015](../stories/US-0015.md) — Diagramme prüfen und PDF erzeugen
 <!-- /generated -->

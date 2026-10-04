@@ -7,7 +7,9 @@ from pathlib import Path
 from typing import List
 from urllib.parse import unquote
 
+from . import render
 from .project import ID_KINDS, Artifact, Finding, Project
+from .text import strip_code
 
 STORY_STATUS = {"open", "in-progress", "verified", "superseded", "retired"}
 REQ_STATUS = {"proposed", "planned", "implemented", "rejected", "superseded"}
@@ -39,7 +41,8 @@ ID_PATTERN = {
 def run(project: Project) -> List[Finding]:
     findings = list(project.findings)
     for check in (schema, ids, references, sources, story_proof, story_requirements,
-                  superseded, implemented_proof, status_behind_result, unknown_results, links):
+                  superseded, implemented_proof, status_behind_result, unknown_results,
+                  stale_regions, links, readme_version, evidence_paths):
         findings.extend(check(project))
     return sorted(findings, key=lambda f: (f.path, f.code, f.message))
 
@@ -188,8 +191,6 @@ def unknown_results(project: Project) -> List[Finding]:
     return out
 
 
-_FENCE = re.compile(r"^[ \t]*(```|~~~).*?^[ \t]*\1[^\n]*$", re.M | re.S)
-_CODE_SPAN = re.compile(r"`[^`\n]*`")
 _LINK = re.compile(r"!?\[[^\]]*\]\(\s*<?([^)\s>]+)>?(?:\s+\"[^\"]*\")?\s*\)")
 _SCHEME = re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*:")
 
@@ -205,7 +206,7 @@ def links(project: Project) -> List[Finding]:
         if any(part in ("node_modules", ".git") for part in path.parts):
             continue
         text = path.read_text(encoding="utf-8")
-        text = _CODE_SPAN.sub("", _FENCE.sub("", text))
+        text = strip_code(text)
         for match in _LINK.finditer(text):
             target = match.group(1)
             if target.startswith("#") or _SCHEME.match(target):
@@ -216,4 +217,39 @@ def links(project: Project) -> List[Finding]:
             base = project.root if target.startswith("/") else path.parent
             if not (base / target.lstrip("/")).exists():
                 out.append(Finding(13, project.rel(path), f"link '{match.group(1)}' points to nothing"))
+    return out
+
+
+def stale_regions(project: Project) -> List[Finding]:
+    """Error 11: generated region or view differs from what render would write."""
+    return [Finding(11, project.rel(path), "generated content is out of date, run 'docspine render'")
+            for path in render.stale(project)]
+
+
+_README_VERSION = re.compile(r"^<!--\s*docspine\s+(\S+)")
+
+
+def readme_version(project: Project) -> List[Finding]:
+    """Error 14: README.md was translated from a different docspine version than the profile states."""
+    path = project.docs / "README.md"
+    rel = project.rel(path)
+    if not path.is_file():
+        return [Finding(14, rel, "README.md from docspine is missing")]
+    first = path.read_text(encoding="utf-8").lstrip().splitlines()[:1]
+    match = _README_VERSION.match(first[0]) if first else None
+    if match is None:
+        return [Finding(14, rel, "first line does not name the docspine version (<!-- docspine X · … -->)")]
+    expected = str(project.profile.get("docspine", ""))
+    if match.group(1) != expected:
+        return [Finding(14, rel, f"README is from docspine {match.group(1)}, the profile states {expected}")]
+    return []
+
+
+def evidence_paths(project: Project) -> List[Finding]:
+    """Error 15: an evidence path does not exist."""
+    out = []
+    for a in project.artifacts:
+        for path in a.list("evidence"):
+            if not (project.root / path.lstrip("/")).exists():
+                out.append(_f(project, 15, a, f"evidence path '{path}' does not exist"))
     return out

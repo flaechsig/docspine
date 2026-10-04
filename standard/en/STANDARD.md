@@ -26,7 +26,8 @@ normative sense.
 5. **People decide what applies.** Tools and AI agents propose; files are written
    after a person has approved.
 6. **Nothing is invented.** What nobody knows stays `UNKNOWN`, together with the open
-   question: `UNKNOWN — open question: …`.
+   question: `UNKNOWN — open question: …`. An open question starts a line or a list
+   item with `UNKNOWN`, so that the checker can list it in `STATUS.md`.
 7. **The checker decides what is implemented**, not a person and not an AI agent
    (section 11).
 8. **Documentation grows with the changes.** Nothing is documented in advance. A
@@ -486,7 +487,8 @@ Diagrams are always kept as text source in the repository, never only as images.
   first and in any environment.
 - **Mermaid** in chapters, for sequences, class and domain models, state machines.
 - **DOT or PlantUML with a committed SVG** under `docs/diagrams/` for large overviews
-  where Mermaid's layout is not enough. The SVG must not be older than its source.
+  where Mermaid's layout is not enough. The SVG must be produced from the current
+  version of its source.
 - **Images without a source** only where none can exist, such as screenshots.
 
 ## 10 Legacy
@@ -526,9 +528,10 @@ The checker is a command-line tool that runs without a build system:
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
 | 10 | test result for a requirement that does not exist |
 | 11 | generated region differs from what would be generated |
-| 12 | diagram image older than its source |
+| 12 | diagram image not produced from the current version of its source |
 | 13 | broken relative link |
 | 14 | `README.md` was translated from a different docspine version than the profile states |
+| 15 | an `evidence` path does not exist |
 
 **Generated views:**
 

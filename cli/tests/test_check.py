@@ -96,7 +96,7 @@ class StoryProof(ProjectTest):
 
     def test_verified_with_evidence(self):
         story = replace(replace(STORY, "[REQ-0001]", "[]"), "status: open", "status: verified\nevidence: [a.md]")
-        self.assertEqual(self.codes({"docs/01-goals/stories/US-0001.md": story}), [])
+        self.assertEqual(self.codes({"docs/01-goals/stories/US-0001.md": story, "a.md": ""}), [])
 
 
 @req("REQ-0006")
@@ -111,7 +111,7 @@ class StoryRequirements(ProjectTest):
         story = replace(STORY, "status: open", "status: verified")
         r = replace(REQUIREMENT, "status: planned", "status: implemented\nevidence: [x.py]")
         self.assertEqual(self.codes({"docs/01-goals/stories/US-0001.md": story,
-                                     "docs/01-goals/requirements/REQ-0001.md": r}), [])
+                                     "docs/01-goals/requirements/REQ-0001.md": r, "x.py": ""}), [])
 
 
 @req("REQ-0007")
@@ -147,7 +147,7 @@ class ImplementedProof(ProjectTest):
 
     def test_implemented_with_evidence(self):
         r = self.implemented.replace("source:\n", "source:\nevidence: [src/x.py]\n")
-        self.assertEqual(self.codes({"docs/01-goals/requirements/REQ-0001.md": r}), [])
+        self.assertEqual(self.codes({"docs/01-goals/requirements/REQ-0001.md": r, "src/x.py": ""}), [])
 
 
 @req("REQ-0009")

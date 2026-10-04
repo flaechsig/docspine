@@ -18,6 +18,5 @@ docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Dok
 - **Quelle und Kopie im selben Repo.** Die Quellen liegen unter `standard/en/`.
   `docs/STANDARD.md` ist eine Kopie, `docs/README.md` eine von Hand erstellte
   Übersetzung, bis `spine-init` und die CLI das übernehmen.
-- **Prüfwerkzeug unvollständig.** Die CLI prüft die Fehlerklassen 1–10 und 13 und
-  erzeugt Status-Übersicht und Story-Listen. Fehlerklassen 11, 12, 14, die übrigen
-  generierten Bereiche und `STATUS.md` folgen mit US-0005.
+- **Fehlerklasse 12 wird noch nicht geprüft.** Diagrammprüfung folgt mit US-0015.
+  docspine hat bisher keine Diagrammbilder.
