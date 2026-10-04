@@ -47,7 +47,7 @@ class StatusOverview(ProjectTest):
         render.run(project.load(self.root))
         text = (self.root / "docs/01-goals/README.md").read_text(encoding="utf-8")
         self.assertIn("<!-- generated:status -->", text)
-        self.assertIn("**2 Stories:** ⚪ open 1 · ✅ verified 1", text)
+        self.assertIn("| Stories | ⚪ open 1 · ✅ verified 1 |", text)
         self.assertIn("## [E-CORE](epics/E-CORE.md) — Core", text)
         self.assertIn("Status: 🟡 in progress", text)
         self.assertIn("| [US-0001](stories/US-0001.md) | First story | ⚪ open |", text)

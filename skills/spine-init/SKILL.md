@@ -139,7 +139,7 @@ something you cannot decide, ask.
 ## Step 6 — Close
 
 Summarise in a few lines what was written, list the open questions (they also appear in
-`docs/STATUS.md`), and suggest:
+`docs/01-goals/README.md`), and suggest:
 
 - reviewing the changes with `git status` and committing them
 - `spine-require` for the most important theme as the next step

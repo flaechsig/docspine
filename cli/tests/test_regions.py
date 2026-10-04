@@ -22,7 +22,7 @@ class StaleRegions(RenderTest):
     def test_unrendered_project_is_stale(self):
         findings = self.findings(rendered=False)
         self.assertEqual({f.code for f in findings}, {11})
-        self.assertIn("docs/STATUS.md", [f.path for f in findings])
+        self.assertIn("docs/01-goals/README.md", [f.path for f in findings])
 
     def test_hand_edit_in_region_is_stale(self):
         self.render()
@@ -135,30 +135,42 @@ class StoryScenarios(RenderTest):
         self.assertNotIn("generated:scenarios", self.read(STORY_PATH))
 
 
-@req("REQ-0023")
-class StatusView(RenderTest):
+GOALS = "docs/01-goals/README.md"
+
+
+@req("REQ-0028")
+class StatusInGoals(RenderTest):
     def test_counts_and_missing_chapters(self):
         self.render()
-        text = self.read("docs/STATUS.md")
+        text = self.read(GOALS)
         self.assertIn("| Stories | ⚪ open 1 |", text)
         self.assertIn("| Requirements | planned 1 |", text)
         self.assertIn("- 03-context", text)
         self.assertNotIn("- 01-goals", text)
+        self.assertFalse((self.root / "docs/STATUS.md").exists())
 
     def test_open_questions_and_contradictions(self):
         epic = EPIC + ("\n- UNKNOWN — open question: who pays\n  for it?\n"
                        "\nThe rule says `UNKNOWN` is allowed.\n"
                        "\n> [!CAUTION]\n> Docs say X, code does Y. (contradiction)\n")
         self.render({"docs/01-goals/epics/E-CORE.md": epic})
-        text = self.read("docs/STATUS.md")
-        self.assertIn("01-goals/epics/E-CORE.md): UNKNOWN — open question: who pays for it?", text)
+        text = self.read(GOALS)
+        self.assertIn("- [01-goals/epics/E-CORE.md](epics/E-CORE.md): UNKNOWN — open question: who pays for it?",
+                      text)
         self.assertEqual(text.count("UNKNOWN"), 1)
-        self.assertIn("): Docs say X, code does Y. (contradiction)", text)
+        self.assertIn("(epics/E-CORE.md): Docs say X, code does Y. (contradiction)", text)
+
+    def test_listed_lines_are_not_found_again(self):
+        epic = EPIC + "\n> Docs say X, code does Y. (contradiction)\n\n- UNKNOWN — open question: who?\n"
+        self.render({"docs/01-goals/epics/E-CORE.md": epic})
+        first = self.read(GOALS)
+        render.run(project.load(self.root))
+        self.assertEqual(self.read(GOALS), first)
+        self.assertEqual(first.count("(contradiction)"), 1)
 
     def test_partial_chapter(self):
         self.render({"docs/03-context.md": "---\narc42_status: PARTIAL\n---\n\n# Context\n"})
-        text = self.read("docs/STATUS.md")
-        self.assertIn("## Partly filled chapters\n\n- 03-context", text)
+        self.assertIn("## Partly filled chapters\n\n- 03-context", self.read(GOALS))
 
 
 @req("REQ-0024")
@@ -169,7 +181,7 @@ class QualityChapter(RenderTest):
         text = self.read("docs/10-quality.md")
         self.assertIn("| [REQ-0001](01-goals/requirements/REQ-0001.md) | The system shall do something. "
                       "| planned | Load test. |", text)
-        self.assertNotIn("- 10-quality", self.read("docs/STATUS.md"))
+        self.assertNotIn("- 10-quality", self.read(GOALS))
 
     def test_no_chapter_without_quality_requirements(self):
         self.render()

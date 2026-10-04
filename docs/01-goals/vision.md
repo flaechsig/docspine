@@ -21,8 +21,8 @@ an mehreren Stellen doppeln.
 - **Projektverantwortliche**, die Doku als Code führen und mit KI-Agenten arbeiten.
   Heute: der Autor dieser drei Projekte.
 - **KI-Agenten** (Claude Code und andere), die die Doku lesen, ergänzen und prüfen.
-- UNKNOWN — offene Frage: Soll docspine öffentlich werden (Open Source), und gibt es
-  damit weitere Nutzer?
+- **Weitere Nutzer:** docspine ist öffentlich auf GitHub, unter 0BSD. Jeder darf es
+  ohne Bedingungen nutzen.
 
 ## Erfolg
 
