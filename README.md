@@ -22,9 +22,13 @@ Danach Claude Code im Projekt starten und aufrufen:
 ```
 
 `spine-init` fragt nach der Sprache der Dokumentation und nach einer kurzen Beschreibung
-des Projekts, zum Beispiel: „Ich möchte ein Programm (Java) erstellen, das die Nachricht
-"Hello World!" ausgibt. Damit möchte ich Nutzern von docspine zeigen, wie es verwendet
-wird.“ Daraus schlägt der Skill Vision, Themen und erste Stories vor und legt nach deiner
+des Projekts, zum Beispiel:
+
+```
+Ich möchte ein Programm (Java) erstellen, das die Nachricht "Hello World!" ausgibt. Damit möchte ich Nutzern von docspine zeigen, wie es verwendet wird.
+```
+
+Daraus schlägt der Skill Vision, Themen und erste Stories vor und legt nach deiner
 Freigabe die Dokumentation unter `docs/` an.
 
 **Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
