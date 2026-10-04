@@ -4,6 +4,12 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.3
+
+- **No more `docs/STATUS.md`.** Counts, open questions, contradictions and chapters
+  without content now appear in `docs/01-goals/README.md`, below the epics and stories.
+  `spine-update` removes the old `docs/STATUS.md`.
+
 ## 0.2
 
 - **Configuration moved to `.docspine/`.** `STANDARD.md` and `PROFILE.md` now live in

@@ -24,6 +24,7 @@ Talk to the person in the project language (`language` in `.docspine/PROFILE.md`
    - folders `.agents/skills/spine-*` that are not listed in the manifest
    - `docs/STANDARD.md` (before version 0.1 of the layout, the standard lived there)
    - `docs/PROFILE.md` (likewise for the profile)
+   - `docs/STATUS.md` (before version 0.3; its content is now in `docs/01-goals/README.md`)
 4. A field `docspine:` in the front matter of `.docspine/PROFILE.md` (no longer used).
 
 ## Step 2 — Propose
