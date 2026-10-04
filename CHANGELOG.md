@@ -4,6 +4,11 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.4
+
+- **New skill `spine-require`:** turns a need into a story with requirements (EARS), in
+  dialogue, and checks the result.
+
 ## 0.3
 
 - **No more `docs/STATUS.md`.** Counts, open questions, contradictions and chapters
