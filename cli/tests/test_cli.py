@@ -33,6 +33,7 @@ class ExitStatus(ProjectTest):
 
     def test_no_errors_give_zero_exit(self):
         self.write({})
+        run_main("--root", str(self.root), "render")
         code, out, _ = run_main("--root", str(self.root), "check")
         self.assertEqual((code, out.strip()), (0, "OK"))
 
@@ -93,8 +94,9 @@ class SingleFile(ProjectTest):
         with tempfile.TemporaryDirectory() as tmp:
             pyz = build.build(Path(tmp) / "docspine.pyz")
             # -I: isolated, -S: no site-packages, so a system-wide PyYAML is not visible
-            proc = subprocess.run([sys.executable, "-I", "-S", str(pyz), "--root", str(self.root), "check"],
-                                  capture_output=True, text=True)
+            cmd = [sys.executable, "-I", "-S", str(pyz), "--root", str(self.root)]
+            subprocess.run(cmd + ["render"], capture_output=True, text=True, check=True)
+            proc = subprocess.run(cmd + ["check"], capture_output=True, text=True)
         self.assertEqual((proc.returncode, proc.stdout.strip()), (0, "OK"), proc.stderr)
 
     def test_syntax_is_python_3_9(self):

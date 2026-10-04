@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 from typing import Dict, Optional
 
-from docspine import check, project
+from docspine import check, project, render
 
 
 def req(*ids: str):
@@ -63,7 +63,10 @@ rationale: >-
 ## REQ-0001 — Something
 """
 
+README = "<!-- docspine 0.1 · from standard/en/README.md -->\n\n# Documentation\n"
+
 VALID = {
+    "docs/README.md": README,
     "docs/PROFILE.md": PROFILE,
     "docs/01-goals/epics/E-CORE.md": EPIC,
     "docs/01-goals/stories/US-0001.md": STORY,
@@ -92,12 +95,15 @@ class ProjectTest(unittest.TestCase):
             path.write_text(textwrap.dedent(text), encoding="utf-8")
         return self.root
 
-    def findings(self, files: Dict[str, Optional[str]] = None, base: bool = True):
+    def findings(self, files: Dict[str, Optional[str]] = None, base: bool = True, rendered: bool = True):
+        """Check the project. Like the real workflow, render runs first unless rendered=False."""
         self.write(files or {}, base)
+        if rendered:
+            render.run(project.load(self.root))
         return check.run(project.load(self.root))
 
-    def codes(self, files: Dict[str, Optional[str]] = None, base: bool = True):
-        return sorted({f.code for f in self.findings(files, base)})
+    def codes(self, files: Dict[str, Optional[str]] = None, base: bool = True, rendered: bool = True):
+        return sorted({f.code for f in self.findings(files, base, rendered)})
 
 
 def replace(text: str, old: str, new: str) -> str:
