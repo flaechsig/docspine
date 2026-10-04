@@ -21,7 +21,6 @@ def req(*ids: str):
 
 PROFILE = """\
 ---
-docspine: 0.1
 language: en
 sources:
   - RFC 6749

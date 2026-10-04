@@ -58,11 +58,15 @@ def delivery_tree(root: Path) -> None:
     for skill in sorted((REPO / "skills").iterdir()):
         if (skill / "SKILL.md").is_file():
             shutil.copytree(skill, skills / skill.name)
-    shutil.copy(REPO / "standard/en/README.md", skills / "spine-init/README.en.md")
+    shutil.copy(REPO / "standard/en/README.md", root / ".docspine/README.en.md")
     build(root / ".docspine/docspine.pyz")
     shutil.copy(REPO / "LICENSE", root / ".docspine/LICENSE")
     (root / ".claude").mkdir()
     os.symlink("../.agents/skills", root / ".claude/skills")
+    files = sorted(p.relative_to(root).as_posix() for p in root.rglob("*")
+                   if p.is_file() or p.is_symlink())
+    files.append(".docspine/MANIFEST")
+    (root / ".docspine/MANIFEST").write_text("\n".join(sorted(files)) + "\n", encoding="utf-8")
 
 
 def _git(*args: str, env=None, input=None) -> str:

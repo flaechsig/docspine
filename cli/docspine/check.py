@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 from urllib.parse import unquote
 
 from . import render
@@ -54,7 +54,7 @@ def _f(project: Project, code: int, artifact: Artifact, message: str) -> Finding
 def schema(project: Project) -> List[Finding]:
     """Error 1: required field missing or value not permitted."""
     out = []
-    required = ["docspine", "language"]
+    required = ["language"]
     profile_rel = project.rel(project.config / "PROFILE.md")
     for key in required:
         if not project.profile.get(key):
@@ -229,25 +229,28 @@ def stale_regions(project: Project) -> List[Finding]:
 _README_VERSION = re.compile(r"^<!--\s*docspine\s+(\S+)")
 
 
+def _version(path: Path) -> Optional[str]:
+    first = path.read_text(encoding="utf-8").lstrip().splitlines()[:1]
+    match = _README_VERSION.match(first[0]) if first else None
+    return match.group(1) if match else None
+
+
 def readme_version(project: Project) -> List[Finding]:
-    """Error 14: README.md or STANDARD.md belong to a different docspine version than the profile states."""
-    expected = str(project.profile.get("docspine", ""))
-    out = []
-    for path, hint in ((project.docs / "README.md", "translate it again with spine-init"),
-                       (project.config / "STANDARD.md", "run spine-init to take over the new version")):
-        name = path.name
-        rel = project.rel(path)
+    """Error 14: README.md was translated from a different docspine version than the installed STANDARD.md."""
+    standard, readme = project.config / "STANDARD.md", project.docs / "README.md"
+    for path in (standard, readme):
         if not path.is_file():
-            out.append(Finding(14, rel, f"{name} from docspine is missing"))
-            continue
-        first = path.read_text(encoding="utf-8").lstrip().splitlines()[:1]
-        match = _README_VERSION.match(first[0]) if first else None
-        if match is None:
-            out.append(Finding(14, rel, "first line does not name the docspine version (<!-- docspine X · … -->)"))
-        elif match.group(1) != expected:
-            out.append(Finding(14, rel, f"{name} is from docspine {match.group(1)}, the profile states "
-                                        f"{expected}; {hint}"))
-    return out
+            return [Finding(14, project.rel(path), f"{path.name} from docspine is missing")]
+    installed, translated = _version(standard), _version(readme)
+    if installed is None:
+        return [Finding(14, project.rel(standard), "first line does not name the docspine version")]
+    if translated is None:
+        return [Finding(14, project.rel(readme),
+                        "first line does not name the docspine version (<!-- docspine X · … -->)")]
+    if translated != installed:
+        return [Finding(14, project.rel(readme), f"README was translated from docspine {translated}, "
+                                                 f"installed is {installed}; run spine-update")]
+    return []
 
 
 def evidence_paths(project: Project) -> List[Finding]:

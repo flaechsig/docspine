@@ -35,11 +35,15 @@ class Schema(ProjectTest):
         self.assertIn(1, self.codes({"docs/01-goals/stories/US-0001.md": story}))
 
     def test_values_are_read_as_text(self):
-        # 0.1 stays "0.1", a date stays a string: no YAML 1.1 surprises
-        self.write({})
+        # 0.10 stays "0.10", a date stays a string, NO stays "NO": no YAML 1.1 surprises
+        adr = "---\nid: ADR-0001\ntitle: NO\nstatus: accepted\ndate: 2026-10-04\n---\n"
+        self.write({"docs/01-goals/stories/US-0001.md": replace(STORY, "title: First story", "title: 0.10"),
+                    "docs/09-decisions/ADR-0001.md": adr})
         from docspine import project
         proj = project.load(self.root)
-        self.assertEqual(proj.profile["docspine"], "0.1")
+        self.assertEqual(proj.by_id()["US-0001"].fm["title"], "0.10")
+        self.assertEqual(proj.by_id()["ADR-0001"].fm["date"], "2026-10-04")
+        self.assertEqual(proj.by_id()["ADR-0001"].fm["title"], "NO")
 
 
 @req("REQ-0002")

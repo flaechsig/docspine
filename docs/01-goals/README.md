@@ -4,7 +4,7 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**15 Stories:** ⚪ offen 11 · 🟡 in Arbeit 1 · ✅ verifiziert 3
+**16 Stories:** ⚪ offen 11 · 🟡 in Arbeit 2 · ✅ verifiziert 3
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -38,6 +38,7 @@ Status: 🟡 in Arbeit
 | [US-0009](stories/US-0009.md) | spine-adopt | ⚪ offen |
 | [US-0010](stories/US-0010.md) | spine-gate | ⚪ offen |
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ⚪ offen |
+| [US-0016](stories/US-0016.md) | spine-update | 🟡 in Arbeit |
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 

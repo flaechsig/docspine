@@ -2,10 +2,9 @@
 name: spine-init
 description: >-
   Start a project's documentation according to docspine: agree on the project language,
-  draft the vision with the user, and write profile, vision, themes, README and AGENTS.md.
-  Also run it again after updating docspine, to take over the new version. Use when the
-  user wants to set up docspine, start the documentation of a new project, or calls
-  /spine-init.
+  draft the vision with the user, and write profile, vision, themes, first stories, README
+  and AGENTS.md. Use when the user wants to set up docspine, start the documentation of a
+  new project, or calls /spine-init. After an update of docspine, use spine-update instead.
 ---
 
 # spine-init
@@ -46,10 +45,8 @@ language.
 
 ## Step 2 — Situation
 
-- **`.docspine/PROFILE.md` exists and names an older docspine version** → this is an update.
-  Go to "Update" at the end and do nothing else.
-- **`.docspine/PROFILE.md` exists with the current version** → the project is already set up.
-  Say so and suggest the next skill (`spine-require`).
+- **`.docspine/PROFILE.md` exists** → the project is already set up. Say so, suggest
+  `spine-update` after an update of docspine, otherwise `spine-require`, and stop.
 - **The repository already contains code or documentation** (beyond the files from the
   installation) → say that `spine-adopt` is meant for existing projects. Continue only if
   the person explicitly wants to start the documentation fresh.
@@ -90,7 +87,7 @@ Write in the project language; folder and file names and front-matter keys stay 
 
 | File | Content |
 |---|---|
-| `.docspine/PROFILE.md` | front matter `docspine`, `language`, `statement_language: en`, `sources: []`; below, the heading for deviations with an empty list |
+| `.docspine/PROFILE.md` | front matter `language`, `statement_language: en`, `sources: []`; below, the heading for deviations with an empty list |
 | `docs/01-goals/vision.md` | core statement, problem, target group and stakeholders, success, non-goals, quality goals, and a section "Themes" that links to `README.md` (STANDARD 3.1) |
 | `docs/01-goals/epics/E-<NAME>.md` | one per theme: front matter `id`, `title`; heading; what the theme covers and why |
 | `docs/01-goals/stories/US-NNNN.md` | one per story: front matter `id`, `title`, `epic`, `requirements: []`, `status: open`; the "As … I want … so that …" sentence, then why (STANDARD 3.3) |
@@ -105,7 +102,7 @@ Do not create empty chapters.
 
 ### The README
 
-Translate `.agents/skills/spine-init/README.en.md` into the project language and write it
+Translate `.docspine/README.en.md` into the project language and write it
 to `docs/README.md`.
 
 - The first line is `<!-- docspine X · from standard/en/README.md -->` with the version
@@ -147,12 +144,3 @@ Summarise in a few lines what was written, list the open questions (they also ap
 - reviewing the changes with `git status` and committing them
 - `spine-require` for the most important theme as the next step
 
-## Update
-
-Run when `.docspine/PROFILE.md` names an older docspine version than `.docspine/STANDARD.md`.
-
-1. Tell the person which version was installed and which is now present.
-2. Translate `.agents/skills/spine-init/README.en.md` again into `docs/README.md`, as in
-   step 4, with the new version in the first line.
-3. Set `docspine:` in `.docspine/PROFILE.md` to the new version. Change nothing else.
-4. Run step 5, then summarise and suggest committing.
