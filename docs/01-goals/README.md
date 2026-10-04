@@ -4,7 +4,7 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**15 Stories:** ⚪ offen 12 · ✅ verifiziert 3
+**15 Stories:** ⚪ offen 11 · 🟡 in Arbeit 1 · ✅ verifiziert 3
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -29,11 +29,11 @@ Status: ⚪ offen
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
 
-Status: ⚪ offen
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0007](stories/US-0007.md) | spine-init | ⚪ offen |
+| [US-0007](stories/US-0007.md) | spine-init | 🟡 in Arbeit |
 | [US-0008](stories/US-0008.md) | Methodik-Skills zusammenführen | ⚪ offen |
 | [US-0009](stories/US-0009.md) | spine-adopt | ⚪ offen |
 | [US-0010](stories/US-0010.md) | spine-gate | ⚪ offen |

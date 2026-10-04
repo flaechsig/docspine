@@ -34,3 +34,6 @@ die Quelle des Standards und dokumentiert sich selbst danach.
   ```
 - `cli/`: die CLI in Python (nur Standardbibliothek, PyYAML eingepackt unter
   `cli/docspine/_vendor/`). `python3 cli/build.py` baut `cli/dist/docspine.pyz`.
+- `skills/`: die Quellen der Skills (englisch), die docspine ausliefert.
+- `python3 cli/build.py dist` schreibt den Zweig `dist`: nur die Dateien, die ein Projekt
+  bekommt, an ihren Zielpfaden. Projekte installieren und aktualisieren daraus.
