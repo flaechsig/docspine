@@ -10,7 +10,7 @@ Mensch sie allein aus dem Repo aufgreifen.
 
 ## Problem
 
-Drei Projekte (tarifnova, blocpress, 3dPacMan) folgen derselben Doku-Methodik, aber
+Drei Projekte (ein nicht öffentliches Ursprungsprojekt, blocpress, 3dPacMan) folgen derselben Doku-Methodik, aber
 jedes hat eine eigene Kopie: Konventionen, Generator und Skills laufen auseinander.
 Ein Teil der Regeln steht nur in Claude-spezifischen Skills und ist für andere
 Werkzeuge unsichtbar. Spezifikation und Architektur sind getrennte Dokumente, die sich
@@ -19,7 +19,7 @@ an mehreren Stellen doppeln.
 ## Zielgruppe und Stakeholder
 
 - **Projektverantwortliche**, die Doku als Code führen und mit KI-Agenten arbeiten.
-  Heute: der Autor von tarifnova, blocpress und 3dPacMan.
+  Heute: der Autor dieser drei Projekte.
 - **KI-Agenten** (Claude Code und andere), die die Doku lesen, ergänzen und prüfen.
 - UNKNOWN — offene Frage: Soll docspine öffentlich werden (Open Source), und gibt es
   damit weitere Nutzer?

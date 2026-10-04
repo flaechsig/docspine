@@ -24,7 +24,7 @@ Status: ⚪ offen
 | Story | Titel | Status |
 |---|---|---|
 | [US-0012](stories/US-0012.md) | 3dPacMan migrieren | ⚪ offen |
-| [US-0013](stories/US-0013.md) | tarifnova migrieren | ⚪ offen |
+| [US-0013](stories/US-0013.md) | Ursprungsprojekt migrieren | ⚪ offen |
 | [US-0014](stories/US-0014.md) | blocpress migrieren | ⚪ offen |
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
