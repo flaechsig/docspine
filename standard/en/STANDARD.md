@@ -1,8 +1,8 @@
-<!-- docspine 0.2 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.3 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.2 (draft)
+Version 0.3 (draft)
 
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
@@ -27,7 +27,7 @@ normative sense.
    after a person has approved.
 6. **Nothing is invented.** What nobody knows stays `UNKNOWN`, together with the open
    question: `UNKNOWN — open question: …`. An open question starts a line or a list
-   item with `UNKNOWN`, so that the checker can list it in `STATUS.md`.
+   item with `UNKNOWN`, so that the checker can list it in `docs/01-goals/README.md`.
 7. **The checker decides what is implemented**, not a person and not an AI agent
    (section 11).
 8. **Documentation grows with the changes.** Nothing is documented in advance. A
@@ -53,10 +53,9 @@ AGENTS.md                     entry point for AI agents (project-specific)
   CHANGELOG.md                what changed in each version (from docspine)
 docs/                         the documentation
   README.md                   how to work with this documentation (translated from docspine)
-  STATUS.md                   figures, gaps, contradictions, open questions (generated)
 
   01-goals/                   chapter 1: introduction and goals
-    README.md                 epics and stories with status (generated)
+    README.md                 entry: counts, epics and stories, open questions, gaps (generated)
     vision.md
     epics/E-<NAME>.md
     stories/US-NNNN.md
@@ -372,7 +371,7 @@ generated into a **generated region** inside a hand-written file:
 
 | Type | In | Shows |
 |---|---|---|
-| `status` | `01-goals/README.md` | epics and stories with status |
+| `status` | `01-goals/README.md` | counts, epics and stories with status, open questions, contradictions, missing chapters |
 | `stories` | epic | its stories with status |
 | `requirements` | story | statements and status of its requirements |
 | `context` | requirement | epic and story it belongs to, ADRs that require it |
@@ -443,7 +442,7 @@ A contradiction stays visible and is never resolved silently:
 > The documentation says X, the code does Y. (contradiction)
 ```
 
-The checker lists every block marked `(contradiction)` in `STATUS.md`. A person
+The checker lists every block marked `(contradiction)` in `docs/01-goals/README.md`. A person
 decides how it is resolved.
 
 ## 8 Proof
@@ -557,8 +556,7 @@ files that docspine no longer delivers (listed by comparison with `.docspine/MAN
 
 | File | Content |
 |---|---|
-| `01-goals/README.md` | epics and stories with status |
-| `STATUS.md` | figures, open chapters, contradictions, open questions (`UNKNOWN`) |
+| `01-goals/README.md` | the entry into the documentation: counts per status, epics and stories with status, open questions, contradictions, chapters without content and partly filled chapters. Generated regions are not searched for open questions or contradictions. |
 | `10-quality.md` | all requirements with `category: quality` |
 
 ## 12 Terminology

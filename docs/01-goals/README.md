@@ -4,7 +4,11 @@ Kapitel 1 des Dokuments: warum es das Projekt gibt ([Vision](vision.md)) und was
 leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 
 <!-- generated:status -->
-**16 Stories:** ⚪ offen 11 · 🟡 in Arbeit 2 · ✅ verifiziert 3
+| | Anzahl |
+|---|---|
+| Stories | ⚪ offen 11 · 🟡 in Arbeit 2 · ✅ verifiziert 3 |
+| Requirements | umgesetzt 24 · abgelöst 4 |
+| Entscheidungen | vorgeschlagen 17 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -49,4 +53,27 @@ Status: 🟡 in Arbeit
 | [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
 | [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
 | [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
+
+## Offene Fragen
+
+_keine_
+
+## Widersprüche
+
+_keine_
+
+## Kapitel ohne Inhalt
+
+- 02-constraints
+- 04-strategy
+- 05-building-blocks
+- 06-runtime
+- 07-deployment
+- 08-concepts
+- 11-risks
+- 12-glossary
+
+## Teilweise gefüllte Kapitel
+
+_keine_
 <!-- /generated -->
