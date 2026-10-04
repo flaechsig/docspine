@@ -48,6 +48,8 @@ AGENTS.md                     entry point for AI agents (project-specific)
   STANDARD.md                 this file (from docspine)
   PROFILE.md                  project values and deviations
   docspine.pyz                the checker (from docspine)
+  README.en.md                English source of docs/README.md (from docspine)
+  MANIFEST                    list of the files docspine delivered (from docspine)
 docs/                         the documentation
   README.md                   how to work with this documentation (translated from docspine)
   STATUS.md                   figures, gaps, contradictions, open questions (generated)
@@ -86,6 +88,7 @@ resolve.
 | `.docspine/STANDARD.md` | the rules | no, from docspine |
 | `.docspine/PROFILE.md` | project values and justified deviations | yes |
 | `.docspine/docspine.pyz` | the checker | no, from docspine |
+| `.docspine/README.en.md`, `.docspine/MANIFEST` | source of the README, list of delivered files | no, from docspine |
 | `AGENTS.md` | entry point for AI agents: where things are, how to check | yes |
 | `.agents/skills/spine-*` | guided workflows for AI agents | no, from docspine |
 | `.agents/skills/<other>` | project-specific workflows | yes |
@@ -109,7 +112,6 @@ must not lose any rule.
 
 ```yaml
 ---
-docspine: 0.1               # version of the standard
 language: de                # language of all documents
 statement_language: en      # language of requirement statements, default en
 sources:                    # permitted values for a requirement's source
@@ -135,9 +137,11 @@ Configuration is in English; documentation is in the project language.
 | folder and file names | English |
 | front-matter keys and values | English |
 
-The translated `README.md` starts with the version of its source:
-`<!-- docspine 0.1 · from standard/en/README.md -->`. When docspine has a newer
-version, the README is translated again. Translations use the terms in section 12.
+The installed version of docspine is named in the first line of `.docspine/STANDARD.md`.
+The translated `README.md` starts with the version of the English source it was
+translated from: `<!-- docspine 0.1 · from standard/en/README.md -->`. After an update,
+the README is translated again from `.docspine/README.en.md`. Translations use the terms
+in section 12.
 
 ### 2.5 IDs
 
@@ -520,6 +524,11 @@ The checker is a command-line tool that runs without a build system, as
 - `check` — validates everything below and fails on any error.
 - `render` — writes generated regions and views.
 
+**Installing and updating.** docspine is installed and updated with the same command,
+which writes only `.docspine/`, `.agents/skills/spine-*` and `.claude/skills`. After an
+update, the skill `spine-update` translates the README again where needed and removes
+files that docspine no longer delivers (listed by comparison with `.docspine/MANIFEST`).
+
 **Errors:**
 
 | # | Error |
@@ -537,7 +546,7 @@ The checker is a command-line tool that runs without a build system, as
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image not produced from the current version of its source |
 | 13 | broken relative link |
-| 14 | `README.md` or `STANDARD.md` belong to a different docspine version than the profile states |
+| 14 | `README.md` was translated from a different docspine version than the installed `STANDARD.md` |
 | 15 | an `evidence` path does not exist |
 
 **Generated views:**
