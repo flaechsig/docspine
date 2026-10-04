@@ -1,6 +1,7 @@
 .agents/skills/spine-init/SKILL.md
 .agents/skills/spine-update/SKILL.md
 .claude/skills
+.docspine/CHANGELOG.md
 .docspine/LICENSE
 .docspine/MANIFEST
 .docspine/README.en.md

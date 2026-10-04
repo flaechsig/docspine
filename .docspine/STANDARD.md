@@ -1,8 +1,8 @@
-<!-- docspine 0.1 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.2 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.1 (draft)
+Version 0.2 (draft)
 
 This document defines the rules for documentation that follows docspine. It applies
 equally to people and AI agents. `README.md` explains how to work with the
@@ -50,6 +50,7 @@ AGENTS.md                     entry point for AI agents (project-specific)
   docspine.pyz                the checker (from docspine)
   README.en.md                English source of docs/README.md (from docspine)
   MANIFEST                    list of the files docspine delivered (from docspine)
+  CHANGELOG.md                what changed in each version (from docspine)
 docs/                         the documentation
   README.md                   how to work with this documentation (translated from docspine)
   STATUS.md                   figures, gaps, contradictions, open questions (generated)
@@ -88,7 +89,7 @@ resolve.
 | `.docspine/STANDARD.md` | the rules | no, from docspine |
 | `.docspine/PROFILE.md` | project values and justified deviations | yes |
 | `.docspine/docspine.pyz` | the checker | no, from docspine |
-| `.docspine/README.en.md`, `.docspine/MANIFEST` | source of the README, list of delivered files | no, from docspine |
+| `.docspine/README.en.md`, `.docspine/MANIFEST`, `.docspine/CHANGELOG.md` | source of the README, list of delivered files, changes per version | no, from docspine |
 | `AGENTS.md` | entry point for AI agents: where things are, how to check | yes |
 | `.agents/skills/spine-*` | guided workflows for AI agents | no, from docspine |
 | `.agents/skills/<other>` | project-specific workflows | yes |
@@ -523,6 +524,9 @@ The checker is a command-line tool that runs without a build system, as
 
 - `check` — validates everything below and fails on any error.
 - `render` — writes generated regions and views.
+
+**Versions.** Every change to what docspine delivers raises its version, named in the
+first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what changed.
 
 **Installing and updating.** docspine is installed and updated with the same command,
 which writes only `.docspine/`, `.agents/skills/spine-*` and `.claude/skills`. After an
