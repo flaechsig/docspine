@@ -4,6 +4,14 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.7
+
+- **Integration contract** in the standard (section 11): deliver test results, run
+  `check` after the tests and fail the build on errors, keep `render` outside the build.
+  `render` may run any time before `check`.
+- **Integrations per tool chain** in the docspine repository under `integrations/`. First:
+  `maven-junit5`, now including `check` in the Maven build (`exec-maven-plugin`).
+
 ## 0.6
 
 - **Stricter proof.** An implemented requirement needs a passing test result or a proof

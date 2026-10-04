@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ⚪ offen 9 · 🟡 in Arbeit 3 · ✅ verifiziert 4 |
 | Requirements | umgesetzt 28 · abgelöst 5 |
-| Entscheidungen | vorgeschlagen 18 |
+| Entscheidungen | vorgeschlagen 19 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 

@@ -33,6 +33,9 @@ Freigabe die Dokumentation unter `docs/` an.
 
 **Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
 
+**Anbindung an Build und Tests:** je Werkzeugkette in [integrations/](integrations/),
+zuerst [Maven mit JUnit 5](integrations/maven-junit5.md).
+
 **Voraussetzungen:** `curl` und `tar` (unter Linux, macOS und Windows 10/11 vorhanden),
 Python 3.9 oder neuer für das Prüfwerkzeug. Die Skills liegen nach der Installation unter
 `.agents/skills/` und folgen dem offenen Agent-Skills-Standard, auch für andere
