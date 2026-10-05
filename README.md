@@ -6,8 +6,10 @@ Nachweis, verbunden über feste IDs und vom Build geprüft. **Spezifizieren und 
 lassen sich getrennt nutzen: Man kann sich erst durch die ganze Spezifikation arbeiten
 und dann in Schüben bauen, oder jedes Requirement gleich umsetzen.
 
-Ausgelegt ist docspine derzeit für eine Person. Kleine Teams bis etwa fünf Personen
-folgen mit Version 0.10 (Arbeit auf Branches, Umgang mit gleichzeitig vergebenen IDs).
+Ausgelegt ist docspine für eine Person oder ein kleines Team bis etwa fünf Personen:
+Jede Änderung entsteht auf einem eigenen Branch, IDs werden erst auf dem Hauptzweig
+endgültig, und gleichzeitig vergebene Nummern löst ein Befehl auf, der alle Verweise
+mitzieht.
 
 docspine dokumentiert sich selbst in Anlehnung an arc42, so wie es das für jedes
 Projekt vorsieht. Einstieg: **[docs/README.md](docs/README.md)**.

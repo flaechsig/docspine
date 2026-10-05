@@ -153,7 +153,14 @@ Summarise in a few lines what was written, list the open questions (they also ap
 `docs/01-goals/README.md`), and suggest:
 
 - reviewing the changes with `git status` and committing everything, including the files
-  from the installation, as the first commit; offer to do it after approval
+  from the installation, as the first commit on the main branch; offer to do it after
+  approval. This is the only commit directly on the main branch; all later work happens
+  on branches (STANDARD 2.7).
+- connecting a remote repository, if there is none yet (`git remote -v`). Explain in a
+  few sentences that a team shares a remote as its meeting point and that where it lives
+  is the team's decision. If the person has already created an empty repository at a
+  provider, offer to run `git remote add origin <url>` and `git push -u origin main`
+  with the URL they give. Do not create repositories at a provider.
 - `spine-require` for the most important theme as the next step
 - `spine-gate` before the first build file or test is written, so that the build is
   connected to docspine from the start

@@ -6,9 +6,9 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 8 · 🟡 in Arbeit 4 · ✅ verifiziert 4 |
-| Requirements | umgesetzt 28 · abgelöst 5 |
-| Entscheidungen | vorgeschlagen 20 |
+| Stories | ⚪ offen 8 · 🟡 in Arbeit 4 · ✅ verifiziert 5 |
+| Requirements | umgesetzt 31 · abgelöst 5 |
+| Entscheidungen | vorgeschlagen 21 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -53,6 +53,7 @@ Status: 🟡 in Arbeit
 | [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
 | [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
 | [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
+| [US-0017](stories/US-0017.md) | Arbeiten im kleinen Team | ✅ verifiziert |
 
 ## Offene Fragen
 

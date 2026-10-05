@@ -15,6 +15,12 @@ person approves.
 
 Talk to the person in the project language (`language` in `.docspine/PROFILE.md`).
 
+## Branch
+
+Before writing anything, check the current branch (`git branch --show-current`). On the
+main branch, propose a branch for this work (`docs/<topic>`, STANDARD 2.7) and create
+it after approval. Never write to the main branch.
+
 ## Step 1 — Read the state (silently)
 
 1. The installed version: first line of `.docspine/STANDARD.md` (`<!-- docspine X · … -->`).

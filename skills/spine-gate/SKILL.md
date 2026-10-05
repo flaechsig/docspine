@@ -35,6 +35,12 @@ you make it; the person approves. Talk to the person in the project language
 - **Use only what an integration describes.** Do not invent configuration for a tool
   chain without an integration; see "No matching integration".
 
+## Branch
+
+Before writing anything, check the current branch (`git branch --show-current`). On the
+main branch, propose a branch for this work (`feat/<topic>`, STANDARD 2.7) and create
+it after approval. Never write to the main branch.
+
 ## Step 1 — Read the state (silently)
 
 - the front matter of every file in `.agents/skills/spine-gate/integrations/`: `name`,
