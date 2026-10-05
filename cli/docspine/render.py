@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from .project import Artifact, Project
-from .text import TEXTS, strip_code
+from .text import TEXTS, blank, blank_code
 
 STORY_ORDER = ("open", "in-progress", "verified", "superseded", "retired")
 REQ_ORDER = ("proposed", "planned", "implemented", "rejected", "superseded")
@@ -211,14 +211,19 @@ def _marked_lines(project: Project, marker: re.Pattern, base: Path) -> List[str]
     for path in _content_files(project):
         if path.name == "README.md" and path.parent == project.docs:
             continue
-        lines = _GENERATED.sub("", strip_code(path.read_text(encoding="utf-8"))).splitlines()
-        for i, line in enumerate(lines):
+        text = path.read_text(encoding="utf-8")
+        # markers are searched outside code and generated regions, but the original line is
+        # listed, so that code spans in a question stay visible
+        searched = blank(blank_code(text), _GENERATED).splitlines()
+        lines = text.splitlines()
+        for i, line in enumerate(searched):
             if not marker.search(line):
                 continue
-            parts = [re.sub(_ITEM, "", line).strip()]
-            for follow in lines[i + 1:]:
-                # continuation: indented, not blank, not a new list item
-                if not follow.strip() or not follow[:1].isspace() or _NEW_ITEM.match(follow):
+            parts = [re.sub(_ITEM, "", lines[i]).strip()]
+            for j in range(i + 1, len(lines)):
+                follow = lines[j]
+                # continuation: indented, not blank, not a new list item, not code
+                if not searched[j].strip() or not follow[:1].isspace() or _NEW_ITEM.match(follow):
                     break
                 parts.append(follow.strip())
             label = path.relative_to(project.docs).as_posix()

@@ -160,6 +160,14 @@ class StatusInGoals(RenderTest):
         self.assertEqual(text.count("UNKNOWN"), 1)
         self.assertIn("(epics/E-CORE.md): Docs say X, code does Y. (contradiction)", text)
 
+    def test_code_spans_stay_in_listed_lines(self):
+        epic = EPIC + ("\n- UNKNOWN — open question: is `RenderApi` still\n  needed by `Foo`?\n"
+                       "\n> `config.yml` says X, code does Y. (contradiction)\n")
+        self.render({"docs/01-goals/epics/E-CORE.md": epic})
+        text = self.read(GOALS)
+        self.assertIn("UNKNOWN — open question: is `RenderApi` still needed by `Foo`?", text)
+        self.assertIn("(epics/E-CORE.md): `config.yml` says X, code does Y. (contradiction)", text)
+
     def test_listed_lines_are_not_found_again(self):
         epic = EPIC + "\n> Docs say X, code does Y. (contradiction)\n\n- UNKNOWN — open question: who?\n"
         self.render({"docs/01-goals/epics/E-CORE.md": epic})
