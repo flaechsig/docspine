@@ -20,6 +20,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "status_title": "Status", "count": "Count", "decisions": "Decisions",
         "missing_chapters": "Chapters without content", "partial_chapters": "Partly filled chapters",
         "contradictions": "Contradictions", "open_questions": "Open questions",
+        "open_decisions": "Open decisions",
         "quality_title": "Quality requirements", "verification": "Verification",
     },
     "de": {
@@ -36,6 +37,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "status_title": "Status", "count": "Anzahl", "decisions": "Entscheidungen",
         "missing_chapters": "Kapitel ohne Inhalt", "partial_chapters": "Teilweise gefüllte Kapitel",
         "contradictions": "Widersprüche", "open_questions": "Offene Fragen",
+        "open_decisions": "Offene Entscheidungen",
         "quality_title": "Qualitätsanforderungen", "verification": "Prüfung",
     },
 }

@@ -1,4 +1,4 @@
-<!-- docspine 0.10 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
+<!-- docspine 0.11 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
 
 # Dokumentation nach docspine
 
@@ -49,12 +49,13 @@ Abschnitt 2.2.
 
 ## Wie die Teile zusammenhängen
 
-```
-Vision → Epic → Story → Requirement ← Test
-                  ↑          ↑
-       Laufzeitszenario   Baustein (über den Code-Pfad)
-                             ↑
-                            ADR (Entscheidung → prüfbare Folge)
+```mermaid
+flowchart LR
+    V[Vision] --> E[Epic] --> S[Story] --> R[Requirement]
+    T[Test] --> R
+    RS[Laufzeitszenario] --> S
+    B["Baustein<br/>(über den Code-Pfad)"] --> R
+    A["ADR<br/>(Entscheidung → prüfbare Folge)"] --> B
 ```
 
 - Jede Aussage hat **genau eine Quelldatei**. Andere Stellen verweisen über die ID oder
@@ -72,22 +73,21 @@ führt. Die Skills folgen dem offenen Agent-Skills-Standard und funktionieren mi
 verschiedenen KI-Werkzeugen. Ohne Skills geht es genauso, die Regeln stehen in
 `.docspine/STANDARD.md`.
 
-```
-  Start: Vision
-       │
-       ▼
-  ┌─► Anfordern ──────► Wirkung prüfen ──┬─► Entscheiden (ADR) ────────┐
-  │   Epic · Story · REQ                 ├─► Architektur nachziehen ───┤
-  │        ▲                             └─► kein Impact ──────────────┤
-  │        │                                                           ▼
-  │        └───────────── Lücke entdeckt ──────────────────────── Umsetzen ◄───┐
-  │                                                       Code · Test · Status │
-  │                                                                 │          │
-  │                                                                 ▼          │
-  │                                                            Nachweisen      │ nein
-  │                                                                 │          │
-  │                            ja                                   ▼          │
-  └────────────────────────────────────────────────────── Prüfwerkzeug grün? ──┘
+```mermaid
+flowchart TD
+    start([Start: Vision]) --> req["Anfordern<br/>Epic · Story · Requirement"]
+    req --> imp{"Wirkung auf die<br/>Architektur?"}
+    imp -- Entscheidung fällig --> dec["Entscheiden<br/>ADR"]
+    imp -- Kapitel betroffen --> arch["Architektur<br/>nachziehen"]
+    imp -- keine Wirkung --> rel
+    dec --> rel
+    arch --> rel
+    rel["Freigeben<br/>proposed → planned"] --> build["Umsetzen<br/>Code · Test · Status"]
+    build --> prove["Nachweisen<br/>prüft der Test wirklich<br/>die Anforderung?"]
+    prove --> chk{"Prüfung OK?"}
+    chk -- ja --> req
+    chk -- nein --> build
+    build -. Lücke entdeckt .-> req
 ```
 
 | Schritt | Was passiert | Skill |

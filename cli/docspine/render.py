@@ -81,10 +81,12 @@ def status_region(project: Project, created=()) -> str:
     t = texts(project)
     goals = project.docs / "01-goals"
     stories = project.of_kind("story")
+    decisions = (f"[{t['decisions']}](../09-decisions/)" if (project.docs / "09-decisions").is_dir()
+                 else t["decisions"])
     lines = [f"| | {t['count']} |", "|---|---|",
              f"| {t['stories']} | {_counts(t, stories, STORY_ORDER, 'story.')} |",
              f"| Requirements | {_counts(t, project.of_kind('requirement'), REQ_ORDER, 'req.')} |",
-             f"| {t['decisions']} | {_counts(t, project.of_kind('adr'), ADR_ORDER, 'adr.')} |", ""]
+             f"| {decisions} | {_counts(t, project.of_kind('adr'), ADR_ORDER, 'adr.')} |", ""]
     for epic in _sorted(project.of_kind("epic")):
         own = _stories_of(project, epic.id)
         lines += [f"## [{epic.id}](epics/{epic.path.name}) — {epic.get('title')}", "",
@@ -98,6 +100,8 @@ def status_region(project: Project, created=()) -> str:
         lines.extend([f"## {title}", ""] + (items or [f"_{t['none']}_"]) + [""])
 
     section(t["open_questions"], _marked_lines(project, OPEN_QUESTION, goals))
+    section(t["open_decisions"], [f"- {_link(goals / 'README.md', a)} — {a.get('title')}"
+                                  for a in _sorted(project.of_kind("adr")) if a.get("status") == "proposed"])
     section(t["contradictions"], _marked_lines(project, CONTRADICTION, goals))
     section(t["missing_chapters"], [f"- {n}" for n in CHAPTERS if not _chapter_exists(project, n, created)])
     section(t["partial_chapters"], [f"- {n}" for n in _partial_chapters(project)])
