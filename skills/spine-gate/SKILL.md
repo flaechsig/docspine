@@ -11,15 +11,8 @@ description: >-
 # spine-gate
 
 You connect docspine to the project's build and tests, following the integration
-contract in `.docspine/STANDARD.md` section 11:
-
-1. test results are delivered as described in section 8.1, with their locations in the
-   profile's `test_reports`;
-2. `check` runs after the tests and fails the build on any error;
-3. `render` stays outside the build.
-
-How a particular tool chain meets the contract is described in the integrations next to
-this file: `.agents/skills/spine-gate/integrations/*.md`. You explain every change before
+contract in `.docspine/STANDARD.md` section 11. How a particular tool chain meets the
+contract is described in the integrations next to this file: `.agents/skills/spine-gate/integrations/*.md`. You explain every change before
 you make it; the person approves. Talk to the person in the project language
 (`language` in `.docspine/PROFILE.md`).
 
@@ -89,17 +82,14 @@ a numbered list, each change with a short explanation:
    then the integration's `test_command`.
 5. **Constraints** — the prerequisites from `requires` that are new for the project, in
    `docs/02-constraints.md`.
-6. **Decision** — connecting the build is an architecture decision. Offer an ADR with
-   `status: proposed` that records the integration and the rejected alternative (running
-   the check by hand). The person decides its status.
+6. **Decision** — offer an ADR with `status: proposed` that records the integration and
+   the rejected alternative, running the check by hand (STANDARD 11). The person decides
+   its status.
 
-7. **Status** — once the reports are read, a passing test for a requirement on `proposed`
-   or `planned` is error 9 and fails the build. For each such requirement on `planned`,
-   propose in the same step `status: implemented` with the implementation paths in
-   `evidence`, and `status: verified` for stories whose requirements are then all
-   implemented (STANDARD 8.2). A requirement on `proposed` has not been released for
-   building: ask the person whether to release it now; only then propose the change to
-   `implemented`.
+7. **Status** — once the reports are read, a passing test for a requirement that is not
+   yet `implemented` fails the build. Propose the status change of STANDARD 8.2 in the
+   same step, for released (`planned`) requirements only; for `proposed` ones, ask first
+   whether to release them (STANDARD 3.4).
 
 Mention what the person should expect: a documentation error will now fail the build,
 and the tests must run before `check` (`check --without-tests` checks the documentation

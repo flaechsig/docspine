@@ -18,7 +18,7 @@ you propose, the person decides, and you write only after approval.
 - **Propose instead of interrogating.** Turn what the person says into concrete drafts
   they can confirm or correct. Ask at most two rounds; never push.
 - **Nothing is invented.** What the person does not know stays
-  `UNKNOWN — <open question in the project language>`, at the start of a line or list item.
+  `UNKNOWN` with the open question (STANDARD principle 6).
 - **Only the core statement of the vision is required.** Everything else may stay open.
 - **Never overwrite existing files without asking.** Show what you would change.
 - **Write only after explicit approval.**
@@ -90,8 +90,8 @@ project language, numbered so the person can answer briefly:
 3. **Target group and stakeholders**
 4. **Success** — how we will know it works, measurable where possible
 5. **Non-goals** — what deliberately does not belong
-6. **Quality goals** — at most three
-7. **Themes** — three to seven epics, each with an ID `E-<NAME>` (upper case, descriptive)
+6. **Quality goals** — suggest at most three
+7. **Themes** — suggest three to seven epics, each with an ID `E-<NAME>` (upper case, descriptive)
    and a one-line description
 8. **First stories** — for each theme one to three stories in the form "As <role> I want
    <goal> so that <benefit>", with a short title. Number them `US-0001`, `US-0002`, …
@@ -115,7 +115,7 @@ Write in the project language; folder and file names and front-matter keys stay 
 | `.docspine/PROFILE.md` | front matter `language`, `statement_language: en`, `sources: []`; below, the heading for deviations with an empty list |
 | `docs/01-goals/vision.md` | core statement, problem, target group and stakeholders, success, non-goals, quality goals, and a section "Themes" that links to `README.md` (STANDARD 3.1) |
 | `docs/01-goals/epics/E-<NAME>.md` | one per theme: front matter `id`, `title`; heading; what the theme covers and why |
-| `docs/01-goals/stories/US-NNNN.md` | one per story: front matter `id`, `title`, `epic`, `requirements: []`, `status: open`; the "As … I want … so that …" sentence, then why (STANDARD 3.3) |
+| `docs/01-goals/stories/US-NNNN.md` | one per story: front matter `id`, `title`, `epic`, `requirements: []`, `status: open`; the body as STANDARD 3.3 describes |
 | `docs/02-constraints.md` | only if constraints are known |
 | `docs/09-decisions/ADR-NNNN.md` | one per decision already made, `status: proposed`, sections context, decision, consequences (STANDARD 3.5) |
 | `docs/01-goals/requirements/REQ-NNNN.md` | only for measurable quality goals: `category: quality`, `status: proposed`, EARS statement in English (STANDARD 3.4) |
@@ -127,26 +127,16 @@ Do not create empty chapters.
 
 ### The README
 
-Translate `.docspine/README.en.md` into the project language and write it
-to `docs/README.md`.
-
-- The first line is `<!-- docspine X · from standard/en/README.md -->` with the version
-  from step 0. For `language: en`, copy the file unchanged.
-- Use the terms from the terminology table in `.docspine/STANDARD.md` section 12.
-- Keep every link and anchor target unchanged; translate only the visible text.
-- The diagrams are Mermaid. Translate only the labels (the text in brackets, quotes and
-  on the arrows); keep node names, arrows and the rest of the syntax unchanged.
+Translate `.docspine/README.en.md` into the project language and write it to
+`docs/README.md`, as STANDARD 2.4 describes, with the version from step 0 in the first
+line.
 
 ### AGENTS.md
 
 If `AGENTS.md` does not exist, create it. If it exists, add a section "Documentation
-(docspine)" and leave everything else unchanged. Content, in the project language:
+(docspine)" and leave everything else unchanged. Content as STANDARD 2.2 describes; the
+check, at the latest before merging and preferably before every commit, in this order:
 
-- one sentence on what the project is (from the core statement)
-- where things are: `docs/README.md` (how the documentation works), `.docspine/STANDARD.md`
-  (the rules), `.docspine/PROFILE.md` (project values), `docs/01-goals/README.md` (overview with
-  status)
-- how to check, before every commit, in this order:
   ```
   <the project's test command, e.g. mvn verify>
   python3 .docspine/docspine.pyz render
@@ -156,7 +146,6 @@ If `AGENTS.md` does not exist, create it. If it exists, add a section "Documenta
   comment, followed by: "Create the build and the first tests with `spine-gate`, so that
   they are connected to docspine from the start." `python3 .docspine/docspine.pyz check
   --without-tests` checks the documentation alone.
-- no architecture content (STANDARD 2.2)
 
 ## Step 5 — Check
 

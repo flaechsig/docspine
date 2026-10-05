@@ -29,8 +29,10 @@ normative sense.
 5. **People decide what applies.** Tools and AI agents propose; files are written
    after a person has approved.
 6. **Nothing is invented.** What nobody knows stays `UNKNOWN`, together with the open
-   question: `UNKNOWN — open question: …`. An open question starts a line or a list
-   item with `UNKNOWN`, so that the checker can list it in `docs/01-goals/README.md`.
+   question in the project language, for example `UNKNOWN — open question: …` or
+   `UNKNOWN — offene Frage: …`. The word `UNKNOWN` itself is never translated. An open
+   question starts a line or a list item with `UNKNOWN`, so that the checker can list it
+   in `docs/01-goals/README.md`.
 7. **The checker decides what is implemented**, not a person and not an AI agent
    (section 11).
 8. **Documentation grows with the changes.** Nothing is documented in advance. A
@@ -107,7 +109,11 @@ All rules are in files in the repository. Tool-specific files may make them easi
 use but must not contain rules of their own. Test: deleting a tool-specific folder
 must not lose any rule.
 
-`AGENTS.md` must not contain architecture content. It points into the document.
+`AGENTS.md` is written in the project language. In a section on the documentation it
+contains: one sentence on what the project is; where things are (`docs/README.md`,
+`.docspine/STANDARD.md`, `.docspine/PROFILE.md`, `docs/01-goals/README.md`); and how to
+check, in the order of section 11, at the latest before merging and preferably before
+every commit. It must not contain architecture content; it points into the document.
 
 ### 2.3 Profile
 
@@ -146,7 +152,8 @@ The installed version of docspine is named in the first line of `.docspine/STAND
 The translated `README.md` starts with the version of the English source it was
 translated from: `<!-- docspine 0.1 · from standard/en/README.md -->`. After an update,
 the README is translated again from `.docspine/README.en.md`. Translations use the terms
-in section 12.
+in section 12, keep every link and anchor target unchanged, and in Mermaid diagrams
+translate only the labels. With `language: en`, the README is copied unchanged.
 
 ### 2.5 IDs
 
@@ -211,8 +218,9 @@ All source files are Markdown. Artifacts with an ID have YAML front matter.
 | Quality goals | no |
 | Themes: link to `01-goals/README.md` | no |
 
-Missing answers are written as `UNKNOWN — open question: …`. The vision is stable
-text and contains no status information.
+Missing answers are written as `UNKNOWN` with the open question (principle 6). The
+vision is stable text and contains no status information. Measurable quality goals
+become requirements with `category: quality` (section 3.4).
 
 ### 3.2 Epic
 
@@ -279,7 +287,7 @@ rationale: >-
 ---
 ```
 
-Body: a heading with ID and short title, then one to three sentences of context.
+Body: a heading `## REQ-NNNN — <short title>`, then one to three sentences of context.
 
 **EARS patterns.** The statement follows exactly one pattern:
 
@@ -608,7 +616,10 @@ the check cannot be forgotten. Whatever the tool chain, an integration must:
 3. leave `render` outside the build, so that a build never changes files under `docs/`.
 
 How a particular tool chain meets this contract is described in the docspine
-repository under `integrations/`, one file per tool chain.
+repository under `integrations/`, one file per tool chain; in a project they are
+installed with the skill `spine-gate` under `.agents/skills/spine-gate/integrations/`.
+
+Connecting the build is an architecture decision and is recorded as an ADR (section 3.5).
 
 **Versions.** Every change to what docspine delivers raises its version, named in the
 first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what changed.

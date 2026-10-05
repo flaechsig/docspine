@@ -6,6 +6,11 @@ the new version.
 
 ## Unreleased
 
+- **Rules moved from the skills into the standard:** how the README is translated (2.4),
+  what `AGENTS.md` contains (2.2), the requirement heading (3.4), quality goals become
+  requirements (3.1), connecting the build is an ADR (11). `UNKNOWN` keeps its English
+  keyword with the question in the project language (principle 6). The skills refer to
+  these sections instead of repeating them.
 - **`spine-init` names the main branch `main`** (`git init -b main`), independently of
   the machine's Git configuration. The remote instructions in the standard use the
   project's own main branch name.

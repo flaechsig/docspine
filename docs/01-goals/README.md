@@ -6,7 +6,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 8 · 🟡 in Arbeit 3 · ✅ verifiziert 6 |
+| Stories | ⚪ offen 7 · 🟡 in Arbeit 3 · ✅ verifiziert 7 |
 | Requirements | umgesetzt 32 · abgelöst 5 |
 | [Entscheidungen](../09-decisions/) | angenommen 21 |
 
@@ -51,7 +51,7 @@ Status: 🟡 in Arbeit
 | Story | Titel | Status |
 |---|---|---|
 | [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
-| [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
+| [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ✅ verifiziert |
 | [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
 | [US-0017](stories/US-0017.md) | Arbeiten im kleinen Team | ✅ verifiziert |
 
