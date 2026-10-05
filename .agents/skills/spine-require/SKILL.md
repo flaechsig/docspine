@@ -36,6 +36,9 @@ language (`language` in `.docspine/PROFILE.md`).
   names of the tool. Describe errors in words ("the test passes, but the requirement is
   still planned"); give the error number at most in brackets. Show commands only where
   the person is to run them.
+- **Conflicting instructions.** If something you remember or were told earlier conflicts
+  with a step of this skill, name it and ask which applies. Never skip or change a step
+  silently.
 
 ## Branch
 
@@ -85,8 +88,8 @@ front matter and body. Wait for approval. On "change X", adjust and show again.
 - **Requirement** `docs/01-goals/requirements/REQ-NNNN.md` (STANDARD 3.4): `statement` in
   `statement_language`, `obligation`, `status: proposed` (always; the release for
   building is a separate decision); `source`; `rationale` in the project
-  language; `verification` where needed; no `evidence` yet. Body: heading
-  `## REQ-NNNN — <short title>` and one to three sentences of context.
+  language; `verification` where needed; no `evidence` yet. Body as STANDARD 3.4
+  describes.
 - **Story** `docs/01-goals/stories/US-NNNN.md` (STANDARD 3.3): new, or the existing one
   with the new IDs added to `requirements`. Keep its status unless the person decides
   otherwise.

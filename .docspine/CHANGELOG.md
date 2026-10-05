@@ -4,6 +4,22 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.12
+
+- **Rules moved from the skills into the standard:** how the README is translated (2.4),
+  what `AGENTS.md` contains (2.2), the requirement heading (3.4), quality goals become
+  requirements (3.1), connecting the build is an ADR (11). `UNKNOWN` keeps its English
+  keyword with the question in the project language (principle 6). The skills refer to
+  these sections instead of repeating them.
+- **`spine-init` names the main branch `main`** (`git init -b main`), independently of
+  the machine's Git configuration. The remote instructions in the standard use the
+  project's own main branch name.
+- **Skills name conflicting instructions.** If an earlier instruction or a remembered
+  note conflicts with a step, the skill says so and asks, instead of skipping the step
+  silently (found in a trial: an old note suppressed `git init`, first commit and remote).
+- **Error 12 is marked as not yet checked** in the standard. It applies only to large
+  diagrams in DOT or PlantUML with a committed SVG; Mermaid diagrams cannot go stale.
+
 ## 0.11
 
 - **Diagrams in Mermaid,** also on the README: ASCII art slipped out of place in many
