@@ -49,6 +49,13 @@ GitHub, in der Markdown-Vorschau einer IDE oder in einem Markdown-Leser wie
 [Obsidian](https://obsidian.md): dort den Ordner `docs/` als Vault öffnen und
 `docs/.obsidian/` in die `.gitignore` eintragen.
 
+**Bestehendes Projekt:** Hat das Projekt schon Code oder Doku, nach der Installation
+`/spine-adopt` statt `/spine-init` aufrufen. Der Skill nimmt den Bestand auf, schlägt für
+jeden Teil ein Ziel vor und zieht die Doku nach deiner Freigabe auf einem eigenen Branch
+um; danach bindet `/spine-gate` Build und Tests an. Liegen schon eigene Skills unter
+`.claude/skills/`, vor der Installation `git mv .claude/skills .agents/skills` ausführen,
+damit die Installation dort ihren Verweis anlegen kann.
+
 **Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
 
 **Anbindung an Build und Tests:** je Werkzeugkette in [integrations/](integrations/),
