@@ -4,6 +4,13 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## Unreleased
+
+- **Maven integration corrected:** the reporter needs `usePhrasedTestCaseClassName`
+  as well, otherwise a requirement ID in the display name of a class is lost. Notes on
+  parameterized tests (`{displayName}` in the name pattern) and on multi-module projects
+  (the check runs in a small last module).
+
 ## 0.12
 
 - **Rules moved from the skills into the standard:** how the README is translated (2.4),

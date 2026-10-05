@@ -6,7 +6,7 @@ keywords: [Java, Maven, JUnit]
 test_command: mvn verify
 test_reports: [target/surefire-reports]
 requires: [JDK, Maven 3.8 or later, Python 3.9 or later]
-tested_with: [Maven 3.8.7, Surefire 3.5.4, exec-maven-plugin 3.5.0, JUnit 5.11 and 5.13]
+tested_with: [Maven 3.8.7, Surefire 3.2.5 and 3.5.4, exec-maven-plugin 3.5.0, JUnit 5.11 and 5.13, multi-module reactor]
 ---
 
 # Integration: Maven with JUnit 5
@@ -47,14 +47,21 @@ Surefire does not write tags into the report.
   <version>3.5.4</version>
   <configuration>
     <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
+      <usePhrasedTestCaseClassName>true</usePhrasedTestCaseClassName>
       <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
     </statelessTestsetReporter>
   </configuration>
 </plugin>
 ```
 
-Without this setting, the report contains the method name instead of the display name.
-The display name of the class is written either way.
+Both settings are needed. Once the reporter is configured, every option not set falls
+back to `false`: without `usePhrasedTestCaseClassName`, a requirement ID in the display
+name of a class is lost; without `usePhrasedTestCaseMethodName`, the report contains the
+method name instead of the display name.
+
+**Parameterized tests:** the report contains the name of each invocation, not the
+display name of the method. Put `{displayName}` into the name pattern, for example
+`@ParameterizedTest(name = "{displayName} [{index}] {argumentsWithNames}")`.
 
 **The profile names the reports.** In `.docspine/PROFILE.md`:
 
@@ -88,6 +95,59 @@ test_reports: [target/surefire-reports]
   </executions>
 </plugin>
 ```
+
+**Multi-module projects.** In a reactor with several modules, the check must run after
+the tests of all modules, so it does not belong into the parent POM. Add a small last
+module that only runs the check, and list the reports of every module in the profile:
+
+```xml
+<!-- parent pom.xml: the check module comes last -->
+<modules>
+  <module>app-core</module>
+  <module>app-web</module>
+  <module>app-docs-check</module>
+</modules>
+```
+
+```xml
+<!-- app-docs-check/pom.xml -->
+<artifactId>app-docs-check</artifactId>
+<packaging>pom</packaging>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>exec-maven-plugin</artifactId>
+      <version>3.5.0</version>
+      <executions>
+        <execution>
+          <id>docspine-check</id>
+          <phase>verify</phase>
+          <goals><goal>exec</goal></goals>
+          <configuration>
+            <executable>python3</executable>
+            <workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
+            <arguments>
+              <argument>.docspine/docspine.pyz</argument>
+              <argument>check</argument>
+            </arguments>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+```
+
+```yaml
+# .docspine/PROFILE.md
+test_reports:
+  - app-core/target/surefire-reports
+  - app-web/target/surefire-reports
+```
+
+Verified in a reactor with five modules and 278 tests: the check runs last and reports
+`OK`.
 
 Workflow:
 
@@ -152,7 +212,8 @@ Code goes under `src/main/java/`, tests under `src/test/java/`.
         <version>3.5.4</version>
         <configuration>
           <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
-            <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
+            <usePhrasedTestCaseClassName>true</usePhrasedTestCaseClassName>
+      <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
           </statelessTestsetReporter>
         </configuration>
       </plugin>
