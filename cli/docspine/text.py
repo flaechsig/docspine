@@ -49,3 +49,13 @@ _CODE_SPAN = re.compile(r"`[^`\n]*`")
 def strip_code(text: str) -> str:
     """Remove fenced code blocks and code spans; examples there are not content."""
     return _CODE_SPAN.sub("", _FENCE.sub("", text))
+
+
+def blank(text: str, pattern: re.Pattern) -> str:
+    """Replace what `pattern` matches with spaces, keeping lines and positions."""
+    return pattern.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
+
+
+def blank_code(text: str) -> str:
+    """Like `strip_code`, but keeps lines and positions, so a hit maps back to the text."""
+    return blank(blank(text, _FENCE), _CODE_SPAN)
