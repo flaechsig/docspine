@@ -6,9 +6,9 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 7 · 🟡 in Arbeit 2 · ✅ verifiziert 8 |
-| Requirements | umgesetzt 32 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | angenommen 21 |
+| Stories | ⚪ offen 7 · 🟡 in Arbeit 3 · ✅ verifiziert 8 |
+| Requirements | umgesetzt 33 · abgelöst 5 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 21 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -23,13 +23,13 @@ Status: 🟡 in Arbeit
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
-Status: ⚪ offen
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
 | [US-0012](stories/US-0012.md) | 3dPacMan migrieren | ⚪ offen |
 | [US-0013](stories/US-0013.md) | Ursprungsprojekt migrieren | ⚪ offen |
-| [US-0014](stories/US-0014.md) | blocpress migrieren | ⚪ offen |
+| [US-0014](stories/US-0014.md) | blocpress migrieren | 🟡 in Arbeit |
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
 
@@ -43,6 +43,7 @@ Status: 🟡 in Arbeit
 | [US-0010](stories/US-0010.md) | spine-gate | ✅ verifiziert |
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ⚪ offen |
 | [US-0016](stories/US-0016.md) | spine-update | 🟡 in Arbeit |
+| [US-0018](stories/US-0018.md) | Über neue Versionen informiert werden | ⚪ offen |
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 
@@ -61,7 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-_keine_
+- [ADR-0022](../09-decisions/ADR-0022.md) — Prüfung nach dem Build als eigener Schritt, Testberichte selbst finden
 
 ## Widersprüche
 

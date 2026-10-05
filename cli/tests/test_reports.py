@@ -91,3 +91,28 @@ class UnreadableReports(ReportTest):
     def test_test_reports_must_be_a_list(self):
         profile = PROFILE.replace("language: en\n", "language: en\ntest_reports: target\n")
         self.assertEqual(self.codes({".docspine/PROFILE.md": profile}), [1])
+
+
+@req("REQ-0038")
+class DiscoverReports(ReportTest):
+    def test_reports_are_found_without_configuration(self):
+        xml = report(case("REQ-0001: prints the greeting"))
+        results, _ = self.results({"module-a/target/surefire-reports/TEST-a.xml": xml,
+                                   "module-b/build/test-results/test/TEST-b.xml": report(case("REQ-0002 b"))})
+        self.assertEqual(sorted(results), [("REQ-0001", "passed"), ("REQ-0002", "passed")])
+
+    def test_other_xml_files_are_ignored(self):
+        results, proj = self.results({"pom.xml": "<project><modelVersion>4.0.0</modelVersion></project>",
+                                      "docs/x.xml": report(case("REQ-0003 in docs"))})
+        self.assertEqual(results, [])
+        self.assertEqual(proj.findings, [])
+
+    def test_configured_locations_limit_the_search(self):
+        files = self.with_report(report(case("REQ-0001 configured")))
+        files["other/target/surefire-reports/TEST-x.xml"] = report(case("REQ-0002 elsewhere"))
+        results, _ = self.results(files)
+        self.assertEqual(results, [("REQ-0001", "passed")])
+
+    def test_discovered_report_proves_implemented_requirement(self):
+        xml = report(case("REQ-0001: prints the greeting"))
+        self.assertEqual(self.codes({"app/target/surefire-reports/TEST-a.xml": xml, REQ_PATH: IMPLEMENTED}), [])
