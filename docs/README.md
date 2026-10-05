@@ -1,12 +1,13 @@
-<!-- docspine 0.8 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
+<!-- docspine 0.9 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
 
 # Dokumentation nach docspine
 
 Diese Dokumentation ist in Anlehnung an [arc42](https://arc42.org) aufgebaut und wird
 mit [docspine](https://github.com/flaechsig/docspine) geführt: Anforderungen, Architektur
 und Entscheidungen bilden **ein Dokument**, verteilt auf viele kleine Dateien, verbunden
-über feste IDs und von einem Prüfwerkzeug kontrolliert.
-Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, steht in
+über feste IDs und von einem Prüfwerkzeug kontrolliert. Die Dokumentation ist das Rückgrat
+der Entwicklung: Tests weisen Requirements nach, und der Build prüft, dass Doku und Code
+übereinstimmen. Diese Seite erklärt den Aufbau und die Arbeitsweise. Was im Einzelnen gilt, steht in
 `.docspine/STANDARD.md`, die Werte dieses Projekts in `.docspine/PROFILE.md`.
 
 - **Worum es geht:** [Vision](01-goals/vision.md)
@@ -95,8 +96,14 @@ verschiedenen KI-Werkzeugen. Ohne Skills geht es genauso, die Regeln stehen in
 | **Anfordern** | Ein Bedürfnis wird zu Story und Requirement: wer, was, warum, woran prüfbar. | `spine-require` |
 | **Wirkung prüfen** | Muss die Architektur etwas berücksichtigen, ändern oder entscheiden? | `spine-impact` |
 | **Entscheiden** | Eine fällige Entscheidung wird mit Alternativen und Begründung festgehalten. | `spine-decide` |
+| **Freigeben** | Ein beschriebenes Requirement wird zum Bau freigegeben (`proposed` → `planned`). Das entscheidet ein Mensch, einzeln oder gesammelt. | — |
 | **Umsetzen** | Code und Test entstehen, der Test trägt die Requirement-ID. Ist er grün, wechselt der Status. | `spine-build` |
 | **Nachweisen** | Prüft der Test wirklich, was das Requirement fordert, oder trägt er nur die ID? | `spine-prove` |
+
+Spezifizieren und Bauen sind getrennt: Die Schritte der Spezifikation schreiben nie
+Code, und gebaut wird erst nach einer Freigabe. Man kann sich erst durch die ganze
+Spezifikation arbeiten und später bauen, oder jedes Requirement gleich freigeben und
+umsetzen.
 
 Drei Regeln gelten in jedem Schritt:
 

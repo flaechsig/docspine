@@ -4,6 +4,25 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.9
+
+- **`spine-gate` also sets up a new build,** connected from the start, when the project
+  has none yet; it picks the integration from the tool chain named in the constraints.
+  The Maven integration has a tested minimal `pom.xml` for this.
+- **`spine-gate` proposes the status change** for requirements whose tests already pass,
+  in the same step, because a passing test on a `planned` requirement fails the build
+  (error 9).
+- **`spine-init`** recommends `spine-gate` before the first build file or test, also in
+  `AGENTS.md`.
+- **Specifying and building are separate.** `proposed` means described, `planned` means
+  released for building; a person decides the release. Specification skills write no
+  code; new requirements are always `proposed`; building works only on `planned`
+  requirements. `spine-require` suggests the next story by default instead of building.
+- **Git is a prerequisite** (standard 2.6), like Python. `spine-init` checks it, offers
+  `git init` for a new folder, and offers the first commit at the end.
+- **Positioning:** docspine is a way of developing with the documentation as its spine,
+  from vision to code and proof. Designed for one person; small teams follow in 0.10.
+
 ## 0.8
 
 - **New skill `spine-gate`:** recognises the tool chain, applies the matching integration

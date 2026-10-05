@@ -1,10 +1,12 @@
-<!-- docspine 0.8 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.9 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.8 (draft)
+Version 0.9 (draft)
 
-This document defines the rules for documentation that follows docspine. It applies
+This document defines the rules for projects that follow docspine, a way of developing
+in which the documentation is the spine: from vision through requirements and decisions
+to code and proof. It applies
 equally to people and AI agents. `README.md` explains how to work with the
 documentation; this file defines what applies. The project's own values and any
 deviations are in `PROFILE.md`. Both files are configuration and live in `.docspine/`.
@@ -157,6 +159,12 @@ in section 12.
 `NNNN` is four digits with leading zeros. A new artifact takes the next free number.
 The `id` in the front matter must match the file name.
 
+### 2.6 Prerequisites
+
+- **Git.** The project is a Git repository. Decisions are superseded rather than
+  rewritten, and the history is part of the proof (section 10).
+- **Python 3.9 or later** for the checker (section 11).
+
 ## 3 Artifacts
 
 All source files are Markdown. Artifacts with an ID have YAML front matter.
@@ -264,8 +272,8 @@ to find all affected requirements in a minute.
 
 | `status` | Meaning | Rule |
 |---|---|---|
-| `proposed` | candidate, not committed | none |
-| `planned` | committed, not (fully) built | no passing test result |
+| `proposed` | described, not released for building | no passing test result |
+| `planned` | released for building, not (fully) built | no passing test result |
 | `implemented` | built | passing test result **or** a proof by hand: `evidence` **and** `verification` |
 | `rejected` | discarded, never built | none |
 | `superseded` | replaced by a requirement or a decision | `superseded_by` |
@@ -273,7 +281,14 @@ to find all affected requirements in a minute.
 A requirement is atomic; there is no `in-progress`. Partly built means `planned`. If
 that happens often, the requirement is cut too coarsely.
 
-A new requirement is never `implemented`.
+A new requirement is always `proposed`.
+
+**Specifying and building.** The change from `proposed` to `planned` is the release for
+building. A person decides it, for single requirements or in batches. Specification
+work (vision, stories, requirements, architecture, decisions) writes no code. Building
+works only on requirements with `planned`; a requirement on `proposed` is released
+first. This lets a project specify completely before building, or release and build
+each requirement right away.
 
 **Confidence.** Has the statement been checked against the running system?
 `verified | unverified | contradicted`.
