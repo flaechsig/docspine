@@ -1,11 +1,13 @@
-<!-- docspine 0.8 · source: standard/en/README.md · do not edit in projects -->
+<!-- docspine 0.9 · source: standard/en/README.md · do not edit in projects -->
 
 # Documentation according to docspine
 
 This documentation is based on [arc42](https://arc42.org) and maintained with
 [docspine](https://github.com/flaechsig/docspine): requirements, architecture and
 decisions form **one document**, spread across many small files, connected by fixed IDs
-and controlled by a checker. This page explains
+and controlled by a checker. The documentation is the spine of the development: tests
+prove requirements, and the build checks that documentation and code agree. This page
+explains
 the structure and the way of working. What applies in detail is in
 `.docspine/STANDARD.md`, this project's values are in `.docspine/PROFILE.md`.
 
@@ -93,8 +95,13 @@ skills it works just the same; the rules are in `.docspine/STANDARD.md`.
 | **Require** | A need becomes a story and a requirement: who, what, why, how to check. | `spine-require` |
 | **Check impact** | Must the architecture take something into account, change or decide something? | `spine-impact` |
 | **Decide** | A due decision is recorded with alternatives and rationale. | `spine-decide` |
-| **Build** | Code and test are written; the test carries the requirement ID. Once it passes, the status changes. | `spine-build` |
+| **Release** | A described requirement is released for building (`proposed` → `planned`). This is a person's decision, for single requirements or in batches. | — |
+| **Build** | Code and test are written for released requirements; the test carries the requirement ID. Once it passes, the status changes. | `spine-build` |
 | **Prove** | Does the test really check what the requirement demands, or does it only carry the ID? | `spine-prove` |
+
+Specifying and building are separate: the specification steps never write code, and
+building starts only with a release. You can work through the whole specification first
+and build later, or release and build each requirement right away.
 
 Three rules apply in every step:
 

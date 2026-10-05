@@ -1,10 +1,11 @@
 ---
 name: spine-gate
 description: >-
-  Connect docspine to a project's build and tests: recognise the tool chain, apply the
-  matching integration step by step with explanations, and check the result. Use when the
-  user wants the docspine check in the build, wants test results to prove requirements,
-  or calls /spine-gate.
+  Connect docspine to a project's build and tests, or set up a new build connected from
+  the start: recognise the tool chain, apply the matching integration step by step with
+  explanations, and check the result. Use before the first build file or test is written,
+  when the user wants the docspine check in the build or test results to prove
+  requirements, or when the user calls /spine-gate.
 ---
 
 # spine-gate
@@ -37,19 +38,27 @@ you make it; the person approves. Talk to the person in the project language
 ## Step 1 — Read the state (silently)
 
 - the front matter of every file in `.agents/skills/spine-gate/integrations/`: `name`,
-  `detect`, `test_command`, `test_reports`, `requires`
-- which integrations match: the file named in `detect` exists in the repository root
+  `detect`, `keywords`, `test_command`, `test_reports`, `requires`
+- which integrations match:
+  - **existing build:** the file named in `detect` exists in the repository root
+  - **no build yet:** the tool chain named in `docs/02-constraints.md` or in decisions
+    (`docs/09-decisions/`) matches an integration's `keywords`
 - `.docspine/PROFILE.md`: is `test_reports` already set?
 - the build file of the matching integration: what is already configured?
 - the tests: which carry a requirement ID in their name, which do not
 - the requirements with `status: implemented` and how they are proven today
+- requirements with `status: proposed` or `planned` whose tests already pass
 - whether the prerequisites in `requires` are available (for example `python3 --version`)
 
 ## Step 2 — Explain the plan
 
-Name the integration you found and why it matches. If several match, ask which one
-applies. Then show, as a numbered list, each change with a short explanation:
+Name the integration you found and why it matches. If several match, or if no build
+exists and the constraints do not name a tool chain, ask which one applies. Then show, as
+a numbered list, each change with a short explanation:
 
+0. **New build** (only if no build file exists) — create it from the integration's
+   section "New build", with the project's names filled in. It contains the settings of
+   points 1 and 2 from the start.
 1. **Test results** — what the integration requires so that requirement IDs appear in the
    reports (for example a reporter setting), and which tests would need an ID in their
    name. List those tests; do not rename them yet.
@@ -62,6 +71,14 @@ applies. Then show, as a numbered list, each change with a short explanation:
 6. **Decision** — connecting the build is an architecture decision. Offer an ADR with
    `status: proposed` that records the integration and the rejected alternative (running
    the check by hand). The person decides its status.
+
+7. **Status** — once the reports are read, a passing test for a requirement on `proposed`
+   or `planned` is error 9 and fails the build. For each such requirement on `planned`,
+   propose in the same step `status: implemented` with the implementation paths in
+   `evidence`, and `status: verified` for stories whose requirements are then all
+   implemented (STANDARD 8.2). A requirement on `proposed` has not been released for
+   building: ask the person whether to release it now; only then propose the change to
+   `implemented`.
 
 Mention what the person should expect: a documentation error will now fail the build,
 and the tests must run before `check` (`check --without-tests` checks the documentation

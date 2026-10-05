@@ -1,8 +1,13 @@
 # docspine
 
-Ein gemeinsamer Dokumentationsstandard mit Traceability-Gate für Projekte, die
-ihre Doku als Code führen: **Vision → Epic → Story → Requirement**, arc42 und
-ADRs, verbunden über unveränderliche IDs und vom Build geprüft.
+docspine ist eine Arbeitsweise für die Entwicklung, bei der die Dokumentation das
+Rückgrat bildet: von der Vision über Anforderungen und Entscheidungen bis zu Code und
+Nachweis, verbunden über feste IDs und vom Build geprüft. **Spezifizieren und Bauen**
+lassen sich getrennt nutzen: Man kann sich erst durch die ganze Spezifikation arbeiten
+und dann in Schüben bauen, oder jedes Requirement gleich umsetzen.
+
+Ausgelegt ist docspine derzeit für eine Person. Kleine Teams bis etwa fünf Personen
+folgen mit Version 0.10 (Arbeit auf Branches, Umgang mit gleichzeitig vergebenen IDs).
 
 docspine dokumentiert sich selbst in Anlehnung an arc42, so wie es das für jedes
 Projekt vorsieht. Einstieg: **[docs/README.md](docs/README.md)**.
@@ -36,8 +41,9 @@ Freigabe die Dokumentation unter `docs/` an.
 **Anbindung an Build und Tests:** je Werkzeugkette in [integrations/](integrations/),
 zuerst [Maven mit JUnit 5](integrations/maven-junit5.md).
 
-**Voraussetzungen:** `curl` und `tar` (unter Linux, macOS und Windows 10/11 vorhanden),
-Python 3.9 oder neuer für das Prüfwerkzeug. Die Skills liegen nach der Installation unter
+**Voraussetzungen:** Git und Python 3.9 oder neuer (für das Prüfwerkzeug); für die
+Installation `curl` und `tar` (unter Linux, macOS und Windows 10/11 vorhanden).
+`spine-init` legt das Git-Repository an, falls es noch keins gibt. Die Skills liegen nach der Installation unter
 `.agents/skills/` und folgen dem offenen Agent-Skills-Standard, auch für andere
 KI-Werkzeuge.
 

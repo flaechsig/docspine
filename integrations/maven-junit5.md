@@ -2,6 +2,7 @@
 name: maven-junit5
 title: Maven with JUnit 5
 detect: pom.xml
+keywords: [Java, Maven, JUnit]
 test_command: mvn verify
 test_reports: [target/surefire-reports]
 requires: [JDK, Maven 3.8 or later, Python 3.9 or later]
@@ -105,6 +106,84 @@ Optional, for the console: the line "Running …" shows the class's display name
   <usePhrasedClassNameInRunning>true</usePhrasedClassNameInRunning>
 </statelessTestsetInfoReporter>
 ```
+
+## New build
+
+For a project without a build yet: a minimal `pom.xml` that already contains the
+settings above. Replace `GROUP_ID`, `ARTIFACT_ID` and `JAVA_VERSION` (for example `21`).
+Code goes under `src/main/java/`, tests under `src/test/java/`.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>GROUP_ID</groupId>
+  <artifactId>ARTIFACT_ID</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.release>JAVA_VERSION</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.13.4</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+      <!-- docspine: display names with the requirement ID go into the test reports -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.4</version>
+        <configuration>
+          <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
+            <usePhrasedTestCaseMethodName>true</usePhrasedTestCaseMethodName>
+          </statelessTestsetReporter>
+        </configuration>
+      </plugin>
+      <!-- docspine: check the documentation after the tests; an error fails the build -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>docspine-check</id>
+            <phase>verify</phase>
+            <goals><goal>exec</goal></goals>
+            <configuration>
+              <executable>python3</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>.docspine/docspine.pyz</argument>
+                <argument>check</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+Verified: with a test named `REQ-0001: …` the report contains the ID, the check in
+`verify` reports `OK`, and the build succeeds.
 
 ## Prerequisites
 
