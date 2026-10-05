@@ -112,7 +112,7 @@ Then show the plan as one table, every row with a target:
 | generated views, own conventions replaced by the standard | delete |
 | methodology skills | delete; `spine-*` takes over |
 | project skills | `.agents/skills/<name>/`, links to moved paths updated |
-| architecture and rules in `CLAUDE.md` or similar | into the chapters and `AGENTS.md` (2.2); the tool file only points to `AGENTS.md` |
+| architecture and rules in `CLAUDE.md`, `AGENTS.md` or similar | commands and working rules into `AGENTS.md` (2.2); content checked against the code into the chapters, unchecked content to `docs/legacy/`; the tool file only points to `AGENTS.md` |
 | leftovers of other methods or tools | delete |
 
 Add to the plan:
@@ -121,7 +121,10 @@ Add to the plan:
   `obligation: MUSS` → `MUST`, epic IDs in upper case), fields that are dropped (an epic's
   `status`; `confidence` and test paths in `evidence` for requirements that will be
   proven by test results, STANDARD 3.4), status values that map to the ones of
-  STANDARD 3.3 and 3.4, hand-written back references that are removed (STANDARD 4).
+  STANDARD 3.3 and 3.4, hand-written back references that are removed (STANDARD 4),
+  and relations the standard does not allow, for example a `verified` story that lists a
+  rejected or superseded requirement, or a decision named as `source` instead of an
+  external norm (it becomes `requires` in the decision).
 - **Norms** cited in the requirements' `source`, for `sources` in the profile.
 - **The core statement** of the vision, drafted from existing text and marked as a
   suggestion; `UNKNOWN` with the open question if nothing fits.
@@ -150,12 +153,18 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
 
 1. **Working areas** out of `docs/`, if the plan says so, with every path in workflows,
    build files, scripts and skills updated.
-2. **Move** every file to its target with `git mv`, including renames to the new IDs and
-   file names (`ADR-001.adoc` → `ADR-0001.adoc`). Content and format stay unchanged.
-3. **Convert formats:** AsciiDoc and other formats to Markdown, file extensions with
-   `git mv`. Keep the text; change only the markup.
+2. **Move** every file to its target with `git mv`, including renames to the new IDs,
+   file names and extensions (`ADR-001.adoc` → `ADR-0001.md`); create missing target
+   folders first. Content and format stay unchanged. Git recognises a rename only if
+   the content stays similar; a format change in the same commit loses it for short or
+   table-heavy files.
+3. **Convert formats:** AsciiDoc and other formats to Markdown. Keep the text; change
+   only the markup. A file that is split into several (for example one arc42 document
+   into chapter files) has no history to keep; split it here.
 4. **Align the schema** as listed in the plan, and update every reference to the new paths
-   and IDs. Rewrite ADRs only in form (front matter, section headings); an accepted
+   and IDs: resolve each relative link from the file's old location, and write ID
+   references in the documentation in the new format (`ADR-006` → `ADR-0006`); code and
+   working areas keep theirs. Rewrite ADRs only in form (front matter, section headings); an accepted
    decision keeps its content (STANDARD 3.5).
 5. **Write the frame:** `docs/01-goals/vision.md` with the approved core statement,
    `.docspine/PROFILE.md` (front matter `language`, `statement_language: en`, `sources`;
@@ -166,7 +175,8 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
    not connected, the check in `AGENTS.md` is `check --without-tests`, with a note that
    `spine-gate` connects the build.
 6. **Delete** generated views, replaced conventions and leftovers, as approved, with
-   `git rm`.
+   `git rm`. Untracked files (for example rendered images that were never committed)
+   stay; name them in the summary.
 7. **Findings** as open questions, contradictions (STANDARD 7) or stories, as approved.
 
 Do not write generated regions; the checker does that.
