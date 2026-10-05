@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.13
 
 - **The checker finds JUnit XML reports itself** anywhere in the repository; the profile
   field `test_reports` becomes optional and only limits the search.
