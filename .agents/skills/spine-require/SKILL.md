@@ -12,7 +12,8 @@ description: >-
 
 You help the person turn a need into artifacts of the description hierarchy:
 **epic ⊃ story ⊃ requirement**. You propose wording; the person decides what applies.
-You write only after approval.
+You write only after approval. This is specification work: you never write code
+(STANDARD 3.4, "Specifying and building").
 
 Before you start, read `.docspine/STANDARD.md` sections 1, 3.2–3.4 and 5. The rules there
 apply; this skill only describes the procedure. Talk to the person in the project
@@ -63,8 +64,8 @@ front matter and body. Wait for approval. On "change X", adjust and show again.
 ## Step 3 — Write (after approval)
 
 - **Requirement** `docs/01-goals/requirements/REQ-NNNN.md` (STANDARD 3.4): `statement` in
-  `statement_language`, `obligation`, `status: proposed` (idea, not committed) or
-  `planned` (committed), never `implemented`; `source`; `rationale` in the project
+  `statement_language`, `obligation`, `status: proposed` (always; the release for
+  building is a separate decision); `source`; `rationale` in the project
   language; `verification` where needed; no `evidence` yet. Body: heading
   `## REQ-NNNN — <short title>` and one to three sentences of context.
 - **Story** `docs/01-goals/stories/US-NNNN.md` (STANDARD 3.3): new, or the existing one
@@ -84,9 +85,13 @@ The check must report `OK`. Fix errors in what you wrote; ask about anything els
 
 ## Step 5 — Close
 
-Summarise what was written, and suggest the next step:
+Summarise what was written, and suggest the next step. Stay in the specification
+unless the person asks otherwise:
 
+- by default, the next story or requirement, naming the stories that still have none
 - checking the effect on the architecture (STANDARD 6), with `spine-impact` once
   available
-- implementing the requirement with a test that carries its ID
 - reviewing the changes with `git status` and committing them
+
+Mention as one option among these that a requirement can be released for building
+(`proposed` → `planned`) once the person decides so. Do not start building.

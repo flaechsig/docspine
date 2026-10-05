@@ -33,6 +33,9 @@ you propose, the person decides, and you write only after approval.
    (`<!-- docspine X · … -->`).
 3. Check that `python3 --version` works. If it does not, tell the person that the checker
    needs Python 3.9 or later, and continue with everything except the check in step 6.
+4. Check that `git --version` works and whether the folder is a Git repository
+   (`git rev-parse --is-inside-work-tree`). Without Git, tell the person that docspine
+   needs it (STANDARD 2.6) and stop.
 
 ## Step 1 — Language
 
@@ -51,6 +54,9 @@ language.
   installation) → say that `spine-adopt` is meant for existing projects. Continue only if
   the person explicitly wants to start the documentation fresh.
 - **Otherwise** → new project, continue.
+
+If the folder is not yet a Git repository, propose `git init` and run it after approval,
+before anything is written.
 
 ## Step 3 — Vision in dialogue
 
@@ -130,8 +136,9 @@ If `AGENTS.md` does not exist, create it. If it exists, add a section "Documenta
   python3 .docspine/docspine.pyz check
   ```
   As long as the project has no tests yet, write the first line as a placeholder
-  comment. `python3 .docspine/docspine.pyz check --without-tests` checks the
-  documentation alone.
+  comment, followed by: "Create the build and the first tests with `spine-gate`, so that
+  they are connected to docspine from the start." `python3 .docspine/docspine.pyz check
+  --without-tests` checks the documentation alone.
 - no architecture content (STANDARD 2.2)
 
 ## Step 5 — Check
@@ -145,7 +152,9 @@ something you cannot decide, ask.
 Summarise in a few lines what was written, list the open questions (they also appear in
 `docs/01-goals/README.md`), and suggest:
 
-- reviewing the changes with `git status` and committing them
+- reviewing the changes with `git status` and committing everything, including the files
+  from the installation, as the first commit; offer to do it after approval
 - `spine-require` for the most important theme as the next step
-- `spine-gate` once the project has a build and tests, to connect the check to them
+- `spine-gate` before the first build file or test is written, so that the build is
+  connected to docspine from the start
 
