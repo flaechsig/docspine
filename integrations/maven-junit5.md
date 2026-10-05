@@ -63,7 +63,8 @@ method name instead of the display name.
 display name of the method. Put `{displayName}` into the name pattern, for example
 `@ParameterizedTest(name = "{displayName} [{index}] {argumentsWithNames}")`.
 
-**The profile names the reports.** In `.docspine/PROFILE.md`:
+**Finding the reports.** The check finds the reports under `target/surefire-reports`
+itself. Only to limit the search, name them in `.docspine/PROFILE.md`:
 
 ```yaml
 test_reports: [target/surefire-reports]
