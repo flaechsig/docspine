@@ -4,6 +4,14 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.16
+
+- **New skill `spine-adopt`** brings an existing project with code and documentation under
+  docspine: it takes stock, proposes a target for every part in one plan, and moves the
+  documentation on a branch, file moves before content changes so the history is kept.
+- **`spine-gate` replaces an existing traceability gate** instead of running beside it, and
+  moves requirement references from tags or comments into the test's display name.
+
 ## 0.15
 
 - **Maven integration: integration tests.** Failsafe needs the same reporter setting as

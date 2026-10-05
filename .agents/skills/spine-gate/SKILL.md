@@ -3,9 +3,10 @@ name: spine-gate
 description: >-
   Connect docspine to a project's build and tests, or set up a new build connected from
   the start: recognise the tool chain, apply the matching integration step by step with
-  explanations, and check the result. Use before the first build file or test is written,
-  when the user wants the docspine check in the build or test results to prove
-  requirements, or when the user calls /spine-gate.
+  explanations, and check the result; an existing traceability gate is replaced. Use
+  before the first build file or test is written, after spine-adopt, when the user wants
+  the docspine check in the build or test results to prove requirements, or when the
+  user calls /spine-gate.
 ---
 
 # spine-gate
@@ -59,7 +60,11 @@ it after approval. Never write to the main branch.
     (`docs/09-decisions/`) matches an integration's `keywords`
 - `.docspine/PROFILE.md`: is `test_reports` already set?
 - the build file of the matching integration: what is already configured?
-- the tests: which carry a requirement ID in their name, which do not
+- the tests: which carry a requirement ID in their name, which do not, and which refer
+  to a requirement in another way (for example a JUnit tag, a comment or an annotation of
+  the project's own)
+- an existing traceability gate: build modules, plugins, scripts or CI steps that check
+  or report requirement coverage, and generated views they write
 - the requirements with `status: implemented` and how they are proven today
 - requirements with `status: proposed` or `planned` whose tests already pass
 - whether the prerequisites in `requires` are available (for example `python3 --version`)
@@ -76,7 +81,13 @@ a numbered list, each change with a short explanation:
 1. **Test results** — what the integration requires so that requirement IDs appear in the
    reports (for example a reporter setting), and which tests would need an ID in their
    name. List those tests; do not rename them yet.
+   Tests that refer to a requirement in another way get the ID in their display name
+   instead; list them with the old and the new form.
 2. **Check in the build** — the configuration that runs `check` after the tests.
+   **Existing gate:** replace it rather than run both. List what is removed (modules,
+   plugins, scripts, CI steps, generated views) and where the check takes its place. If
+   the old gate checks something the docspine check does not, name it and ask whether it
+   is kept as a step of its own.
 3. **Profile** — nothing to do, the check finds the reports itself. Set `test_reports`
    only if the search must be limited (STANDARD 8.1).
 4. **AGENTS.md** — the workflow in this order: `python3 .docspine/docspine.pyz render`,
@@ -101,7 +112,9 @@ Wait for approval. The person may approve single points.
 ## Step 3 — Carry out (after approval)
 
 Make the approved changes. Rename test display names only for the tests the person
-approved, and only to add the requirement ID.
+approved, and only to add the requirement ID. When a test referred to a requirement in
+another way, remove that reference in the same change, so that each test names its
+requirement in one place.
 
 ## Step 4 — Check
 
