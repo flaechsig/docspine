@@ -6,6 +6,11 @@ the new version.
 
 ## Unreleased
 
+- **The checker finds JUnit XML reports itself** anywhere in the repository; the profile
+  field `test_reports` becomes optional and only limits the search.
+- **The check may run as a separate step right after the build** (integration contract,
+  standard 11), run by the continuous integration. The Maven integration uses this for
+  multi-module projects instead of an extra module.
 - **Maven integration corrected:** the reporter needs `usePhrasedTestCaseClassName`
   as well, otherwise a requirement ID in the display name of a class is lost. Notes on
   parameterized tests (`{displayName}` in the name pattern) and on multi-module projects

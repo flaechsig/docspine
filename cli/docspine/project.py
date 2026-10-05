@@ -176,12 +176,22 @@ def _load_results(project: Project, path: Path) -> None:
 _REQ_ID = re.compile(r"\bREQ-\d{4}\b")
 
 
-def _load_test_reports(project: Project) -> None:
-    """Read JUnit XML reports from the locations in the profile's `test_reports`.
+DISCOVERY_SKIP = SKIP_DIRS | {"docs", ".docspine", ".agents", ".claude"}
 
-    Every test case counts for each requirement ID in its name or class name.
+
+def _load_test_reports(project: Project) -> None:
+    """Read JUnit XML reports.
+
+    With `test_reports` in the profile, only those locations are read. Without it, every
+    XML file in the repository whose root is a test suite is read, so that new modules
+    and tool chains are found without configuration. Every test case counts for each
+    requirement ID in its name or class name.
     """
-    locations = project.profile.get("test_reports") or []
+    if project.profile.get("test_reports") is None:
+        for path in _discover_reports(project.root):
+            _load_junit_xml(project, path)
+        return
+    locations = project.profile.get("test_reports")
     if not isinstance(locations, list):
         return  # reported as error 1 by the schema check
     profile_rel = project.rel(project.config / "PROFILE.md")
@@ -218,3 +228,19 @@ def _load_junit_xml(project: Project, path: Path) -> None:
             outcome = "passed"
         for req in ids:
             project.results.append(Result(req=req, result=outcome, test=f"{classname}.{name}", path=rel))
+
+
+def _discover_reports(root: Path):
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = sorted(d for d in dirnames if d not in DISCOVERY_SKIP)
+        for name in sorted(filenames):
+            if not name.endswith(".xml"):
+                continue
+            path = Path(dirpath) / name
+            try:
+                with open(path, "rb") as handle:
+                    head = handle.read(4096)
+            except OSError:
+                continue
+            if b"<testsuite" in head:
+                yield path

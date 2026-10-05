@@ -4,7 +4,7 @@ title: Maven with JUnit 5
 detect: pom.xml
 keywords: [Java, Maven, JUnit]
 test_command: mvn verify
-test_reports: [target/surefire-reports]
+test_reports: [target/surefire-reports]   # optional, the checker finds reports itself
 requires: [JDK, Maven 3.8 or later, Python 3.9 or later]
 tested_with: [Maven 3.8.7, Surefire 3.2.5 and 3.5.4, exec-maven-plugin 3.5.0, JUnit 5.11 and 5.13, multi-module reactor]
 ---
@@ -96,58 +96,28 @@ test_reports: [target/surefire-reports]
 </plugin>
 ```
 
-**Multi-module projects.** In a reactor with several modules, the check must run after
-the tests of all modules, so it does not belong into the parent POM. Add a small last
-module that only runs the check, and list the reports of every module in the profile:
+**Multi-module projects.** In a reactor with several modules, the check needs the
+reports of all modules, but Maven 3 has no step "after all modules". Do not put the
+`exec-maven-plugin` into the parent POM. Run the check as a separate step right after
+the build instead; it finds the reports of every module itself:
 
-```xml
-<!-- parent pom.xml: the check module comes last -->
-<modules>
-  <module>app-core</module>
-  <module>app-web</module>
-  <module>app-docs-check</module>
-</modules>
+```
+mvn verify
+python3 .docspine/docspine.pyz check
 ```
 
-```xml
-<!-- app-docs-check/pom.xml -->
-<artifactId>app-docs-check</artifactId>
-<packaging>pom</packaging>
-<build>
-  <plugins>
-    <plugin>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>exec-maven-plugin</artifactId>
-      <version>3.5.0</version>
-      <executions>
-        <execution>
-          <id>docspine-check</id>
-          <phase>verify</phase>
-          <goals><goal>exec</goal></goals>
-          <configuration>
-            <executable>python3</executable>
-            <workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
-            <arguments>
-              <argument>.docspine/docspine.pyz</argument>
-              <argument>check</argument>
-            </arguments>
-          </configuration>
-        </execution>
-      </executions>
-    </plugin>
-  </plugins>
-</build>
-```
+In the continuous integration, add the check as a step after the build, for example in
+GitHub Actions:
 
 ```yaml
-# .docspine/PROFILE.md
-test_reports:
-  - app-core/target/surefire-reports
-  - app-web/target/surefire-reports
+- name: Build and test
+  run: mvn -B clean verify
+- name: docspine check
+  run: python3 .docspine/docspine.pyz check
 ```
 
-Verified in a reactor with five modules and 278 tests: the check runs last and reports
-`OK`.
+Verified in a reactor with five modules and 278 tests: the check finds the reports of
+all modules and reports `OK`.
 
 Workflow:
 

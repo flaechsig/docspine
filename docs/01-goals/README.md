@@ -7,8 +7,8 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 | | Anzahl |
 |---|---|
 | Stories | ⚪ offen 7 · 🟡 in Arbeit 3 · ✅ verifiziert 8 |
-| Requirements | umgesetzt 32 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | angenommen 21 |
+| Requirements | umgesetzt 33 · abgelöst 5 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 21 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -62,7 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-_keine_
+- [ADR-0022](../09-decisions/ADR-0022.md) — Prüfung nach dem Build als eigener Schritt, Testberichte selbst finden
 
 ## Widersprüche
 
