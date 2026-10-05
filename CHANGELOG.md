@@ -6,6 +6,9 @@ the new version.
 
 ## Unreleased
 
+- **`spine-init` names the main branch `main`** (`git init -b main`), independently of
+  the machine's Git configuration. The remote instructions in the standard use the
+  project's own main branch name.
 - **Skills name conflicting instructions.** If an earlier instruction or a remembered
   note conflicts with a step, the skill says so and asks, instead of skipping the step
   silently (found in a trial: an old note suppressed `git init`, first commit and remote).

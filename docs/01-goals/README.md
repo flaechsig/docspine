@@ -6,7 +6,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 8 · 🟡 in Arbeit 4 · ✅ verifiziert 5 |
+| Stories | ⚪ offen 8 · 🟡 in Arbeit 3 · ✅ verifiziert 6 |
 | Requirements | umgesetzt 32 · abgelöst 5 |
 | [Entscheidungen](../09-decisions/) | angenommen 21 |
 
@@ -37,7 +37,7 @@ Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0007](stories/US-0007.md) | spine-init | 🟡 in Arbeit |
+| [US-0007](stories/US-0007.md) | spine-init | ✅ verifiziert |
 | [US-0008](stories/US-0008.md) | Methodik-Skills zusammenführen | 🟡 in Arbeit |
 | [US-0009](stories/US-0009.md) | spine-adopt | ⚪ offen |
 | [US-0010](stories/US-0010.md) | spine-gate | 🟡 in Arbeit |

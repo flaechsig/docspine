@@ -190,7 +190,8 @@ docspine is designed for one person or a small team of up to about five people.
 - **A team shares a remote repository** as its meeting point. Where it lives and who has
   access is the team's decision. Connecting an existing project: create an empty
   repository at the provider, then `git remote add origin <url>` and
-  `git push -u origin main`.
+  `git push -u origin <main branch>`, with the name of the project's main branch
+  (`main` for projects set up by `spine-init`).
 
 ## 3 Artifacts
 

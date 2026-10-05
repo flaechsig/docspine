@@ -72,9 +72,10 @@ language.
   the person explicitly wants to start the documentation fresh.
 - **Otherwise** → new project, continue.
 
-If the folder is not yet a Git repository, propose `git init` with one sentence why
-(branches for every change, the history as part of the proof) and run it after approval,
-before anything is written.
+If the folder is not yet a Git repository, propose `git init -b main` with one sentence
+why (branches for every change, the history as part of the proof) and run it after
+approval, before anything is written. `-b main` names the main branch independently of
+the machine's Git configuration.
 
 ## Step 3 — Vision in dialogue
 
