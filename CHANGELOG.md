@@ -4,6 +4,16 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.10
+
+- **Small teams** (up to about five people, standard 2.7): every change on its own branch,
+  merged only when `check` reports `OK`; IDs become final on the main branch.
+- **New command `renumber OLD NEW`:** gives an artifact a new ID when two branches took
+  the same number, updates every reference in `docs/`, and lists other files that still
+  contain the old ID (such as test names).
+- **Skills propose a branch** before writing on the main branch; `spine-init` makes the
+  first commit and helps connecting a remote repository the team has created.
+
 ## 0.9
 
 - **`spine-gate` also sets up a new build,** connected from the start, when the project

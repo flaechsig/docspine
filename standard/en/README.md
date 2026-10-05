@@ -1,4 +1,4 @@
-<!-- docspine 0.9 · source: standard/en/README.md · do not edit in projects -->
+<!-- docspine 0.10 · source: standard/en/README.md · do not edit in projects -->
 
 # Documentation according to docspine
 
@@ -103,7 +103,7 @@ Specifying and building are separate: the specification steps never write code, 
 building starts only with a release. You can work through the whole specification first
 and build later, or release and build each requirement right away.
 
-Three rules apply in every step:
+Four rules apply in every step:
 
 - **People decide what applies.** Skills and AIs propose; files are written after
   approval.
@@ -111,6 +111,9 @@ Three rules apply in every step:
 - **Gaps lead back.** If building shows that a requirement is missing or the
   architecture does not hold, go back to the matching step instead of bridging the gap
   in code.
+- **Every change on its own branch.** Merged into the main branch only when the check
+  reports `OK`. IDs become final there; this is what lets a small team work in parallel
+  (`.docspine/STANDARD.md`, section 2.7).
 
 Instructions for wiring the checker into a build or adopting an existing project, and
 for installation, are on the [docspine page](https://github.com/flaechsig/docspine).

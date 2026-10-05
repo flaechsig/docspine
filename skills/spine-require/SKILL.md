@@ -25,11 +25,18 @@ language (`language` in `.docspine/PROFILE.md`).
 - a story ID, e.g. `/spine-require US-0001`: refine this story into requirements
 - nothing: ask what it is about
 
+## Branch
+
+Before writing anything, check the current branch (`git branch --show-current`). On the
+main branch, propose a branch for this work (`spec/<topic>`, STANDARD 2.7) and create
+it after approval. Never write to the main branch.
+
 ## Step 0 — Read the state (silently)
 
 - the epics in `docs/01-goals/epics/` with title and purpose
 - the stories in `docs/01-goals/stories/` with title, epic, status and requirements
-- the next free IDs for `US-NNNN` and `REQ-NNNN` (IDs are never reused)
+- the next free IDs for `US-NNNN` and `REQ-NNNN` (IDs are never reused; on a branch
+  they are reservations that become final on the main branch, STANDARD 2.7)
 - `sources` and `statement_language` from `.docspine/PROFILE.md`
 - with a story ID: that story and its requirements
 

@@ -1,4 +1,4 @@
-<!-- docspine 0.9 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
+<!-- docspine 0.10 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
 
 # Dokumentation nach docspine
 
@@ -105,7 +105,7 @@ Code, und gebaut wird erst nach einer Freigabe. Man kann sich erst durch die gan
 Spezifikation arbeiten und später bauen, oder jedes Requirement gleich freigeben und
 umsetzen.
 
-Drei Regeln gelten in jedem Schritt:
+Vier Regeln gelten in jedem Schritt:
 
 - **Der Mensch sagt, was gilt.** Skills und KIs schlagen vor, geschrieben wird nach
   Freigabe.
@@ -113,6 +113,9 @@ Drei Regeln gelten in jedem Schritt:
 - **Lücken führen zurück.** Zeigt sich beim Umsetzen, dass eine Anforderung fehlt oder
   die Architektur nicht trägt, geht es zurück zum passenden Schritt, statt die Lücke im
   Code zu überbrücken.
+- **Jede Änderung auf einem eigenen Branch.** Zusammengeführt wird erst, wenn die Prüfung
+  `OK` meldet. Erst dort werden IDs endgültig; so kann ein kleines Team parallel arbeiten
+  (`.docspine/STANDARD.md`, Abschnitt 2.7).
 
 Wer das Prüfwerkzeug in den Build einbinden oder ein bestehendes Projekt übernehmen will,
 findet Anleitung und Installation auf der [docspine-Seite](https://github.com/flaechsig/docspine).

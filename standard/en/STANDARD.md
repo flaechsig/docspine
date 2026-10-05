@@ -1,8 +1,8 @@
-<!-- docspine 0.9 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.10 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.9 (draft)
+Version 0.10 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -19,8 +19,9 @@ normative sense.
 1. **One source per statement.** Every statement lives in exactly one source file.
    Other places refer to it by ID or show it in a generated region (section 4).
    Copied text is an error.
-2. **IDs are immutable.** An ID is never renumbered, reused or deleted. Status
-   changes; the number does not.
+2. **IDs are immutable.** Once an artifact is on the main branch, its ID is never
+   renumbered, reused or deleted. Status changes; the number does not. On a branch that
+   is not yet merged, a new ID is a reservation (section 2.7).
 3. **The rationale comes first.** What the system does will be visible in the code.
    Why it was decided that way is recorded only here.
 4. **Observation is not intention.** Behaviour derived from code is a description,
@@ -164,6 +165,32 @@ The `id` in the front matter must match the file name.
 - **Git.** The project is a Git repository. Decisions are superseded rather than
   rewritten, and the history is part of the proof (section 10).
 - **Python 3.9 or later** for the checker (section 11).
+
+### 2.7 Branches and teams
+
+docspine is designed for one person or a small team of up to about five people.
+
+- **Every change on its own branch.** Specification and building alike; never directly
+  on the main branch. The only exception is the first commit that sets up the project.
+  Suggested names: `spec/<topic>` for specification, `feat/<topic>` for building,
+  `fix/<topic>`, `docs/<topic>`.
+- **Merge only when `check` reports `OK`**, with the tests run. A pull request or a merge
+  with `--no-ff` keeps the branch visible in the history.
+- **IDs become final on the main branch.** On a branch, a new ID takes the next free
+  number and counts as a reservation. Before merging, bring the main branch into your
+  branch. If two branches took the same number, Git reports a conflict on the file named
+  after that ID, because both sides added it. Then abort the merge (`git merge --abort`),
+  give your own new artifacts numbers that are free on both sides with
+  `python3 .docspine/docspine.pyz renumber <old> <new>`, commit, and merge again. The
+  command updates every reference in `docs/` and lists other files that still contain
+  the old ID, such as test names, to be adjusted by hand.
+- **After merging, run `render`.** Resolve conflicts in hand-written text as usual. Inside
+  a generated region, take either side and run `render`; never resolve a generated region
+  by hand.
+- **A team shares a remote repository** as its meeting point. Where it lives and who has
+  access is the team's decision. Connecting an existing project: create an empty
+  repository at the provider, then `git remote add origin <url>` and
+  `git push -u origin main`.
 
 ## 3 Artifacts
 

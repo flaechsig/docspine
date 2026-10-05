@@ -21,7 +21,7 @@ an mehreren Stellen doppeln.
 - **Projektverantwortliche**, die Doku als Code führen und mit KI-Agenten arbeiten.
   Heute: der Autor dieser drei Projekte.
 - **Kleine Teams** bis etwa fünf Personen, etwa ein Scrum-Team. Mit KI-Agenten werden
-  Teams kleiner; docspine soll zu dieser Arbeitsweise passen. Unterstützt ab Version 0.10.
+  Teams kleiner; docspine soll zu dieser Arbeitsweise passen.
 - **KI-Agenten** (Claude Code und andere), die die Doku lesen, ergänzen und prüfen.
 - **Weitere Nutzer:** docspine ist öffentlich auf GitHub, unter 0BSD. Jeder darf es
   ohne Bedingungen nutzen.
