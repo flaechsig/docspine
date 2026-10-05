@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.15
 
 - **Maven integration: integration tests.** Failsafe needs the same reporter setting as
   Surefire, otherwise requirements proven by integration tests count as not proven.
