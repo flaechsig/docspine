@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.16
 
 - **New skill `spine-adopt`** brings an existing project with code and documentation under
   docspine: it takes stock, proposes a target for every part in one plan, and moves the
