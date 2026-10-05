@@ -26,6 +26,9 @@ Talk to the person in the project language (`language` in `.docspine/PROFILE.md`
   names of the tool. Describe errors in words ("the test passes, but the requirement is
   still planned"); give the error number at most in brackets. Show commands only where
   the person is to run them.
+- **Conflicting instructions.** If something you remember or were told earlier conflicts
+  with a step of this skill, name it and ask which applies. Never skip or change a step
+  silently.
 
 ## Branch
 
@@ -64,10 +67,8 @@ Wait for approval.
 
 ## Step 3 — Carry out (after approval)
 
-- Translate the README exactly as `spine-init` describes: first line
-  `<!-- docspine X · from standard/en/README.md -->` with the installed version, terms from
-  `.docspine/STANDARD.md` section 12, links and anchors unchanged, in the Mermaid
-  diagrams only the labels translated.
+- Translate the README as STANDARD 2.4 describes, with the installed version in the first
+  line.
 - Move, delete and edit as approved. Delete with `git rm` where the file is tracked, so
   the deletion shows up in the next commit.
 

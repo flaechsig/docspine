@@ -1,3 +1,3 @@
 """docspine — checker and generator for documentation that follows the docspine standard."""
 
-__version__ = "0.11"
+__version__ = "0.12"

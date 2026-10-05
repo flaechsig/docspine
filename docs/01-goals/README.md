@@ -6,7 +6,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 8 · 🟡 in Arbeit 4 · ✅ verifiziert 5 |
+| Stories | ⚪ offen 7 · 🟡 in Arbeit 2 · ✅ verifiziert 8 |
 | Requirements | umgesetzt 32 · abgelöst 5 |
 | [Entscheidungen](../09-decisions/) | angenommen 21 |
 
@@ -19,7 +19,7 @@ Status: 🟡 in Arbeit
 | [US-0004](stories/US-0004.md) | CLI-Kern mit check und render | ✅ verifiziert |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ✅ verifiziert |
 | [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel Maven und JUnit 5 | ✅ verifiziert |
-| [US-0015](stories/US-0015.md) | Diagramme prüfen und PDF erzeugen | ⚪ offen |
+| [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ⚪ offen |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -37,10 +37,10 @@ Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0007](stories/US-0007.md) | spine-init | 🟡 in Arbeit |
+| [US-0007](stories/US-0007.md) | spine-init | ✅ verifiziert |
 | [US-0008](stories/US-0008.md) | Methodik-Skills zusammenführen | 🟡 in Arbeit |
 | [US-0009](stories/US-0009.md) | spine-adopt | ⚪ offen |
-| [US-0010](stories/US-0010.md) | spine-gate | 🟡 in Arbeit |
+| [US-0010](stories/US-0010.md) | spine-gate | ✅ verifiziert |
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ⚪ offen |
 | [US-0016](stories/US-0016.md) | spine-update | 🟡 in Arbeit |
 
@@ -51,7 +51,7 @@ Status: 🟡 in Arbeit
 | Story | Titel | Status |
 |---|---|---|
 | [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
-| [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ⚪ offen |
+| [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ✅ verifiziert |
 | [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
 | [US-0017](stories/US-0017.md) | Arbeiten im kleinen Team | ✅ verifiziert |
 
