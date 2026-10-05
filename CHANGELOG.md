@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.12
 
 - **Rules moved from the skills into the standard:** how the README is translated (2.4),
   what `AGENTS.md` contains (2.2), the requirement heading (3.4), quality goals become
