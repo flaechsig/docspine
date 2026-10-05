@@ -1,8 +1,8 @@
-<!-- docspine 0.10 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.11 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.10 (draft)
+Version 0.11 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -417,7 +417,7 @@ generated into a **generated region** inside a hand-written file:
 
 | Type | In | Shows |
 |---|---|---|
-| `status` | `01-goals/README.md` | counts, epics and stories with status, open questions, contradictions, missing chapters |
+| `status` | `01-goals/README.md` | counts, epics and stories with status, open questions, open decisions, contradictions, missing chapters |
 | `stories` | epic | its stories with status |
 | `requirements` | story | statements and status of its requirements |
 | `context` | requirement | epic and story it belongs to, ADRs that require it |
@@ -558,9 +558,11 @@ superseding the requirement, not by a test that cements a wrong statement.
 
 Diagrams are always kept as text source in the repository, never only as images.
 
-- **ASCII** in a code block on entry pages (`README.md`, overviews), which are opened
-  first and in any environment.
-- **Mermaid** in chapters, for sequences, class and domain models, state machines.
+- **Mermaid** for all diagrams in the documentation, including entry pages: flows,
+  sequences, class and domain models, state machines. GitHub, IDE previews and Markdown
+  readers such as Obsidian render it.
+- **No ASCII art with box-drawing characters or arrows:** many fonts draw them wider
+  than one character, and the lines slip out of place.
 - **DOT or PlantUML with a committed SVG** under `docs/diagrams/` for large overviews
   where Mermaid's layout is not enough. The SVG must be produced from the current
   version of its source.
@@ -639,7 +641,7 @@ files that docspine no longer delivers (listed by comparison with `.docspine/MAN
 
 | File | Content |
 |---|---|
-| `01-goals/README.md` | the entry into the documentation: counts per status, epics and stories with status, open questions, contradictions, chapters without content and partly filled chapters. Generated regions are not searched for open questions or contradictions. |
+| `01-goals/README.md` | the entry into the documentation: counts per status, epics and stories with status, open questions, open decisions (ADRs on `proposed`), contradictions, chapters without content and partly filled chapters. Generated regions are not searched for open questions or contradictions. |
 | `10-quality.md` | all requirements with `category: quality` |
 
 ## 12 Terminology

@@ -1,4 +1,4 @@
-<!-- docspine 0.10 · source: standard/en/README.md · do not edit in projects -->
+<!-- docspine 0.11 · source: standard/en/README.md · do not edit in projects -->
 
 # Documentation according to docspine
 
@@ -49,12 +49,13 @@ in the project. Which ones, and why, is in `.docspine/STANDARD.md`, section 2.2.
 
 ## How the parts fit together
 
-```
-Vision → Epic → Story → Requirement ← Test
-                  ↑          ↑
-   Runtime scenario     Building block (via the code path)
-                             ↑
-                            ADR (decision → testable consequence)
+```mermaid
+flowchart LR
+    V[Vision] --> E[Epic] --> S[Story] --> R[Requirement]
+    T[Test] --> R
+    RS[Runtime scenario] --> S
+    B["Building block<br/>(via the code path)"] --> R
+    A["ADR<br/>(decision → testable consequence)"] --> B
 ```
 
 - Every statement has **exactly one source file**. Other places refer to it by ID or
@@ -71,22 +72,21 @@ Work runs as a cycle. Each step has a skill (`spine-*`) that guides through it. 
 skills follow the open Agent Skills standard and work with various AI tools. Without
 skills it works just the same; the rules are in `.docspine/STANDARD.md`.
 
-```
-  Start: Vision
-       │
-       ▼
-  ┌─► Require ────────► Check impact ────┬─► Decide (ADR) ─────────────┐
-  │   Epic · Story · REQ                 ├─► Update architecture ──────┤
-  │        ▲                             └─► no impact ────────────────┤
-  │        │                                                           ▼
-  │        └───────────── gap found ────────────────────────────── Build ◄─────┐
-  │                                                       Code · Test · Status │
-  │                                                                 │          │
-  │                                                                 ▼          │
-  │                                                               Prove        │ no
-  │                                                                 │          │
-  │                            yes                                  ▼          │
-  └─────────────────────────────────────────────────────────── Checker green? ─┘
+```mermaid
+flowchart TD
+    start([Start: vision]) --> req["Require<br/>epic · story · requirement"]
+    req --> imp{"Impact on the<br/>architecture?"}
+    imp -- decision due --> dec["Decide<br/>ADR"]
+    imp -- chapter affected --> arch["Update<br/>architecture"]
+    imp -- no impact --> rel
+    dec --> rel
+    arch --> rel
+    rel["Release<br/>proposed → planned"] --> build["Build<br/>code · test · status"]
+    build --> prove["Prove<br/>does the test really check<br/>the requirement?"]
+    prove --> chk{"Check OK?"}
+    chk -- yes --> req
+    chk -- no --> build
+    build -. gap found .-> req
 ```
 
 | Step | What happens | Skill |

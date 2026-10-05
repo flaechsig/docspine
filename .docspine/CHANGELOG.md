@@ -4,6 +4,18 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.11
+
+- **Diagrams in Mermaid,** also on the README: ASCII art slipped out of place in many
+  fonts (standard section 9).
+- **Open decisions** in `docs/01-goals/README.md`: ADRs on `proposed` are listed, and
+  the count of decisions links to the decisions folder.
+- **Skills talk less:** compact proposals, short summaries, one approval per run except
+  for steps that act outside the repository or are hard to undo, errors in plain words
+  instead of numbers, "the check" instead of tool names.
+- **`spine-init`** treats every folder as a real project, explains why Git, and that a
+  remote is only needed for a team.
+
 ## 0.10
 
 - **Small teams** (up to about five people, standard 2.7): every change on its own branch,
