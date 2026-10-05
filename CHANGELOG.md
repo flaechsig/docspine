@@ -6,6 +6,9 @@ the new version.
 
 ## Unreleased
 
+- **Skills name conflicting instructions.** If an earlier instruction or a remembered
+  note conflicts with a step, the skill says so and asks, instead of skipping the step
+  silently (found in a trial: an old note suppressed `git init`, first commit and remote).
 - **Error 12 is marked as not yet checked** in the standard. It applies only to large
   diagrams in DOT or PlantUML with a committed SVG; Mermaid diagrams cannot go stale.
 

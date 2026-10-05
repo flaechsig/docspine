@@ -34,6 +34,9 @@ you propose, the person decides, and you write only after approval.
   names of the tool. Describe errors in words ("the test passes, but the requirement is
   still planned"); give the error number at most in brackets. Show commands only where
   the person is to run them.
+- **Conflicting instructions.** If something you remember or were told earlier conflicts
+  with a step of this skill, name it and ask which applies. Never skip or change a step
+  silently.
 
 ## Step 0 — Check the installation (silently)
 
