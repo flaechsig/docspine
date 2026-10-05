@@ -15,6 +15,18 @@ person approves.
 
 Talk to the person in the project language (`language` in `.docspine/PROFILE.md`).
 
+## Talking to the person
+
+- **Briefly.** Proposals as a compact list; summaries in at most five lines. Do not
+  repeat what the person has just confirmed.
+- **One approval per run.** Collect everything into one proposal. Ask again only for
+  steps that act outside the repository or are hard to undo, such as connecting a
+  remote, deleting files, or setting a decision to `accepted`.
+- **In plain words.** Say "the check" and "the check reports OK", not command or file
+  names of the tool. Describe errors in words ("the test passes, but the requirement is
+  still planned"); give the error number at most in brackets. Show commands only where
+  the person is to run them.
+
 ## Branch
 
 Before writing anything, check the current branch (`git branch --show-current`). On the
@@ -54,9 +66,8 @@ Wait for approval.
 
 - Translate the README exactly as `spine-init` describes: first line
   `<!-- docspine X · from standard/en/README.md -->` with the installed version, terms from
-  `.docspine/STANDARD.md` section 12, links and anchors unchanged, the ASCII diagram
-  measured so that the box-drawing characters stay in the same columns as in the English
-  source.
+  `.docspine/STANDARD.md` section 12, links and anchors unchanged, in the Mermaid
+  diagrams only the labels translated.
 - Move, delete and edit as approved. Delete with `git rm` where the file is tracked, so
   the deletion shows up in the next commit.
 

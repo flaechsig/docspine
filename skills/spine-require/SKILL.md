@@ -25,6 +25,18 @@ language (`language` in `.docspine/PROFILE.md`).
 - a story ID, e.g. `/spine-require US-0001`: refine this story into requirements
 - nothing: ask what it is about
 
+## Talking to the person
+
+- **Briefly.** Proposals as a compact list; summaries in at most five lines. Do not
+  repeat what the person has just confirmed.
+- **One approval per run.** Collect everything into one proposal. Ask again only for
+  steps that act outside the repository or are hard to undo, such as connecting a
+  remote, deleting files, or setting a decision to `accepted`.
+- **In plain words.** Say "the check" and "the check reports OK", not command or file
+  names of the tool. Describe errors in words ("the test passes, but the requirement is
+  still planned"); give the error number at most in brackets. Show commands only where
+  the person is to run them.
+
 ## Branch
 
 Before writing anything, check the current branch (`git branch --show-current`). On the

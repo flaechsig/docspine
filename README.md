@@ -22,6 +22,9 @@ Im Verzeichnis des Projekts ausführen:
 curl -fsSL https://github.com/flaechsig/docspine/archive/refs/heads/dist.tar.gz | tar -xz --strip-components=1
 ```
 
+Für den ersten Durchlauf, von der Installation bis zum ersten geprüften Requirement,
+etwa 30 Minuten einplanen.
+
 Danach Claude Code im Projekt starten und aufrufen:
 
 ```
@@ -32,11 +35,19 @@ Danach Claude Code im Projekt starten und aufrufen:
 des Projekts, zum Beispiel:
 
 ```
-Ich möchte ein Programm (Java) erstellen, das die Nachricht "Hello World!" ausgibt. Damit möchte ich Nutzern von docspine zeigen, wie es verwendet wird.
+Ich möchte ein Programm (Java) erstellen,
+das die Nachricht "Hello World!" ausgibt.
+Damit möchte ich Nutzern von docspine zeigen,
+wie es verwendet wird.
 ```
 
 Daraus schlägt der Skill Vision, Themen und erste Stories vor und legt nach deiner
 Freigabe die Dokumentation unter `docs/` an.
+
+**Lesen:** Die Doku ist Markdown mit Mermaid-Diagrammen. Gut lesen lässt sie sich auf
+GitHub, in der Markdown-Vorschau einer IDE oder in einem Markdown-Leser wie
+[Obsidian](https://obsidian.md): dort den Ordner `docs/` als Vault öffnen und
+`docs/.obsidian/` in die `.gitignore` eintragen.
 
 **Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
 

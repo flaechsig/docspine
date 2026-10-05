@@ -7,8 +7,8 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 | | Anzahl |
 |---|---|
 | Stories | ⚪ offen 8 · 🟡 in Arbeit 4 · ✅ verifiziert 5 |
-| Requirements | umgesetzt 31 · abgelöst 5 |
-| Entscheidungen | vorgeschlagen 21 |
+| Requirements | umgesetzt 32 · abgelöst 5 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 21 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -58,6 +58,30 @@ Status: 🟡 in Arbeit
 ## Offene Fragen
 
 _keine_
+
+## Offene Entscheidungen
+
+- [ADR-0001](../09-decisions/ADR-0001.md) — Markdown mit Frontmatter als einziges Quellformat
+- [ADR-0002](../09-decisions/ADR-0002.md) — Diagramme als Textquelle
+- [ADR-0003](../09-decisions/ADR-0003.md) — Beziehungen nur nach unten, alles andere generiert
+- [ADR-0004](../09-decisions/ADR-0004.md) — Standard als versioniertes Paket, als Kopie im Projekt
+- [ADR-0005](../09-decisions/ADR-0005.md) — Ein Status-Vokabular je Artefakt, Prüfstand als eigene Achse
+- [ADR-0006](../09-decisions/ADR-0006.md) — Schnitt zwischen Kernstandard und Projektprofil
+- [ADR-0007](../09-decisions/ADR-0007.md) — Ein Dokument nach arc42-Gerüst
+- [ADR-0008](../09-decisions/ADR-0008.md) — Artefakte verschlanken
+- [ADR-0009](../09-decisions/ADR-0009.md) — Steuernde Artefakte und die Grenze zu KI-Werkzeugen
+- [ADR-0010](../09-decisions/ADR-0010.md) — Skill-Familie spine-*
+- [ADR-0011](../09-decisions/ADR-0011.md) — Projektsprache und englisches Maschinenvokabular
+- [ADR-0012](../09-decisions/ADR-0012.md) — Generator-Kern als eigenständige CLI
+- [ADR-0013](../09-decisions/ADR-0013.md) — Testergebnisse als Schnittstelle, keine Module
+- [ADR-0014](../09-decisions/ADR-0014.md) — Konfiguration englisch, Dokumentation in der Projektsprache
+- [ADR-0015](../09-decisions/ADR-0015.md) — Konfiguration unter .docspine/, docs/ nur Dokumentation
+- [ADR-0016](../09-decisions/ADR-0016.md) — Update mit spine-update, Version nur in den ausgelieferten Dateien
+- [ADR-0017](../09-decisions/ADR-0017.md) — Versionsregel für das, was docspine ausliefert
+- [ADR-0018](../09-decisions/ADR-0018.md) — Testergebnisse aus JUnit-XML-Berichten, REQ-ID im Testnamen
+- [ADR-0019](../09-decisions/ADR-0019.md) — Anbindung an Build und Tests als Vertrag, Integrationen je Werkzeug
+- [ADR-0020](../09-decisions/ADR-0020.md) — Spezifizieren und Bauen getrennt, Freigabe über den Status
+- [ADR-0021](../09-decisions/ADR-0021.md) — Kleine Teams über Branches, IDs werden auf dem Hauptzweig endgültig
 
 ## Widersprüche
 

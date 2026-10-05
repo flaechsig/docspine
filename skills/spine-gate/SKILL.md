@@ -23,6 +23,18 @@ this file: `.agents/skills/spine-gate/integrations/*.md`. You explain every chan
 you make it; the person approves. Talk to the person in the project language
 (`language` in `.docspine/PROFILE.md`).
 
+## Talking to the person
+
+- **Briefly.** Proposals as a compact list; summaries in at most five lines. Do not
+  repeat what the person has just confirmed.
+- **One approval per run.** Collect everything into one proposal. Ask again only for
+  steps that act outside the repository or are hard to undo, such as connecting a
+  remote, deleting files, or setting a decision to `accepted`.
+- **In plain words.** Say "the check" and "the check reports OK", not command or file
+  names of the tool. Describe errors in words ("the test passes, but the requirement is
+  still planned"); give the error number at most in brackets. Show commands only where
+  the person is to run them.
+
 ## Rules for the whole run
 
 - **Explain, then write.** For each change: what, where, and why. Write only after

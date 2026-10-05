@@ -168,6 +168,23 @@ class StatusInGoals(RenderTest):
         self.assertEqual(self.read(GOALS), first)
         self.assertEqual(first.count("(contradiction)"), 1)
 
+    @req("REQ-0037")
+    def test_open_decisions(self):
+        adr = "---\nid: ADR-000{n}\ntitle: Decision {n}\nstatus: {s}\ndate: 2026-10-05\n---\n\n## Kontext\n"
+        self.render({"docs/09-decisions/ADR-0001.md": adr.format(n=1, s="proposed"),
+                     "docs/09-decisions/ADR-0002.md": adr.format(n=2, s="accepted")})
+        text = self.read(GOALS)
+        self.assertIn("| [Decisions](../09-decisions/) | proposed 1 · accepted 1 |", text)
+        self.assertIn("## Open decisions\n\n- [ADR-0001](../09-decisions/ADR-0001.md) — Decision 1\n", text)
+        self.assertNotIn("ADR-0002](../09-decisions/ADR-0002.md) — Decision 2", text)
+
+    @req("REQ-0037")
+    def test_no_link_without_decisions(self):
+        self.render()
+        text = self.read(GOALS)
+        self.assertIn("| Decisions | none |", text)
+        self.assertIn("## Open decisions\n\n_none_", text)
+
     def test_partial_chapter(self):
         self.render({"docs/03-context.md": "---\narc42_status: PARTIAL\n---\n\n# Context\n"})
         self.assertIn("## Partly filled chapters\n\n- 03-context", self.read(GOALS))

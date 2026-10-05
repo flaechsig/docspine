@@ -23,6 +23,18 @@ you propose, the person decides, and you write only after approval.
 - **Never overwrite existing files without asking.** Show what you would change.
 - **Write only after explicit approval.**
 
+## Talking to the person
+
+- **Briefly.** Proposals as a compact list; summaries in at most five lines. Do not
+  repeat what the person has just confirmed.
+- **One approval per run.** Collect everything into one proposal. Ask again only for
+  steps that act outside the repository or are hard to undo, such as connecting a
+  remote, deleting files, or setting a decision to `accepted`.
+- **In plain words.** Say "the check" and "the check reports OK", not command or file
+  names of the tool. Describe errors in words ("the test passes, but the requirement is
+  still planned"); give the error number at most in brackets. Show commands only where
+  the person is to run them.
+
 ## Step 0 — Check the installation (silently)
 
 1. Run from the repository root. `.docspine/STANDARD.md` and `.docspine/docspine.pyz` must
@@ -36,6 +48,8 @@ you propose, the person decides, and you write only after approval.
 4. Check that `git --version` works and whether the folder is a Git repository
    (`git rev-parse --is-inside-work-tree`). Without Git, tell the person that docspine
    needs it (STANDARD 2.6) and stop.
+5. Treat the folder as a real project. Do not assume it is a test or a throwaway, and
+   do not skip steps on that assumption.
 
 ## Step 1 — Language
 
@@ -55,7 +69,8 @@ language.
   the person explicitly wants to start the documentation fresh.
 - **Otherwise** → new project, continue.
 
-If the folder is not yet a Git repository, propose `git init` and run it after approval,
+If the folder is not yet a Git repository, propose `git init` with one sentence why
+(branches for every change, the history as part of the proof) and run it after approval,
 before anything is written.
 
 ## Step 3 — Vision in dialogue
@@ -115,10 +130,8 @@ to `docs/README.md`.
   from step 0. For `language: en`, copy the file unchanged.
 - Use the terms from the terminology table in `.docspine/STANDARD.md` section 12.
 - Keep every link and anchor target unchanged; translate only the visible text.
-- The workflow diagram is ASCII art. After translating its labels, the box-drawing
-  characters (`│ ┐ ┤ ┘ ┬ ├ └ ┌ ▼ ▲ ◄`) must stay in the same columns as in the English
-  original. Measure the columns of each line before and after (count characters, not
-  bytes), and shorten or pad labels until they match.
+- The diagrams are Mermaid. Translate only the labels (the text in brackets, quotes and
+  on the arrows); keep node names, arrows and the rest of the syntax unchanged.
 
 ### AGENTS.md
 
@@ -156,9 +169,9 @@ Summarise in a few lines what was written, list the open questions (they also ap
   from the installation, as the first commit on the main branch; offer to do it after
   approval. This is the only commit directly on the main branch; all later work happens
   on branches (STANDARD 2.7).
-- connecting a remote repository, if there is none yet (`git remote -v`). Explain in a
-  few sentences that a team shares a remote as its meeting point and that where it lives
-  is the team's decision. If the person has already created an empty repository at a
+- connecting a remote repository, if there is none yet (`git remote -v`). Explain in two
+  sentences: working alone needs no remote, branches work locally; a team shares a
+  remote as its meeting point, and where it lives is the team's decision. If the person has already created an empty repository at a
   provider, offer to run `git remote add origin <url>` and `git push -u origin main`
   with the URL they give. Do not create repositories at a provider.
 - `spine-require` for the most important theme as the next step
