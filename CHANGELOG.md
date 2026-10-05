@@ -4,6 +4,11 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## Unreleased
+
+- **Error 12 is marked as not yet checked** in the standard. It applies only to large
+  diagrams in DOT or PlantUML with a committed SVG; Mermaid diagrams cannot go stale.
+
 ## 0.11
 
 - **Diagrams in Mermaid,** also on the README: ASCII art slipped out of place in many

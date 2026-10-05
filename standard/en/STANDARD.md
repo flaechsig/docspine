@@ -632,7 +632,7 @@ files that docspine no longer delivers (listed by comparison with `.docspine/MAN
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
 | 10 | test result for a requirement that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |
-| 12 | diagram image not produced from the current version of its source |
+| 12 | diagram image not produced from the current version of its source (not yet checked) |
 | 13 | broken relative link |
 | 14 | `README.md` was translated from a different docspine version than the installed `STANDARD.md` |
 | 15 | an `evidence` path does not exist |

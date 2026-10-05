@@ -19,7 +19,7 @@ Status: 🟡 in Arbeit
 | [US-0004](stories/US-0004.md) | CLI-Kern mit check und render | ✅ verifiziert |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ✅ verifiziert |
 | [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel Maven und JUnit 5 | ✅ verifiziert |
-| [US-0015](stories/US-0015.md) | Diagramme prüfen und PDF erzeugen | ⚪ offen |
+| [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ⚪ offen |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
