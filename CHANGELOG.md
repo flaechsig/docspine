@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.17
 
 - **Outdated diagram images are reported** (error 12, standard 9). The new command
   `python3 .docspine/docspine.pyz diagram` renders DOT and PlantUML sources to SVG with
