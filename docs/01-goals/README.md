@@ -70,13 +70,7 @@ _keine_
 
 ## Kapitel ohne Inhalt
 
-- 04-strategy
-- 05-building-blocks
-- 06-runtime
-- 07-deployment
-- 08-concepts
-- 11-risks
-- 12-glossary
+_keine_
 
 ## Teilweise gefüllte Kapitel
 

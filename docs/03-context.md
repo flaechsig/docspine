@@ -22,4 +22,4 @@ flowchart LR
 | blocpress | übernommene Methodik, Java mit Maven, AsciiDoc-Altbestand |
 | 3dPacMan | 6502-Assembler, kein Maven, Doku bisher ohne Frontmatter und ohne Gate |
 | KI-Agenten | lesen `AGENTS.md`, `STANDARD.md` und Skills nach dem Agent-Skills-Standard |
-| GitHub | Hosting der Projekte, stellt Markdown und Mermaid direkt dar |
+| GitHub | Hosting der Projekte, stellt Markdown und Mermaid direkt dar; liefert über den Zweig `dist` Installation, Update und die Angabe der neuesten Version ([Verteilung](07-deployment.md)) |

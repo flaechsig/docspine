@@ -9,7 +9,7 @@
 The branch `dist` contains only the files docspine owns, at their paths in a project.
 Projects install or update with:
 
-    git init -q && git fetch -q --depth 1 <docspine repository> dist && git checkout FETCH_HEAD -- .
+    curl -fsSL https://github.com/flaechsig/docspine/archive/refs/heads/dist.tar.gz | tar -xz --strip-components=1
 """
 
 from __future__ import annotations
