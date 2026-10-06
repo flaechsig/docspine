@@ -2,6 +2,9 @@
 
     python3 cli/build.py          builds cli/dist/docspine.pyz
     python3 cli/build.py dist     also commits the delivery tree to the branch `dist`
+    python3 cli/build.py install <project>
+                                  writes the delivery tree of the working copy into a
+                                  project, to try an unreleased state there
 
 The branch `dist` contains only the files docspine owns, at their paths in a project.
 Projects install or update with:
@@ -83,6 +86,22 @@ def delivery_tree(root: Path) -> None:
     (root / ".docspine/MANIFEST").write_text("\n".join(sorted(files)) + "\n", encoding="utf-8")
 
 
+def install(project: Path) -> None:
+    """Write the delivery tree into a project, as the installation one-liner does."""
+    with tempfile.TemporaryDirectory() as tmp:
+        tree = Path(tmp) / "tree"
+        delivery_tree(tree)
+        for src in sorted(tree.rglob("*")):
+            dst = project / src.relative_to(tree)
+            if src.is_symlink():
+                if not dst.is_symlink() and not dst.exists():
+                    os.symlink(os.readlink(src), dst)
+            elif src.is_dir():
+                dst.mkdir(parents=True, exist_ok=True)
+            else:
+                shutil.copy2(src, dst)
+
+
 def _git(*args: str, env=None, input=None) -> str:
     return subprocess.run(["git", *args], cwd=REPO, check=True, capture_output=True, text=True,
                           env=env, input=input).stdout.strip()
@@ -120,6 +139,9 @@ def commit_dist() -> str:
 if __name__ == "__main__":
     out = build(HERE / "dist" / "docspine.pyz")
     print(f"built {out.relative_to(REPO)}", file=sys.stderr)
+    if sys.argv[1:2] == ["install"] and len(sys.argv) == 3:
+        install(Path(sys.argv[2]).resolve())
+        print(f"installed docspine {version()} (working copy) into {sys.argv[2]}", file=sys.stderr)
     if sys.argv[1:] == ["dist"]:
         commit = commit_dist()
         print(f"branch {BRANCH} at {commit[:10]} (docspine {version()})", file=sys.stderr)

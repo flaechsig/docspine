@@ -52,15 +52,23 @@ or a story, never as a fix.
 
 ## Step 0 — Starting point (silently)
 
-1. Run from the repository root. Check that `git --version` and `python3 --version` work
-   and that the folder is a Git repository. Without Git, say that docspine needs it
-   (STANDARD 2.6) and stop.
+1. Run from the project root. Check that `git --version` and `python3 --version` work
+   and that the folder is inside a Git repository. Without Git, say that docspine needs
+   it (STANDARD 2.6) and stop. If the project root is a subfolder of the repository
+   (`git rev-parse --show-toplevel` differs), for example one project in a collection
+   repository: docspine lives in the subfolder, all paths are relative to it, branches
+   and the clean state of step 4 apply to the whole repository. Record this as a
+   deviation in the profile.
 2. **Installation.** `.docspine/STANDARD.md` and `.docspine/docspine.pyz` must exist, and
    `.claude/skills` must be the link to `.agents/skills` that the installation creates. If
    `.claude/skills` is a folder of the project's own, the installation could not create
    the link; tell the person to move the folder first (`git mv .claude/skills
    .agents/skills`) and run the installation one-liner again, as the docspine quickstart
-   describes. Read the version from the first line of `.docspine/STANDARD.md`.
+   describes. Read the version from the first line of `.docspine/STANDARD.md`. Check
+   with `git check-ignore` that `.docspine/`, `.agents/skills/`, `.claude/skills` and
+   `.claude/CLAUDE.md` are not ignored, also by a `.gitignore` higher up; a pattern such
+   as `.claude/` there keeps them out of Git. Name such a pattern in the plan with a
+   narrower replacement (for example `/.claude/`).
 3. **Already set up?** If `.docspine/PROFILE.md` exists, say so, suggest `spine-update`
    or `spine-require`, and stop.
 4. **Clean state.** Apart from the files of the installation (`.docspine/`,
@@ -77,7 +85,9 @@ example:
 
 > Die Dokumentation ist auf Deutsch. Soll sie es bleiben (de)?
 
-Use the answer as `language` (ISO 639-1 code).
+Use the answer as `language` (ISO 639-1 code). If the documentation is written in one
+language throughout, you may instead put the language as the first line of the plan in
+step 2, so that the person approves both at once.
 
 ## Step 2 — Take stock (silently, then one plan)
 
@@ -125,12 +135,27 @@ Add to the plan:
   and relations the standard does not allow, for example a `verified` story that lists a
   rejected or superseded requirement, or a decision named as `source` instead of an
   external norm (it becomes `requires` in the decision).
+  - **Requirements without front matter** (prose with sections such as requirement,
+    rationale, acceptance): the requirement text becomes `statement`, one EARS sentence
+    in `statement_language`, drafted by you and marked as a suggestion; the rationale
+    becomes `rationale`, the acceptance criteria `verification`. The original text stays
+    in the body as context, so nothing is lost.
+  - **A level of obligation without equivalent** (for example `KANN`, `MAY`, `CAN`):
+    `SHOULD`, with the original level noted in the body and a deviation in the profile.
+    Check whether the `WHERE` pattern (optional feature) fits the statement.
+  - **A story with more than one epic:** the first named epic goes into `epic`, the
+    others are named in the body.
+  - **Values with a colon** in YAML, such as titles (`Gameplay: Dots, …`), are quoted.
 - **Norms** cited in the requirements' `source`, for `sources` in the profile.
 - **The core statement** of the vision, drafted from existing text and marked as a
   suggestion; `UNKNOWN` with the open question if nothing fits.
 - **Findings** that the move does not resolve: contradictions between documentation and
   code, requirements without a test, open points. They become open questions or
-  contradictions in the documentation, or stories with `status: open`.
+  contradictions in the documentation, or stories with `status: open`. Compare the
+  commits since the documentation last changed (`git log` on the code paths) with the
+  documented status: a feature that was built while the documentation still calls it
+  open is a contradiction. The status itself stays as documented; proving it is the job
+  of `spine-gate` or the person.
 - **What `spine-gate` does afterwards:** the traceability you found and how it is
   replaced.
 
@@ -166,7 +191,9 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
 4. **Align the schema** as listed in the plan, and update every reference to the new paths
    and IDs: resolve each relative link from the file's old location, and write ID
    references in the documentation in the new format (`ADR-006` → `ADR-0006`); code and
-   working areas keep theirs. Rewrite ADRs only in form (front matter, section headings); an accepted
+   working areas keep theirs. A link to a file that Git ignores or the build produces
+   (a screenshot under `build/`) breaks the link check; write it as a path in backticks.
+   Rewrite ADRs only in form (front matter, section headings); an accepted
    decision keeps its content (STANDARD 3.5).
 5. **Write the frame:** `docs/01-goals/vision.md` with the approved core statement,
    `.docspine/PROFILE.md` (front matter `language`, `statement_language: en`, `sources`;

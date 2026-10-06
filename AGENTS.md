@@ -37,3 +37,5 @@ die Quelle des Standards und dokumentiert sich selbst danach.
 - `skills/`: die Quellen der Skills (englisch), die docspine ausliefert.
 - `python3 cli/build.py dist` schreibt den Zweig `dist`: nur die Dateien, die ein Projekt
   bekommt, an ihren Zielpfaden. Projekte installieren und aktualisieren daraus.
+- `python3 cli/build.py install <projekt>` schreibt den Stand der Arbeitskopie in ein
+  Projekt, um ihn dort vor einem Release zu erproben (etwa eine Migration).
