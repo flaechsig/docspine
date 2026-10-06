@@ -14,4 +14,5 @@ Eine eigenständige CLI prüft die Doku gegen den Standard und erzeugt generiert
 - [US-0005](../stories/US-0005.md) — Neue Prüfungen und generierte Bereiche
 - [US-0006](../stories/US-0006.md) — Testergebnisse anbinden, Beispiel Maven und JUnit 5
 - [US-0015](../stories/US-0015.md) — Veraltete Diagrammbilder erkennen
+- [US-0019](../stories/US-0019.md) — Bausteine zeigen nur gültige Requirements
 <!-- /generated -->

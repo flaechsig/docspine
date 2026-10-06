@@ -6,8 +6,8 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ✅ verifiziert 17 · ⛔ abgelöst 1 |
-| Requirements | umgesetzt 39 · abgelöst 5 |
+| Stories | ✅ verifiziert 18 · ⛔ abgelöst 1 |
+| Requirements | umgesetzt 39 · abgelöst 6 |
 | [Entscheidungen](../09-decisions/) | angenommen 25 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
@@ -20,6 +20,7 @@ Status: ✅ verifiziert
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ✅ verifiziert |
 | [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel Maven und JUnit 5 | ✅ verifiziert |
 | [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ✅ verifiziert |
+| [US-0019](stories/US-0019.md) | Bausteine zeigen nur gültige Requirements | ✅ verifiziert |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
