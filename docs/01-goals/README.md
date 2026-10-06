@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ✅ verifiziert 17 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 39 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 24 |
+| [Entscheidungen](../09-decisions/) | angenommen 25 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -62,7 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-- [ADR-0025](../09-decisions/ADR-0025.md) — Nach neuen Versionen über einen Befehl suchen, den die Skills aufrufen
+_keine_
 
 ## Widersprüche
 
