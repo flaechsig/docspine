@@ -40,6 +40,16 @@ language (`language` in `.docspine/PROFILE.md`).
   with a step of this skill, name it and ask which applies. Never skip or change a step
   silently.
 
+## Newer version
+
+Before anything else, run `python3 .docspine/docspine.pyz version`. It looks online at
+most once a day and does not fail without a network. If it reports a newer version,
+say so in one line and sum up its changelog entries in at most three points. Then offer
+to install it first: on a branch of its own, run the command it shows, then the skill
+`spine-update`. Ask before doing so, because it fetches files from outside. If the
+person declines, or there is nothing new, or the command could not check, carry on
+without mentioning it again.
+
 ## Branch
 
 Before writing anything, check the current branch (`git branch --show-current`). On the
@@ -111,8 +121,7 @@ Summarise what was written, and suggest the next step. Stay in the specification
 unless the person asks otherwise:
 
 - by default, the next story or requirement, naming the stories that still have none
-- checking the effect on the architecture (STANDARD 6), with `spine-impact` once
-  available
+- checking the effect on the architecture (STANDARD 6) with `spine-impact`
 - reviewing the changes with `git status` and committing them
 
 Mention as one option among these that a requirement can be released for building

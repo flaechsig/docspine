@@ -1,8 +1,12 @@
 .agents/skills/spine-adopt/SKILL.md
+.agents/skills/spine-build/SKILL.md
+.agents/skills/spine-decide/SKILL.md
 .agents/skills/spine-gate/SKILL.md
 .agents/skills/spine-gate/integrations/README.md
 .agents/skills/spine-gate/integrations/maven-junit5.md
+.agents/skills/spine-impact/SKILL.md
 .agents/skills/spine-init/SKILL.md
+.agents/skills/spine-prove/SKILL.md
 .agents/skills/spine-require/SKILL.md
 .agents/skills/spine-update/SKILL.md
 .claude/skills

@@ -1,8 +1,8 @@
-<!-- docspine 0.17 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.18 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.17 (draft)
+Version 0.18 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -103,11 +103,15 @@ Configuration lives in `.docspine/`; `docs/` contains only documentation. The RE
 mentions the configuration files but does not link to them.
 
 Everything that comes from docspine is overwritten when the standard is updated.
-Changes to it belong in docspine, not in the project.
+Changes to it belong in docspine, not in the project. The prefix `spine-` is reserved
+for skills from docspine: project skills use other names, because an update overwrites
+the folders `.agents/skills/spine-*` and removes those docspine no longer delivers.
 
 All rules are in files in the repository. Tool-specific files may make them easier to
-use but must not contain rules of their own. Test: deleting a tool-specific folder
-must not lose any rule.
+use but must not contain rules of their own. The same holds for the skills from
+docspine: they describe workflows and refer to this standard for the rules. Test:
+deleting a tool-specific folder or the folders `.agents/skills/spine-*` must not lose
+any rule.
 
 `AGENTS.md` is written in the project language. In a section on the documentation it
 contains: one sentence on what the project is; where things are (`docs/README.md`,
@@ -644,6 +648,10 @@ first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what c
 which writes only `.docspine/`, `.agents/skills/spine-*` and `.claude/skills`. After an
 update, the skill `spine-update` translates the README again where needed and removes
 files that docspine no longer delivers (listed by comparison with `.docspine/MANIFEST`).
+`python3 .docspine/docspine.pyz version` shows whether a newer version exists, with its
+changelog entries and the installation command. It looks online at most once a day
+(cache in the user's cache folder, `--now` looks at once) and does not fail without a
+network. The skills from docspine run it when they start.
 
 **Errors:**
 

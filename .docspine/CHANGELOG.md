@@ -4,6 +4,24 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.18
+
+- **Hint on newer versions** (standard 11, ADR-0025). The new command
+  `python3 .docspine/docspine.pyz version` shows whether a newer version exists, with
+  its changelog entries and the installation command. It looks online at most once a
+  day, keeps the answer in the user's cache folder (`--now` looks at once), and does
+  not fail without a network. `spine-require`, `-impact`, `-decide`, `-build`, `-prove`
+  and `-gate` run it when they start and offer to install a newer version.
+- **The prefix `spine-` is reserved** for skills from docspine (standard 2.2). Project
+  skills use other names, because an update overwrites `.agents/skills/spine-*` and
+  removes folders docspine no longer delivers. The test for tool-specific folders now
+  also covers the docspine skills: removing them must not lose any rule.
+- **Four new skills complete the cycle:** `spine-impact` checks what a requirement means
+  for the architecture and gives one verdict; `spine-decide` records a decision as an
+  ADR; `spine-build` builds a released requirement, test first, hands back when the
+  requirement or the architecture has a gap, and changes the status; `spine-prove`
+  explains the check's errors and audits whether tests really prove the requirements.
+
 ## 0.17
 
 - **Outdated diagram images are reported** (error 12, standard 9). The new command
