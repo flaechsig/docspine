@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ⚪ offen 3 · 🟡 in Arbeit 3 · ✅ verifiziert 11 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 36 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 23 |
+| [Entscheidungen](../09-decisions/) | angenommen 24 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -62,7 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-- [ADR-0024](../09-decisions/ADR-0024.md) — Diagrammbilder über einen eigenen Befehl erzeugen und per Prüfwert prüfen
+_keine_
 
 ## Widersprüche
 
