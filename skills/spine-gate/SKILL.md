@@ -138,6 +138,13 @@ If no integration matches the project:
 3. Propose a way that meets the contract: JUnit XML with the requirement ID in the test
    name if the tool supports it, otherwise a small step that writes `req-results.json`
    (STANDARD 8.1), plus a call of `check` after the tests.
+   **No automated tests at all** (for example a game checked by screenshots in an
+   emulator): nothing can deliver test results. Propose a step of its own that runs
+   `check --without-tests` (for example a `make check` target or a CI step), outside
+   the build so that a build does not fail on documentation alone; requirements then
+   become `implemented` only with a proof by hand (`evidence` and `verification`,
+   STANDARD 3.4). Name a harness that writes `req-results.json` as a later option, and
+   record the choice in an ADR with `status: proposed`.
 4. Write nothing that you have not tried in this project. Suggest describing the result
    as a new integration for docspine (see `integrations/README.md` in the docspine
    repository), so the next project can reuse it.

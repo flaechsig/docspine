@@ -6,7 +6,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 3 · 🟡 in Arbeit 3 · ✅ verifiziert 11 · ⛔ abgelöst 1 |
+| Stories | ⚪ offen 2 · 🟡 in Arbeit 2 · ✅ verifiziert 13 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 36 · abgelöst 5 |
 | [Entscheidungen](../09-decisions/) | angenommen 24 |
 
@@ -23,11 +23,11 @@ Status: ✅ verifiziert
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0012](stories/US-0012.md) | 3dPacMan migrieren | ⚪ offen |
+| [US-0012](stories/US-0012.md) | 3dPacMan migrieren | ✅ verifiziert |
 | [US-0013](stories/US-0013.md) | Ursprungsprojekt migrieren | ✅ verifiziert |
 | [US-0014](stories/US-0014.md) | blocpress migrieren | ✅ verifiziert |
 
@@ -39,7 +39,7 @@ Status: 🟡 in Arbeit
 |---|---|---|
 | [US-0007](stories/US-0007.md) | spine-init | ✅ verifiziert |
 | [US-0008](stories/US-0008.md) | Methodik-Skills zusammenführen | 🟡 in Arbeit |
-| [US-0009](stories/US-0009.md) | spine-adopt | 🟡 in Arbeit |
+| [US-0009](stories/US-0009.md) | spine-adopt | ✅ verifiziert |
 | [US-0010](stories/US-0010.md) | spine-gate | ✅ verifiziert |
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ⚪ offen |
 | [US-0016](stories/US-0016.md) | spine-update | 🟡 in Arbeit |

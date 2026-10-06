@@ -15,6 +15,15 @@ the new version.
   commit, so Git keeps the history; links resolve from the old location; relations the
   standard does not allow are listed in the plan; unchecked content of agent files goes
   to `docs/legacy/`.
+- **`spine-adopt` learnt from its third run (3dPacMan):** a project may live in a
+  subfolder of a repository; a `.gitignore` higher up that hides the installation is
+  named; requirements written as prose get an EARS statement as a suggestion while the
+  original text stays; an obligation without equivalent (`KANN`, `MAY`) becomes `SHOULD`
+  with a note; a story with several epics keeps the first; features built after the
+  documentation last changed become contradictions; links into build output become
+  plain paths.
+- **`spine-gate` without tests:** for a project without automated tests the check runs
+  as a step of its own without test results, and requirements are proven by hand.
 
 ## 0.16
 
