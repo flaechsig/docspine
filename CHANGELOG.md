@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.19
 
 - **Building blocks show only requirements in force** (standard 4). The generated
   region `realized` leaves out superseded and rejected requirements; they stay as
