@@ -4,6 +4,14 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## Unreleased
+
+- **Four new skills complete the cycle:** `spine-impact` checks what a requirement means
+  for the architecture and gives one verdict; `spine-decide` records a decision as an
+  ADR; `spine-build` builds a released requirement, test first, hands back when the
+  requirement or the architecture has a gap, and changes the status; `spine-prove`
+  explains the check's errors and audits whether tests really prove the requirements.
+
 ## 0.17
 
 - **Outdated diagram images are reported** (error 12, standard 9). The new command
