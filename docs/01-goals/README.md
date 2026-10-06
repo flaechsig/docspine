@@ -6,9 +6,9 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 1 · ✅ verifiziert 16 · ⛔ abgelöst 1 |
-| Requirements | umgesetzt 36 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | angenommen 24 |
+| Stories | ✅ verifiziert 17 · ⛔ abgelöst 1 |
+| Requirements | umgesetzt 39 · abgelöst 5 |
+| [Entscheidungen](../09-decisions/) | angenommen 25 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -33,7 +33,7 @@ Status: ✅ verifiziert
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
@@ -43,7 +43,7 @@ Status: 🟡 in Arbeit
 | [US-0010](stories/US-0010.md) | spine-gate | ✅ verifiziert |
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ✅ verifiziert |
 | [US-0016](stories/US-0016.md) | spine-update | ✅ verifiziert |
-| [US-0018](stories/US-0018.md) | Über neue Versionen informiert werden | ⚪ offen |
+| [US-0018](stories/US-0018.md) | Über neue Versionen informiert werden | ✅ verifiziert |
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 

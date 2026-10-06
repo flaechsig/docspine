@@ -1,4 +1,4 @@
-"""Command line: `docspine [--root DIR] check|render|renumber|diagram`."""
+"""Command line: `docspine [--root DIR] check|render|renumber|diagram|version`."""
 
 from __future__ import annotations
 
@@ -7,20 +7,31 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
-from . import __version__, check, diagram, project, render, renumber
+from . import __version__, check, diagram, project, render, renumber, version
 
 
 def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(prog="docspine", description="Check and render docspine documentation.")
     parser.add_argument("--root", default=".", help="repository root containing .docspine/PROFILE.md (default: .)")
     parser.add_argument("--version", action="version", version=f"docspine {__version__}")
-    parser.add_argument("command", choices=["check", "render", "renumber", "diagram"])
+    parser.add_argument("command", choices=["check", "render", "renumber", "diagram", "version"])
     parser.add_argument("ids", nargs="*", metavar="ID", help="renumber: OLD NEW, e.g. REQ-0005 REQ-0007; diagram: source files "
                              "(default: every diagram source whose image is not current)")
     parser.add_argument("--without-tests", action="store_true",
                         help="check: skip what needs test results (errors 8, 9, 10)")
+    parser.add_argument("--now", action="store_true",
+                        help="version: look for a newer version now instead of at most once a day")
     args = parser.parse_args(argv)
     with_tests = not args.without_tests
+
+    if args.command == "version":
+        try:
+            lines = version.report(Path(args.root), now=args.now)
+        except version.VersionError as exc:
+            print(f"docspine: {exc}", file=sys.stderr)
+            return 2
+        print("\n".join(lines))
+        return 0
 
     try:
         proj = project.load(Path(args.root), with_tests=with_tests)

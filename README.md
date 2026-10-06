@@ -57,6 +57,8 @@ um; danach bindet `/spine-gate` Build und Tests an. Liegen schon eigene Skills u
 damit die Installation dort ihren Verweis anlegen kann.
 
 **Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
+Ob es eine neuere Version gibt, zeigt `python3 .docspine/docspine.pyz version`; die
+Skills sehen damit höchstens einmal am Tag von selbst nach.
 
 **Anbindung an Build und Tests:** je Werkzeugkette in [integrations/](integrations/),
 zuerst [Maven mit JUnit 5](integrations/maven-junit5.md).
