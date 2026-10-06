@@ -18,5 +18,3 @@ docspine ist die Quelle des Standards und nutzt ihn zugleich für die eigene Dok
   `.docspine/STANDARD.md` ist eine Kopie, `docs/README.md` eine von Hand erstellte
   Übersetzung. Die CLI wird hier direkt aus `cli/` aufgerufen, nicht als
   `.docspine/docspine.pyz`.
-- **Fehlerklasse 12 wird noch nicht geprüft.** Diagrammprüfung folgt mit US-0015.
-  docspine hat bisher keine Diagrammbilder.
