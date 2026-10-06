@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import List, Optional
 from urllib.parse import unquote
 
-from . import render
+from . import diagram, render
 from .project import ID_KINDS, Artifact, Finding, Project
 from .text import strip_code
 
@@ -46,7 +46,7 @@ def run(project: Project, with_tests: bool = True) -> List[Finding]:
     findings = list(project.findings)
     for check in (schema, ids, references, sources, story_proof, story_requirements,
                   superseded, implemented_proof, status_behind_result, unknown_results,
-                  stale_regions, links, readme_version, evidence_paths):
+                  stale_regions, diagram_images, links, readme_version, evidence_paths):
         if not with_tests and check.__name__ in TEST_CHECKS:
             continue
         findings.extend(check(project))
@@ -236,6 +236,20 @@ def stale_regions(project: Project) -> List[Finding]:
     """Error 11: generated region or view differs from what render would write."""
     return [Finding(11, project.rel(path), "generated content is out of date, run 'docspine render'")
             for path in render.stale(project)]
+
+
+_DIAGRAM_REASON = {
+    "missing": "has no SVG next to it",
+    "unstamped": "has an SVG that was not produced with 'docspine diagram'",
+    "outdated": "has an SVG produced from an older version of the source",
+}
+
+
+def diagram_images(project: Project) -> List[Finding]:
+    """Error 12: diagram image not produced from the current version of its source."""
+    return [Finding(12, project.rel(source),
+                    f"diagram source {_DIAGRAM_REASON[state]}; run 'docspine diagram {project.rel(source)}'")
+            for source, state in diagram.stale(project)]
 
 
 _README_VERSION = re.compile(r"^<!--\s*docspine\s+(\S+)")

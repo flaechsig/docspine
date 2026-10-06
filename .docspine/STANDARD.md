@@ -172,6 +172,8 @@ The `id` in the front matter must match the file name.
 - **Git.** The project is a Git repository. Decisions are superseded rather than
   rewritten, and the history is part of the proof (section 10).
 - **Python 3.9 or later** for the checker (section 11).
+- **Graphviz or PlantUML**, only to render DOT or PlantUML diagrams with the command
+  `diagram` (section 9).
 
 ### 2.7 Branches and teams
 
@@ -580,8 +582,11 @@ Diagrams are always kept as text source in the repository, never only as images.
 - **No ASCII art with box-drawing characters or arrows:** many fonts draw them wider
   than one character, and the lines slip out of place.
 - **DOT or PlantUML with a committed SVG** under `docs/diagrams/` for large overviews
-  where Mermaid's layout is not enough. The SVG must be produced from the current
-  version of its source.
+  where Mermaid's layout is not enough. The SVG is produced with
+  `python3 .docspine/docspine.pyz diagram`, which renders the source with Graphviz or
+  PlantUML and records a checksum of the source in the SVG. The checker compares it with
+  the source and reports an image that is missing, was produced otherwise, or belongs to
+  an older version of the source (error 12). `docs/legacy/` is not checked.
 - **Images without a source** only where none can exist, such as screenshots.
 
 ## 10 Legacy
@@ -608,6 +613,9 @@ The checker is a command-line tool that runs without a build system, as
 - `check --without-tests` — the same, but skips what needs test results (errors 8, 9
   and 10), for quick checks of the documentation alone.
 - `render` — writes generated regions and views.
+- `diagram [source …]` — renders DOT and PlantUML sources to SVG with their checksum
+  (section 9); without arguments, every image that is not current. Needs Graphviz or
+  PlantUML; the other commands do not.
 
 **Order.** `render` runs any time before `check`; it does not need test results.
 `check` runs after the tests. Without a test run, `check` cannot know what is
@@ -652,7 +660,7 @@ files that docspine no longer delivers (listed by comparison with `.docspine/MAN
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
 | 10 | test result for a requirement that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |
-| 12 | diagram image not produced from the current version of its source (not yet checked) |
+| 12 | diagram image missing, not produced with `diagram`, or produced from an older version of its source |
 | 13 | broken relative link |
 | 14 | `README.md` was translated from a different docspine version than the installed `STANDARD.md` |
 | 15 | an `evidence` path does not exist |

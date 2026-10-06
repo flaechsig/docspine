@@ -105,7 +105,7 @@ Then show the plan as one table, every row with a target:
 | vision or project description | core statement in `docs/01-goals/vision.md` (3.1) |
 | decisions | `docs/09-decisions/ADR-NNNN.md` (3.5) |
 | architecture chapters with content | chapter files (2.1); empty chapters are dropped |
-| diagram sources and images | Mermaid where small; otherwise source and SVG under `docs/diagrams/` (9) |
+| diagram sources and images | Mermaid where small; otherwise source and SVG under `docs/diagrams/`, the SVG rendered with the command `diagram` (9) |
 | guides, runbooks and other own documentation | own folder under `docs/` (2.1) |
 | old documentation without structure | `docs/legacy/` (10) |
 | working areas (data, scripts, files a build step uses) | out of `docs/`, with every path updated; or stays, if moving breaks too much |
@@ -160,7 +160,9 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
    table-heavy files.
 3. **Convert formats:** AsciiDoc and other formats to Markdown. Keep the text; change
    only the markup. A file that is split into several (for example one arc42 document
-   into chapter files) has no history to keep; split it here.
+   into chapter files) has no history to keep; split it here. Render DOT and PlantUML
+   images once with `python3 .docspine/docspine.pyz diagram`, so that they carry the
+   checksum of their source; if Graphviz or PlantUML is missing, name it as an open point.
 4. **Align the schema** as listed in the plan, and update every reference to the new paths
    and IDs: resolve each relative link from the file's old location, and write ID
    references in the documentation in the new format (`ADR-006` → `ADR-0006`); code and

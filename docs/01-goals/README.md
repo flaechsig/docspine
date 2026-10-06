@@ -6,20 +6,20 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 4 · 🟡 in Arbeit 3 · ✅ verifiziert 10 · ⛔ abgelöst 1 |
-| Requirements | umgesetzt 33 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | angenommen 23 |
+| Stories | ⚪ offen 3 · 🟡 in Arbeit 3 · ✅ verifiziert 11 · ⛔ abgelöst 1 |
+| Requirements | umgesetzt 36 · abgelöst 5 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 23 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
 | [US-0004](stories/US-0004.md) | CLI-Kern mit check und render | ✅ verifiziert |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ✅ verifiziert |
 | [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel Maven und JUnit 5 | ✅ verifiziert |
-| [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ⚪ offen |
+| [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ✅ verifiziert |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -62,7 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-_keine_
+- [ADR-0024](../09-decisions/ADR-0024.md) — Diagrammbilder über einen eigenen Befehl erzeugen und per Prüfwert prüfen
 
 ## Widersprüche
 
@@ -70,7 +70,6 @@ _keine_
 
 ## Kapitel ohne Inhalt
 
-- 02-constraints
 - 04-strategy
 - 05-building-blocks
 - 06-runtime

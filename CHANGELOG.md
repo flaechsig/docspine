@@ -4,6 +4,18 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## Unreleased
+
+- **Outdated diagram images are reported** (error 12, standard 9). The new command
+  `python3 .docspine/docspine.pyz diagram` renders DOT and PlantUML sources to SVG with
+  Graphviz or PlantUML and records a checksum of the source in the SVG; the check
+  compares it. Existing SVGs without a checksum are reported until rendered once with
+  `diagram`. Graphviz and PlantUML are needed only for this command.
+- **`spine-adopt` learnt from its second run:** file extensions change in the move
+  commit, so Git keeps the history; links resolve from the old location; relations the
+  standard does not allow are listed in the plan; unchecked content of agent files goes
+  to `docs/legacy/`.
+
 ## 0.16
 
 - **New skill `spine-adopt`** brings an existing project with code and documentation under
