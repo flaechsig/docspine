@@ -6,9 +6,9 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 5 · 🟡 in Arbeit 3 · ✅ verifiziert 10 |
+| Stories | ⚪ offen 4 · 🟡 in Arbeit 3 · ✅ verifiziert 10 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 33 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 21 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 2 · angenommen 21 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -47,13 +47,13 @@ Status: 🟡 in Arbeit
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
 | [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
 | [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ✅ verifiziert |
-| [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
+| [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⛔ abgelöst |
 | [US-0017](stories/US-0017.md) | Arbeiten im kleinen Team | ✅ verifiziert |
 
 ## Offene Fragen
@@ -63,6 +63,7 @@ _keine_
 ## Offene Entscheidungen
 
 - [ADR-0022](../09-decisions/ADR-0022.md) — Prüfung nach dem Build als eigener Schritt, Testberichte selbst finden
+- [ADR-0023](../09-decisions/ADR-0023.md) — Kein JSON Schema für das Frontmatter
 
 ## Widersprüche
 
