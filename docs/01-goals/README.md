@@ -70,7 +70,7 @@ _keine_
 
 ## Kapitel ohne Inhalt
 
-- 12-glossary
+_keine_
 
 ## Teilweise gefüllte Kapitel
 
