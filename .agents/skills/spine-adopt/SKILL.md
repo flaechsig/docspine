@@ -52,15 +52,23 @@ or a story, never as a fix.
 
 ## Step 0 — Starting point (silently)
 
-1. Run from the repository root. Check that `git --version` and `python3 --version` work
-   and that the folder is a Git repository. Without Git, say that docspine needs it
-   (STANDARD 2.6) and stop.
+1. Run from the project root. Check that `git --version` and `python3 --version` work
+   and that the folder is inside a Git repository. Without Git, say that docspine needs
+   it (STANDARD 2.6) and stop. If the project root is a subfolder of the repository
+   (`git rev-parse --show-toplevel` differs), for example one project in a collection
+   repository: docspine lives in the subfolder, all paths are relative to it, branches
+   and the clean state of step 4 apply to the whole repository. Record this as a
+   deviation in the profile.
 2. **Installation.** `.docspine/STANDARD.md` and `.docspine/docspine.pyz` must exist, and
    `.claude/skills` must be the link to `.agents/skills` that the installation creates. If
    `.claude/skills` is a folder of the project's own, the installation could not create
    the link; tell the person to move the folder first (`git mv .claude/skills
    .agents/skills`) and run the installation one-liner again, as the docspine quickstart
-   describes. Read the version from the first line of `.docspine/STANDARD.md`.
+   describes. Read the version from the first line of `.docspine/STANDARD.md`. Check
+   with `git check-ignore` that `.docspine/`, `.agents/skills/`, `.claude/skills` and
+   `.claude/CLAUDE.md` are not ignored, also by a `.gitignore` higher up; a pattern such
+   as `.claude/` there keeps them out of Git. Name such a pattern in the plan with a
+   narrower replacement (for example `/.claude/`).
 3. **Already set up?** If `.docspine/PROFILE.md` exists, say so, suggest `spine-update`
    or `spine-require`, and stop.
 4. **Clean state.** Apart from the files of the installation (`.docspine/`,
@@ -77,7 +85,9 @@ example:
 
 > Die Dokumentation ist auf Deutsch. Soll sie es bleiben (de)?
 
-Use the answer as `language` (ISO 639-1 code).
+Use the answer as `language` (ISO 639-1 code). If the documentation is written in one
+language throughout, you may instead put the language as the first line of the plan in
+step 2, so that the person approves both at once.
 
 ## Step 2 — Take stock (silently, then one plan)
 
@@ -105,14 +115,14 @@ Then show the plan as one table, every row with a target:
 | vision or project description | core statement in `docs/01-goals/vision.md` (3.1) |
 | decisions | `docs/09-decisions/ADR-NNNN.md` (3.5) |
 | architecture chapters with content | chapter files (2.1); empty chapters are dropped |
-| diagram sources and images | Mermaid where small; otherwise source and SVG under `docs/diagrams/` (9) |
+| diagram sources and images | Mermaid where small; otherwise source and SVG under `docs/diagrams/`, the SVG rendered with the command `diagram` (9) |
 | guides, runbooks and other own documentation | own folder under `docs/` (2.1) |
 | old documentation without structure | `docs/legacy/` (10) |
 | working areas (data, scripts, files a build step uses) | out of `docs/`, with every path updated; or stays, if moving breaks too much |
 | generated views, own conventions replaced by the standard | delete |
 | methodology skills | delete; `spine-*` takes over |
 | project skills | `.agents/skills/<name>/`, links to moved paths updated |
-| architecture and rules in `CLAUDE.md` or similar | into the chapters and `AGENTS.md` (2.2); the tool file only points to `AGENTS.md` |
+| architecture and rules in `CLAUDE.md`, `AGENTS.md` or similar | commands and working rules into `AGENTS.md` (2.2); content checked against the code into the chapters, unchecked content to `docs/legacy/`; the tool file only points to `AGENTS.md` |
 | leftovers of other methods or tools | delete |
 
 Add to the plan:
@@ -121,13 +131,31 @@ Add to the plan:
   `obligation: MUSS` → `MUST`, epic IDs in upper case), fields that are dropped (an epic's
   `status`; `confidence` and test paths in `evidence` for requirements that will be
   proven by test results, STANDARD 3.4), status values that map to the ones of
-  STANDARD 3.3 and 3.4, hand-written back references that are removed (STANDARD 4).
+  STANDARD 3.3 and 3.4, hand-written back references that are removed (STANDARD 4),
+  and relations the standard does not allow, for example a `verified` story that lists a
+  rejected or superseded requirement, or a decision named as `source` instead of an
+  external norm (it becomes `requires` in the decision).
+  - **Requirements without front matter** (prose with sections such as requirement,
+    rationale, acceptance): the requirement text becomes `statement`, one EARS sentence
+    in `statement_language`, drafted by you and marked as a suggestion; the rationale
+    becomes `rationale`, the acceptance criteria `verification`. The original text stays
+    in the body as context, so nothing is lost.
+  - **A level of obligation without equivalent** (for example `KANN`, `MAY`, `CAN`):
+    `SHOULD`, with the original level noted in the body and a deviation in the profile.
+    Check whether the `WHERE` pattern (optional feature) fits the statement.
+  - **A story with more than one epic:** the first named epic goes into `epic`, the
+    others are named in the body.
+  - **Values with a colon** in YAML, such as titles (`Gameplay: Dots, …`), are quoted.
 - **Norms** cited in the requirements' `source`, for `sources` in the profile.
 - **The core statement** of the vision, drafted from existing text and marked as a
   suggestion; `UNKNOWN` with the open question if nothing fits.
 - **Findings** that the move does not resolve: contradictions between documentation and
   code, requirements without a test, open points. They become open questions or
-  contradictions in the documentation, or stories with `status: open`.
+  contradictions in the documentation, or stories with `status: open`. Compare the
+  commits since the documentation last changed (`git log` on the code paths) with the
+  documented status: a feature that was built while the documentation still calls it
+  open is a contradiction. The status itself stays as documented; proving it is the job
+  of `spine-gate` or the person.
 - **What `spine-gate` does afterwards:** the traceability you found and how it is
   replaced.
 
@@ -150,12 +178,22 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
 
 1. **Working areas** out of `docs/`, if the plan says so, with every path in workflows,
    build files, scripts and skills updated.
-2. **Move** every file to its target with `git mv`, including renames to the new IDs and
-   file names (`ADR-001.adoc` → `ADR-0001.adoc`). Content and format stay unchanged.
-3. **Convert formats:** AsciiDoc and other formats to Markdown, file extensions with
-   `git mv`. Keep the text; change only the markup.
+2. **Move** every file to its target with `git mv`, including renames to the new IDs,
+   file names and extensions (`ADR-001.adoc` → `ADR-0001.md`); create missing target
+   folders first. Content and format stay unchanged. Git recognises a rename only if
+   the content stays similar; a format change in the same commit loses it for short or
+   table-heavy files.
+3. **Convert formats:** AsciiDoc and other formats to Markdown. Keep the text; change
+   only the markup. A file that is split into several (for example one arc42 document
+   into chapter files) has no history to keep; split it here. Render DOT and PlantUML
+   images once with `python3 .docspine/docspine.pyz diagram`, so that they carry the
+   checksum of their source; if Graphviz or PlantUML is missing, name it as an open point.
 4. **Align the schema** as listed in the plan, and update every reference to the new paths
-   and IDs. Rewrite ADRs only in form (front matter, section headings); an accepted
+   and IDs: resolve each relative link from the file's old location, and write ID
+   references in the documentation in the new format (`ADR-006` → `ADR-0006`); code and
+   working areas keep theirs. A link to a file that Git ignores or the build produces
+   (a screenshot under `build/`) breaks the link check; write it as a path in backticks.
+   Rewrite ADRs only in form (front matter, section headings); an accepted
    decision keeps its content (STANDARD 3.5).
 5. **Write the frame:** `docs/01-goals/vision.md` with the approved core statement,
    `.docspine/PROFILE.md` (front matter `language`, `statement_language: en`, `sources`;
@@ -166,7 +204,8 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
    not connected, the check in `AGENTS.md` is `check --without-tests`, with a note that
    `spine-gate` connects the build.
 6. **Delete** generated views, replaced conventions and leftovers, as approved, with
-   `git rm`.
+   `git rm`. Untracked files (for example rendered images that were never committed)
+   stay; name them in the summary.
 7. **Findings** as open questions, contradictions (STANDARD 7) or stories, as approved.
 
 Do not write generated regions; the checker does that.

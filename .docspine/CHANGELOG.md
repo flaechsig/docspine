@@ -4,6 +4,27 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
+## 0.17
+
+- **Outdated diagram images are reported** (error 12, standard 9). The new command
+  `python3 .docspine/docspine.pyz diagram` renders DOT and PlantUML sources to SVG with
+  Graphviz or PlantUML and records a checksum of the source in the SVG; the check
+  compares it. Existing SVGs without a checksum are reported until rendered once with
+  `diagram`. Graphviz and PlantUML are needed only for this command.
+- **`spine-adopt` learnt from its second run:** file extensions change in the move
+  commit, so Git keeps the history; links resolve from the old location; relations the
+  standard does not allow are listed in the plan; unchecked content of agent files goes
+  to `docs/legacy/`.
+- **`spine-adopt` learnt from its third run (3dPacMan):** a project may live in a
+  subfolder of a repository; a `.gitignore` higher up that hides the installation is
+  named; requirements written as prose get an EARS statement as a suggestion while the
+  original text stays; an obligation without equivalent (`KANN`, `MAY`) becomes `SHOULD`
+  with a note; a story with several epics keeps the first; features built after the
+  documentation last changed become contradictions; links into build output become
+  plain paths.
+- **`spine-gate` without tests:** for a project without automated tests the check runs
+  as a step of its own without test results, and requirements are proven by hand.
+
 ## 0.16
 
 - **New skill `spine-adopt`** brings an existing project with code and documentation under
