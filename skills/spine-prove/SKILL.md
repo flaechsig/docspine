@@ -69,6 +69,16 @@ language (`language` in `.docspine/PROFILE.md`).
 - **Only `implemented` requirements must be proven.** `planned` and `proposed` are not a
   finding. A story proven through `evidence` needs no requirement test.
 
+## Newer version
+
+Before anything else, run `python3 .docspine/docspine.pyz version`. It looks online at
+most once a day and does not fail without a network. If it reports a newer version,
+say so in one line and sum up its changelog entries in at most three points. Then offer
+to install it first: on a branch of its own, run the command it shows, then the skill
+`spine-update`. Ask before doing so, because it fetches files from outside. If the
+person declines, or there is nothing new, or the command could not check, carry on
+without mentioning it again.
+
 ## Step 0 — Read the state (silently)
 
 - the requirements on `implemented`, and how each is proven: test results (STANDARD 8.1)

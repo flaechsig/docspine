@@ -648,6 +648,10 @@ first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what c
 which writes only `.docspine/`, `.agents/skills/spine-*` and `.claude/skills`. After an
 update, the skill `spine-update` translates the README again where needed and removes
 files that docspine no longer delivers (listed by comparison with `.docspine/MANIFEST`).
+`python3 .docspine/docspine.pyz version` shows whether a newer version exists, with its
+changelog entries and the installation command. It looks online at most once a day
+(cache in the user's cache folder, `--now` looks at once) and does not fail without a
+network. The skills from docspine run it when they start.
 
 **Errors:**
 

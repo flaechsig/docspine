@@ -10,6 +10,7 @@ Was docspine voraussetzt und wovon es abhängt.
 | Python 3.9 oder neuer, nur Standardbibliothek | das Prüfwerkzeug `docspine.pyz` | ja | Standard 2.6, ADR-0012, REQ-0015 |
 | PyYAML | Frontmatter lesen | eingepackt, keine Installation | ADR-0012, REQ-0015 |
 | `curl` und `tar` | Installation und Update von docspine | ja, für die Installation | README |
+| Netzzugriff auf `raw.githubusercontent.com` | Befehl `version`: gibt es eine neuere Version? | nein, ohne Netz meldet er nur, dass er nicht prüfen konnte | ADR-0025 |
 | Graphviz (`dot`) | Befehl `diagram` für DOT-Quellen | nur wer DOT-Diagramme ändert | ADR-0024 |
 | PlantUML | Befehl `diagram` für PlantUML-Quellen | nur wer PlantUML-Diagramme ändert | ADR-0024 |
 | KI-Werkzeug mit Agent Skills, z. B. Claude Code | geführte Abläufe `spine-*` | nein, Repo und Prüfung genügen | ADR-0009 |

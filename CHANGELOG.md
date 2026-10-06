@@ -6,6 +6,12 @@ the new version.
 
 ## Unreleased
 
+- **Hint on newer versions** (standard 11, ADR-0025). The new command
+  `python3 .docspine/docspine.pyz version` shows whether a newer version exists, with
+  its changelog entries and the installation command. It looks online at most once a
+  day, keeps the answer in the user's cache folder (`--now` looks at once), and does
+  not fail without a network. `spine-require`, `-impact`, `-decide`, `-build`, `-prove`
+  and `-gate` run it when they start and offer to install a newer version.
 - **The prefix `spine-` is reserved** for skills from docspine (standard 2.2). Project
   skills use other names, because an update overwrites `.agents/skills/spine-*` and
   removes folders docspine no longer delivers. The test for tool-specific folders now
