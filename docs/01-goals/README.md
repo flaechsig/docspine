@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ⚪ offen 4 · 🟡 in Arbeit 3 · ✅ verifiziert 10 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 33 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 2 · angenommen 21 |
+| [Entscheidungen](../09-decisions/) | angenommen 23 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -62,8 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-- [ADR-0022](../09-decisions/ADR-0022.md) — Prüfung nach dem Build als eigener Schritt, Testberichte selbst finden
-- [ADR-0023](../09-decisions/ADR-0023.md) — Kein JSON Schema für das Frontmatter
+_keine_
 
 ## Widersprüche
 
