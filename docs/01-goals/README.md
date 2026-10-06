@@ -6,7 +6,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 5 · 🟡 in Arbeit 4 · ✅ verifiziert 9 |
+| Stories | ⚪ offen 5 · 🟡 in Arbeit 3 · ✅ verifiziert 10 |
 | Requirements | umgesetzt 33 · abgelöst 5 |
 | [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 21 |
 
@@ -28,7 +28,7 @@ Status: 🟡 in Arbeit
 | Story | Titel | Status |
 |---|---|---|
 | [US-0012](stories/US-0012.md) | 3dPacMan migrieren | ⚪ offen |
-| [US-0013](stories/US-0013.md) | Ursprungsprojekt migrieren | 🟡 in Arbeit |
+| [US-0013](stories/US-0013.md) | Ursprungsprojekt migrieren | ✅ verifiziert |
 | [US-0014](stories/US-0014.md) | blocpress migrieren | ✅ verifiziert |
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
