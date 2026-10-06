@@ -25,10 +25,9 @@ so, wie sie geschrieben sind. _(confidence: verified — cli/docspine/text.py)_
 - [REQ-0016](../01-goals/requirements/REQ-0016.md) IF a generated region or view differs from what render would write, THEN the checker shall report error 11.
 - [REQ-0019](../01-goals/requirements/REQ-0019.md) WHEN render runs, the checker shall write the requirements region of every story that has requirements, with obligation, statement and status of each.
 - [REQ-0020](../01-goals/requirements/REQ-0020.md) WHEN render runs, the checker shall write the context region of every requirement with its stories, their epics and the ADRs that require it.
-- [REQ-0021](../01-goals/requirements/REQ-0021.md) WHEN render runs, the checker shall write the realized region of every building block with the requirements whose evidence lies under the block's path.
 - [REQ-0022](../01-goals/requirements/REQ-0022.md) WHEN render runs, the checker shall write the scenarios region of every story that a runtime scenario refers to.
-- [REQ-0023](../01-goals/requirements/REQ-0023.md) WHEN render runs, the checker shall write docs/STATUS.md with counts per status, chapters without content, partly filled chapters, contradictions and open questions.
 - [REQ-0024](../01-goals/requirements/REQ-0024.md) WHEN render runs and quality requirements exist, the checker shall write docs/10-quality.md listing them with statement, status and verification.
 - [REQ-0028](../01-goals/requirements/REQ-0028.md) WHEN render runs, the checker shall write into the status region of docs/01-goals/README.md the counts per status, the open questions, the contradictions, the chapters without content and the partly filled chapters, without searching generated regions.
 - [REQ-0037](../01-goals/requirements/REQ-0037.md) WHEN render runs, the checker shall link the count of decisions in the status region of docs/01-goals/README.md to the decisions folder and list every decision with status proposed under open decisions.
+- [REQ-0045](../01-goals/requirements/REQ-0045.md) WHEN render runs, the checker shall write the realized region of every building block with the requirements whose evidence lies under the block's path, leaving out requirements that are superseded or rejected.
 <!-- /generated -->

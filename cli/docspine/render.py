@@ -154,8 +154,10 @@ def _under(path: str, roots: List[str]) -> bool:
 def realized_region(project: Project, block: Artifact) -> str:
     t = texts(project)
     roots = block.list("path")
+    # the block shows what its code does today; superseded and rejected ones are history
     reqs = [r for r in _sorted(project.of_kind("requirement"))
-            if any(_under(e, roots) for e in r.list("evidence"))]
+            if r.get("status") not in ("superseded", "rejected")
+            and any(_under(e, roots) for e in r.list("evidence"))]
     if not reqs:
         return f"_{t['none']}_"
     return "\n".join(f"- {_link(block.path, r)} {r.get('statement')}" for r in reqs)

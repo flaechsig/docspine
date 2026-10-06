@@ -27,7 +27,6 @@ _(confidence: verified — cli/docspine/project.py, REQ-0029, REQ-0030, REQ-0031
 
 <!-- generated:realized -->
 - [REQ-0001](../01-goals/requirements/REQ-0001.md) IF a required front-matter field is missing or holds a value that is not permitted, THEN the checker shall report error 1 with file and field.
-- [REQ-0008](../01-goals/requirements/REQ-0008.md) IF a requirement is implemented without a passing test result and without evidence, THEN the checker shall report error 8.
 - [REQ-0010](../01-goals/requirements/REQ-0010.md) IF a test result names a requirement that does not exist, THEN the checker shall report error 10.
 - [REQ-0015](../01-goals/requirements/REQ-0015.md) The checker shall run as a single file with Python 3.9 or later without installing further packages.
 - [REQ-0029](../01-goals/requirements/REQ-0029.md) WHEN the profile names locations in test_reports, the checker shall read every JUnit XML report there and count each test case for every requirement ID in its name or class name.

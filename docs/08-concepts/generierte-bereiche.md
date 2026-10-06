@@ -7,7 +7,7 @@ auseinander (ADR-0003).
 **Lösung.** Beziehungen stehen nur in eine Richtung im Frontmatter (Standard 4). Alles
 andere schreibt `render` in markierte Bereiche innerhalb der von Hand geschriebenen
 Dateien. Ein Bereich, der fehlt, wird angehängt. _(confidence: verified —
-cli/docspine/render.py, REQ-0013, REQ-0014, REQ-0019, REQ-0020, REQ-0021, REQ-0022)_
+cli/docspine/render.py, REQ-0013, REQ-0014, REQ-0019, REQ-0020, REQ-0022, REQ-0045)_
 
 **Ein Plan für beide Befehle.** `render.plan()` berechnet für jede verwaltete Datei den
 vollständigen Soll-Text. `render` schreibt die Abweichungen, `check` meldet sie als

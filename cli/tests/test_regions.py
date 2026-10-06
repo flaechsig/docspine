@@ -103,7 +103,7 @@ class RequirementContext(RenderTest):
         self.assertIn("required by: [ADR-0001](../../09-decisions/ADR-0001.md)", self.read(REQ_PATH))
 
 
-@req("REQ-0021")
+@req("REQ-0045")
 class BlockRequirements(RenderTest):
     BLOCK = "docs/05-building-blocks/orders.md"
 
@@ -120,6 +120,19 @@ class BlockRequirements(RenderTest):
         r = replace(REQUIREMENT, "source:\n", "source:\nevidence: [src/orders-old/x.py]\n")
         self.render({REQ_PATH: r, self.BLOCK: "---\ntitle: Orders\npath: src/orders\n---\n"})
         self.assertNotIn("REQ-0001", self.read(self.BLOCK))
+
+    def test_superseded_and_rejected_are_left_out(self):
+        r = replace(REQUIREMENT, "source:\n", "source:\nevidence: [src/orders/service.py]\n")
+        old = replace(r, "status: planned", "status: superseded\nsuperseded_by: REQ-0001").replace("REQ-0001\n", "REQ-0002\n", 1)
+        old = old.replace("id: REQ-0001", "id: REQ-0002")
+        dropped = replace(r, "status: planned", "status: rejected").replace("id: REQ-0001", "id: REQ-0003")
+        block = "---\ntitle: Orders\npath: [src/orders]\n---\n\n# Orders\n"
+        self.render({REQ_PATH: r, "docs/01-goals/requirements/REQ-0002.md": old,
+                     "docs/01-goals/requirements/REQ-0003.md": dropped, self.BLOCK: block})
+        text = self.read(self.BLOCK)
+        self.assertIn("[REQ-0001]", text)
+        self.assertNotIn("REQ-0002", text)
+        self.assertNotIn("REQ-0003", text)
 
 
 @req("REQ-0022")
