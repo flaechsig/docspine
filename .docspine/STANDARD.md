@@ -1,8 +1,8 @@
-<!-- docspine 0.18 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.19 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.18 (draft)
+Version 0.19 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -436,7 +436,7 @@ generated into a **generated region** inside a hand-written file:
 | `stories` | epic | its stories with status |
 | `requirements` | story | statements and status of its requirements |
 | `context` | requirement | epic and story it belongs to, ADRs that require it |
-| `realized` | building block | requirements whose evidence lies under its path |
+| `realized` | building block | requirements whose evidence lies under its path, without superseded and rejected ones |
 | `scenarios` | story | runtime scenarios that realise it |
 
 Generated regions must not be edited by hand. A region that differs from what the
