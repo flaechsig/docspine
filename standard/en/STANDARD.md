@@ -103,11 +103,15 @@ Configuration lives in `.docspine/`; `docs/` contains only documentation. The RE
 mentions the configuration files but does not link to them.
 
 Everything that comes from docspine is overwritten when the standard is updated.
-Changes to it belong in docspine, not in the project.
+Changes to it belong in docspine, not in the project. The prefix `spine-` is reserved
+for skills from docspine: project skills use other names, because an update overwrites
+the folders `.agents/skills/spine-*` and removes those docspine no longer delivers.
 
 All rules are in files in the repository. Tool-specific files may make them easier to
-use but must not contain rules of their own. Test: deleting a tool-specific folder
-must not lose any rule.
+use but must not contain rules of their own. The same holds for the skills from
+docspine: they describe workflows and refer to this standard for the rules. Test:
+deleting a tool-specific folder or the folders `.agents/skills/spine-*` must not lose
+any rule.
 
 `AGENTS.md` is written in the project language. In a section on the documentation it
 contains: one sentence on what the project is; where things are (`docs/README.md`,

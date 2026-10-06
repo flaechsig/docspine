@@ -6,6 +6,10 @@ the new version.
 
 ## Unreleased
 
+- **The prefix `spine-` is reserved** for skills from docspine (standard 2.2). Project
+  skills use other names, because an update overwrites `.agents/skills/spine-*` and
+  removes folders docspine no longer delivers. The test for tool-specific folders now
+  also covers the docspine skills: removing them must not lose any rule.
 - **Four new skills complete the cycle:** `spine-impact` checks what a requirement means
   for the architecture and gives one verdict; `spine-decide` records a decision as an
   ADR; `spine-build` builds a released requirement, test first, hands back when the
