@@ -6,20 +6,20 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 5 · 🟡 in Arbeit 3 · ✅ verifiziert 10 |
-| Requirements | umgesetzt 33 · abgelöst 5 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 21 |
+| Stories | ⚪ offen 3 · 🟡 in Arbeit 3 · ✅ verifiziert 11 · ⛔ abgelöst 1 |
+| Requirements | umgesetzt 36 · abgelöst 5 |
+| [Entscheidungen](../09-decisions/) | angenommen 24 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
 | [US-0004](stories/US-0004.md) | CLI-Kern mit check und render | ✅ verifiziert |
 | [US-0005](stories/US-0005.md) | Neue Prüfungen und generierte Bereiche | ✅ verifiziert |
 | [US-0006](stories/US-0006.md) | Testergebnisse anbinden, Beispiel Maven und JUnit 5 | ✅ verifiziert |
-| [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ⚪ offen |
+| [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ✅ verifiziert |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -47,13 +47,13 @@ Status: 🟡 in Arbeit
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
 | [US-0001](stories/US-0001.md) | STANDARD.md schreiben | ✅ verifiziert |
 | [US-0002](stories/US-0002.md) | Regeln aus den Skills in den Standard verlagern | ✅ verifiziert |
-| [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⚪ offen |
+| [US-0003](stories/US-0003.md) | Frontmatter als JSON Schema | ⛔ abgelöst |
 | [US-0017](stories/US-0017.md) | Arbeiten im kleinen Team | ✅ verifiziert |
 
 ## Offene Fragen
@@ -62,7 +62,7 @@ _keine_
 
 ## Offene Entscheidungen
 
-- [ADR-0022](../09-decisions/ADR-0022.md) — Prüfung nach dem Build als eigener Schritt, Testberichte selbst finden
+_keine_
 
 ## Widersprüche
 
@@ -70,7 +70,6 @@ _keine_
 
 ## Kapitel ohne Inhalt
 
-- 02-constraints
 - 04-strategy
 - 05-building-blocks
 - 06-runtime

@@ -63,6 +63,8 @@ zuerst [Maven mit JUnit 5](integrations/maven-junit5.md).
 
 **Voraussetzungen:** Git und Python 3.9 oder neuer (für das Prüfwerkzeug); für die
 Installation `curl` und `tar` (unter Linux, macOS und Windows 10/11 vorhanden).
+Wer DOT- oder PlantUML-Diagramme ändert, braucht zusätzlich Graphviz bzw. PlantUML
+(Befehl `diagram`). Alle Abhängigkeiten: [docs/02-constraints.md](docs/02-constraints.md).
 `spine-init` legt das Git-Repository an, falls es noch keins gibt. Die Skills liegen nach der Installation unter
 `.agents/skills/` und folgen dem offenen Agent-Skills-Standard, auch für andere
 KI-Werkzeuge.

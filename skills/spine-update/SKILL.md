@@ -47,6 +47,8 @@ it after approval. Never write to the main branch.
    - `docs/PROFILE.md` (likewise for the profile)
    - `docs/STATUS.md` (before version 0.3; its content is now in `docs/01-goals/README.md`)
 4. A field `docspine:` in the front matter of `.docspine/PROFILE.md` (no longer used).
+5. Diagram sources (DOT, PlantUML) under `docs/` whose SVG carries no checksum yet
+   (error 12 since version 0.17), and whether Graphviz or PlantUML is installed.
 
 ## Step 2 — Propose
 
@@ -60,6 +62,10 @@ are newer than the README's version. Then list what you would do:
 - **Leftover files:** delete the files and skill folders found in step 1.3, except the
   profile.
 - **Profile field:** remove `docspine:` from `.docspine/PROFILE.md` if present.
+- **Diagram images:** render the images found in step 1.5 once with
+  `python3 .docspine/docspine.pyz diagram`, so that they carry the checksum of their
+  source (STANDARD 9). If the tool is missing, name it; the check reports the images
+  until they are rendered.
 
 If there is nothing to do, say "Nothing to do" and continue with step 4.
 
