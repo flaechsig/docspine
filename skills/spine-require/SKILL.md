@@ -111,8 +111,7 @@ Summarise what was written, and suggest the next step. Stay in the specification
 unless the person asks otherwise:
 
 - by default, the next story or requirement, naming the stories that still have none
-- checking the effect on the architecture (STANDARD 6), with `spine-impact` once
-  available
+- checking the effect on the architecture (STANDARD 6) with `spine-impact`
 - reviewing the changes with `git status` and committing them
 
 Mention as one option among these that a requirement can be released for building
