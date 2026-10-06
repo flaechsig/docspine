@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `spine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.18
 
 - **Hint on newer versions** (standard 11, ADR-0025). The new command
   `python3 .docspine/docspine.pyz version` shows whether a newer version exists, with
