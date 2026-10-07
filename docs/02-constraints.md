@@ -13,7 +13,7 @@ Was docspine voraussetzt und wovon es abhängt.
 | Netzzugriff auf `raw.githubusercontent.com` | Befehl `version`: gibt es eine neuere Version? | nein, ohne Netz meldet er nur, dass er nicht prüfen konnte | ADR-0025 |
 | Graphviz (`dot`) | Befehl `diagram` für DOT-Quellen | nur wer DOT-Diagramme ändert | ADR-0024 |
 | PlantUML | Befehl `diagram` für PlantUML-Quellen | nur wer PlantUML-Diagramme ändert | ADR-0024 |
-| KI-Werkzeug mit Agent Skills, z. B. Claude Code | geführte Abläufe `spine-*` | nein, Repo und Prüfung genügen | ADR-0009 |
+| KI-Werkzeug mit Agent Skills, z. B. Claude Code | geführte Abläufe `docspine-*` | nein, Repo und Prüfung genügen | ADR-0009 |
 
 Werkzeuge einer Werkzeugkette (etwa JDK und Maven) setzt nicht docspine voraus, sondern
 die jeweilige Integration; sie stehen im Feld `requires` ihres Kopfes

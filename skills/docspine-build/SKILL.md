@@ -1,17 +1,17 @@
 ---
-name: spine-build
+name: docspine-build
 description: >-
   Build a released requirement or story according to docspine: plan the test that proves
   the requirement before the code, stop and hand back when the requirement or the
   architecture has a gap, write code and test, and change the status once the test passes.
   Never rewrites requirements or chapters. Use when the user wants to implement a
-  requirement or story that is planned, or calls /spine-build with a REQ or US ID.
+  requirement or story that is planned, or calls /docspine-build with a REQ or US ID.
 ---
 
-# spine-build
+# docspine-build
 
-You build what a requirement demands and close the loop that `spine-require` (what) and
-`spine-impact` (effect on the architecture) opened: code, a test that carries the
+You build what a requirement demands and close the loop that `docspine-require` (what) and
+`docspine-impact` (effect on the architecture) opened: code, a test that carries the
 requirement ID, a passing build, the status change. If building shows that the
 requirement or the architecture is not yet sharp enough, you **stop** and hand back; you
 repair neither of them on the way.
@@ -23,12 +23,12 @@ describes the procedure. Talk to the person in the project language (`language` 
 
 ## Arguments
 
-- a requirement ID, e.g. `/spine-build REQ-0011`
-- a story ID, e.g. `/spine-build US-0004`: build its requirements one after the other. A
+- a requirement ID, e.g. `/docspine-build REQ-0011`
+- a story ID, e.g. `/docspine-build US-0004`: build its requirements one after the other. A
   story without requirements is ready for building only if its value lies in a part the
   requirement mechanism does not cover (for example a user interface over an existing
   capability); it is then proven through `evidence` (STANDARD 3.3). Otherwise send it to
-  `spine-require` first.
+  `docspine-require` first.
 - nothing: list the requirements on `planned` and ask which one
 
 ## Talking to the person
@@ -53,7 +53,7 @@ describes the procedure. Talk to the person in the project language (`language` 
 - **Flag, do not edit.** You never change the text of requirements, stories, decisions
   or chapters. The one exception is the status change in step 4. A gap is reported and
   handed back.
-- **Constraints apply.** A constraint that `spine-impact` named, or a decision that
+- **Constraints apply.** A constraint that `docspine-impact` named, or a decision that
   requires something, binds the building.
 - **Existing tests stay as they are.** Add tests; do not change what an existing test
   checks.
@@ -64,7 +64,7 @@ Before anything else, run `python3 .docspine/docspine.pyz version`. It looks onl
 most once a day and does not fail without a network. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
-`spine-update`. Ask before doing so, because it fetches files from outside. If the
+`docspine-update`. Ask before doing so, because it fetches files from outside. If the
 person declines, or there is nothing new, or the command could not check, carry on
 without mentioning it again.
 
@@ -103,9 +103,9 @@ If something does not fit, stop and classify the gap:
 
 | Gap | Symptom | Hand back to |
 |---|---|---|
-| requirement | the what is ambiguous, incomplete or wrong; the acceptance cannot be tested | `spine-require` (sharpen or supersede), then back |
-| architecture | the what is fine, the how or where is missing: block, dependency, constraint, decision | `spine-impact`, possibly `spine-decide`, then back |
-| both | both symptoms | first `spine-require`, then `spine-impact`, then back |
+| requirement | the what is ambiguous, incomplete or wrong; the acceptance cannot be tested | `docspine-require` (sharpen or supersede), then back |
+| architecture | the what is fine, the how or where is missing: block, dependency, constraint, decision | `docspine-impact`, possibly `docspine-decide`, then back |
+| both | both symptoms | first `docspine-require`, then `docspine-impact`, then back |
 
 A frequent case: the genuinely new part lies below what the requirement's test can
 show (for example only in the user interface, while the capability already exists). A
@@ -158,8 +158,8 @@ report `OK`. Fix errors in what you changed; ask about anything else.
 Summarise what was built, which test proves which requirement, and the status change.
 Then suggest the next step, without starting it:
 
-- if a new building block, dependency or cross-cutting concept appeared: `spine-impact`
+- if a new building block, dependency or cross-cutting concept appeared: `docspine-impact`
   for the requirement
-- `spine-prove` to have the proof checked
+- `docspine-prove` to have the proof checked
 - reviewing the changes with `git status` and committing them: code and test together,
   the status change with them or right after

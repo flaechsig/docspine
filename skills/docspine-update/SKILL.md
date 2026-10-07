@@ -1,15 +1,15 @@
 ---
-name: spine-update
+name: docspine-update
 description: >-
   Finish an update of docspine in a project: translate the README again where its English
   source changed, remove files docspine no longer delivers, and run the checker. Use after
-  running the docspine installation command again, or when the user calls /spine-update.
+  running the docspine installation command again, or when the user calls /docspine-update.
 ---
 
-# spine-update
+# docspine-update
 
 The installation command has just written a new version of docspine into `.docspine/`,
-`.agents/skills/spine-*` and `.claude/skills`. You finish the update. Everything the
+`.agents/skills/docspine-*` and `.claude/skills`. You finish the update. Everything the
 project wrote itself stays untouched, except where a step below says otherwise and the
 person approves.
 
@@ -42,7 +42,9 @@ it after approval. Never write to the main branch.
 2. The README version: first line of `docs/README.md` (`<!-- docspine Y · … -->`).
 3. Files from older versions, found by comparing the repository with
    `.docspine/MANIFEST`:
-   - folders `.agents/skills/spine-*` that are not listed in the manifest
+   - folders `.agents/skills/docspine-*` that are not listed in the manifest
+   - folders `.agents/skills/spine-*` (up to version 0.19 the skills had the prefix
+     `spine-`, STANDARD 2.2)
    - `docs/STANDARD.md` (before version 0.1 of the layout, the standard lived there)
    - `docs/PROFILE.md` (likewise for the profile)
    - `docs/STATUS.md` (before version 0.3; its content is now in `docs/01-goals/README.md`)

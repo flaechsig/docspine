@@ -1,21 +1,21 @@
 ---
-name: spine-adopt
+name: docspine-adopt
 description: >-
   Bring an existing project with code and documentation under docspine: take stock of the
   existing documentation, skills and traceability, agree on a target for every part in one
   proposal, then move and convert the documentation step by step on a branch. Use when the
   user wants to adopt docspine in a project that already has code or documentation, or
-  calls /spine-adopt. For a new project use spine-init; for the build use spine-gate.
+  calls /docspine-adopt. For a new project use docspine-init; for the build use docspine-gate.
 ---
 
-# spine-adopt
+# docspine-adopt
 
 You move an existing project's documentation into the docspine structure. The rules are
 in `.docspine/STANDARD.md`; read sections 1–5, 9 and 10 before you propose anything. You
 take stock first, propose one plan, and change files only after approval.
 
 This is documentation work. You do not change code, tests or the build; connecting the
-build and the tests is the job of `spine-gate`, which you hand over to at the end. What
+build and the tests is the job of `docspine-gate`, which you hand over to at the end. What
 you notice in the code goes into the documentation as an open question, a contradiction
 or a story, never as a fix.
 
@@ -69,8 +69,8 @@ or a story, never as a fix.
    `.claude/CLAUDE.md` are not ignored, also by a `.gitignore` higher up; a pattern such
    as `.claude/` there keeps them out of Git. Name such a pattern in the plan with a
    narrower replacement (for example `/.claude/`).
-3. **Already set up?** If `.docspine/PROFILE.md` exists, say so, suggest `spine-update`
-   or `spine-require`, and stop.
+3. **Already set up?** If `.docspine/PROFILE.md` exists, say so, suggest `docspine-update`
+   or `docspine-require`, and stop.
 4. **Clean state.** Apart from the files of the installation (`.docspine/`,
    `.agents/skills/`, `.claude/skills`), the working tree has no uncommitted changes, and
    no local branch is left that is not merged into the main branch
@@ -105,7 +105,7 @@ Read the project without changing anything:
   methods or tools, such as planning folders or agent definitions, that no longer serve
   the project.
 - **Traceability:** how tests refer to requirements today (tags, names, comments), and
-  whether the project has its own gate or generator for it. This goes to `spine-gate`.
+  whether the project has its own gate or generator for it. This goes to `docspine-gate`.
 
 Then show the plan as one table, every row with a target:
 
@@ -120,7 +120,7 @@ Then show the plan as one table, every row with a target:
 | old documentation without structure | `docs/legacy/` (10) |
 | working areas (data, scripts, files a build step uses) | out of `docs/`, with every path updated; or stays, if moving breaks too much |
 | generated views, own conventions replaced by the standard | delete |
-| methodology skills | delete; `spine-*` takes over |
+| methodology skills | delete; `docspine-*` takes over |
 | project skills | `.agents/skills/<name>/`, links to moved paths updated |
 | architecture and rules in `CLAUDE.md`, `AGENTS.md` or similar | commands and working rules into `AGENTS.md` (2.2); content checked against the code into the chapters, unchecked content to `docs/legacy/`; the tool file only points to `AGENTS.md` |
 | leftovers of other methods or tools | delete |
@@ -155,8 +155,8 @@ Add to the plan:
   commits since the documentation last changed (`git log` on the code paths) with the
   documented status: a feature that was built while the documentation still calls it
   open is a contradiction. The status itself stays as documented; proving it is the job
-  of `spine-gate` or the person.
-- **What `spine-gate` does afterwards:** the traceability you found and how it is
+  of `docspine-gate` or the person.
+- **What `docspine-gate` does afterwards:** the traceability you found and how it is
   replaced.
 
 Mark everything you derived rather than read as a suggestion. Wait for approval; the
@@ -202,7 +202,7 @@ Check the current branch. On the main branch, propose `docs/docspine-migration`
    section "Documentation (docspine)" if the file exists), and the tool file pointing to
    it (for `.claude/CLAUDE.md` the single line `@../AGENTS.md`). As long as the build is
    not connected, the check in `AGENTS.md` is `check --without-tests`, with a note that
-   `spine-gate` connects the build.
+   `docspine-gate` connects the build.
 6. **Delete** generated views, replaced conventions and leftovers, as approved, with
    `git rm`. Untracked files (for example rendered images that were never committed)
    stay; name them in the summary.
@@ -222,8 +222,8 @@ ask. Commit.
 Summarise in a few lines what moved where, what was deleted, and the open questions
 (they also appear in `docs/01-goals/README.md`). Then suggest:
 
-- `spine-gate` as the next step, before merging, so that the tests prove the requirements
+- `docspine-gate` as the next step, before merging, so that the tests prove the requirements
   and the project's own traceability gate is replaced. Until then, requirements that are
   `implemented` are not proven by the check.
 - merging the branch into the main branch with `--no-ff` once the check reports `OK`
-  after `spine-gate`; offer to do it after approval.
+  after `docspine-gate`; offer to do it after approval.

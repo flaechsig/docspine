@@ -49,7 +49,7 @@ class ReadmeVersion(ProjectTest):
     def test_standard_newer_than_readme(self):
         findings = self.findings({".docspine/STANDARD.md": STANDARD.replace("docspine 0.1", "docspine 0.2")})
         self.assertEqual([(f.code, f.path) for f in findings], [(14, "docs/README.md")])
-        self.assertIn("spine-update", findings[0].message)
+        self.assertIn("docspine-update", findings[0].message)
 
     def test_no_version_line(self):
         self.assertEqual(self.codes({"docs/README.md": "# Documentation\n"}), [14])

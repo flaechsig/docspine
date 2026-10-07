@@ -275,7 +275,7 @@ def readme_version(project: Project) -> List[Finding]:
                         "first line does not name the docspine version (<!-- docspine X · … -->)")]
     if translated != installed:
         return [Finding(14, project.rel(readme), f"README was translated from docspine {translated}, "
-                                                 f"installed is {installed}; run spine-update")]
+                                                 f"installed is {installed}; run docspine-update")]
     return []
 
 

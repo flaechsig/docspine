@@ -28,10 +28,10 @@ etwa 30 Minuten einplanen.
 Danach Claude Code im Projekt starten und aufrufen:
 
 ```
-/spine-init
+/docspine-init
 ```
 
-`spine-init` fragt nach der Sprache der Dokumentation und nach einer kurzen Beschreibung
+`docspine-init` fragt nach der Sprache der Dokumentation und nach einer kurzen Beschreibung
 des Projekts, zum Beispiel:
 
 ```
@@ -50,13 +50,15 @@ GitHub, in der Markdown-Vorschau einer IDE oder in einem Markdown-Leser wie
 `docs/.obsidian/` in die `.gitignore` eintragen.
 
 **Bestehendes Projekt:** Hat das Projekt schon Code oder Doku, nach der Installation
-`/spine-adopt` statt `/spine-init` aufrufen. Der Skill nimmt den Bestand auf, schlägt für
+`/docspine-adopt` statt `/docspine-init` aufrufen. Der Skill nimmt den Bestand auf, schlägt für
 jeden Teil ein Ziel vor und zieht die Doku nach deiner Freigabe auf einem eigenen Branch
-um; danach bindet `/spine-gate` Build und Tests an. Liegen schon eigene Skills unter
+um; danach bindet `/docspine-gate` Build und Tests an. Liegen schon eigene Skills unter
 `.claude/skills/`, vor der Installation `git mv .claude/skills .agents/skills` ausführen,
 damit die Installation dort ihren Verweis anlegen kann.
 
-**Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/spine-update` aufrufen.
+**Aktualisieren:** dieselbe `curl`-Zeile erneut ausführen, danach `/docspine-update` aufrufen.
+Von 0.19 oder älter kommend hießen die Skills noch `spine-*`; `/docspine-update` ist nach
+der `curl`-Zeile schon da und entfernt die alten Ordner.
 Ob es eine neuere Version gibt, zeigt `python3 .docspine/docspine.pyz version`; die
 Skills sehen damit höchstens einmal am Tag von selbst nach.
 
@@ -67,7 +69,7 @@ zuerst [Maven mit JUnit 5](integrations/maven-junit5.md).
 Installation `curl` und `tar` (unter Linux, macOS und Windows 10/11 vorhanden).
 Wer DOT- oder PlantUML-Diagramme ändert, braucht zusätzlich Graphviz bzw. PlantUML
 (Befehl `diagram`). Alle Abhängigkeiten: [docs/02-constraints.md](docs/02-constraints.md).
-`spine-init` legt das Git-Repository an, falls es noch keins gibt. Die Skills liegen nach der Installation unter
+`docspine-init` legt das Git-Repository an, falls es noch keins gibt. Die Skills liegen nach der Installation unter
 `.agents/skills/` und folgen dem offenen Agent-Skills-Standard, auch für andere
 KI-Werkzeuge.
 

@@ -80,7 +80,7 @@ class ReportsNewerVersion(VersionTest):
         self.assertIn("- eighteen", out)
         self.assertNotIn("seventeen", out)
         self.assertNotIn("not yet released", out)
-        self.assertIn("spine-update", out)
+        self.assertIn("docspine-update", out)
 
     def test_current_version(self):
         self.changelog.write_text("# Changelog\n\n## Unreleased\n\n## 0.17\n\n- seventeen\n", encoding="utf-8")

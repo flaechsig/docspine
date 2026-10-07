@@ -112,5 +112,5 @@ def report(root: Path, now: bool = False) -> List[str]:
             break
         lines += [f"## {version}", "", notes, ""]
     lines += ["To update, run in the repository root:", "", f"    {INSTALL}", "",
-              "then the skill spine-update."]
+              "then the skill docspine-update."]
     return lines
