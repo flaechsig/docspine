@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ✅ verifiziert 18 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 39 · abgelöst 6 |
-| [Entscheidungen](../09-decisions/) | angenommen 25 |
+| [Entscheidungen](../09-decisions/) | angenommen 25 · abgelöst 1 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -38,12 +38,12 @@ Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
-| [US-0007](stories/US-0007.md) | spine-init | ✅ verifiziert |
+| [US-0007](stories/US-0007.md) | docspine-init | ✅ verifiziert |
 | [US-0008](stories/US-0008.md) | Methodik-Skills zusammenführen | ✅ verifiziert |
-| [US-0009](stories/US-0009.md) | spine-adopt | ✅ verifiziert |
-| [US-0010](stories/US-0010.md) | spine-gate | ✅ verifiziert |
+| [US-0009](stories/US-0009.md) | docspine-adopt | ✅ verifiziert |
+| [US-0010](stories/US-0010.md) | docspine-gate | ✅ verifiziert |
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ✅ verifiziert |
-| [US-0016](stories/US-0016.md) | spine-update | ✅ verifiziert |
+| [US-0016](stories/US-0016.md) | docspine-update | ✅ verifiziert |
 | [US-0018](stories/US-0018.md) | Über neue Versionen informiert werden | ✅ verifiziert |
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk

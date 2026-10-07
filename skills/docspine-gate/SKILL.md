@@ -1,19 +1,19 @@
 ---
-name: spine-gate
+name: docspine-gate
 description: >-
   Connect docspine to a project's build and tests, or set up a new build connected from
   the start: recognise the tool chain, apply the matching integration step by step with
   explanations, and check the result; an existing traceability gate is replaced. Use
-  before the first build file or test is written, after spine-adopt, when the user wants
+  before the first build file or test is written, after docspine-adopt, when the user wants
   the docspine check in the build or test results to prove requirements, or when the
-  user calls /spine-gate.
+  user calls /docspine-gate.
 ---
 
-# spine-gate
+# docspine-gate
 
 You connect docspine to the project's build and tests, following the integration
 contract in `.docspine/STANDARD.md` section 11. How a particular tool chain meets the
-contract is described in the integrations next to this file: `.agents/skills/spine-gate/integrations/*.md`. You explain every change before
+contract is described in the integrations next to this file: `.agents/skills/docspine-gate/integrations/*.md`. You explain every change before
 you make it; the person approves. Talk to the person in the project language
 (`language` in `.docspine/PROFILE.md`).
 
@@ -50,7 +50,7 @@ Before anything else, run `python3 .docspine/docspine.pyz version`. It looks onl
 most once a day and does not fail without a network. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
-`spine-update`. Ask before doing so, because it fetches files from outside. If the
+`docspine-update`. Ask before doing so, because it fetches files from outside. If the
 person declines, or there is nothing new, or the command could not check, carry on
 without mentioning it again.
 
@@ -62,7 +62,7 @@ it after approval. Never write to the main branch.
 
 ## Step 1 — Read the state (silently)
 
-- the front matter of every file in `.agents/skills/spine-gate/integrations/`: `name`,
+- the front matter of every file in `.agents/skills/docspine-gate/integrations/`: `name`,
   `detect`, `keywords`, `test_command`, `test_reports`, `requires`
 - which integrations match:
   - **existing build:** the file named in `detect` exists in the repository root

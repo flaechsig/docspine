@@ -117,7 +117,7 @@ def load(root: Path, with_tests: bool = True) -> Project:
     root = root.resolve()
     profile_path = root / CONFIG / "PROFILE.md"
     if not profile_path.is_file():
-        raise ProjectError(f"no {CONFIG}/PROFILE.md below {root}; run spine-init to set up the documentation")
+        raise ProjectError(f"no {CONFIG}/PROFILE.md below {root}; run docspine-init to set up the documentation")
     project = Project(root=root, profile={})
     try:
         profile, _ = frontmatter.parse(profile_path.read_text(encoding="utf-8"))

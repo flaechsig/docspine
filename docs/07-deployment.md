@@ -12,8 +12,8 @@ mit Python ausgeführt.
 | `.docspine/docspine.pyz` | gebaut aus `cli/docspine/` |
 | `.docspine/CHANGELOG.md`, `.docspine/LICENSE` | `CHANGELOG.md`, `LICENSE` |
 | `.docspine/MANIFEST` | Liste aller ausgelieferten Dateien, beim Bauen erzeugt |
-| `.agents/skills/spine-*` | `skills/` |
-| `.agents/skills/spine-gate/integrations/` | `integrations/` |
+| `.agents/skills/docspine-*` | `skills/` |
+| `.agents/skills/docspine-gate/integrations/` | `integrations/` |
 | `.claude/skills` | symbolischer Link auf `../.agents/skills` |
 
 _(confidence: verified — cli/build.py)_

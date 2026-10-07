@@ -1,8 +1,16 @@
 # Changelog
 
-What changed in what docspine delivers to projects (`.docspine/`, `.agents/skills/spine-*`).
-The newest version comes first. `spine-update` shows the entries between the installed and
+What changed in what docspine delivers to projects (`.docspine/`, `.agents/skills/docspine-*`).
+The newest version comes first. `docspine-update` shows the entries between the installed and
 the new version.
+
+## Unreleased
+
+- **Skills are named `docspine-*`** instead of `spine-*` (standard 2.2, ADR-0026), so that
+  skills of several tools of the spine family (docspine, secspine, …) can live side by
+  side in one project. Call `/docspine-init`, `/docspine-require` and so on. After the
+  update, call `/docspine-update`: it removes the old folders `.agents/skills/spine-*`.
+  Project skills named `docspine-*` must be renamed, because the prefix is now reserved.
 
 ## 0.19
 
