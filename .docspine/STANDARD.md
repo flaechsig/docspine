@@ -1,8 +1,8 @@
-<!-- docspine 0.19 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.20 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.19 (draft)
+Version 0.20 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -95,7 +95,7 @@ resolve.
 | `.docspine/docspine.pyz` | the checker | no, from docspine |
 | `.docspine/README.en.md`, `.docspine/MANIFEST`, `.docspine/CHANGELOG.md` | source of the README, list of delivered files, changes per version | no, from docspine |
 | `AGENTS.md` | entry point for AI agents: where things are, how to check | yes |
-| `.agents/skills/spine-*` | guided workflows for AI agents | no, from docspine |
+| `.agents/skills/docspine-*` | guided workflows for AI agents | no, from docspine |
 | `.agents/skills/<other>` | project-specific workflows | yes |
 | `.claude/` and similar | tool-specific settings; refer to `AGENTS.md` only | yes |
 
@@ -103,14 +103,16 @@ Configuration lives in `.docspine/`; `docs/` contains only documentation. The RE
 mentions the configuration files but does not link to them.
 
 Everything that comes from docspine is overwritten when the standard is updated.
-Changes to it belong in docspine, not in the project. The prefix `spine-` is reserved
+Changes to it belong in docspine, not in the project. The prefix `docspine-` is reserved
 for skills from docspine: project skills use other names, because an update overwrites
-the folders `.agents/skills/spine-*` and removes those docspine no longer delivers.
+the folders `.agents/skills/docspine-*` and removes those docspine no longer delivers.
+Up to version 0.19 the prefix was `spine-`; `docspine-update` removes the folders
+`.agents/skills/spine-*` left from then.
 
 All rules are in files in the repository. Tool-specific files may make them easier to
 use but must not contain rules of their own. The same holds for the skills from
 docspine: they describe workflows and refer to this standard for the rules. Test:
-deleting a tool-specific folder or the folders `.agents/skills/spine-*` must not lose
+deleting a tool-specific folder or the folders `.agents/skills/docspine-*` must not lose
 any rule.
 
 `AGENTS.md` is written in the project language. In a section on the documentation it
@@ -204,7 +206,7 @@ docspine is designed for one person or a small team of up to about five people.
   access is the team's decision. Connecting an existing project: create an empty
   repository at the provider, then `git remote add origin <url>` and
   `git push -u origin <main branch>`, with the name of the project's main branch
-  (`main` for projects set up by `spine-init`).
+  (`main` for projects set up by `docspine-init`).
 
 ## 3 Artifacts
 
@@ -637,7 +639,7 @@ the check cannot be forgotten. Whatever the tool chain, an integration must:
 
 How a particular tool chain meets this contract is described in the docspine
 repository under `integrations/`, one file per tool chain; in a project they are
-installed with the skill `spine-gate` under `.agents/skills/spine-gate/integrations/`.
+installed with the skill `docspine-gate` under `.agents/skills/docspine-gate/integrations/`.
 
 Connecting the build is an architecture decision and is recorded as an ADR (section 3.5).
 
@@ -645,8 +647,8 @@ Connecting the build is an architecture decision and is recorded as an ADR (sect
 first line of `.docspine/STANDARD.md`. `.docspine/CHANGELOG.md` describes what changed.
 
 **Installing and updating.** docspine is installed and updated with the same command,
-which writes only `.docspine/`, `.agents/skills/spine-*` and `.claude/skills`. After an
-update, the skill `spine-update` translates the README again where needed and removes
+which writes only `.docspine/`, `.agents/skills/docspine-*` and `.claude/skills`. After an
+update, the skill `docspine-update` translates the README again where needed and removes
 files that docspine no longer delivers (listed by comparison with `.docspine/MANIFEST`).
 `python3 .docspine/docspine.pyz version` shows whether a newer version exists, with its
 changelog entries and the installation command. It looks online at most once a day

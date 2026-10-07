@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `docspine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.20
 
 - **Skills are named `docspine-*`** instead of `spine-*` (standard 2.2, ADR-0026), so that
   skills of several tools of the spine family (docspine, secspine, …) can live side by
