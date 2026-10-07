@@ -1,21 +1,21 @@
 ---
-name: spine-decide
+name: docspine-decide
 description: >-
   Record an architecture decision as an ADR according to docspine: sharpen the context,
   lay out the options, let the user decide, and write the decision with its rationale and
-  consequences. Advisory; the user decides what applies. Use when spine-impact found a
+  consequences. Advisory; the user decides what applies. Use when docspine-impact found a
   decision due, when the user wants to record or supersede a decision, set an ADR from
-  proposed to accepted, or calls /spine-decide (optionally with a topic or an ADR ID).
+  proposed to accepted, or calls /docspine-decide (optionally with a topic or an ADR ID).
 ---
 
-# spine-decide
+# docspine-decide
 
 You help the person record a **due decision** as an ADR: which options there were, what
 was decided, why, and what follows. You sharpen the context, propose wording and write
 the file after approval. You do not decide what applies; the person does.
 
 An ADR is a decision, not a requirement and not a description. What the system shall do
-goes to `spine-require`; what the code does goes into the chapters with `spine-impact`.
+goes to `docspine-require`; what the code does goes into the chapters with `docspine-impact`.
 The ADR records **why** the architecture is the way it is.
 
 Before you start, read `.docspine/STANDARD.md` sections 1, 3.5, 4, 5 and 6. The rules
@@ -24,10 +24,10 @@ language (`language` in `.docspine/PROFILE.md`).
 
 ## Arguments
 
-- a topic in the person's own words, e.g. `/spine-decide authorisation of the import`
-- a decision handed over from `spine-impact` (context and options sketched): take the
+- a topic in the person's own words, e.g. `/docspine-decide authorisation of the import`
+- a decision handed over from `docspine-impact` (context and options sketched): take the
   sketch up and sharpen it instead of asking again
-- an ADR ID, e.g. `/spine-decide ADR-0019`: complete a proposed ADR, set it to
+- an ADR ID, e.g. `/docspine-decide ADR-0019`: complete a proposed ADR, set it to
   `accepted`, or supersede it
 - nothing: ask which decision is to be recorded; never create an ADR unasked
 
@@ -65,7 +65,7 @@ Before anything else, run `python3 .docspine/docspine.pyz version`. It looks onl
 most once a day and does not fail without a network. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
-`spine-update`. Ask before doing so, because it fetches files from outside. If the
+`docspine-update`. Ask before doing so, because it fetches files from outside. If the
 person declines, or there is nothing new, or the command could not check, carry on
 without mentioning it again.
 
@@ -100,7 +100,7 @@ Short and to the point; only as much as a clean ADR needs. Clarify:
 6. **Consequences:** new dependencies, migration, operation, affected requirements and
    stories, contradictions it resolves, follow-up work. The inconvenient ones too.
 7. **Testable consequences:** requirements that follow from the decision go into
-   `requires` (STANDARD 3.5, 4). New ones are written with `spine-require`.
+   `requires` (STANDARD 3.5, 4). New ones are written with `docspine-require`.
 8. **Relation to existing ADRs:** does it refine one, or supersede it?
 
 ## Step 2 — Proposal
@@ -137,7 +137,7 @@ must report `OK`. Fix errors in what you wrote; ask about anything else.
 Summarise number, status and what changed. Then suggest the next step, without starting
 it:
 
-- new behaviour the decision requires: `spine-require`
-- chapters the decision changes beyond a link: `spine-impact`
+- new behaviour the decision requires: `docspine-require`
+- chapters the decision changes beyond a link: `docspine-impact`
 - a decision on `proposed`: setting it to `accepted` once the person decides
 - reviewing the changes with `git status` and committing them

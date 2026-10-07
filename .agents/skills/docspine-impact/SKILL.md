@@ -1,16 +1,16 @@
 ---
-name: spine-impact
+name: docspine-impact
 description: >-
   Check what a requirement or change means for the architecture according to docspine:
   answer the question against the code, give exactly one verdict (already covered, affects
   chapter, decision due, no impact), and update the affected arc42 chapter only where the
   architecture really changes. Advisory; the user decides what applies. Use after
-  spine-require, before building, when the user asks whether a change affects the
-  architecture, or calls /spine-impact (optionally with a REQ or US ID, a chapter, or a
+  docspine-require, before building, when the user asks whether a change affects the
+  architecture, or calls /docspine-impact (optionally with a REQ or US ID, a chapter, or a
   change in their own words).
 ---
 
-# spine-impact
+# docspine-impact
 
 You answer one question for a requirement or a change: **what does it mean for the
 architecture?** You ask the code, not the person. The person comes in only where code and
@@ -26,9 +26,9 @@ project language (`language` in `.docspine/PROFILE.md`).
 
 ## Arguments
 
-- a requirement or story ID, e.g. `/spine-impact REQ-0011`
-- a chapter, e.g. `/spine-impact 08-concepts`
-- a change in the person's own words, e.g. `/spine-impact the cache is encrypted`
+- a requirement or story ID, e.g. `/docspine-impact REQ-0011`
+- a chapter, e.g. `/docspine-impact 08-concepts`
+- a change in the person's own words, e.g. `/docspine-impact the cache is encrypted`
 - nothing: name the chapters that are missing or partly filled (`docs/01-goals/README.md`)
   and the requirements on `proposed` or `planned` that were not checked yet, and propose
   the next one. Never document a chapter just because it is empty.
@@ -54,7 +54,7 @@ project language (`language` in `.docspine/PROFILE.md`).
   a file, a path, a test. Name it.
 - **Observation is not intention** (STANDARD principle 4). What the code does is a
   description in the chapters, with `confidence` (STANDARD 7). What is wanted is a
-  requirement; send it to `spine-require`.
+  requirement; send it to `docspine-require`.
 - **Contradictions stay visible.** Where code and documentation disagree, mark it as a
   contradiction (STANDARD 7). Never correct it silently; the person decides.
 - **Only the affected chapter.** Leave untouched chapters as they are; a missing chapter
@@ -66,7 +66,7 @@ Before anything else, run `python3 .docspine/docspine.pyz version`. It looks onl
 most once a day and does not fail without a network. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
-`spine-update`. Ask before doing so, because it fetches files from outside. If the
+`docspine-update`. Ask before doing so, because it fetches files from outside. If the
 person declines, or there is nothing new, or the command could not check, carry on
 without mentioning it again.
 
@@ -96,7 +96,7 @@ verdict of STANDARD 6, with evidence for each statement:
 |---|---|
 | already covered | nothing changes; name a constraint the building must respect, if there is one |
 | affects chapter | draft the change of that chapter, with evidence and `confidence` |
-| decision due | sketch the context and the options; the ADR itself is written with `spine-decide` |
+| decision due | sketch the context and the options; the ADR itself is written with `docspine-decide` |
 | no impact | say why it stays below architecture level, and stop |
 
 Check the effect, not the size (STANDARD 6).
@@ -139,8 +139,8 @@ must report `OK`. Fix errors in what you wrote; ask about anything else.
 Summarise the verdict and what changed (or why nothing did). Then suggest the next step,
 without starting it:
 
-- "decision due": `spine-decide`, with the sketched context and options
-- a constraint: name it clearly, so that `spine-build` respects it
+- "decision due": `docspine-decide`, with the sketched context and options
+- a constraint: name it clearly, so that `docspine-build` respects it
 - otherwise: releasing the requirement for building (`proposed` → `planned`, the person
-  decides), then `spine-build`
+  decides), then `docspine-build`
 - reviewing the changes with `git status` and committing them

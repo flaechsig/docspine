@@ -1,15 +1,15 @@
 ---
-name: spine-prove
+name: docspine-prove
 description: >-
   Check whether the proof behind the traceability holds according to docspine: explain
   the check's errors and route each to the step that fixes it, and audit whether the test
   of each implemented requirement really exercises every clause of its statement (full,
   partial, hollow). Checks and reports; does not write tests or change requirements. Use
   when the check fails, when the user doubts that tests prove the requirements, or calls
-  /spine-prove (optionally with a REQ ID, a module, or "check").
+  /docspine-prove (optionally with a REQ ID, a module, or "check").
 ---
 
-# spine-prove
+# docspine-prove
 
 You check whether the **proof** behind the traceability holds. The check answers a
 question of fact: does a passing test carry the requirement ID? You answer the question
@@ -25,8 +25,8 @@ Two questions guide you:
    never run?
 
 This skill is not code coverage (lines, branches) and not a general review of test
-quality. It does not create the proof: tests are sharpened with `spine-build`,
-requirements with `spine-require`. You check and report.
+quality. It does not create the proof: tests are sharpened with `docspine-build`,
+requirements with `docspine-require`. You check and report.
 
 Before you start, read `.docspine/STANDARD.md` sections 3.4, 8 and 11. The rules there
 apply; this skill only describes the procedure. Talk to the person in the project
@@ -35,7 +35,7 @@ language (`language` in `.docspine/PROFILE.md`).
 ## Arguments
 
 - `check`: mode A, run the check and explain its errors
-- a requirement ID, e.g. `/spine-prove REQ-0007`: mode B for this requirement
+- a requirement ID, e.g. `/docspine-prove REQ-0007`: mode B for this requirement
 - a module or folder: mode B for the requirements its tests carry
 - nothing: mode B for all `implemented` requirements
 
@@ -75,7 +75,7 @@ Before anything else, run `python3 .docspine/docspine.pyz version`. It looks onl
 most once a day and does not fail without a network. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
-`spine-update`. Ask before doing so, because it fetches files from outside. If the
+`docspine-update`. Ask before doing so, because it fetches files from outside. If the
 person declines, or there is nothing new, or the command could not check, carry on
 without mentioning it again.
 
@@ -95,15 +95,15 @@ without mentioning it again.
 
    | Error (STANDARD 11) | Usual way out |
    |---|---|
-   | 1–4, 7 front matter, IDs, references, sources, successors | correct the artifact: `spine-require`, or `spine-decide` for an ADR |
-   | 5, 6 story `verified` without proof, or with a requirement not `implemented` | status back to `in-progress`, or build the rest: `spine-build` |
-   | 8 `implemented` without a passing test or proof by hand | build the test: `spine-build`; or set the status honestly back to `planned` |
-   | 9 passing test, but `proposed` or `planned` | the status change after checking the proof: `spine-build` |
-   | 10 result for a requirement that does not exist, or unreadable results | correct the test name, or the requirement is missing: `spine-require` |
+   | 1–4, 7 front matter, IDs, references, sources, successors | correct the artifact: `docspine-require`, or `docspine-decide` for an ADR |
+   | 5, 6 story `verified` without proof, or with a requirement not `implemented` | status back to `in-progress`, or build the rest: `docspine-build` |
+   | 8 `implemented` without a passing test or proof by hand | build the test: `docspine-build`; or set the status honestly back to `planned` |
+   | 9 passing test, but `proposed` or `planned` | the status change after checking the proof: `docspine-build` |
+   | 10 result for a requirement that does not exist, or unreadable results | correct the test name, or the requirement is missing: `docspine-require` |
    | 11 generated region differs | run `render` |
    | 12 diagram image outdated | render the diagram with the command `diagram` |
    | 13, 15 broken link or `evidence` path | correct the path |
-   | 14 README from another version | `spine-update` |
+   | 14 README from another version | `docspine-update` |
 
    An error can have two readings: "the test is missing" or "the status is not honest".
    Name both and recommend one.
@@ -117,8 +117,8 @@ For each `implemented` requirement in scope:
 2. **Find the proof:** the tests that carry the ID, or `evidence` and `verification` of a
    proof by hand. Read what the assertions or the evidence actually show.
 3. **Verdict** (STANDARD 8.3): **full**, **partial** or **hollow**.
-4. **Kind of finding:** a **test gap** (sharpen the test, `spine-build`) or a
-   **requirement defect** (`spine-require`, superseding).
+4. **Kind of finding:** a **test gap** (sharpen the test, `docspine-build`) or a
+   **requirement defect** (`docspine-require`, superseding).
 
 For many requirements, audit them in parallel if your tool allows it, each with the same
 structured result: requirement, clauses, verdict, evidence, kind of finding. Then
@@ -131,7 +131,7 @@ through the skills that own them. Give:
 
 1. a table per requirement: verdict, clause not covered, evidence, kind of finding;
 2. recommendations in order: hollow before partial, requirement defects first, since a
-   test would otherwise cement them. For each, the next step (`spine-build REQ-NNNN`,
-   `spine-require …`), offered, not started;
+   test would otherwise cement them. For each, the next step (`docspine-build REQ-NNNN`,
+   `docspine-require …`), offered, not started;
 3. in mode A also: will the check pass after these steps? If a finding is only an
    honest status, say so.
