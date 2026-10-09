@@ -34,4 +34,5 @@ _(confidence: verified — cli/docspine/project.py, REQ-0029, REQ-0030, REQ-0031
 - [REQ-0031](../01-goals/requirements/REQ-0031.md) IF a location in test_reports does not exist or a report there cannot be parsed, THEN the checker shall report error 10.
 - [REQ-0038](../01-goals/requirements/REQ-0038.md) WHERE the profile names no test_reports, the checker shall read every XML file in the repository whose root is a test suite, outside .git, docs, .docspine and the skill folders.
 - [REQ-0046](../01-goals/requirements/REQ-0046.md) WHEN the checker loads a project, it shall read every Markdown file in docs/11-risks/ except README.md as a risk, and report error 1 or 2 if its id is not of the form R-NNNN, SEC-NNNN or TD-NNNN matching the file name, or its status is not open, accepted, closed or superseded.
+- [REQ-0054](../01-goals/requirements/REQ-0054.md) WHEN a test case name contains a story ID, the checker shall count the test case only for that story and not for any requirement ID in the same name.
 <!-- /generated -->

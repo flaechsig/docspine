@@ -40,4 +40,7 @@ nicht geprüft. _(confidence: verified — cli/docspine/text.py, REQ-0011)_
 - [REQ-0046](../01-goals/requirements/REQ-0046.md) WHEN the checker loads a project, it shall read every Markdown file in docs/11-risks/ except README.md as a risk, and report error 1 or 2 if its id is not of the form R-NNNN, SEC-NNNN or TD-NNNN matching the file name, or its status is not open, accepted, closed or superseded.
 - [REQ-0047](../01-goals/requirements/REQ-0047.md) IF a story lists an ID in addresses that is not a risk of the project, THEN the checker shall report error 3.
 - [REQ-0048](../01-goals/requirements/REQ-0048.md) IF a risk has the status closed and a story that lists it in addresses is neither verified nor superseded, THEN the checker shall report error 16.
+- [REQ-0052](../01-goals/requirements/REQ-0052.md) WHEN a story has an acceptance section, the checker shall report error 17 for every top-level list item in it that names no requirement ID and does not start with UNKNOWN.
+- [REQ-0053](../01-goals/requirements/REQ-0053.md) IF an item of a story's acceptance section names a requirement ID that does not exist, THEN the checker shall report error 3.
+- [REQ-0055](../01-goals/requirements/REQ-0055.md) IF a test result names a story that does not exist, THEN the checker shall report error 10.
 <!-- /generated -->

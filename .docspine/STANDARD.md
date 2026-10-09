@@ -266,6 +266,21 @@ Body: `As <role> I want <goal> so that <benefit>.`, then why, then acceptance in
 users' terms. A story contains no decisions (those are ADRs) and no normative criteria
 without a requirement.
 
+**Acceptance.** A story may state its acceptance under the heading `## Acceptance` (in
+the project language, section 12). It is the completeness probe of the story:
+
+- a list in the words of whoever asked for the story, not a formal notation such as
+  Given/When/Then; formalising belongs to the tests;
+- one observable result per item ("the template appears in the list of approved
+  templates", not "approval works");
+- every item names the requirement that demands it (`REQ-NNNN`), or starts with
+  `UNKNOWN` as an open question (principle 6). The acceptance demands nothing new; an
+  item that no requirement demands is a gap in the specification.
+
+The items are written from the user's point of view first and matched to requirements
+afterwards; otherwise the acceptance only mirrors the requirements and proves nothing. A
+story without the section stays valid.
+
 | `status` | Meaning | Proof required |
 |---|---|---|
 | `open` | candidate, not committed | none |
@@ -588,7 +603,14 @@ Every test case counts for each requirement ID (`REQ-NNNN`) that appears in its 
 class name. So the ID must be part of the test's name; for JUnit 5 that is
 `@DisplayName("REQ-0012: rejects an empty cart")`. A test case with `<failure>` or
 `<error>` counts as failed, with `<skipped>` as skipped, otherwise as passed. JUnit tags
-(`@Tag`) do not appear in the reports and cannot be used. Some tools must be told to
+(`@Tag`) do not appear in the reports and cannot be used.
+
+A test case that names a story (`US-NNNN`) is an **acceptance test** of that story, for
+example an end-to-end test derived from its acceptance. It counts only for the story,
+never for a requirement, even if requirement IDs appear in the same name: acceptance
+tests often run outside the build, against an environment, and must not overturn the
+proof of a requirement. They are not part of the gate: they neither set nor revoke
+`verified`, and a missing or failed acceptance test is no error. Some tools must be told to
 write display names into the report; how to do that for a tool chain is described in
 the docspine repository under `integrations/`.
 
@@ -598,7 +620,8 @@ this format, in any number of files with this name:
 ```json
 {
   "results": [
-    { "req": "REQ-0012", "result": "passed", "test": "OrderServiceTest.rejectsEmptyCart" }
+    { "req": "REQ-0012", "result": "passed", "test": "OrderServiceTest.rejectsEmptyCart" },
+    { "story": "US-0004", "result": "failed", "test": "e2e/order-flow" }
   ]
 }
 ```
@@ -728,13 +751,14 @@ network. The skills from docspine run it when they start.
 | 7 | `superseded` or `retired` without `superseded_by` |
 | 8 | requirement `implemented` without a passing test result and without a proof by hand (`evidence` and `verification`) |
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
-| 10 | test result for a requirement that does not exist, or test results that cannot be read |
+| 10 | test result for a requirement or story that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image missing, not produced with `diagram`, or produced from an older version of its source |
 | 13 | broken relative link |
 | 14 | `README.md` was translated from a different docspine version than the installed `STANDARD.md` |
 | 15 | an `evidence` path does not exist |
 | 16 | risk `closed`, but a story that addresses it is neither `verified` nor `superseded` |
+| 17 | an item of a story's acceptance names no requirement and does not start with `UNKNOWN` |
 
 **Generated views:**
 

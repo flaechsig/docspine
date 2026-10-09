@@ -5,6 +5,8 @@ englischen Begriffe welchen deutschen entsprechen, regelt Standard 12.
 
 | Begriff | Bedeutung |
 |---|---|
+| Akzeptanz | Aufzählung in einer Story, was der Anforderungssteller beobachtet, wenn sie fertig ist; jeder Punkt nennt sein Requirement oder ist eine offene Frage (Standard 3.3) |
+| Akzeptanztest | Testfall mit einer Story-ID im Namen, etwa ein Ende-zu-Ende-Test; zählt nur für die Story und gehört nicht zum Gate (Standard 8.1) |
 | ADR | Architecture Decision Record: eine Entscheidung mit Kontext, Alternativen und Begründung, eine Datei je Entscheidung (Standard 3.5) |
 | Agent Skills | offener Standard für Anleitungen an KI-Agenten, ein Ordner mit `SKILL.md` je Skill; von vielen KI-Werkzeugen gelesen |
 | `AGENTS.md` | werkzeugübergreifender Einstieg für KI-Agenten im Wurzelverzeichnis eines Repos |

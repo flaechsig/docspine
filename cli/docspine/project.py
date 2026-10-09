@@ -73,11 +73,21 @@ class Result:
 
 
 @dataclass
+class AcceptanceResult:
+    """A test case named after a story: an acceptance test, counted only for the story."""
+    story: str
+    result: str
+    test: str
+    path: str
+
+
+@dataclass
 class Project:
     root: Path
     profile: dict
     artifacts: List[Artifact] = field(default_factory=list)
     results: List[Result] = field(default_factory=list)
+    acceptance: List[AcceptanceResult] = field(default_factory=list)
     findings: List[Finding] = field(default_factory=list)
 
     @property
@@ -164,6 +174,14 @@ def _load_results(project: Project, path: Path) -> None:
         data = json.loads(path.read_text(encoding="utf-8"))
         entries = data["results"]
         for entry in entries:
+            if "story" in entry:
+                project.acceptance.append(AcceptanceResult(
+                    story=str(entry["story"]),
+                    result=str(entry["result"]),
+                    test=str(entry.get("test", "")),
+                    path=rel,
+                ))
+                continue
             project.results.append(Result(
                 req=str(entry["req"]),
                 result=str(entry["result"]),
@@ -175,6 +193,7 @@ def _load_results(project: Project, path: Path) -> None:
 
 
 _REQ_ID = re.compile(r"\bREQ-\d{4}\b")
+_STORY_ID = re.compile(r"\bUS-\d{4}\b")
 
 
 DISCOVERY_SKIP = SKIP_DIRS | {"docs", ".docspine", ".agents", ".claude"}
@@ -186,7 +205,8 @@ def _load_test_reports(project: Project) -> None:
     With `test_reports` in the profile, only those locations are read. Without it, every
     XML file in the repository whose root is a test suite is read, so that new modules
     and tool chains are found without configuration. Every test case counts for each
-    requirement ID in its name or class name.
+    requirement ID in its name or class name, unless it names a story: then it is an
+    acceptance test and counts only for the story (ADR-0030).
     """
     if project.profile.get("test_reports") is None:
         for path in _discover_reports(project.root):
@@ -218,8 +238,9 @@ def _load_junit_xml(project: Project, path: Path) -> None:
         return  # another kind of XML file next to the reports
     for case in root.iter("testcase"):
         name, classname = case.get("name", ""), case.get("classname", "")
-        ids = dict.fromkeys(_REQ_ID.findall(f"{classname} {name}"))
-        if not ids:
+        stories = dict.fromkeys(_STORY_ID.findall(f"{classname} {name}"))
+        ids = {} if stories else dict.fromkeys(_REQ_ID.findall(f"{classname} {name}"))
+        if not ids and not stories:
             continue
         if case.find("failure") is not None or case.find("error") is not None:
             outcome = "failed"
@@ -227,6 +248,9 @@ def _load_junit_xml(project: Project, path: Path) -> None:
             outcome = "skipped"
         else:
             outcome = "passed"
+        for story in stories:
+            project.acceptance.append(AcceptanceResult(story=story, result=outcome,
+                                                       test=f"{classname}.{name}", path=rel))
         for req in ids:
             project.results.append(Result(req=req, result=outcome, test=f"{classname}.{name}", path=rel))
 
