@@ -27,8 +27,8 @@ SCHEMA = {
               {"status": STORY_STATUS}, ["requirements", "evidence", "addresses"]),
     "requirement": (["id", "statement", "obligation", "status", "rationale"],
                     {"obligation": OBLIGATION, "status": REQ_STATUS,
-                     "confidence": CONFIDENCE, "category": CATEGORY}, ["evidence"]),
-    "adr": (["id", "title", "status", "date"], {"status": ADR_STATUS}, ["requires"]),
+                     "confidence": CONFIDENCE, "category": CATEGORY}, ["evidence", "decisions"]),
+    "adr": (["id", "title", "status", "date"], {"status": ADR_STATUS}, []),
     "block": (["title", "path"], {}, []),
     "scenario": (["title"], {}, ["stories"]),
     "risk": (["id", "title", "status"], {"status": RISK_STATUS, "severity": SEVERITY}, []),
@@ -51,7 +51,7 @@ def run(project: Project, with_tests: bool = True) -> List[Finding]:
     for check in (schema, ids, references, sources, story_proof, story_requirements,
                   superseded, implemented_proof, status_behind_result, unknown_results,
                   stale_regions, diagram_images, links, readme_version, evidence_paths, closed_risks,
-                  acceptance):
+                  acceptance, open_decisions, superseded_decisions):
         if not with_tests and check.__name__ in TEST_CHECKS:
             continue
         findings.extend(check(project))
@@ -87,6 +87,10 @@ def schema(project: Project) -> List[Finding]:
         for key in lists:
             if key in a.fm and a.fm[key] is not None and not isinstance(a.fm[key], list):
                 out.append(_f(project, 1, a, f"field '{key}' must be a list"))
+        if a.kind == "adr" and "requires" in a.fm:
+            # until 0.21 the ADR listed its requirements; since 0.22 the requirement names the ADR
+            out.append(_f(project, 1, a, "field 'requires' is no longer used; name this ADR in "
+                                         "'decisions' of each requirement instead"))
     return out
 
 
@@ -115,6 +119,7 @@ def references(project: Project) -> List[Finding]:
     stories = project.by_id("story")
     reqs = project.by_id("requirement")
     risks = project.by_id("risk")
+    adrs = project.by_id("adr")
     every = project.by_id()
 
     def need(a: Artifact, key: str, targets: dict, what: str):
@@ -129,8 +134,8 @@ def references(project: Project) -> List[Finding]:
             need(a, "addresses", risks, "risk")
         elif a.kind == "scenario":
             need(a, "stories", stories, "story")
-        elif a.kind == "adr":
-            need(a, "requires", reqs, "requirement")
+        elif a.kind == "requirement":
+            need(a, "decisions", adrs, "decision")
         need(a, "supersedes", every, "artifact")
         need(a, "superseded_by", every, "artifact")
     return out
@@ -348,4 +353,30 @@ def acceptance(project: Project) -> List[Finding]:
             for ref in refs:
                 if ref not in reqs:
                     out.append(_f(project, 3, story, f"acceptance refers to requirement '{ref}', which does not exist"))
+    return out
+
+
+def open_decisions(project: Project) -> List[Finding]:
+    """Error 18: requirement planned or implemented, but a decision it follows from is not accepted."""
+    adrs = project.by_id("adr")
+    out = []
+    for r in project.of_kind("requirement"):
+        if r.get("status") not in ("planned", "implemented"):
+            continue
+        for ref in r.list("decisions"):
+            adr = adrs.get(ref)
+            if adr is not None and adr.get("status") in ("proposed", "rejected"):
+                out.append(_f(project, 18, r, f"requirement is {r.get('status')}, but {ref} is {adr.get('status')}"))
+    return out
+
+
+def superseded_decisions(project: Project) -> List[Finding]:
+    """Error 19: an ADR supersedes an ADR that is neither accepted nor superseded."""
+    adrs = project.by_id("adr")
+    out = []
+    for a in project.of_kind("adr"):
+        for ref in a.list("supersedes"):
+            old = adrs.get(ref)
+            if old is not None and old.get("status") not in ("accepted", "superseded"):
+                out.append(_f(project, 19, a, f"supersedes {ref}, which is {old.get('status')}"))
     return out

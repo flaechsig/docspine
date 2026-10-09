@@ -93,7 +93,10 @@ confirm or correct it. At most two rounds. Clarify:
    then name for each item the requirement that demands it. An item no requirement
    demands is a gap: draft the missing requirement, or keep the item as `UNKNOWN — open
    question: …` if nobody knows yet. No Given/When/Then; that belongs to the tests.
-10. **Risk or debt:** does the story work on a risk or debt in `docs/11-risks/`
+10. **Decision:** does the requirement follow from an ADR? Then it names it in
+   `decisions` (STANDARD 3.4). If that ADR is still `proposed`, the requirement stays
+   `proposed` too.
+11. **Risk or debt:** does the story work on a risk or debt in `docs/11-risks/`
    (`R-`, `SEC-`, `TD-`)? Then it names it in `addresses` (STANDARD 3.8).
 
 ## Step 2 — Proposal

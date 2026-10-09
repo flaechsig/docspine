@@ -106,6 +106,8 @@ without mentioning it again.
    | 14 README from another version | `docspine-update` |
    | 16 risk `closed`, but a story on it is not done | finish the story, or set the risk back to `open`: `docspine-impact` |
    | 17 acceptance item without a requirement | a gap in the specification: write the requirement, or mark the item `UNKNOWN`: `docspine-require` |
+   | 18 requirement released or built against an ADR on `proposed` or `rejected` | decide first: `docspine-decide`; or set the requirement back to `proposed` |
+   | 19 ADR supersedes an ADR that is not in force | edit the proposed ADR directly instead, or drop `supersedes`: `docspine-decide` |
 
    An error can have two readings: "the test is missing" or "the status is not honest".
    Name both and recommend one.

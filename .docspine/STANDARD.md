@@ -306,6 +306,7 @@ obligation: MUST | SHOULD | WILL
 status: proposed
 category: quality             # optional: marks a quality requirement
 source: <external norm, or empty for own requirement>   # must be listed in the profile
+decisions: [ADR-NNNN]         # optional: the decisions the requirement follows from
 confidence: unverified        # only without test results, see below
 evidence: []                  # paths to the implementation; see below
 verification: <how fulfilment is checked>               # optional
@@ -355,6 +356,11 @@ works only on requirements with `planned`; a requirement on `proposed` is releas
 first. This lets a project specify completely before building, or release and build
 each requirement right away.
 
+**Decisions.** A requirement that follows from a decision names it in `decisions` when
+it is written; the decision exists by then. The release for building needs accepted
+decisions: a requirement on `planned` or `implemented` must not name an ADR on
+`proposed` or `rejected`.
+
 **Confidence.** Has the statement been checked against the running system?
 `verified | unverified | contradicted`.
 - If test results exist for the requirement (section 8.1), `confidence` is not
@@ -384,7 +390,6 @@ status: proposed | accepted | rejected | superseded
 date: YYYY-MM-DD              # date of the decision
 supersedes: ADR-NNNN          # optional
 superseded_by: ADR-NNNN       # only with superseded
-requires: [REQ-NNNN]          # optional: testable consequences
 ---
 ```
 
@@ -399,6 +404,14 @@ Sections:
 
 An ADR with `proposed` is under discussion and may be edited directly. From `accepted`
 on it is immutable and can only be superseded.
+
+The requirements that follow from an ADR name it in their `decisions` (section 3.4);
+the ADR shows them in a generated region. An ADR on `proposed` may already name in
+`supersedes` the ADR it is to replace; that one stays unchanged until the new one is
+`accepted`. Only an ADR that is `accepted` or already `superseded` can be superseded.
+
+Until version 0.21 the ADR listed its requirements in `requires`. That field is no
+longer used; the update moves it into `decisions` of the requirements.
 
 ### 3.6 Building block
 
@@ -492,7 +505,7 @@ Relations are stated **only in the front matter, in one direction**:
 | Story | `requirements` | Requirements |
 | Story | `addresses` | Risks and debts |
 | Runtime scenario | `stories` | Stories |
-| ADR | `requires` | Requirements |
+| Requirement | `decisions` | ADRs |
 | Building block | `path` | Code; requirements are matched through their `evidence` paths |
 | Requirement, story, ADR, risk | `superseded_by` | successor |
 
@@ -510,7 +523,8 @@ generated into a **generated region** inside a hand-written file:
 | `status` | `01-goals/README.md` | counts, epics and stories with status, open questions, open decisions, contradictions, missing chapters |
 | `stories` | epic | its stories with status |
 | `requirements` | story | statements and status of its requirements |
-| `context` | requirement | epic and story it belongs to, ADRs that require it |
+| `context` | requirement | epic and story it belongs to, ADRs it follows from |
+| `requirements` | ADR | the requirements that follow from it, with status |
 | `realized` | building block | requirements whose evidence lies under its path, without superseded and rejected ones |
 | `scenarios` | story | runtime scenarios that realise it |
 | `stories` | risk | the stories that address it, with status |
@@ -742,7 +756,7 @@ network. The skills from docspine run it when they start.
 
 | # | Error |
 |---|---|
-| 1 | required front-matter field missing, or value not permitted |
+| 1 | required front-matter field missing, value not permitted, or a field no longer used (`requires` in an ADR) |
 | 2 | ID does not match the file name, or is used twice |
 | 3 | reference to an ID that does not exist |
 | 4 | `source` not listed in the profile |
@@ -759,6 +773,8 @@ network. The skills from docspine run it when they start.
 | 15 | an `evidence` path does not exist |
 | 16 | risk `closed`, but a story that addresses it is neither `verified` nor `superseded` |
 | 17 | an item of a story's acceptance names no requirement and does not start with `UNKNOWN` |
+| 18 | requirement `planned` or `implemented`, but an ADR in its `decisions` is `proposed` or `rejected` |
+| 19 | an ADR supersedes an ADR that is neither `accepted` nor `superseded` |
 
 **Generated views:**
 

@@ -89,18 +89,18 @@ class StoryRequirements(RenderTest):
         self.assertNotIn("generated:requirements", self.read(STORY_PATH))
 
 
-@req("REQ-0020")
+@req("REQ-0059")
 class RequirementContext(RenderTest):
     def test_context_region(self):
         self.render()
         self.assertIn("**Context:** Story [US-0001](../stories/US-0001.md) — First story"
                       " · Epic [E-CORE](../epics/E-CORE.md) — Core", self.read(REQ_PATH))
 
-    def test_required_by_adr(self):
-        adr = ("---\nid: ADR-0001\ntitle: A decision\nstatus: accepted\ndate: 2026-10-04\n"
-               "requires: [REQ-0001]\n---\n\n## Kontext\n")
-        self.render({"docs/09-decisions/ADR-0001.md": adr})
-        self.assertIn("required by: [ADR-0001](../../09-decisions/ADR-0001.md)", self.read(REQ_PATH))
+    def test_follows_from_decision(self):
+        adr = "---\nid: ADR-0001\ntitle: A decision\nstatus: accepted\ndate: 2026-10-04\n---\n\n## Kontext\n"
+        r = replace(REQUIREMENT, "source:\n", "source:\ndecisions: [ADR-0001]\n")
+        self.render({"docs/09-decisions/ADR-0001.md": adr, REQ_PATH: r})
+        self.assertIn("follows from: [ADR-0001](../../09-decisions/ADR-0001.md)", self.read(REQ_PATH))
 
 
 @req("REQ-0045")

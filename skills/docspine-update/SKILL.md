@@ -51,7 +51,10 @@ it after approval. Never write to the main branch.
 4. A field `docspine:` in the front matter of `.docspine/PROFILE.md` (no longer used).
 5. Diagram sources (DOT, PlantUML) under `docs/` whose SVG carries no checksum yet
    (error 12 since version 0.17), and whether Graphviz or PlantUML is installed.
-6. Chapter 11 as a single file `docs/11-risks.md` that numbers its risks or debts (for
+6. ADRs with the field `requires` (used until version 0.21; since 0.22 the requirement
+   names the ADR in `decisions`, STANDARD 3.4). Also requirements that mention an ADR in
+   their text without naming it in `decisions`.
+7. Chapter 11 as a single file `docs/11-risks.md` that numbers its risks or debts (for
    example `R-9`, `SEC-4`, `TD-2`), and stories that refer to them in their text. Since
    version 0.21 these can be files with IDs (STANDARD 3.8).
 
@@ -71,7 +74,16 @@ are newer than the README's version. Then list what you would do:
   `python3 .docspine/docspine.pyz diagram`, so that they carry the checksum of their
   source (STANDARD 9). If the tool is missing, name it; the check reports the images
   until they are rendered.
-- **Risks with IDs (optional):** if step 1.6 found numbered risks, offer to move them
+- **Decisions at the requirement (required since 0.22):** for every ADR found in step
+  1.6, add the ADR to `decisions` of each requirement in its `requires`, then remove
+  `requires` from the ADR, also from accepted ones: this is the one change to an
+  accepted ADR the standard allows, and it changes no content. The check reports a
+  leftover `requires` (error 1). Requirements that only mention an ADR in their text:
+  list them as candidates for `decisions` and let the person decide each one. Afterwards
+  the check may report error 18 where a requirement was built against an ADR that is
+  still `proposed`; show it and ask whether to accept the ADR or set the requirement
+  back.
+- **Risks with IDs (optional):** if step 1.7 found numbered risks, offer to move them
   into `docs/11-risks/`, one file each. Numbers are kept (`R-9` → `R-0009`); a status
   such as "fixed" becomes `closed` only if every story that works on the risk is
   `verified`, otherwise `open`, and you name it. References in the text of stories

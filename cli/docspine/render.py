@@ -137,10 +137,20 @@ def context_region(project: Project, req: Artifact) -> str:
         if epic is not None:
             part += f" · Epic {_link(req.path, epic)} — {epic.get('title')}"
         parts.append(part)
-    adrs = [a for a in _sorted(project.of_kind("adr")) if req.id in a.list("requires")]
-    if adrs:
-        parts.append(f"{t['required_by']}: " + ", ".join(_link(req.path, a) for a in adrs))
+    adrs = project.by_id("adr")
+    decisions = [adrs[ref] for ref in req.list("decisions") if ref in adrs]
+    if decisions:
+        parts.append(f"{t['decided_by']}: " + ", ".join(_link(req.path, a) for a in decisions))
     return f"**{t['context']}:** " + ("; ".join(parts) if parts else t["none"])
+
+
+def adr_requirements_region(project: Project, adr: Artifact) -> str:
+    t = texts(project)
+    reqs = [r for r in _sorted(project.of_kind("requirement")) if adr.id in r.list("decisions")]
+    rows = [f"| REQ | Statement | {t['status']} |", "|---|---|---|"]
+    rows += [f"| {_link(adr.path, r)} | {r.get('statement')} | {t.get('req.' + str(r.get('status')), r.get('status'))} |"
+             for r in reqs]
+    return "\n".join(rows) if reqs else f"_{t['none']}_"
 
 
 def _under(path: str, roots: List[str]) -> bool:
@@ -327,6 +337,10 @@ def plan(project: Project) -> Dict[Path, str]:
         apply(story.path, "scenarios", scenarios or f"_{t['none']}_", f"## {t['scenarios']}", add=bool(scenarios))
     for req in project.of_kind("requirement"):
         apply(req.path, "context", context_region(project, req), "")
+    for adr in project.of_kind("adr"):
+        reqs = adr_requirements_region(project, adr)
+        apply(adr.path, "requirements", reqs, "## Requirements",
+              add=any(adr.id in r.list("decisions") for r in project.of_kind("requirement")))
     for block in project.of_kind("block"):
         apply(block.path, "realized", realized_region(project, block), f"## {t['realized']}")
     for risk in project.of_kind("risk"):
