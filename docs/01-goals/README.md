@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ✅ verifiziert 18 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 39 · abgelöst 6 |
-| [Entscheidungen](../09-decisions/) | angenommen 25 · abgelöst 1 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 2 · angenommen 25 · abgelöst 1 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -63,7 +63,8 @@ _keine_
 
 ## Offene Entscheidungen
 
-_keine_
+- [ADR-0027](../09-decisions/ADR-0027.md) — Requirements nennen die Entscheidung, aus der sie folgen
+- [ADR-0028](../09-decisions/ADR-0028.md) — Fremde Artefakte verweisen auf Stories, docspine zeigt den Verweis
 
 ## Widersprüche
 
