@@ -17,6 +17,7 @@ from .text import TEXTS, blank, blank_code
 STORY_ORDER = ("open", "in-progress", "verified", "superseded", "retired")
 REQ_ORDER = ("proposed", "planned", "implemented", "rejected", "superseded")
 ADR_ORDER = ("proposed", "accepted", "rejected", "superseded")
+RISK_GROUPS = ("R", "SEC", "TD")
 CHAPTERS = ("01-goals", "02-constraints", "03-context", "04-strategy", "05-building-blocks",
             "06-runtime", "07-deployment", "08-concepts", "09-decisions", "10-quality",
             "11-risks", "12-glossary")
@@ -168,6 +169,37 @@ def scenarios_region(project: Project, story: Artifact) -> str:
     return "\n".join(f"- {_link(story.path, s, s.get('title'))}" for s in sorted(scenarios, key=lambda s: s.path.name))
 
 
+def _addressing(project: Project, risk: Artifact) -> List[Artifact]:
+    return _sorted([s for s in project.of_kind("story") if risk.id in s.list("addresses")])
+
+
+def risk_stories_region(project: Project, risk: Artifact) -> str:
+    t = texts(project)
+    rows = [f"| Story | {t['title']} | {t['status']} |", "|---|---|---|"]
+    rows += [f"| {_link(risk.path, s)} | {s.get('title')} | "
+             f"{t.get('story.' + str(s.get('status')), s.get('status'))} |" for s in _addressing(project, risk)]
+    return "\n".join(rows) if len(rows) > 2 else f"_{t['none']}_"
+
+
+def risks_region(project: Project, readme: Path) -> str:
+    """Chapter 11 as a whole: every risk, grouped by its prefix."""
+    t = texts(project)
+    lines = []
+    for group in RISK_GROUPS:
+        risks = [r for r in _sorted(project.of_kind("risk")) if (r.id or "").startswith(group + "-")]
+        if not risks:
+            continue
+        lines += [f"## {t['group.' + group]}", "",
+                  f"| ID | {t['title']} | {t['status']} | {t['severity']} | Stories |", "|---|---|---|---|---|"]
+        for r in risks:
+            severity = t.get("severity." + str(r.get("severity")), r.get("severity")) or "—"
+            stories = ", ".join(_link(readme, s) for s in _addressing(project, r)) or "—"
+            lines.append(f"| {_link(readme, r)} | {r.get('title')} | "
+                         f"{t.get('risk.' + str(r.get('status')), r.get('status'))} | {severity} | {stories} |")
+        lines.append("")
+    return "\n".join(lines).rstrip("\n")
+
+
 # --- generated views -----------------------------------------------------------------
 
 def _content_files(project: Project) -> List[Path]:
@@ -297,6 +329,13 @@ def plan(project: Project) -> Dict[Path, str]:
         apply(req.path, "context", context_region(project, req), "")
     for block in project.of_kind("block"):
         apply(block.path, "realized", realized_region(project, block), f"## {t['realized']}")
+    for risk in project.of_kind("risk"):
+        apply(risk.path, "stories", risk_stories_region(project, risk), "## Stories")
+    if project.of_kind("risk"):
+        readme = project.docs / "11-risks" / "README.md"
+        # a hand-written README keeps its own heading; a new one gets the chapter title
+        heading = f"# {t['risks_title']}" if text_of(readme) is None else ""
+        apply(readme, "risks", risks_region(project, readme), heading)
 
     result = {p: text for p, text in current.items() if text is not None}
     if quality is not None:

@@ -15,7 +15,8 @@ from typing import List, Tuple
 from .check import ID_PATTERN
 from .project import KINDS, SKIP_DIRS, Project
 
-PREFIX_KIND = {"E-": "epic", "US-": "story", "REQ-": "requirement", "ADR-": "adr"}
+PREFIX_KIND = {"E-": "epic", "US-": "story", "REQ-": "requirement", "ADR-": "adr",
+               "R-": "risk", "SEC-": "risk", "TD-": "risk"}
 SKIP_OUTSIDE = SKIP_DIRS | {"target", "build", "dist", ".docspine", "docs"}
 
 
@@ -35,6 +36,9 @@ def run(project: Project, old: str, new: str) -> Tuple[List[str], List[str]]:
     kind = _kind(old)
     if _kind(new) != kind:
         raise RenumberError(f"'{old}' and '{new}' are different kinds of artifact")
+    if old.split("-", 1)[0] != new.split("-", 1)[0]:
+        # the kind of a risk changes by superseding it, not by renumbering (ADR-0029)
+        raise RenumberError(f"'{old}' and '{new}' have different prefixes; supersede the risk instead")
     ids = project.by_id()
     if old not in ids:
         raise RenumberError(f"'{old}' does not exist")

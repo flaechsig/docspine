@@ -22,6 +22,12 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "contradictions": "Contradictions", "open_questions": "Open questions",
         "open_decisions": "Open decisions",
         "quality_title": "Quality requirements", "verification": "Verification",
+        "risk.open": "open", "risk.accepted": "accepted", "risk.closed": "closed",
+        "risk.superseded": "superseded",
+        "severity.low": "low", "severity.medium": "medium", "severity.high": "high",
+        "severity.critical": "critical", "severity": "Severity",
+        "risks_title": "Risks and technical debt", "group.R": "Architecture risks",
+        "group.SEC": "Security risks", "group.TD": "Technical debt",
     },
     "de": {
         "story.open": "⚪ offen", "story.in-progress": "🟡 in Arbeit", "story.verified": "✅ verifiziert",
@@ -39,6 +45,12 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "contradictions": "Widersprüche", "open_questions": "Offene Fragen",
         "open_decisions": "Offene Entscheidungen",
         "quality_title": "Qualitätsanforderungen", "verification": "Prüfung",
+        "risk.open": "offen", "risk.accepted": "hingenommen", "risk.closed": "behoben",
+        "risk.superseded": "abgelöst",
+        "severity.low": "niedrig", "severity.medium": "mittel", "severity.high": "hoch",
+        "severity.critical": "kritisch", "severity": "Schwere",
+        "risks_title": "Risiken und technische Schulden", "group.R": "Architekturrisiken",
+        "group.SEC": "Security-Risiken", "group.TD": "Technische Schulden",
     },
 }
 

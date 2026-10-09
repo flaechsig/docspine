@@ -20,6 +20,7 @@ englischen Begriffe welchen deutschen entsprechen, regelt Standard 12.
 | Kaltstart | Ein Agent ohne Skills und Vorwissen bekommt nur Repo und Aufgabe; belegt, dass die Regeln in normalen Dateien stehen (US-0011) |
 | Konfidenz | wie sicher eine Aussage über den Ist-Stand ist: `verified`, `unverified`, `aspirational`, `contradicted` (Standard 7) |
 | Nachweis | Beleg, dass ein Requirement erfüllt ist: ein bestandener Test oder ein Beleg von Hand (Standard 8) |
+| Risiko, Security-Risiko, technische Schuld | Einträge in Kapitel 11 mit ID `R-`, `SEC-` oder `TD-`, eine Datei je Eintrag; Stories nennen sie in `addresses` (Standard 3.8) |
 | Profil | `.docspine/PROFILE.md`: die Werte eines Projekts und seine begründeten Abweichungen vom Standard (Standard 2.3) |
 | Prüfwerkzeug | `docspine.pyz`: prüft die Doku (`check`), erzeugt generierte Bereiche (`render`) und mehr ([Bausteine](05-building-blocks/kommandozeile.md)) |
 | Verbindlichkeit | wie bindend ein Requirement ist: `MUST` (bindend), `SHOULD` (empfohlen), `WILL` (erklärte Absicht) (Standard 3.4) |
