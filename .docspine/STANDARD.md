@@ -1,8 +1,8 @@
-<!-- docspine 0.21 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.22 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.21 (draft)
+Version 0.22 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -266,6 +266,21 @@ Body: `As <role> I want <goal> so that <benefit>.`, then why, then acceptance in
 users' terms. A story contains no decisions (those are ADRs) and no normative criteria
 without a requirement.
 
+**Acceptance.** A story may state its acceptance under the heading `## Acceptance` (in
+the project language, section 12). It is the completeness probe of the story:
+
+- a list in the words of whoever asked for the story, not a formal notation such as
+  Given/When/Then; formalising belongs to the tests;
+- one observable result per item ("the template appears in the list of approved
+  templates", not "approval works");
+- every item names the requirement that demands it (`REQ-NNNN`), or starts with
+  `UNKNOWN` as an open question (principle 6). The acceptance demands nothing new; an
+  item that no requirement demands is a gap in the specification.
+
+The items are written from the user's point of view first and matched to requirements
+afterwards; otherwise the acceptance only mirrors the requirements and proves nothing. A
+story without the section stays valid.
+
 | `status` | Meaning | Proof required |
 |---|---|---|
 | `open` | candidate, not committed | none |
@@ -291,6 +306,7 @@ obligation: MUST | SHOULD | WILL
 status: proposed
 category: quality             # optional: marks a quality requirement
 source: <external norm, or empty for own requirement>   # must be listed in the profile
+decisions: [ADR-NNNN]         # optional: the decisions the requirement follows from
 confidence: unverified        # only without test results, see below
 evidence: []                  # paths to the implementation; see below
 verification: <how fulfilment is checked>               # optional
@@ -340,6 +356,11 @@ works only on requirements with `planned`; a requirement on `proposed` is releas
 first. This lets a project specify completely before building, or release and build
 each requirement right away.
 
+**Decisions.** A requirement that follows from a decision names it in `decisions` when
+it is written; the decision exists by then. The release for building needs accepted
+decisions: a requirement on `planned` or `implemented` must not name an ADR on
+`proposed` or `rejected`.
+
 **Confidence.** Has the statement been checked against the running system?
 `verified | unverified | contradicted`.
 - If test results exist for the requirement (section 8.1), `confidence` is not
@@ -369,7 +390,6 @@ status: proposed | accepted | rejected | superseded
 date: YYYY-MM-DD              # date of the decision
 supersedes: ADR-NNNN          # optional
 superseded_by: ADR-NNNN       # only with superseded
-requires: [REQ-NNNN]          # optional: testable consequences
 ---
 ```
 
@@ -384,6 +404,14 @@ Sections:
 
 An ADR with `proposed` is under discussion and may be edited directly. From `accepted`
 on it is immutable and can only be superseded.
+
+The requirements that follow from an ADR name it in their `decisions` (section 3.4);
+the ADR shows them in a generated region. An ADR on `proposed` may already name in
+`supersedes` the ADR it is to replace; that one stays unchanged until the new one is
+`accepted`. Only an ADR that is `accepted` or already `superseded` can be superseded.
+
+Until version 0.21 the ADR listed its requirements in `requires`. That field is no
+longer used; the update moves it into `decisions` of the requirements.
 
 ### 3.6 Building block
 
@@ -477,7 +505,7 @@ Relations are stated **only in the front matter, in one direction**:
 | Story | `requirements` | Requirements |
 | Story | `addresses` | Risks and debts |
 | Runtime scenario | `stories` | Stories |
-| ADR | `requires` | Requirements |
+| Requirement | `decisions` | ADRs |
 | Building block | `path` | Code; requirements are matched through their `evidence` paths |
 | Requirement, story, ADR, risk | `superseded_by` | successor |
 
@@ -495,7 +523,8 @@ generated into a **generated region** inside a hand-written file:
 | `status` | `01-goals/README.md` | counts, epics and stories with status, open questions, open decisions, contradictions, missing chapters |
 | `stories` | epic | its stories with status |
 | `requirements` | story | statements and status of its requirements |
-| `context` | requirement | epic and story it belongs to, ADRs that require it |
+| `context` | requirement | epic and story it belongs to, ADRs it follows from |
+| `requirements` | ADR | the requirements that follow from it, with status |
 | `realized` | building block | requirements whose evidence lies under its path, without superseded and rejected ones |
 | `scenarios` | story | runtime scenarios that realise it |
 | `stories` | risk | the stories that address it, with status |
@@ -588,7 +617,14 @@ Every test case counts for each requirement ID (`REQ-NNNN`) that appears in its 
 class name. So the ID must be part of the test's name; for JUnit 5 that is
 `@DisplayName("REQ-0012: rejects an empty cart")`. A test case with `<failure>` or
 `<error>` counts as failed, with `<skipped>` as skipped, otherwise as passed. JUnit tags
-(`@Tag`) do not appear in the reports and cannot be used. Some tools must be told to
+(`@Tag`) do not appear in the reports and cannot be used.
+
+A test case that names a story (`US-NNNN`) is an **acceptance test** of that story, for
+example an end-to-end test derived from its acceptance. It counts only for the story,
+never for a requirement, even if requirement IDs appear in the same name: acceptance
+tests often run outside the build, against an environment, and must not overturn the
+proof of a requirement. They are not part of the gate: they neither set nor revoke
+`verified`, and a missing or failed acceptance test is no error. Some tools must be told to
 write display names into the report; how to do that for a tool chain is described in
 the docspine repository under `integrations/`.
 
@@ -598,7 +634,8 @@ this format, in any number of files with this name:
 ```json
 {
   "results": [
-    { "req": "REQ-0012", "result": "passed", "test": "OrderServiceTest.rejectsEmptyCart" }
+    { "req": "REQ-0012", "result": "passed", "test": "OrderServiceTest.rejectsEmptyCart" },
+    { "story": "US-0004", "result": "failed", "test": "e2e/order-flow" }
   ]
 }
 ```
@@ -719,7 +756,7 @@ network. The skills from docspine run it when they start.
 
 | # | Error |
 |---|---|
-| 1 | required front-matter field missing, or value not permitted |
+| 1 | required front-matter field missing, value not permitted, or a field no longer used (`requires` in an ADR) |
 | 2 | ID does not match the file name, or is used twice |
 | 3 | reference to an ID that does not exist |
 | 4 | `source` not listed in the profile |
@@ -728,13 +765,16 @@ network. The skills from docspine run it when they start.
 | 7 | `superseded` or `retired` without `superseded_by` |
 | 8 | requirement `implemented` without a passing test result and without a proof by hand (`evidence` and `verification`) |
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
-| 10 | test result for a requirement that does not exist, or test results that cannot be read |
+| 10 | test result for a requirement or story that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image missing, not produced with `diagram`, or produced from an older version of its source |
 | 13 | broken relative link |
 | 14 | `README.md` was translated from a different docspine version than the installed `STANDARD.md` |
 | 15 | an `evidence` path does not exist |
 | 16 | risk `closed`, but a story that addresses it is neither `verified` nor `superseded` |
+| 17 | an item of a story's acceptance names no requirement and does not start with `UNKNOWN` |
+| 18 | requirement `planned` or `implemented`, but an ADR in its `decisions` is `proposed` or `rejected` |
+| 19 | an ADR supersedes an ADR that is neither `accepted` nor `superseded` |
 
 **Generated views:**
 
