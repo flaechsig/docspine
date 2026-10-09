@@ -8,7 +8,7 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 |---|---|
 | Stories | ✅ verifiziert 19 · ⛔ abgelöst 1 |
 | Requirements | umgesetzt 45 · abgelöst 6 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 26 · verworfen 1 · abgelöst 1 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 2 · angenommen 26 · verworfen 1 · abgelöst 1 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
@@ -60,11 +60,13 @@ Status: ✅ verifiziert
 
 ## Offene Fragen
 
-_keine_
+- [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Darf ein Punkt der Akzeptanz ein Requirement einer anderen Story nennen, oder nur die in `requirements` der eigenen Story?
+- [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Soll eine Story mit einem `UNKNOWN` in der Akzeptanz `verified` sein dürfen? Bisher blockiert `UNKNOWN` nie etwas.
 
 ## Offene Entscheidungen
 
 - [ADR-0027](../09-decisions/ADR-0027.md) — Requirements nennen die Entscheidung, aus der sie folgen
+- [ADR-0030](../09-decisions/ADR-0030.md) — Akzeptanz der Story als Vollständigkeitsprobe, Ende-zu-Ende-Tests außerhalb des Gates
 
 ## Widersprüche
 
