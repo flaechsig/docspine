@@ -6,6 +6,15 @@ the new version.
 
 ## Unreleased
 
+- **Requirements name their decision** (standard 3.4, 3.5, ADR-0027). A requirement that
+  follows from an ADR names it in the new field `decisions`; the ADR shows these
+  requirements in a generated region. The ADR field `requires` is no longer used and is
+  reported as error 1. New error 18: a requirement is `planned` or `implemented` although
+  an ADR in its `decisions` is `proposed` or `rejected`. New error 19: an ADR supersedes
+  an ADR that is not in force. **After the update, call `/docspine-update`:** it moves
+  `requires` into `decisions` and lists requirements that mention an ADR only in their
+  text. The context region of requirements now says "follows from" instead of "required
+  by"; run `render`.
 - **Acceptance as completeness probe** (standard 3.3, ADR-0030). A story may list its
   acceptance under `## Acceptance` (in the project language, e.g. `## Akzeptanz`): one
   observable result per item, in the words of whoever asked for it. Every item names its

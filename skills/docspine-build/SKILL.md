@@ -50,6 +50,9 @@ describes the procedure. Talk to the person in the project language (`language` 
 
 - **Only released requirements.** Building works on `planned` (STANDARD 3.4). A
   requirement on `proposed` is released by the person first; ask, do not assume.
+- **Only accepted decisions.** If an ADR in the requirement's `decisions` is still
+  `proposed`, stop and hand over to `docspine-decide`; building against an open decision
+  is error 18.
 - **Flag, do not edit.** You never change the text of requirements, stories, decisions
   or chapters. The one exception is the status change in step 4. A gap is reported and
   handed back.
@@ -78,7 +81,7 @@ it after approval. Never write to the main branch.
 
 - the requirement: statement, obligation, rationale, verification, status, evidence;
   for a story, its requirements
-- constraints and decisions that apply: ADRs with the requirement in `requires`, the
+- constraints and decisions that apply: the ADRs in the requirement's `decisions`, the
   chapters and building blocks around the code to change
 - the modules to change, and how tests are written and named there; reuse the patterns
   you find

@@ -32,4 +32,6 @@ so, wie sie geschrieben sind. _(confidence: verified — cli/docspine/text.py)_
 - [REQ-0049](../01-goals/requirements/REQ-0049.md) WHEN render runs, the checker shall write the stories region of every risk with the stories that list it in addresses and their status.
 - [REQ-0050](../01-goals/requirements/REQ-0050.md) WHEN render runs and the project has risks, the checker shall write the risks region of docs/11-risks/README.md with every risk, grouped into architecture risks, security risks and technical debt.
 - [REQ-0052](../01-goals/requirements/REQ-0052.md) WHEN a story has an acceptance section, the checker shall report error 17 for every top-level list item in it that names no requirement ID and does not start with UNKNOWN.
+- [REQ-0059](../01-goals/requirements/REQ-0059.md) WHEN render runs, the checker shall write the context region of every requirement with its stories, their epics and the ADRs listed in its decisions.
+- [REQ-0060](../01-goals/requirements/REQ-0060.md) WHEN render runs, the checker shall write the requirements region of every ADR with the requirements that list it in decisions and their status.
 <!-- /generated -->

@@ -56,6 +56,9 @@ language (`language` in `.docspine/PROFILE.md`).
   paths that show the starting point.
 - **Honest status.** `proposed` while the direction is open or not confirmed; `accepted`
   only when the person confirms it, asked for separately.
+- **Building needs an accepted decision.** A requirement that names a `proposed` ADR in
+  `decisions` cannot be released for building (error 18). Say so when the person wants
+  to build before deciding.
 - **Accepted means immutable** (STANDARD 3.5, 5). A changed decision is a new ADR that
   supersedes the old one.
 
@@ -99,8 +102,9 @@ Short and to the point; only as much as a clean ADR needs. Clarify:
 5. **Rationale:** why this option, and why not the others.
 6. **Consequences:** new dependencies, migration, operation, affected requirements and
    stories, contradictions it resolves, follow-up work. The inconvenient ones too.
-7. **Testable consequences:** requirements that follow from the decision go into
-   `requires` (STANDARD 3.5, 4). New ones are written with `docspine-require`.
+7. **Testable consequences:** requirements that follow from the decision name it in
+   their `decisions` (STANDARD 3.4, 3.5). New ones are written with `docspine-require`;
+   existing ones get the ADR added to `decisions`. The ADR itself lists no requirements.
 8. **Relation to existing ADRs:** does it refine one, or supersede it?
 
 ## Step 2 — Proposal

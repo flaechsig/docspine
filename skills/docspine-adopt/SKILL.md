@@ -135,7 +135,7 @@ Add to the plan:
   STANDARD 3.3 and 3.4, hand-written back references that are removed (STANDARD 4),
   and relations the standard does not allow, for example a `verified` story that lists a
   rejected or superseded requirement, or a decision named as `source` instead of an
-  external norm (it becomes `requires` in the decision).
+  external norm (it becomes `decisions` in the requirement).
   - **Requirements without front matter** (prose with sections such as requirement,
     rationale, acceptance): the requirement text becomes `statement`, one EARS sentence
     in `statement_language`, drafted by you and marked as a suggestion; the rationale

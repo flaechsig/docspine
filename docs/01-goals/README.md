@@ -6,13 +6,13 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 1 · ✅ verifiziert 20 · ⛔ abgelöst 1 |
-| Requirements | geplant 6 · umgesetzt 48 · abgelöst 7 |
+| Stories | ✅ verifiziert 21 · ⛔ abgelöst 1 |
+| Requirements | umgesetzt 54 · abgelöst 7 |
 | [Entscheidungen](../09-decisions/) | angenommen 28 · verworfen 1 · abgelöst 1 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
@@ -23,7 +23,7 @@ Status: 🟡 in Arbeit
 | [US-0019](stories/US-0019.md) | Bausteine zeigen nur gültige Requirements | ✅ verifiziert |
 | [US-0020](stories/US-0020.md) | Risiken und Schulden mit ID | ✅ verifiziert |
 | [US-0021](stories/US-0021.md) | Akzeptanz als Vollständigkeitsprobe | ✅ verifiziert |
-| [US-0022](stories/US-0022.md) | Requirements nennen ihre Entscheidung | ⚪ offen |
+| [US-0022](stories/US-0022.md) | Requirements nennen ihre Entscheidung | ✅ verifiziert |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
