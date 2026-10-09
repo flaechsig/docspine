@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 cli/dist/
 cli/req-results.json
+.idea/
