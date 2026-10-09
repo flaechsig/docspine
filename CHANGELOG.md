@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `docspine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.21
 
 - **Risks, security risks and technical debt with IDs** (standard 3.8, ADR-0029). Chapter 11
   can be a folder `docs/11-risks/` with one file per entry: `R-NNNN`, `SEC-NNNN` or
