@@ -20,8 +20,9 @@ KINDS = {
     "adr": "09-decisions",
     "block": "05-building-blocks",
     "scenario": "06-runtime",
+    "risk": "11-risks",
 }
-ID_KINDS = ("epic", "story", "requirement", "adr")
+ID_KINDS = ("epic", "story", "requirement", "adr", "risk")
 
 SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__"}
 RESULTS_FILE = "req-results.json"

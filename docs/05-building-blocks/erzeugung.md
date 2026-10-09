@@ -30,4 +30,6 @@ so, wie sie geschrieben sind. _(confidence: verified — cli/docspine/text.py)_
 - [REQ-0028](../01-goals/requirements/REQ-0028.md) WHEN render runs, the checker shall write into the status region of docs/01-goals/README.md the counts per status, the open questions, the contradictions, the chapters without content and the partly filled chapters, without searching generated regions.
 - [REQ-0037](../01-goals/requirements/REQ-0037.md) WHEN render runs, the checker shall link the count of decisions in the status region of docs/01-goals/README.md to the decisions folder and list every decision with status proposed under open decisions.
 - [REQ-0045](../01-goals/requirements/REQ-0045.md) WHEN render runs, the checker shall write the realized region of every building block with the requirements whose evidence lies under the block's path, leaving out requirements that are superseded or rejected.
+- [REQ-0049](../01-goals/requirements/REQ-0049.md) WHEN render runs, the checker shall write the stories region of every risk with the stories that list it in addresses and their status.
+- [REQ-0050](../01-goals/requirements/REQ-0050.md) WHEN render runs and the project has risks, the checker shall write the risks region of docs/11-risks/README.md with every risk, grouped into architecture risks, security risks and technical debt.
 <!-- /generated -->

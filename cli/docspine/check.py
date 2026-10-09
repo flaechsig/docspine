@@ -14,6 +14,8 @@ from .text import strip_code
 STORY_STATUS = {"open", "in-progress", "verified", "superseded", "retired"}
 REQ_STATUS = {"proposed", "planned", "implemented", "rejected", "superseded"}
 ADR_STATUS = {"proposed", "accepted", "rejected", "superseded"}
+RISK_STATUS = {"open", "accepted", "closed", "superseded"}
+SEVERITY = {"low", "medium", "high", "critical"}
 OBLIGATION = {"MUST", "SHOULD", "WILL"}
 CONFIDENCE = {"verified", "unverified", "contradicted"}
 CATEGORY = {"quality"}
@@ -22,19 +24,21 @@ CATEGORY = {"quality"}
 SCHEMA = {
     "epic": (["id", "title"], {}, []),
     "story": (["id", "title", "epic", "requirements", "status"],
-              {"status": STORY_STATUS}, ["requirements", "evidence"]),
+              {"status": STORY_STATUS}, ["requirements", "evidence", "addresses"]),
     "requirement": (["id", "statement", "obligation", "status", "rationale"],
                     {"obligation": OBLIGATION, "status": REQ_STATUS,
                      "confidence": CONFIDENCE, "category": CATEGORY}, ["evidence"]),
     "adr": (["id", "title", "status", "date"], {"status": ADR_STATUS}, ["requires"]),
     "block": (["title", "path"], {}, []),
     "scenario": (["title"], {}, ["stories"]),
+    "risk": (["id", "title", "status"], {"status": RISK_STATUS, "severity": SEVERITY}, []),
 }
 ID_PATTERN = {
     "epic": re.compile(r"^E-[A-Z0-9][A-Z0-9-]*$"),
     "story": re.compile(r"^US-\d{4}$"),
     "requirement": re.compile(r"^REQ-\d{4}$"),
     "adr": re.compile(r"^ADR-\d{4}$"),
+    "risk": re.compile(r"^(R|SEC|TD)-\d{4}$"),
 }
 
 
@@ -46,7 +50,7 @@ def run(project: Project, with_tests: bool = True) -> List[Finding]:
     findings = list(project.findings)
     for check in (schema, ids, references, sources, story_proof, story_requirements,
                   superseded, implemented_proof, status_behind_result, unknown_results,
-                  stale_regions, diagram_images, links, readme_version, evidence_paths):
+                  stale_regions, diagram_images, links, readme_version, evidence_paths, closed_risks):
         if not with_tests and check.__name__ in TEST_CHECKS:
             continue
         findings.extend(check(project))
@@ -109,6 +113,7 @@ def references(project: Project) -> List[Finding]:
     epics = project.by_id("epic")
     stories = project.by_id("story")
     reqs = project.by_id("requirement")
+    risks = project.by_id("risk")
     every = project.by_id()
 
     def need(a: Artifact, key: str, targets: dict, what: str):
@@ -120,6 +125,7 @@ def references(project: Project) -> List[Finding]:
         if a.kind == "story":
             need(a, "epic", epics, "epic")
             need(a, "requirements", reqs, "requirement")
+            need(a, "addresses", risks, "risk")
         elif a.kind == "scenario":
             need(a, "stories", stories, "story")
         elif a.kind == "adr":
@@ -286,4 +292,16 @@ def evidence_paths(project: Project) -> List[Finding]:
         for path in a.list("evidence"):
             if not (project.root / path.lstrip("/")).exists():
                 out.append(_f(project, 15, a, f"evidence path '{path}' does not exist"))
+    return out
+
+
+def closed_risks(project: Project) -> List[Finding]:
+    """Error 16: risk closed, but a story that addresses it is neither verified nor superseded."""
+    out = []
+    for risk in project.of_kind("risk"):
+        if risk.get("status") != "closed":
+            continue
+        for story in project.of_kind("story"):
+            if risk.id in story.list("addresses") and story.get("status") not in ("verified", "superseded"):
+                out.append(_f(project, 16, risk, f"risk is closed, but {story.id} is {story.get('status')}"))
     return out

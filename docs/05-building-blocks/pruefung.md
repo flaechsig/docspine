@@ -37,4 +37,7 @@ nicht geprüft. _(confidence: verified — cli/docspine/text.py, REQ-0011)_
 - [REQ-0032](../01-goals/requirements/REQ-0032.md) IF a requirement is implemented without a passing test result and without both evidence and verification, THEN the checker shall report error 8.
 - [REQ-0033](../01-goals/requirements/REQ-0033.md) WHERE check runs with --without-tests, the checker shall skip the checks that need test results (errors 8, 9 and 10) and say so in its result.
 - [REQ-0039](../01-goals/requirements/REQ-0039.md) IF a DOT or PlantUML source under docs, outside docs/legacy, has no SVG next to it, or its SVG does not carry the checksum of the current source, THEN the checker shall report error 12.
+- [REQ-0046](../01-goals/requirements/REQ-0046.md) WHEN the checker loads a project, it shall read every Markdown file in docs/11-risks/ except README.md as a risk, and report error 1 or 2 if its id is not of the form R-NNNN, SEC-NNNN or TD-NNNN matching the file name, or its status is not open, accepted, closed or superseded.
+- [REQ-0047](../01-goals/requirements/REQ-0047.md) IF a story lists an ID in addresses that is not a risk of the project, THEN the checker shall report error 3.
+- [REQ-0048](../01-goals/requirements/REQ-0048.md) IF a risk has the status closed and a story that lists it in addresses is neither verified nor superseded, THEN the checker shall report error 16.
 <!-- /generated -->
