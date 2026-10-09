@@ -17,4 +17,5 @@ Eine eigenständige CLI prüft die Doku gegen den Standard und erzeugt generiert
 - [US-0019](../stories/US-0019.md) — Bausteine zeigen nur gültige Requirements
 - [US-0020](../stories/US-0020.md) — Risiken und Schulden mit ID
 - [US-0021](../stories/US-0021.md) — Akzeptanz als Vollständigkeitsprobe
+- [US-0022](../stories/US-0022.md) — Requirements nennen ihre Entscheidung
 <!-- /generated -->

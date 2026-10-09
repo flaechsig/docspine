@@ -24,7 +24,6 @@ so, wie sie geschrieben sind. _(confidence: verified — cli/docspine/text.py)_
 - [REQ-0014](../01-goals/requirements/REQ-0014.md) WHEN render runs, the checker shall write the stories region of every epic.
 - [REQ-0016](../01-goals/requirements/REQ-0016.md) IF a generated region or view differs from what render would write, THEN the checker shall report error 11.
 - [REQ-0019](../01-goals/requirements/REQ-0019.md) WHEN render runs, the checker shall write the requirements region of every story that has requirements, with obligation, statement and status of each.
-- [REQ-0020](../01-goals/requirements/REQ-0020.md) WHEN render runs, the checker shall write the context region of every requirement with its stories, their epics and the ADRs that require it.
 - [REQ-0022](../01-goals/requirements/REQ-0022.md) WHEN render runs, the checker shall write the scenarios region of every story that a runtime scenario refers to.
 - [REQ-0024](../01-goals/requirements/REQ-0024.md) WHEN render runs and quality requirements exist, the checker shall write docs/10-quality.md listing them with statement, status and verification.
 - [REQ-0028](../01-goals/requirements/REQ-0028.md) WHEN render runs, the checker shall write into the status region of docs/01-goals/README.md the counts per status, the open questions, the contradictions, the chapters without content and the partly filled chapters, without searching generated regions.
