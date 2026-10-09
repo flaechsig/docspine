@@ -99,11 +99,13 @@ without mentioning it again.
    | 5, 6 story `verified` without proof, or with a requirement not `implemented` | status back to `in-progress`, or build the rest: `docspine-build` |
    | 8 `implemented` without a passing test or proof by hand | build the test: `docspine-build`; or set the status honestly back to `planned` |
    | 9 passing test, but `proposed` or `planned` | the status change after checking the proof: `docspine-build` |
-   | 10 result for a requirement that does not exist, or unreadable results | correct the test name, or the requirement is missing: `docspine-require` |
+   | 10 result for a requirement or story that does not exist, or unreadable results | correct the test name, or the requirement is missing: `docspine-require` |
    | 11 generated region differs | run `render` |
    | 12 diagram image outdated | render the diagram with the command `diagram` |
    | 13, 15 broken link or `evidence` path | correct the path |
    | 14 README from another version | `docspine-update` |
+   | 16 risk `closed`, but a story on it is not done | finish the story, or set the risk back to `open`: `docspine-impact` |
+   | 17 acceptance item without a requirement | a gap in the specification: write the requirement, or mark the item `UNKNOWN`: `docspine-require` |
 
    An error can have two readings: "the test is missing" or "the status is not honest".
    Name both and recommend one.

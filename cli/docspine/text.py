@@ -27,7 +27,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "severity.low": "low", "severity.medium": "medium", "severity.high": "high",
         "severity.critical": "critical", "severity": "Severity",
         "risks_title": "Risks and technical debt", "group.R": "Architecture risks",
-        "group.SEC": "Security risks", "group.TD": "Technical debt",
+        "group.SEC": "Security risks", "group.TD": "Technical debt", "acceptance": "Acceptance",
     },
     "de": {
         "story.open": "⚪ offen", "story.in-progress": "🟡 in Arbeit", "story.verified": "✅ verifiziert",
@@ -50,7 +50,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "severity.low": "niedrig", "severity.medium": "mittel", "severity.high": "hoch",
         "severity.critical": "kritisch", "severity": "Schwere",
         "risks_title": "Risiken und technische Schulden", "group.R": "Architekturrisiken",
-        "group.SEC": "Security-Risiken", "group.TD": "Technische Schulden",
+        "group.SEC": "Security-Risiken", "group.TD": "Technische Schulden", "acceptance": "Akzeptanz",
     },
 }
 
@@ -66,6 +66,11 @@ def strip_code(text: str) -> str:
 def blank(text: str, pattern: re.Pattern) -> str:
     """Replace what `pattern` matches with spaces, keeping lines and positions."""
     return pattern.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
+
+
+def blank_fences(text: str) -> str:
+    """Blank fenced code blocks only, keeping lines; code spans stay, IDs in them count."""
+    return blank(text, _FENCE)
 
 
 def blank_code(text: str) -> str:

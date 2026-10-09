@@ -9,7 +9,7 @@ from urllib.parse import unquote
 
 from . import diagram, render
 from .project import ID_KINDS, Artifact, Finding, Project
-from .text import strip_code
+from .text import TEXTS, blank_fences, strip_code
 
 STORY_STATUS = {"open", "in-progress", "verified", "superseded", "retired"}
 REQ_STATUS = {"proposed", "planned", "implemented", "rejected", "superseded"}
@@ -50,7 +50,8 @@ def run(project: Project, with_tests: bool = True) -> List[Finding]:
     findings = list(project.findings)
     for check in (schema, ids, references, sources, story_proof, story_requirements,
                   superseded, implemented_proof, status_behind_result, unknown_results,
-                  stale_regions, diagram_images, links, readme_version, evidence_paths, closed_risks):
+                  stale_regions, diagram_images, links, readme_version, evidence_paths, closed_risks,
+                  acceptance):
         if not with_tests and check.__name__ in TEST_CHECKS:
             continue
         findings.extend(check(project))
@@ -198,14 +199,14 @@ def status_behind_result(project: Project) -> List[Finding]:
 
 
 def unknown_results(project: Project) -> List[Finding]:
-    """Error 10: test result for a requirement that does not exist."""
-    reqs = project.by_id("requirement")
+    """Error 10: test result for a requirement or story that does not exist."""
+    known = set(project.by_id("requirement")) | set(project.by_id("story"))
     seen = set()
     out = []
-    for r in project.results:
-        if r.req not in reqs and (r.path, r.req) not in seen:
-            seen.add((r.path, r.req))
-            out.append(Finding(10, r.path, f"test result for '{r.req}', which does not exist"))
+    for path, ref in [(r.path, r.req) for r in project.results] + [(r.path, r.story) for r in project.acceptance]:
+        if ref not in known and (path, ref) not in seen:
+            seen.add((path, ref))
+            out.append(Finding(10, path, f"test result for '{ref}', which does not exist"))
     return out
 
 
@@ -304,4 +305,47 @@ def closed_risks(project: Project) -> List[Finding]:
         for story in project.of_kind("story"):
             if risk.id in story.list("addresses") and story.get("status") not in ("verified", "superseded"):
                 out.append(_f(project, 16, risk, f"risk is closed, but {story.id} is {story.get('status')}"))
+    return out
+
+
+_HEADING = re.compile(r"^(#{1,6})[ \t]+(.*?)[ \t#]*$")
+_TOP_ITEM = re.compile(r"^(?:[-*+]|\d+\.)[ \t]+")
+_REQ_REF = re.compile(r"\bREQ-\d{4}\b")
+
+
+def acceptance_items(project: Project, story: Artifact) -> List[str]:
+    """The top-level list items of the story's acceptance section, with their continuation lines."""
+    names = {TEXTS["en"]["acceptance"].lower(),
+             TEXTS.get(project.language, TEXTS["en"])["acceptance"].lower()}
+    lines = blank_fences(story.body).splitlines()
+    items, inside = [], False
+    for line in lines:
+        heading = _HEADING.match(line)
+        if heading:
+            if inside and len(heading.group(1)) <= 2:
+                break
+            inside = inside or (len(heading.group(1)) == 2 and heading.group(2).strip().lower() in names)
+            continue
+        if not inside:
+            continue
+        if _TOP_ITEM.match(line):
+            items.append(_TOP_ITEM.sub("", line, count=1).strip())
+        elif items and line.strip() and line[:1].isspace():
+            items[-1] += " " + line.strip()
+    return items
+
+
+def acceptance(project: Project) -> List[Finding]:
+    """Error 17: acceptance item without a requirement and not an open question; error 3: unknown requirement."""
+    reqs = project.by_id("requirement")
+    out = []
+    for story in project.of_kind("story"):
+        for item in acceptance_items(project, story):
+            short = item if len(item) <= 60 else item[:57] + "…"
+            refs = _REQ_REF.findall(item)
+            if not refs and not item.startswith("UNKNOWN"):
+                out.append(_f(project, 17, story, f"acceptance item names no requirement and is no open question: '{short}'"))
+            for ref in refs:
+                if ref not in reqs:
+                    out.append(_f(project, 3, story, f"acceptance refers to requirement '{ref}', which does not exist"))
     return out
