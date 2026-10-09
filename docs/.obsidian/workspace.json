@@ -188,13 +188,37 @@
       "bases:Neue Base erstellen": false
     }
   },
-  "active": "6a4d81578a65b5cc",
+  "active": "afb5d815fd703397",
   "lastOpenFiles": [
-    "09-decisions/ADR-0022.md",
-    "01-goals/requirements/REQ-0038.md",
-    "01-goals/stories/US-0018.md",
-    "01-goals/stories/US-0015.md",
+    "01-goals/stories/US-0019.md",
+    "01-goals/requirements/REQ-0045.md",
+    "12-glossary.md",
+    "11-risks.md",
+    "08-concepts/sprachen.md",
+    "08-concepts/nachweis.md",
+    "08-concepts/generierte-bereiche.md",
+    "08-concepts",
+    "07-deployment.md",
+    "06-runtime/versionshinweis.md",
+    "06-runtime/pruefung-im-build.md",
+    "06-runtime/installation-und-update.md",
+    "06-runtime",
+    "05-building-blocks/versionshinweis.md",
+    "05-building-blocks/umnummerieren.md",
+    "05-building-blocks/standard.md",
+    "05-building-blocks/skills.md",
+    "05-building-blocks/pruefung.md",
+    "05-building-blocks/projekt-laden.md",
+    "05-building-blocks/kommandozeile.md",
+    "05-building-blocks/erzeugung.md",
+    "05-building-blocks/diagramme.md",
+    "05-building-blocks/auslieferung.md",
+    "05-building-blocks",
+    "04-strategy.md",
     "01-goals/README.md",
-    "README.md"
+    "09-decisions/ADR-0025.md",
+    "01-goals/requirements/REQ-0044.md",
+    "01-goals/requirements/REQ-0043.md",
+    "01-goals/stories/US-0009.md.tmp.3401346.2bfca8915412"
   ]
 }
