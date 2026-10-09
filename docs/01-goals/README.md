@@ -6,13 +6,13 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ✅ verifiziert 19 · ⛔ abgelöst 1 |
-| Requirements | umgesetzt 45 · abgelöst 6 |
-| [Entscheidungen](../09-decisions/) | vorgeschlagen 2 · angenommen 26 · verworfen 1 · abgelöst 1 |
+| Stories | ⚪ offen 1 · ✅ verifiziert 19 · ⛔ abgelöst 1 |
+| Requirements | geplant 4 · umgesetzt 45 · abgelöst 6 |
+| [Entscheidungen](../09-decisions/) | vorgeschlagen 1 · angenommen 27 · verworfen 1 · abgelöst 1 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: ✅ verifiziert
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
@@ -22,6 +22,7 @@ Status: ✅ verifiziert
 | [US-0015](stories/US-0015.md) | Veraltete Diagrammbilder erkennen | ✅ verifiziert |
 | [US-0019](stories/US-0019.md) | Bausteine zeigen nur gültige Requirements | ✅ verifiziert |
 | [US-0020](stories/US-0020.md) | Risiken und Schulden mit ID | ✅ verifiziert |
+| [US-0021](stories/US-0021.md) | Akzeptanz als Vollständigkeitsprobe | ⚪ offen |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -60,13 +61,12 @@ Status: ✅ verifiziert
 
 ## Offene Fragen
 
-- [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Darf ein Punkt der Akzeptanz ein Requirement einer anderen Story nennen, oder nur die in `requirements` der eigenen Story?
-- [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Soll eine Story mit einem `UNKNOWN` in der Akzeptanz `verified` sein dürfen? Bisher blockiert `UNKNOWN` nie etwas.
+- [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Darf ein Punkt der Akzeptanz ein Requirement einer anderen Story nennen, oder nur die in `requirements` der eigenen Story? Vorläufig ist jedes vorhandene Requirement erlaubt; die Erfahrung in Projekten soll es klären.
+- [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Soll eine Story mit einem `UNKNOWN` in der Akzeptanz `verified` sein dürfen? Bisher blockiert `UNKNOWN` nie etwas; vorläufig bleibt es dabei.
 
 ## Offene Entscheidungen
 
 - [ADR-0027](../09-decisions/ADR-0027.md) — Requirements nennen die Entscheidung, aus der sie folgen
-- [ADR-0030](../09-decisions/ADR-0030.md) — Akzeptanz der Story als Vollständigkeitsprobe, Ende-zu-Ende-Tests außerhalb des Gates
 
 ## Widersprüche
 
