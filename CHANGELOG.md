@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `docspine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.22
 
 - **Requirements name their decision** (standard 3.4, 3.5, ADR-0027). A requirement that
   follows from an ADR names it in the new field `decisions`; the ADR shows these
