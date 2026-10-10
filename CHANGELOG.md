@@ -4,7 +4,7 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `docspine-update` shows the entries between the installed and
 the new version.
 
-## Unreleased
+## 0.23
 
 - **Acceptance criteria with IDs** (standard 3.3, ADR-0031, replaces ADR-0030). The section
   is now `## Acceptance criteria` (German `## Akzeptanzkriterien`), and every acceptance

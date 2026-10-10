@@ -1,4 +1,4 @@
-<!-- docspine 0.22 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
+<!-- docspine 0.23 · from standard/en/README.md · übersetzt, nicht von Hand editieren -->
 
 # Dokumentation nach docspine
 
