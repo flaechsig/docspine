@@ -64,7 +64,8 @@ describes the procedure. Talk to the person in the project language (`language` 
 ## Newer version
 
 Before anything else, run `python3 .docspine/docspine.pyz version`. It looks online at
-most once a day and does not fail without a network. If it reports a newer version,
+most once a day and does not fail without a network. If the person asks explicitly
+whether there is a newer version, run it with `--now`: a cached answer can be a day old. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
 `docspine-update`. Ask before doing so, because it fetches files from outside. If the

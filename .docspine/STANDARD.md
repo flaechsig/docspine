@@ -1,8 +1,8 @@
-<!-- docspine 0.22 · source: standard/en/STANDARD.md · do not edit in projects -->
+<!-- docspine 0.23 · source: standard/en/STANDARD.md · do not edit in projects -->
 
 # docspine Standard
 
-Version 0.22 (draft)
+Version 0.23 (draft)
 
 This document defines the rules for projects that follow docspine, a way of developing
 in which the documentation is the spine: from vision through requirements and decisions
@@ -257,29 +257,41 @@ epic: E-NAME                  # must exist
 requirements: [REQ-NNNN]      # each must exist; [] is allowed
 status: open
 evidence: []                  # optional: paths that prove the story
-addresses: [SEC-NNNN]         # optional: risks and debts the story works on
+addresses: [SEC-NNNN]         # optional: risks and debts it is needed to close
 superseded_by: ADR-NNNN       # only with superseded or retired
 ---
 ```
 
-Body: `As <role> I want <goal> so that <benefit>.`, then why, then acceptance in the
-users' terms. A story contains no decisions (those are ADRs) and no normative criteria
+Body: `As <role> I want <goal> so that <benefit>.`, then why, then acceptance criteria in
+the users' terms. A story contains no decisions (those are ADRs) and no normative criteria
 without a requirement.
 
-**Acceptance.** A story may state its acceptance under the heading `## Acceptance` (in
-the project language, section 12). It is the completeness probe of the story:
+**Acceptance criteria.** A story may state its acceptance criteria under the heading
+`## Acceptance criteria` (in the project language, section 12). They are the
+completeness probe of the story:
 
 - a list in the words of whoever asked for the story, not a formal notation such as
   Given/When/Then; formalising belongs to the tests;
-- one observable result per item ("the template appears in the list of approved
-  templates", not "approval works");
-- every item names the requirement that demands it (`REQ-NNNN`), or starts with
-  `UNKNOWN` as an open question (principle 6). The acceptance demands nothing new; an
-  item that no requirement demands is a gap in the specification.
+- every acceptance criterion starts with its ID `AC-<n>:`, unique within the story;
+- one observable result per acceptance criterion ("the template appears in the list of
+  approved templates", not "approval works");
+- every acceptance criterion names the requirement that demands it (`REQ-NNNN`), or
+  states an open question after its ID (`AC-4: UNKNOWN — open question: …`, principle 6).
+  The acceptance criteria demand nothing new; one that no requirement demands is a gap in
+  the specification.
 
-The items are written from the user's point of view first and matched to requirements
-afterwards; otherwise the acceptance only mirrors the requirements and proves nothing. A
-story without the section stays valid.
+```markdown
+## Acceptance criteria
+
+- AC-1: The template appears in the list of approved templates (REQ-0040).
+- AC-2: UNKNOWN — open question: what does a designer without approval rights see?
+```
+
+The acceptance criteria are written from the user's point of view first and matched to
+requirements afterwards; otherwise they only mirror the requirements and prove nothing.
+When the content of an acceptance criterion changes, it gets a new ID; an ID is never
+given again within the story. Corrections of wording that keep the content keep the ID.
+A story without the section stays valid.
 
 | `status` | Meaning | Proof required |
 |---|---|---|
@@ -473,7 +485,9 @@ and its consequence.
 | `closed` | resolved | every story that addresses it is `verified` or `superseded` |
 | `superseded` | replaced, for example by a risk of another kind | `superseded_by` |
 
-A story names the risks it works on in `addresses`. Whether a risk is resolved is not
+A story names a risk in `addresses` only if it is needed to close it. A story that only
+touches a risk, prepares its closing or goes beyond it does not name it; the connection
+can be described in its text. Whether a risk is resolved is not
 written into the story or repeated in the chapter; the risk shows its stories with
 their status (section 4).
 
@@ -528,7 +542,7 @@ generated into a **generated region** inside a hand-written file:
 | `realized` | building block | requirements whose evidence lies under its path, without superseded and rejected ones |
 | `scenarios` | story | runtime scenarios that realise it |
 | `stories` | risk | the stories that address it, with status |
-| `risks` | `11-risks/README.md` | all risks and debts, grouped into architecture risks, security risks and technical debt, with status, severity and stories |
+| `risks` | `11-risks/README.md` | all risks and debts, grouped into architecture risks, security risks and technical debt, with status, severity and stories with their status |
 
 Generated regions must not be edited by hand. A region that differs from what the
 checker would generate is an error. On merge conflicts inside a region, discard the
@@ -620,7 +634,8 @@ class name. So the ID must be part of the test's name; for JUnit 5 that is
 (`@Tag`) do not appear in the reports and cannot be used.
 
 A test case that names a story (`US-NNNN`) is an **acceptance test** of that story, for
-example an end-to-end test derived from its acceptance. It counts only for the story,
+example an end-to-end test derived from its acceptance criteria. It names the acceptance
+criterion it tests right after the story: `US-0012 AC-3: …`. It counts only for the story,
 never for a requirement, even if requirement IDs appear in the same name: acceptance
 tests often run outside the build, against an environment, and must not overturn the
 proof of a requirement. They are not part of the gate: they neither set nor revoke
@@ -635,7 +650,7 @@ this format, in any number of files with this name:
 {
   "results": [
     { "req": "REQ-0012", "result": "passed", "test": "OrderServiceTest.rejectsEmptyCart" },
-    { "story": "US-0004", "result": "failed", "test": "e2e/order-flow" }
+    { "story": "US-0004", "criterion": "AC-2", "result": "failed", "test": "e2e/order-flow" }
   ]
 }
 ```
@@ -765,16 +780,17 @@ network. The skills from docspine run it when they start.
 | 7 | `superseded` or `retired` without `superseded_by` |
 | 8 | requirement `implemented` without a passing test result and without a proof by hand (`evidence` and `verification`) |
 | 9 | requirement `planned` or `proposed`, but a passing test result exists |
-| 10 | test result for a requirement or story that does not exist, or test results that cannot be read |
+| 10 | test result for a requirement, story or acceptance criterion that does not exist, or test results that cannot be read |
 | 11 | generated region differs from what would be generated |
 | 12 | diagram image missing, not produced with `diagram`, or produced from an older version of its source |
 | 13 | broken relative link |
 | 14 | `README.md` was translated from a different docspine version than the installed `STANDARD.md` |
 | 15 | an `evidence` path does not exist |
 | 16 | risk `closed`, but a story that addresses it is neither `verified` nor `superseded` |
-| 17 | an item of a story's acceptance names no requirement and does not start with `UNKNOWN` |
+| 17 | an acceptance criterion names no requirement and is no open question (`UNKNOWN` after its ID) |
 | 18 | requirement `planned` or `implemented`, but an ADR in its `decisions` is `proposed` or `rejected` |
 | 19 | an ADR supersedes an ADR that is neither `accepted` nor `superseded` |
+| 20 | an acceptance criterion has no ID `AC-<n>`, or its ID occurs twice in the story |
 
 **Generated views:**
 
@@ -790,7 +806,7 @@ terms. The German column is binding for projects with `language: de`.
 
 | English | Deutsch |
 |---|---|
-| acceptance | Akzeptanz |
+| acceptance criteria / acceptance criterion | Akzeptanzkriterien / Akzeptanzkriterium |
 | architecture impact | Architekturwirkung |
 | building block | Baustein |
 | checker | Prüfwerkzeug |
