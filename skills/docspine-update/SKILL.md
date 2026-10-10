@@ -57,6 +57,11 @@ it after approval. Never write to the main branch.
 7. Chapter 11 as a single file `docs/11-risks.md` that numbers its risks or debts (for
    example `R-9`, `SEC-4`, `TD-2`), and stories that refer to them in their text. Since
    version 0.21 these can be files with IDs (STANDARD 3.8).
+8. Stories with a section `## Acceptance` / `## Akzeptanz` (version 0.22); since 0.23 it
+   is `## Acceptance criteria` / `## Akzeptanzkriterien`, and every acceptance criterion
+   starts with its ID `AC-n:` (STANDARD 3.3).
+9. Risks whose `addresses` name stories that only touch them (since 0.23 a story names a
+   risk only if it is needed to close it, STANDARD 3.8).
 
 ## Step 2 — Propose
 
@@ -83,6 +88,11 @@ are newer than the README's version. Then list what you would do:
   the check may report error 18 where a requirement was built against an ADR that is
   still `proposed`; show it and ask whether to accept the ADR or set the requirement
   back.
+- **Acceptance criteria (required since 0.23):** rename the section found in step 1.8 and
+  number its items `AC-1`, `AC-2`, … in their order. Acceptance tests that name the story
+  get the ID of the criterion they test.
+- **`addresses` (review):** show the risks found in step 1.9 with the stories that only
+  touch them, and let the person decide which to remove.
 - **Risks with IDs (optional):** if step 1.7 found numbered risks, offer to move them
   into `docs/11-risks/`, one file each. Numbers are kept (`R-9` → `R-0009`); a status
   such as "fixed" becomes `closed` only if every story that works on the risk is

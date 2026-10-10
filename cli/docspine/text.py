@@ -27,7 +27,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "severity.low": "low", "severity.medium": "medium", "severity.high": "high",
         "severity.critical": "critical", "severity": "Severity",
         "risks_title": "Risks and technical debt", "group.R": "Architecture risks",
-        "group.SEC": "Security risks", "group.TD": "Technical debt", "acceptance": "Acceptance",
+        "group.SEC": "Security risks", "group.TD": "Technical debt", "acceptance": "Acceptance criteria",
     },
     "de": {
         "story.open": "⚪ offen", "story.in-progress": "🟡 in Arbeit", "story.verified": "✅ verifiziert",
@@ -50,7 +50,7 @@ TEXTS: Dict[str, Dict[str, str]] = {
         "severity.low": "niedrig", "severity.medium": "mittel", "severity.high": "hoch",
         "severity.critical": "kritisch", "severity": "Schwere",
         "risks_title": "Risiken und technische Schulden", "group.R": "Architekturrisiken",
-        "group.SEC": "Security-Risiken", "group.TD": "Technische Schulden", "acceptance": "Akzeptanz",
+        "group.SEC": "Security-Risiken", "group.TD": "Technische Schulden", "acceptance": "Akzeptanzkriterien",
     },
 }
 

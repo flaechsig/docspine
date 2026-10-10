@@ -89,6 +89,9 @@ def report(root: Path, now: bool = False) -> List[str]:
     note = ""
     if not now and cache and time.time() - cache.get("checked", 0) < INTERVAL:
         changelog = cache["changelog"]
+        checked = time.strftime("%Y-%m-%d %H:%M", time.localtime(cache.get("checked", 0)))
+        # a cached answer can be up to a day old; say so, so that "current" does not mislead
+        note = f" (from the cache, last checked {checked}; --now checks at once)"
     else:
         try:
             changelog = _fetch()

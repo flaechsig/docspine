@@ -79,6 +79,7 @@ class AcceptanceResult:
     result: str
     test: str
     path: str
+    criterion: Optional[str] = None  # AC-n of the story, if the test names one (ADR-0031)
 
 
 @dataclass
@@ -180,6 +181,7 @@ def _load_results(project: Project, path: Path) -> None:
                     result=str(entry["result"]),
                     test=str(entry.get("test", "")),
                     path=rel,
+                    criterion=str(entry["criterion"]) if entry.get("criterion") else None,
                 ))
                 continue
             project.results.append(Result(
@@ -194,6 +196,8 @@ def _load_results(project: Project, path: Path) -> None:
 
 _REQ_ID = re.compile(r"\bREQ-\d{4}\b")
 _STORY_ID = re.compile(r"\bUS-\d{4}\b")
+# a story ID, optionally followed by the acceptance criterion it tests: "US-0012 AC-3"
+_STORY_CRITERION = re.compile(r"\b(US-\d{4})\b(?:[ \t:/]*\b(AC-\d+)\b)?")
 
 
 DISCOVERY_SKIP = SKIP_DIRS | {"docs", ".docspine", ".agents", ".claude"}
@@ -248,9 +252,9 @@ def _load_junit_xml(project: Project, path: Path) -> None:
             outcome = "skipped"
         else:
             outcome = "passed"
-        for story in stories:
-            project.acceptance.append(AcceptanceResult(story=story, result=outcome,
-                                                       test=f"{classname}.{name}", path=rel))
+        for story, criterion in dict.fromkeys(_STORY_CRITERION.findall(f"{classname} {name}")):
+            project.acceptance.append(AcceptanceResult(story=story, result=outcome, test=f"{classname}.{name}",
+                                                       path=rel, criterion=criterion or None))
         for req in ids:
             project.results.append(Result(req=req, result=outcome, test=f"{classname}.{name}", path=rel))
 

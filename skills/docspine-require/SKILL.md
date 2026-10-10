@@ -43,7 +43,8 @@ language (`language` in `.docspine/PROFILE.md`).
 ## Newer version
 
 Before anything else, run `python3 .docspine/docspine.pyz version`. It looks online at
-most once a day and does not fail without a network. If it reports a newer version,
+most once a day and does not fail without a network. If the person asks explicitly
+whether there is a newer version, run it with `--now`: a cached answer can be a day old. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
 `docspine-update`. Ask before doing so, because it fetches files from outside. If the
@@ -87,17 +88,19 @@ confirm or correct it. At most two rounds. Clarify:
 7. **Epic:** which existing theme. A new epic only for a genuinely new theme.
 8. **New or change:** does it change an existing requirement? Then it is a new
    requirement that supersedes the old one (STANDARD 5); the old one is never rewritten.
-9. **Acceptance:** for a story, list what the person who asked for it will observe when
-   it is done, in their words, one observable result per item (STANDARD 3.3). Write
-   these items from the story alone, **before** you look at or draft requirements; only
-   then name for each item the requirement that demands it. An item no requirement
-   demands is a gap: draft the missing requirement, or keep the item as `UNKNOWN — open
-   question: …` if nobody knows yet. No Given/When/Then; that belongs to the tests.
+9. **Acceptance criteria:** for a story, list what the person who asked for it will
+   observe when it is done, in their words, one observable result per acceptance
+   criterion (STANDARD 3.3). Write them from the story alone, **before** you look at or
+   draft requirements; only then name for each the requirement that demands it. One that
+   no requirement demands is a gap: draft the missing requirement, or keep it as
+   `AC-n: UNKNOWN — open question: …` if nobody knows yet. No Given/When/Then; that
+   belongs to the tests.
 10. **Decision:** does the requirement follow from an ADR? Then it names it in
    `decisions` (STANDARD 3.4). If that ADR is still `proposed`, the requirement stays
    `proposed` too.
-11. **Risk or debt:** does the story work on a risk or debt in `docs/11-risks/`
-   (`R-`, `SEC-`, `TD-`)? Then it names it in `addresses` (STANDARD 3.8).
+11. **Risk or debt:** is the story needed to close a risk or debt in `docs/11-risks/`
+   (`R-`, `SEC-`, `TD-`)? Then it names it in `addresses` (STANDARD 3.8). A story that only
+   touches, prepares or goes beyond the risk does not name it.
 
 ## Step 2 — Proposal
 
@@ -113,9 +116,12 @@ front matter and body. Wait for approval. On "change X", adjust and show again.
   describes.
 - **Story** `docs/01-goals/stories/US-NNNN.md` (STANDARD 3.3): new, or the existing one
   with the new IDs added to `requirements`. Keep its status unless the person decides
-  otherwise. Its acceptance goes under the heading `## Acceptance` in the project
-  language (STANDARD 12), each item with its `REQ-NNNN` or starting with `UNKNOWN`. A
-  risk or debt it works on goes into `addresses`; never write the risk ID
+  otherwise. Its acceptance criteria go under the heading `## Acceptance criteria` in
+  the project language (STANDARD 12), each starting with its ID `AC-n:` (the next free
+  number in the story; IDs are never given again) and naming its `REQ-NNNN` or
+  continuing with `UNKNOWN`. When the content of an existing acceptance criterion
+  changes, give it a new ID instead of rewriting it. A risk or debt it is needed to
+  close goes into `addresses`; never write the risk ID
   into the text as a back reference, and never write the progress of a fix ("fixed on
   …") into the story. The risk shows its stories and their status itself.
 - **Epic** `docs/01-goals/epics/E-<NAME>.md`: only if a new theme was agreed.

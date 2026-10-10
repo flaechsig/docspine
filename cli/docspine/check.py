@@ -204,11 +204,17 @@ def status_behind_result(project: Project) -> List[Finding]:
 
 
 def unknown_results(project: Project) -> List[Finding]:
-    """Error 10: test result for a requirement or story that does not exist."""
-    known = set(project.by_id("requirement")) | set(project.by_id("story"))
+    """Error 10: test result for a requirement, story or acceptance criterion that does not exist."""
+    stories = project.by_id("story")
+    known = set(project.by_id("requirement")) | set(stories)
+    for story in stories.values():
+        known |= {f"{story.id} {ac}" for ac, _ in acceptance_criteria(project, story)}
     seen = set()
     out = []
-    for path, ref in [(r.path, r.req) for r in project.results] + [(r.path, r.story) for r in project.acceptance]:
+    refs = [(r.path, r.req) for r in project.results]
+    refs += [(r.path, f"{r.story} {r.criterion}" if r.criterion and r.story in stories else r.story)
+             for r in project.acceptance]
+    for path, ref in refs:
         if ref not in known and (path, ref) not in seen:
             seen.add((path, ref))
             out.append(Finding(10, path, f"test result for '{ref}', which does not exist"))
@@ -318,8 +324,11 @@ _TOP_ITEM = re.compile(r"^(?:[-*+]|\d+\.)[ \t]+")
 _REQ_REF = re.compile(r"\bREQ-\d{4}\b")
 
 
+_AC_ID = re.compile(r"^(AC-\d+):[ \t]*")
+
+
 def acceptance_items(project: Project, story: Artifact) -> List[str]:
-    """The top-level list items of the story's acceptance section, with their continuation lines."""
+    """The top-level list items of the story's acceptance criteria, with their continuation lines."""
     names = {TEXTS["en"]["acceptance"].lower(),
              TEXTS.get(project.language, TEXTS["en"])["acceptance"].lower()}
     lines = blank_fences(story.body).splitlines()
@@ -340,16 +349,32 @@ def acceptance_items(project: Project, story: Artifact) -> List[str]:
     return items
 
 
+def acceptance_criteria(project: Project, story: Artifact) -> List[tuple]:
+    """(AC-n or None, text after the ID) for every acceptance criterion of the story."""
+    out = []
+    for item in acceptance_items(project, story):
+        m = _AC_ID.match(item)
+        out.append((m.group(1), item[m.end():]) if m else (None, item))
+    return out
+
+
 def acceptance(project: Project) -> List[Finding]:
-    """Error 17: acceptance item without a requirement and not an open question; error 3: unknown requirement."""
+    """Error 17: criterion without requirement and no open question; 20: ID missing or twice; 3: unknown REQ."""
     reqs = project.by_id("requirement")
     out = []
     for story in project.of_kind("story"):
-        for item in acceptance_items(project, story):
-            short = item if len(item) <= 60 else item[:57] + "…"
-            refs = _REQ_REF.findall(item)
-            if not refs and not item.startswith("UNKNOWN"):
-                out.append(_f(project, 17, story, f"acceptance item names no requirement and is no open question: '{short}'"))
+        seen = set()
+        for ac, text in acceptance_criteria(project, story):
+            short = text if len(text) <= 60 else text[:57] + "…"
+            if ac is None:
+                out.append(_f(project, 20, story, f"acceptance criterion has no ID (AC-n): '{short}'"))
+            elif ac in seen:
+                out.append(_f(project, 20, story, f"acceptance criterion ID {ac} is used twice"))
+            seen.add(ac)
+            refs = _REQ_REF.findall(text)
+            if not refs and not text.startswith("UNKNOWN"):
+                out.append(_f(project, 17, story,
+                              f"acceptance criterion names no requirement and is no open question: '{short}'"))
             for ref in refs:
                 if ref not in reqs:
                     out.append(_f(project, 3, story, f"acceptance refers to requirement '{ref}', which does not exist"))

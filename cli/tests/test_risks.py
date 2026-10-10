@@ -101,7 +101,7 @@ class RiskStoriesRegion(ProjectTest):
         self.assertEqual(self.codes(rendered=False), [11])
 
 
-@req("REQ-0050")
+@req("REQ-0050", "REQ-0066")
 class RisksOverview(ProjectTest):
     README = "docs/11-risks/README.md"
 
@@ -115,7 +115,7 @@ class RisksOverview(ProjectTest):
         groups = [text.index(h) for h in ("## Architecture risks", "## Security risks", "## Technical debt")]
         self.assertEqual(groups, sorted(groups))
         self.assertIn("| [SEC-0001](SEC-0001.md) | Import without authentication | open | medium | "
-                      "[US-0001](../01-goals/stories/US-0001.md) |", text)
+                      "[US-0001](../01-goals/stories/US-0001.md) ⚪ open |", text)
         self.assertIn("| [R-0001](R-0001.md) | Import without authentication | open | — | — |", text)
 
     def test_hand_written_readme_keeps_its_text(self):
