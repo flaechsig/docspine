@@ -46,4 +46,7 @@ nicht geprüft. _(confidence: verified — cli/docspine/text.py, REQ-0011)_
 - [REQ-0057](../01-goals/requirements/REQ-0057.md) IF a requirement is planned or implemented and lists in decisions an ADR that is proposed or rejected, THEN the checker shall report error 18.
 - [REQ-0058](../01-goals/requirements/REQ-0058.md) IF an ADR has the field requires, THEN the checker shall report error 1 and name decisions in the requirements as its replacement.
 - [REQ-0061](../01-goals/requirements/REQ-0061.md) IF an ADR lists in supersedes an ADR that is neither accepted nor superseded, THEN the checker shall report error 19.
+- [REQ-0062](../01-goals/requirements/REQ-0062.md) WHEN a story has an acceptance criteria section, the checker shall report error 17 for every acceptance criterion that names no requirement ID and whose text after its ID does not start with UNKNOWN.
+- [REQ-0063](../01-goals/requirements/REQ-0063.md) IF an acceptance criterion does not start with an ID of the form AC-n, or its ID occurs twice in the story, THEN the checker shall report error 20.
+- [REQ-0064](../01-goals/requirements/REQ-0064.md) IF a test result names an acceptance criterion that the story does not have, THEN the checker shall report error 10.
 <!-- /generated -->

@@ -203,7 +203,8 @@ def risks_region(project: Project, readme: Path) -> str:
                   f"| ID | {t['title']} | {t['status']} | {t['severity']} | Stories |", "|---|---|---|---|---|"]
         for r in risks:
             severity = t.get("severity." + str(r.get("severity")), r.get("severity")) or "—"
-            stories = ", ".join(_link(readme, s) for s in _addressing(project, r)) or "—"
+            stories = ", ".join(f"{_link(readme, s)} {t.get('story.' + str(s.get('status')), s.get('status'))}"
+                                for s in _addressing(project, r)) or "—"
             lines.append(f"| {_link(readme, r)} | {r.get('title')} | "
                          f"{t.get('risk.' + str(r.get('status')), r.get('status'))} | {severity} | {stories} |")
         lines.append("")
@@ -238,7 +239,8 @@ def _partial_chapters(project: Project) -> List[str]:
 
 
 _ITEM = r"^[ \t]*(?:(?:[-*+>]|\d+\.)[ \t]+)*"
-OPEN_QUESTION = re.compile(_ITEM + r"UNKNOWN\b")
+# an acceptance criterion carries its ID before the open question (ADR-0031)
+OPEN_QUESTION = re.compile(_ITEM + r"(?:AC-\d+:[ \t]*)?UNKNOWN\b")
 CONTRADICTION = re.compile(r"\(contradiction\)")
 _NEW_ITEM = re.compile(r"^[ \t]*(?:[-*+]|\d+\.)[ \t]")
 

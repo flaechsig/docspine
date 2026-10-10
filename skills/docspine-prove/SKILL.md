@@ -72,7 +72,8 @@ language (`language` in `.docspine/PROFILE.md`).
 ## Newer version
 
 Before anything else, run `python3 .docspine/docspine.pyz version`. It looks online at
-most once a day and does not fail without a network. If it reports a newer version,
+most once a day and does not fail without a network. If the person asks explicitly
+whether there is a newer version, run it with `--now`: a cached answer can be a day old. If it reports a newer version,
 say so in one line and sum up its changelog entries in at most three points. Then offer
 to install it first: on a branch of its own, run the command it shows, then the skill
 `docspine-update`. Ask before doing so, because it fetches files from outside. If the
@@ -105,9 +106,10 @@ without mentioning it again.
    | 13, 15 broken link or `evidence` path | correct the path |
    | 14 README from another version | `docspine-update` |
    | 16 risk `closed`, but a story on it is not done | finish the story, or set the risk back to `open`: `docspine-impact` |
-   | 17 acceptance item without a requirement | a gap in the specification: write the requirement, or mark the item `UNKNOWN`: `docspine-require` |
+   | 17 acceptance criterion without a requirement | a gap in the specification: write the requirement, or mark it `UNKNOWN` after its ID: `docspine-require` |
    | 18 requirement released or built against an ADR on `proposed` or `rejected` | decide first: `docspine-decide`; or set the requirement back to `proposed` |
    | 19 ADR supersedes an ADR that is not in force | edit the proposed ADR directly instead, or drop `supersedes`: `docspine-decide` |
+   | 20 acceptance criterion without ID `AC-n`, or ID twice | give it the next free ID in the story: `docspine-require` |
 
    An error can have two readings: "the test is missing" or "the status is not honest".
    Name both and recommend one.

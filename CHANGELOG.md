@@ -4,6 +4,24 @@ What changed in what docspine delivers to projects (`.docspine/`, `.agents/skill
 The newest version comes first. `docspine-update` shows the entries between the installed and
 the new version.
 
+## Unreleased
+
+- **Acceptance criteria with IDs** (standard 3.3, ADR-0031, replaces ADR-0030). The section
+  is now `## Acceptance criteria` (German `## Akzeptanzkriterien`), and every acceptance
+  criterion starts with its ID: `- AC-1: … (REQ-0040)`, or `- AC-2: UNKNOWN — open
+  question: …`. New error 20: an acceptance criterion without ID, or an ID twice in the
+  story. When the content of an acceptance criterion changes, it gets a new ID.
+  Acceptance tests name the criterion they test (`US-0012 AC-3: …`, or `"criterion"` in
+  `req-results.json`); error 10 reports a criterion the story does not have, so a test of a
+  changed criterion stands out. **After the update, call `/docspine-update`:** it renames
+  the section and numbers the existing items.
+- **`addresses` means "needed to close the risk"** (standard 3.8, ADR-0032). A story that
+  only touches, prepares or goes beyond a risk does not name it. The overview of chapter 11
+  now shows the status of every story; run `render`. `docspine-update` lists risks whose
+  stories should be reviewed.
+- **Age of the version hint.** When `version` answers from its cache, it says when it last
+  checked. The skills use `--now` when the person asks explicitly for a newer version.
+
 ## 0.22
 
 - **Requirements name their decision** (standard 3.4, 3.5, ADR-0027). A requirement that

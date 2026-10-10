@@ -128,6 +128,18 @@ class FetchesAtMostOnceADay(VersionTest):
         self.assertEqual(sorted(p.name for p in (self.root / ".docspine").iterdir()), ["STANDARD.md"])
 
 
+@req("REQ-0067")
+class CacheIsNamed(VersionTest):
+    def test_answer_from_cache_names_the_last_check(self):
+        self.run_version()
+        _, out, _ = self.run_version()
+        self.assertRegex(out, r"from the cache, last checked \d{4}-\d{2}-\d{2} \d{2}:\d{2}; --now checks at once")
+
+    def test_fresh_answer_has_no_cache_note(self):
+        _, out, _ = self.run_version("--now")
+        self.assertNotIn("from the cache", out)
+
+
 @req("REQ-0044")
 class OfflineDoesNotFail(VersionTest):
     def test_without_network_and_without_cache(self):

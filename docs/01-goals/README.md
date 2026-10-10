@@ -6,13 +6,13 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ⚪ offen 3 · ✅ verifiziert 21 · ⛔ abgelöst 1 |
-| Requirements | geplant 6 · umgesetzt 53 · abgelöst 8 |
+| Stories | ✅ verifiziert 24 · ⛔ abgelöst 1 |
+| Requirements | umgesetzt 59 · abgelöst 8 |
 | [Entscheidungen](../09-decisions/) | angenommen 29 · verworfen 1 · abgelöst 2 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
@@ -24,8 +24,8 @@ Status: 🟡 in Arbeit
 | [US-0020](stories/US-0020.md) | Risiken und Schulden mit ID | ✅ verifiziert |
 | [US-0021](stories/US-0021.md) | Akzeptanz als Vollständigkeitsprobe | ✅ verifiziert |
 | [US-0022](stories/US-0022.md) | Requirements nennen ihre Entscheidung | ✅ verifiziert |
-| [US-0023](stories/US-0023.md) | Akzeptanzkriterien mit Kennung | ⚪ offen |
-| [US-0024](stories/US-0024.md) | Fortschritt eines Risikos sichtbar | ⚪ offen |
+| [US-0023](stories/US-0023.md) | Akzeptanzkriterien mit Kennung | ✅ verifiziert |
+| [US-0024](stories/US-0024.md) | Fortschritt eines Risikos sichtbar | ✅ verifiziert |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -39,7 +39,7 @@ Status: ✅ verifiziert
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
 
-Status: 🟡 in Arbeit
+Status: ✅ verifiziert
 
 | Story | Titel | Status |
 |---|---|---|
@@ -50,7 +50,7 @@ Status: 🟡 in Arbeit
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ✅ verifiziert |
 | [US-0016](stories/US-0016.md) | docspine-update | ✅ verifiziert |
 | [US-0018](stories/US-0018.md) | Über neue Versionen informiert werden | ✅ verifiziert |
-| [US-0025](stories/US-0025.md) | Erkennen, wie alt der Versionshinweis ist | ⚪ offen |
+| [US-0025](stories/US-0025.md) | Erkennen, wie alt der Versionshinweis ist | ✅ verifiziert |
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 
@@ -65,7 +65,7 @@ Status: ✅ verifiziert
 
 ## Offene Fragen
 
-- [01-goals/stories/US-0022.md](stories/US-0022.md): UNKNOWN — offene Frage: Braucht die Migration bestehender Projekte ein eigenes Requirement (etwa einen Befehl im Prüfwerkzeug), oder genügt der Skill `docspine-update`?
+- [01-goals/stories/US-0022.md](stories/US-0022.md): AC-7: UNKNOWN — offene Frage: Braucht die Migration bestehender Projekte ein eigenes Requirement (etwa einen Befehl im Prüfwerkzeug), oder genügt der Skill `docspine-update`?
 - [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Darf ein Punkt der Akzeptanz ein Requirement einer anderen Story nennen, oder nur die in `requirements` der eigenen Story? Vorläufig ist jedes vorhandene Requirement erlaubt; die Erfahrung in Projekten soll es klären.
 - [09-decisions/ADR-0030.md](../09-decisions/ADR-0030.md): UNKNOWN — offene Frage: Soll eine Story mit einem `UNKNOWN` in der Akzeptanz `verified` sein dürfen? Bisher blockiert `UNKNOWN` nie etwas; vorläufig bleibt es dabei.
 

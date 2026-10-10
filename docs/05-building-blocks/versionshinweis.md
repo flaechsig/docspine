@@ -22,4 +22,5 @@ _(confidence: verified — cli/docspine/version.py, REQ-0043, REQ-0044, ADR-0025
 - [REQ-0042](../01-goals/requirements/REQ-0042.md) WHEN the command `version` is run, the CLI shall report the installed version and the newest released version and, if the newest is newer, the changelog entries of the versions in between.
 - [REQ-0043](../01-goals/requirements/REQ-0043.md) WHILE the last successful lookup is less than one day old, the CLI shall answer the command `version` from a cache in the user's cache folder without network access, unless the option `--now` is given.
 - [REQ-0044](../01-goals/requirements/REQ-0044.md) IF the newest version cannot be fetched within 5 seconds, THEN the CLI shall report that it could not check, show the last cached result if there is one, and exit with code 0.
+- [REQ-0067](../01-goals/requirements/REQ-0067.md) WHEN the version command answers from its cache, the CLI shall name the date and time of the last check.
 <!-- /generated -->
