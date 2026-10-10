@@ -17,4 +17,5 @@ Die Skill-Familie `docspine-*` führt durch die Arbeit mit dem Standard, nach de
 - [US-0011](../stories/US-0011.md) — Kaltstart-Test
 - [US-0016](../stories/US-0016.md) — docspine-update
 - [US-0018](../stories/US-0018.md) — Über neue Versionen informiert werden
+- [US-0025](../stories/US-0025.md) — Erkennen, wie alt der Versionshinweis ist
 <!-- /generated -->

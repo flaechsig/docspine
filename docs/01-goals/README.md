@@ -6,13 +6,13 @@ leisten soll, heruntergebrochen in Epics, Stories und Requirements.
 <!-- generated:status -->
 | | Anzahl |
 |---|---|
-| Stories | ✅ verifiziert 21 · ⛔ abgelöst 1 |
-| Requirements | umgesetzt 54 · abgelöst 7 |
-| [Entscheidungen](../09-decisions/) | angenommen 28 · verworfen 1 · abgelöst 1 |
+| Stories | ⚪ offen 3 · ✅ verifiziert 21 · ⛔ abgelöst 1 |
+| Requirements | geplant 6 · umgesetzt 53 · abgelöst 8 |
+| [Entscheidungen](../09-decisions/) | angenommen 29 · verworfen 1 · abgelöst 2 |
 
 ## [E-GENERATOR](epics/E-GENERATOR.md) — Prüfen und Erzeugen per CLI
 
-Status: ✅ verifiziert
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
@@ -24,6 +24,8 @@ Status: ✅ verifiziert
 | [US-0020](stories/US-0020.md) | Risiken und Schulden mit ID | ✅ verifiziert |
 | [US-0021](stories/US-0021.md) | Akzeptanz als Vollständigkeitsprobe | ✅ verifiziert |
 | [US-0022](stories/US-0022.md) | Requirements nennen ihre Entscheidung | ✅ verifiziert |
+| [US-0023](stories/US-0023.md) | Akzeptanzkriterien mit Kennung | ⚪ offen |
+| [US-0024](stories/US-0024.md) | Fortschritt eines Risikos sichtbar | ⚪ offen |
 
 ## [E-MIGRATION](epics/E-MIGRATION.md) — Die bestehenden Projekte umstellen
 
@@ -37,7 +39,7 @@ Status: ✅ verifiziert
 
 ## [E-SKILLS](epics/E-SKILLS.md) — Geführte Abläufe als Skills
 
-Status: ✅ verifiziert
+Status: 🟡 in Arbeit
 
 | Story | Titel | Status |
 |---|---|---|
@@ -48,6 +50,7 @@ Status: ✅ verifiziert
 | [US-0011](stories/US-0011.md) | Kaltstart-Test | ✅ verifiziert |
 | [US-0016](stories/US-0016.md) | docspine-update | ✅ verifiziert |
 | [US-0018](stories/US-0018.md) | Über neue Versionen informiert werden | ✅ verifiziert |
+| [US-0025](stories/US-0025.md) | Erkennen, wie alt der Versionshinweis ist | ⚪ offen |
 
 ## [E-STANDARD](epics/E-STANDARD.md) — Der Standard als lesbares Regelwerk
 

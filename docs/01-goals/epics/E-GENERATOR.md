@@ -18,4 +18,6 @@ Eine eigenständige CLI prüft die Doku gegen den Standard und erzeugt generiert
 - [US-0020](../stories/US-0020.md) — Risiken und Schulden mit ID
 - [US-0021](../stories/US-0021.md) — Akzeptanz als Vollständigkeitsprobe
 - [US-0022](../stories/US-0022.md) — Requirements nennen ihre Entscheidung
+- [US-0023](../stories/US-0023.md) — Akzeptanzkriterien mit Kennung
+- [US-0024](../stories/US-0024.md) — Fortschritt eines Risikos sichtbar
 <!-- /generated -->
